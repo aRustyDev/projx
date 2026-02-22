@@ -8,7 +8,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ### Tailwind-Svelte-Assistant
 
-**Repository**: [CaullenOmdahl/Tailwind-Svelte-Assistant](https://mcpservers.org/servers/CaullenOmdahl/Tailwind-Svelte-Assistant)
+**Repository**: [CaullenOmdahl/Tailwind-Svelte-Assistant](https://github.com/CaullenOmdahl/Tailwind-Svelte-Assistant)
 
 **Purpose**: Complete SvelteKit and Tailwind CSS documentation with code snippets.
 
@@ -19,13 +19,15 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 - Input validation and security features
 - LRU caching (80-95% hit rates)
 
+**Note**: Not published to npm. Use Smithery for installation.
+
 **Configuration**:
 ```json
 {
   "mcpServers": {
     "tailwind-svelte": {
       "command": "npx",
-      "args": ["-y", "tailwind-svelte-assistant-mcp"]
+      "args": ["-y", "@smithery/cli", "run", "@CaullenOmdahl/tailwind-svelte-assistant"]
     }
   }
 }
@@ -35,15 +37,18 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ### sveltejs/mcp
 
-**Repository**: [sveltejs/mcp](https://mcpservers.org/servers/sveltejs/mcp)
+**Repository**: [sveltejs/svelte.dev](https://github.com/sveltejs/svelte.dev) (mcp directory)
 
-**Purpose**: Official Svelte MCP server from Anthropic.
+**Docs**: [Svelte MCP Local Setup](https://svelte.dev/docs/mcp/local-setup)
+
+**Purpose**: Official Svelte MCP server.
 
 **Features**:
 - Svelte documentation access
 - Code generation suggestions
-- Embeddings via Voyage API
-- MCP Inspector at `http://localhost:6274/`
+- Available as hosted remote or local npm package
+
+**Package**: `@sveltejs/mcp` (v0.1.20)
 
 **Configuration**:
 ```json
@@ -51,7 +56,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
   "mcpServers": {
     "svelte": {
       "command": "npx",
-      "args": ["-y", "@anthropic/svelte-mcp"]
+      "args": ["-y", "@sveltejs/mcp"]
     }
   }
 }
@@ -61,7 +66,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ### mcp-server-sqlite-npx
 
-**Repository**: [johnnyoshika/mcp-server-sqlite-npx](https://mcpservers.org/servers/johnnyoshika/mcp-server-sqlite-npx)
+**Repository**: [johnnyoshika/mcp-server-sqlite-npx](https://github.com/johnnyoshika/mcp-server-sqlite-npx)
 
 **Purpose**: Query and interact with SQLite databases.
 
@@ -72,6 +77,8 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 - Cross-platform (macOS, Windows, Linux)
 
 **Use Case**: Debug and explore `.beads/beads.db` during development.
+
+**Package**: `mcp-server-sqlite-npx`
 
 **Configuration**:
 ```json
@@ -101,6 +108,8 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 **Use Case**: Reference shadcn-svelte patterns for component implementation.
 
+**Package**: `shadcn-ui-mcp-server`
+
 **Configuration**:
 ```json
 {
@@ -115,9 +124,9 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ---
 
-### llmctx
+### svelte-llm-mcp (formerly llmctx)
 
-**Repository**: [khromov/llmctx](https://mcpservers.org/servers/khromov/llmctx)
+**Repository**: [khromov/svelte-llm-mcp](https://github.com/khromov/svelte-llm-mcp)
 
 **Purpose**: LLM-optimized Svelte/SvelteKit documentation.
 
@@ -125,15 +134,17 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 - Transforms documentation into AI-ready formats
 - Preset URLs for quick access
 - Regular updates from official sources
-- Customizable presets via glob patterns
+- Hosted endpoint available
+
+**Hosted Endpoint**: `https://svelte-llm.stanislav.garden/mcp/`
 
 **Configuration**:
 ```json
 {
   "mcpServers": {
-    "llmctx": {
+    "svelte-llm": {
       "command": "npx",
-      "args": ["-y", "llmctx-mcp"]
+      "args": ["-y", "mcp-remote", "https://svelte-llm.stanislav.garden/mcp/"]
     }
   }
 }
@@ -145,7 +156,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ### mcp-nodejs-debugger
 
-**Repository**: [hyperdrive-eng/mcp-nodejs-debugger](https://mcpservers.org/servers/hyperdrive-eng/mcp-nodejs-debugger)
+**Repository**: [hyperdrive-eng/mcp-nodejs-debugger](https://github.com/hyperdrive-eng/mcp-nodejs-debugger)
 
 **Purpose**: Runtime debugging for Node.js applications.
 
@@ -157,13 +168,15 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 **Use Case**: Debug SvelteKit server routes when using Node.js fallback.
 
+**Package**: `@hyperdrive-eng/mcp-nodejs-debugger` (v0.2.2)
+
 **Configuration**:
 ```json
 {
   "mcpServers": {
     "nodejs-debugger": {
       "command": "npx",
-      "args": ["-y", "mcp-nodejs-debugger"]
+      "args": ["-y", "@hyperdrive-eng/mcp-nodejs-debugger"]
     }
   }
 }
@@ -187,6 +200,8 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 **Use Case**: Search project documentation in `/plans/unified-beads-webui/`.
 
+**Install**: `brew install devrag` or see repo for other methods.
+
 **Configuration**:
 ```json
 {
@@ -203,32 +218,66 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ## Design & Assets
 
-### penpot-mcp
+### penpot-mcp (Official Plugin)
 
-**Repository**: [penpot/penpot-mcp](https://github.com/penpot/penpot-mcp)
+**Repository**: [penpot/penpot](https://github.com/penpot/penpot/tree/develop/mcp)
 
-**Purpose**: AI integration with Penpot design files.
+**Purpose**: Interactive AI integration with Penpot design files via browser plugin.
 
 **Features**:
-- Query design data from Penpot files
-- Modify existing design elements
-- Create new design components
-- WebSocket connection to Penpot plugin
-- Execute code snippets in plugin environment
+- Execute code in Penpot Plugin environment
+- Real-time design manipulation
+- WebSocket connection to browser plugin
+
+**Requirements**:
+1. Clone penpot/penpot repo
+2. `cd mcp && npm run bootstrap`
+3. Connect browser plugin in Penpot UI
 
 **Endpoints**:
 - HTTP: `localhost:4401/mcp`
 - SSE: `localhost:4401/sse`
 
-**Use Case**: Design-to-code workflows, component design iteration.
+**Configuration**:
+```json
+{
+  "mcpServers": {
+    "penpot-plugin": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:4401/mcp", "--allow-http"]
+    }
+  }
+}
+```
+
+---
+
+### penpot-mcp (API Client)
+
+**Repository**: [montevive/penpot-mcp](https://github.com/montevive/penpot-mcp)
+
+**Purpose**: Headless API access to Penpot design files.
+
+**Features**:
+- Query design data via API
+- Export objects as images
+- Search objects by name
+- Works without browser
+
+**Package**: `penpot-mcp` (via uvx/pip)
 
 **Configuration**:
 ```json
 {
   "mcpServers": {
     "penpot": {
-      "command": "npx",
-      "args": ["-y", "@penpot/mcp-server"]
+      "command": "uvx",
+      "args": ["penpot-mcp"],
+      "env": {
+        "PENPOT_API_URL": "http://localhost:9001/api",
+        "PENPOT_USERNAME": "your-email",
+        "PENPOT_PASSWORD": "your-password"
+      }
     }
   }
 }
@@ -238,17 +287,19 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ### icogenie
 
-**Repository**: [albertnahas/icogenie](https://mcpservers.org/servers/albertnahas/icogenie)
+**Repository**: [albertnahas/icogenie-mcp](https://github.com/albertnahas/icogenie-mcp)
 
-**Purpose**: PWA icon and asset generation.
+**Purpose**: AI-powered SVG icon generation.
 
 **Features**:
-- Generate PWA icons from source image
+- Generate icons from text descriptions
 - Multiple sizes and formats
-- Favicon generation
-- Manifest.json icon entries
+- Production-ready SVG output
+- Style customization
 
-**Use Case**: Generate app icons for PWA deployment.
+**Use Case**: Generate app icons and UI assets.
+
+**Package**: `@icogenie/mcp` (v0.4.2)
 
 **Configuration**:
 ```json
@@ -256,7 +307,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
   "mcpServers": {
     "icogenie": {
       "command": "npx",
-      "args": ["-y", "icogenie-mcp"]
+      "args": ["-y", "@icogenie/mcp"]
     }
   }
 }
@@ -268,7 +319,9 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 ### intlayer
 
-**Repository**: [aymericzip/intlayer](https://mcpservers.org/servers/aymericzip/intlayer)
+**Repository**: [aymericzip/intlayer](https://github.com/aymericzip/intlayer)
+
+**Docs**: [Intlayer MCP Server](https://github.com/aymericzip/intlayer/blob/main/docs/docs/en/mcp_server.md)
 
 **Purpose**: Internationalization (i18n) tooling.
 
@@ -276,9 +329,12 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 - Content declaration management
 - Translation key extraction
 - Multi-language support
-- Framework integrations
+- AI-powered translations
+- Visual editor integration
 
 **Use Case**: Add multi-language support to WebUI (Phase 5+).
+
+**Package**: `@intlayer/mcp` (v8.1.3)
 
 **Configuration**:
 ```json
@@ -286,7 +342,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
   "mcpServers": {
     "intlayer": {
       "command": "npx",
-      "args": ["-y", "intlayer-mcp"]
+      "args": ["-y", "@intlayer/mcp"]
     }
   }
 }
@@ -301,9 +357,9 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 ```json
 {
   "mcpServers": {
-    "tailwind-svelte": {
+    "svelte": {
       "command": "npx",
-      "args": ["-y", "tailwind-svelte-assistant-mcp"]
+      "args": ["-y", "@sveltejs/mcp"]
     },
     "sqlite": {
       "command": "npx",
@@ -324,11 +380,11 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
   "mcpServers": {
     "tailwind-svelte": {
       "command": "npx",
-      "args": ["-y", "tailwind-svelte-assistant-mcp"]
+      "args": ["-y", "@smithery/cli", "run", "@CaullenOmdahl/tailwind-svelte-assistant"]
     },
     "svelte": {
       "command": "npx",
-      "args": ["-y", "@anthropic/svelte-mcp"]
+      "args": ["-y", "@sveltejs/mcp"]
     },
     "sqlite": {
       "command": "npx",
@@ -338,9 +394,9 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
       "command": "npx",
       "args": ["-y", "shadcn-ui-mcp-server", "--framework", "svelte"]
     },
-    "llmctx": {
+    "svelte-llm": {
       "command": "npx",
-      "args": ["-y", "llmctx-mcp"]
+      "args": ["-y", "mcp-remote", "https://svelte-llm.stanislav.garden/mcp/"]
     },
     "devrag": {
       "command": "devrag",
@@ -348,19 +404,28 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
     },
     "nodejs-debugger": {
       "command": "npx",
-      "args": ["-y", "mcp-nodejs-debugger"]
+      "args": ["-y", "@hyperdrive-eng/mcp-nodejs-debugger"]
+    },
+    "penpot-plugin": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:4401/mcp", "--allow-http"]
     },
     "penpot": {
-      "command": "npx",
-      "args": ["-y", "@penpot/mcp-server"]
+      "command": "uvx",
+      "args": ["penpot-mcp"],
+      "env": {
+        "PENPOT_API_URL": "http://localhost:9001/api",
+        "PENPOT_USERNAME": "demo@example.com",
+        "PENPOT_PASSWORD": "123123"
+      }
     },
     "icogenie": {
       "command": "npx",
-      "args": ["-y", "icogenie-mcp"]
+      "args": ["-y", "@icogenie/mcp"]
     },
     "intlayer": {
       "command": "npx",
-      "args": ["-y", "intlayer-mcp"]
+      "args": ["-y", "@intlayer/mcp"]
     }
   }
 }
@@ -372,7 +437,7 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 
 | Phase | Recommended Servers |
 |-------|---------------------|
-| **Phase 1: MVP** | tailwind-svelte, sqlite, shadcn-svelte |
+| **Phase 1: MVP** | svelte, sqlite, shadcn-svelte |
 | **Phase 2: Analytics** | + devrag (for doc search) |
 | **Phase 3: Git Integration** | + nodejs-debugger |
 | **Phase 4: Agents** | (no additional) |
@@ -385,5 +450,9 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 - [MCP Servers Directory](https://mcpservers.org/)
 - [MCP Market](https://mcpmarket.com/)
 - [Model Context Protocol Spec](https://modelcontextprotocol.io/)
+- [Svelte MCP Docs](https://svelte.dev/docs/mcp/local-setup)
 - [ADR-0002: Use Bun as Runtime](../adrs/0002-use-bun-as-primary-runtime.md)
 - [ADR-0003: Use SvelteKit](../adrs/0003-use-sveltekit-as-frontend-framework.md)
+
+<!--https://smithery.ai/servers/Nekzus/npm-sentinel-mcp-->
+<!--https://smithery.ai/servers/icons8community/icons8mpc-->

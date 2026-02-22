@@ -1,0 +1,187 @@
+# Penpot Self-Hosted Configuration
+# Reference: https://help.penpot.app/technical-guide/getting-started/docker/
+#
+# Usage:
+#   docker compose -f .docker/compose.yaml up -d
+#
+# Access:
+#   Penpot UI: http://localhost:9001
+#   Mailcatcher: http://localhost:1080 (dev email viewer)
+
+# Shared configuration anchors
+x-flags: &penpot-flags
+  # Available flags: https://help.penpot.app/technical-guide/configuration/#penpot-configuration
+  # WARNING: Remove 'disable-secure-session-cookies' and 'disable-email-verification'
+  # when exposing to the internet
+  PENPOT_FLAGS: >-
+    enable-demo-users
+    enable-login-with-password
+    enable-registration
+    disable-email-verification
+    disable-secure-session-cookies
+
+x-uri: &penpot-public-uri
+  PENPOT_PUBLIC_URI: http://localhost:9001
+
+x-body-size: &penpot-http-body-size
+  PENPOT_HTTP_SERVER_MAX_BODY_SIZE: 31457280 # 30MiB - plain requests
+  PENPOT_HTTP_SERVER_MAX_MULTIPART_BODY_SIZE: 367001600 # 350MiB - file uploads
+
+x-secret-key: &penpot-secret-key
+  # Generate with: python3 -c "import secrets; print(secrets.token_urlsafe(64))"
+  # TODO: Replace with a secure key for production
+  PENPOT_SECRET_KEY: ${PENPOT_SECRET_KEY:-change-this-insecure-key}
+
+networks:
+  penpot:
+    name: penpot
+
+volumes:
+  penpot_postgres:
+  penpot_assets:
+
+services:
+  # ============================================================================
+  # Penpot Frontend
+  # ============================================================================
+  penpot-frontend:
+    image: "penpotapp/frontend:${PENPOT_VERSION:-latest}"
+    container_name: penpot-frontend
+    restart: unless-stopped
+    ports:
+      - "9001:8080"
+    volumes:
+      - penpot_assets:/opt/data/assets
+    depends_on:
+      - penpot-backend
+      - penpot-exporter
+    networks:
+      - penpot
+    environment:
+      <<: [*penpot-flags, *penpot-http-body-size]
+
+  # ============================================================================
+  # Penpot Backend
+  # ============================================================================
+  penpot-backend:
+    image: "penpotapp/backend:${PENPOT_VERSION:-latest}"
+    container_name: penpot-backend
+    restart: unless-stopped
+    volumes:
+      - penpot_assets:/opt/data/assets
+    depends_on:
+      penpot-postgres:
+        condition: service_healthy
+      penpot-valkey:
+        condition: service_healthy
+    networks:
+      - penpot
+    environment:
+      <<:
+        [
+          *penpot-flags,
+          *penpot-public-uri,
+          *penpot-http-body-size,
+          *penpot-secret-key,
+        ]
+
+      PENPOT_GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-penpot}
+      PENPOT_GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-penpot}
+
+      # Database
+      PENPOT_DATABASE_URI: postgresql://penpot-postgres/penpot
+      PENPOT_DATABASE_USERNAME: penpot
+      PENPOT_DATABASE_PASSWORD: ${PENPOT_DB_PASSWORD:-penpot}
+
+      # Redis/Valkey (websocket notifications)
+      PENPOT_REDIS_URI: redis://penpot-valkey/0
+
+      # Asset storage (filesystem)
+      PENPOT_OBJECTS_STORAGE_BACKEND: fs
+      PENPOT_OBJECTS_STORAGE_FS_DIRECTORY: /opt/data/assets
+
+      # Telemetry (set to false to disable)
+      PENPOT_TELEMETRY_ENABLED: false
+
+      # SMTP (uses mailcatcher for dev)
+      PENPOT_SMTP_DEFAULT_FROM: no-reply@localhost
+      PENPOT_SMTP_DEFAULT_REPLY_TO: no-reply@localhost
+      PENPOT_SMTP_HOST: penpot-mailcatch
+      PENPOT_SMTP_PORT: 1025
+      PENPOT_SMTP_USERNAME:
+      PENPOT_SMTP_PASSWORD:
+      PENPOT_SMTP_TLS: false
+      PENPOT_SMTP_SSL: false
+
+  # ============================================================================
+  # Penpot Exporter (PDF/SVG export)
+  # ============================================================================
+  penpot-exporter:
+    image: "penpotapp/exporter:${PENPOT_VERSION:-latest}"
+    container_name: penpot-exporter
+    restart: unless-stopped
+    depends_on:
+      penpot-valkey:
+        condition: service_healthy
+    networks:
+      - penpot
+    environment:
+      <<: [*penpot-secret-key]
+      PENPOT_PUBLIC_URI: http://penpot-frontend:8080
+      PENPOT_REDIS_URI: redis://penpot-valkey/0
+
+  # ============================================================================
+  # PostgreSQL Database
+  # ============================================================================
+  penpot-postgres:
+    image: postgres:15
+    container_name: penpot-postgres
+    restart: unless-stopped
+    stop_signal: SIGINT
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U penpot"]
+      interval: 2s
+      timeout: 10s
+      retries: 5
+      start_period: 2s
+    volumes:
+      - penpot_postgres:/var/lib/postgresql/data
+    networks:
+      - penpot
+    environment:
+      POSTGRES_INITDB_ARGS: --data-checksums
+      POSTGRES_DB: penpot
+      POSTGRES_USER: penpot
+      POSTGRES_PASSWORD: ${PENPOT_DB_PASSWORD:-penpot}
+
+  # ============================================================================
+  # Valkey (Redis-compatible cache)
+  # ============================================================================
+  penpot-valkey:
+    image: valkey/valkey:8.1
+    container_name: penpot-valkey
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "valkey-cli ping | grep PONG"]
+      interval: 1s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
+    networks:
+      - penpot
+    environment:
+      VALKEY_EXTRA_FLAGS: --maxmemory 128mb --maxmemory-policy volatile-lfu
+
+  # ============================================================================
+  # Mailcatcher (Dev SMTP server)
+  # ============================================================================
+  penpot-mailcatch:
+    image: sj26/mailcatcher:latest
+    container_name: penpot-mailcatch
+    restart: unless-stopped
+    expose:
+      - "1025"
+    ports:
+      - "1080:1080"
+    networks:
+      - penpot

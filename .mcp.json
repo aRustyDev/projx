@@ -2,7 +2,11 @@
   "mcpServers": {
     "tailwind-svelte": {
       "command": "npx",
-      "args": ["-y", "tailwind-svelte-assistant-mcp"]
+      "args": ["-y", "@smithery/cli", "run", "@CaullenOmdahl/tailwind-svelte-assistant"]
+    },
+    "svelte": {
+      "command": "npx",
+      "args": ["-y", "@sveltejs/mcp"]
     },
     "sqlite": {
       "command": "npx",
@@ -11,6 +15,41 @@
     "shadcn-svelte": {
       "command": "npx",
       "args": ["-y", "shadcn-ui-mcp-server", "--framework", "svelte"]
+    },
+    "svelte-llm": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://svelte-llm.stanislav.garden/mcp/"],
+      "_comment": "LLM-optimized Svelte docs via khromov/svelte-llm-mcp"
+    },
+    "devrag": {
+      "command": "devrag",
+      "args": ["serve", "--dir", ".claude/plans"]
+    },
+    "nodejs-debugger": {
+      "command": "npx",
+      "args": ["-y", "@hyperdrive-eng/mcp-nodejs-debugger"]
+    },
+    "penpot-plugin": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:4401/mcp", "--allow-http"],
+      "_comment": "Official Penpot MCP - requires: 1) clone penpot/penpot repo, 2) cd mcp && npm run bootstrap, 3) browser plugin connected"
+    },
+    "penpot": {
+      "command": "uvx",
+      "args": ["penpot-mcp"],
+      "env": {
+        "PENPOT_API_URL": "http://localhost:9001/api",
+        "PENPOT_USERNAME": "demo@example.com",
+        "PENPOT_PASSWORD": "123123"
+      }
+    },
+    "icogenie": {
+      "command": "npx",
+      "args": ["-y", "@icogenie/mcp"]
+    },
+    "intlayer": {
+      "command": "npx",
+      "args": ["-y", "@intlayer/mcp"]
     }
   }
 }
