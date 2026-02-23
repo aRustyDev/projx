@@ -1,7 +1,20 @@
 # Kanban Board View - ASCII Wireframe
 
 ## Overview
+
 Column-based view of issues grouped by status. Supports drag-and-drop to change status and visual indicators for priority and type.
+
+---
+
+## Global Navigation Bar
+
+```asciidoc
+│  ◆ Beads    Issues   Epics   Board   Dashboard   Graph    🔍    [🌓] [Xd] [⚙️] [+ Issue] [+ Epic] [@adam] │
+                                                                   ^^^  ^^^  ^^^
+                                                             Dark/Light Days/Hrs Config
+```
+
+> See [12-configuration-view.md](12-configuration-view.md) for global settings details.
 
 ---
 
@@ -312,7 +325,78 @@ Column-based view of issues grouped by status. Supports drag-and-drop to change 
 
 ---
 
+## Column Features
+
+### Column Header Options
+
+```asciidoc
+│ ⚪ Open (4)  [≡] │
+│                   │
+│  ≡ menu:          │
+│  ┌──────────────┐ │
+│  │ Hide column  │ │
+│  │ Collapse     │ │
+│  └──────────────┘ │
+```
+
+- **Hide column**: Removes column from view (can restore via settings)
+- **Collapse**: Minimizes column to just header with count
+
+### Collapsed Column
+
+```asciidoc
+│ ⚪ │  ← Collapsed column (4)
+│ O  │     Click to expand
+│ p  │
+│ e  │
+│ n  │
+│    │
+│(4) │
+```
+
+---
+
+## Card Context Menu (Right-Click)
+
+```asciidoc
+│ ┌──────────┐ │
+│ │🔴 P1     │ │
+│ │ #127     │ │  Right-click →  ┌─────────────────────┐
+│ │ Auth...  │ │                 │ View Details        │
+│ └──────────┘ │                 │ ─────────────────── │
+│              │                 │ Change Status    ▶ │
+│              │                 │ Change Priority  ▶ │
+│              │                 │ Assign to...       │
+│              │                 │ ─────────────────── │
+│              │                 │ Copy Link          │
+│              │                 │ Copy ID            │
+│              │                 └─────────────────────┘
+```
+
+---
+
+## Card Display Configuration
+
+Card displayed fields are configurable (constant for MVP):
+
+| Field    | Default | Description              |
+| -------- | ------- | ------------------------ |
+| Priority | ☑       | Priority indicator strip |
+| ID       | ☑       | Issue number             |
+| Title    | ☑       | Truncated title          |
+| Type     | ☑       | Bug/Feature/Task badge   |
+| Assignee | ☑       | Owner avatar/name        |
+| Labels   | ☐       | Tag chips                |
+| Age      | ☐       | Days since creation      |
+
+> Card configuration is available in [12-configuration-view.md](12-configuration-view.md).
+> For MVP, card fields are constant-mapped.
+
+---
+
 ## Related Wireframes
+
 - [01-issue-list-view.md](01-issue-list-view.md) - List view of same data
 - [03-issue-detail-modal.md](03-issue-detail-modal.md) - Issue detail overlay
 - [05-create-issue-modal.md](05-create-issue-modal.md) - New issue form
+- [12-configuration-view.md](12-configuration-view.md) - Card configuration

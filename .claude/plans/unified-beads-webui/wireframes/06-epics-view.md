@@ -1,7 +1,20 @@
 # Epics View - ASCII Wireframe
 
 ## Overview
+
 Hierarchical view of epics and their child issues. Shows progress, rollup metrics, and allows expanding/collapsing epic trees.
+
+---
+
+## Global Navigation Bar
+
+```asciidoc
+│  ◆ Beads    Issues   Epics   Board   Dashboard   Graph    🔍    [🌓] [Xd] [⚙️] [+ Issue] [+ Epic] [@adam] │
+                                                                   ^^^  ^^^  ^^^
+                                                             Dark/Light Days/Hrs Config
+```
+
+> See [12-configuration-view.md](12-configuration-view.md) for global settings details.
 
 ---
 
@@ -316,7 +329,33 @@ Blocker Count = count of children with status = Blocked or has blockedBy
 
 ---
 
+## Configurable Columns
+
+Epic list columns are configurable (constant-mapped for MVP):
+
+| Column     | Default | Always Visible | Description               |
+| ---------- | ------- | -------------- | ------------------------- |
+| ID         | ☑       | Yes            | Epic identifier           |
+| Title      | ☑       | Yes            | Epic title (clickable)    |
+| Children   | ☑       | No             | Count + expandable        |
+| Progress   | ☑       | No             | Progress bar + percentage |
+| Priority   | ☑       | No             | P1-P4 indicator           |
+| Status     | ☑       | No             | Current status            |
+| Assignee   | ☑       | No             | Owner avatar/name         |
+| Created    | ☐       | No             | Creation date             |
+| Updated    | ☑       | No             | Last update timestamp     |
+| Cycle Time | ☐       | No             | Time in current status    |
+| Age        | ☐       | No             | Days since creation       |
+| Actions    | ☑       | No             | Quick action buttons      |
+
+> Column configuration is available in [12-configuration-view.md](12-configuration-view.md).
+> For MVP, columns are constant-mapped and not user-configurable.
+
+---
+
 ## Related Wireframes
+
 - [01-issue-list-view.md](01-issue-list-view.md) - Filter by epic
 - [03-issue-detail-modal.md](03-issue-detail-modal.md) - Epic detail view
 - [05-create-issue-modal.md](05-create-issue-modal.md) - Create epic/subtask
+- [12-configuration-view.md](12-configuration-view.md) - Column configuration

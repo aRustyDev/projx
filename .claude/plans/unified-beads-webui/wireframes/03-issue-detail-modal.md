@@ -1,6 +1,7 @@
 # Issue Detail Modal - ASCII Wireframe
 
 ## Overview
+
 Full issue detail view displayed as a modal overlay. Shows all issue fields, description, comments, and activity history. Supports inline editing of most fields.
 
 ---
@@ -41,6 +42,8 @@ Full issue detail view displayed as a modal overlay. Shows all issue fields, des
 │░░░│  │                                     │                                   │   │░░░│
 │░░░│  │  [Edit Description]                 │  Blocks      #128, #129           │   │░░░│
 │░░░│  │                                     │  Blocked by  —                    │   │░░░│
+│░░░│  │                                     │                                   │   │░░░│
+│░░░│  │                                     │  [Show Dependencies]              │   │░░░│
 │░░░│  ├─────────────────────────────────────┤                                   │   │░░░│
 │░░░│  │                                     │                                   │   │░░░│
 │░░░│  │  ## Comments (3)                    │                                   │   │░░░│
@@ -114,11 +117,74 @@ Full issue detail view displayed as a modal overlay. Shows all issue fields, des
 
 ---
 
+## Content Tabs
+
+The main content area uses tabs for different content types:
+
+```asciidoc
+│░░░│  │  [Description]  [Design]  [Acceptance]  [Comments (3)]  [Activity]      │   │░░░│
+│░░░│  │  ════════════                                                            │   │░░░│
+```
+
+| Tab         | Content                              |
+| ----------- | ------------------------------------ |
+| Description | Main issue description (markdown)    |
+| Design      | Design notes, mockups, links         |
+| Acceptance  | Acceptance criteria, test scenarios  |
+| Comments    | Discussion thread                    |
+| Activity    | Change history timeline              |
+
+---
+
+## Design Tab View
+
+```asciidoc
+│░░░│  │  [Description]  [Design]  [Acceptance]  [Comments (3)]  [Activity]      │   │░░░│
+│░░░│  │                 ════════                                                 │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  ## Design Notes                                                        │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  ### Mockups                                                            │   │░░░│
+│░░░│  │  - [Figma Link](...)                                                    │   │░░░│
+│░░░│  │  - [Penpot Component](...)                                              │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  ### Technical Design                                                   │   │░░░│
+│░░░│  │  Session tokens should be stored in Redis with                          │   │░░░│
+│░░░│  │  configurable TTL matching the session timeout.                         │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  [Edit Design]                                                          │   │░░░│
+```
+
+---
+
+## Acceptance Tab View
+
+```asciidoc
+│░░░│  │  [Description]  [Design]  [Acceptance]  [Comments (3)]  [Activity]      │   │░░░│
+│░░░│  │                           ════════════                                   │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  ## Acceptance Criteria                                                 │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  ☑ User session persists for configured timeout period                  │   │░░░│
+│░░░│  │  ☐ Session refresh on activity                                          │   │░░░│
+│░░░│  │  ☐ Graceful handling of expired sessions                                │   │░░░│
+│░░░│  │  ☐ Audit log of session events                                          │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  ## Test Scenarios                                                      │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  1. Login, wait 23h, perform action → should succeed                    │   │░░░│
+│░░░│  │  2. Login, wait 25h, perform action → should redirect to login          │   │░░░│
+│░░░│  │                                                                          │   │░░░│
+│░░░│  │  [Edit Acceptance]                                                      │   │░░░│
+```
+
+---
+
 ## Activity Tab View
 
 ```asciidoc
-│░░░│  │  [Description]  [Comments (3)]  [Activity]                              │   │░░░│
-│░░░│  │  ─────────────────────────────────────────                              │   │░░░│
+│░░░│  │  [Description]  [Design]  [Acceptance]  [Comments (3)]  [Activity]      │   │░░░│
+│░░░│  │                                                         ════════════    │   │░░░│
 │░░░│  │                                                                          │   │░░░│
 │░░░│  │  ┌─ Timeline ──────────────────────────────────────────────────────┐    │   │░░░│
 │░░░│  │  │                                                                  │    │   │░░░│
@@ -232,6 +298,7 @@ Full issue detail view displayed as a modal overlay. Shows all issue fields, des
 | [Delete] | Click | Confirmation dialog → delete |
 | [← Prev]/[Next →] | Click | Navigate to adjacent issue |
 | j/k | Keypress | Navigate issues (when modal open) |
+| [Show Dependencies] | Click | Open dependencies modal |
 
 ---
 
@@ -297,6 +364,8 @@ Browser back button closes modal and restores previous URL.
 ---
 
 ## Related Wireframes
+
 - [01-issue-list-view.md](01-issue-list-view.md) - List triggers modal
 - [02-kanban-board.md](02-kanban-board.md) - Cards trigger modal
 - [05-create-issue-modal.md](05-create-issue-modal.md) - Similar modal structure
+- [07-issue-dependencies-modal.md](07-issue-dependencies-modal.md) - Dependencies view

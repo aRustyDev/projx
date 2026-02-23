@@ -195,23 +195,22 @@ Epic records should support configurable columns:
 
 ## Summary of New Wireframes Needed
 
-| Wireframe | Priority | Complexity |
-|-----------|----------|------------|
-| 04-issue-dependencies-modal.md | Must-Have | Medium |
-| 06-graph-view.md | Should-Have | High |
-| 07-dashboard-view.md | Must-Have | High |
-| 08-aging-items-view.md | Should-Have | Medium |
-| 09-aging-threshold-config.md | Could-Have | Low |
-| 10-configuration-view.md | Could-Have | Medium |
+| Wireframe                      | Priority   | Complexity | Status |
+| ------------------------------ | ---------- | ---------- | ------ |
+| 07-issue-dependencies-modal.md | Must-Have  | Medium     | ✅ Done |
+| 08-graph-view.md               | Should-Have| High       | ✅ Done |
+| 09-dashboard-view.md           | Must-Have  | High       | ✅ Done |
+| 10-aging-items-view.md         | Should-Have| Medium     | ✅ Done |
+| 11-aging-threshold-config.md   | Could-Have | Low        | ✅ Done |
+| 12-configuration-view.md       | Could-Have | Medium     | ✅ Done |
 
 ---
 
 ## Updates to Existing Wireframes
 
-| Wireframe | Updates Needed |
-|-----------|----------------|
-| 01-issue-list-view | Add configurable columns section |
-| 02-kanban-board | Add column hide/collapse, right-click menu |
-| 03-issue-detail-modal | Add Design/Acceptance tabs, dependencies link |
-| 06-epics-view (rename) | Add configurable columns section |
-| All | Add global nav buttons |
+| Wireframe             | Updates Needed                                    | Status  |
+| --------------------- | ------------------------------------------------- | ------- |
+| 01-issue-list-view    | Add configurable columns section, global nav      | ✅ Done |
+| 02-kanban-board       | Add column hide/collapse, right-click menu        | ✅ Done |
+| 03-issue-detail-modal | Add Design/Acceptance tabs, dependencies link     | ✅ Done |
+| 06-epics-view         | Add configurable columns section, global nav      | ✅ Done |

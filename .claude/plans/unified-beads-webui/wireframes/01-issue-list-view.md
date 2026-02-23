@@ -1,7 +1,20 @@
 # Issue List View - ASCII Wireframe
 
 ## Overview
+
 The primary view for browsing, filtering, and managing issues. Supports multiple display densities and filtering options.
+
+---
+
+## Global Navigation Bar
+
+```asciidoc
+│  ◆ Beads    Issues   Epics   Board   Dashboard   Graph    🔍    [🌓] [Xd] [⚙️] [+ Issue] [+ Epic] [@adam] │
+                                                                   ^^^  ^^^  ^^^
+                                                             Dark/Light Days/Hrs Config
+```
+
+> See [12-configuration-view.md](12-configuration-view.md) for global settings details.
 
 ---
 
@@ -339,13 +352,40 @@ The primary view for browsing, filtering, and managing issues. Supports multiple
 
 ---
 
+## Configurable Columns
+
+Issue list columns are configurable (constant-mapped for MVP):
+
+| Column     | Default | Always Visible | Description                  |
+| ---------- | ------- | -------------- | ---------------------------- |
+| ID         | ☑       | Yes            | Issue identifier             |
+| Title      | ☑       | Yes            | Issue title (clickable)      |
+| Epic       | ☑       | No             | Parent epic link             |
+| Type       | ☑       | No             | Bug/Feature/Task/Chore       |
+| Priority   | ☑       | No             | P1-P4 indicator              |
+| Status     | ☑       | No             | Current status               |
+| Created    | ☐       | No             | Creation date                |
+| Assignee   | ☑       | No             | Owner avatar/name            |
+| Updated    | ☑       | No             | Last update timestamp        |
+| Cycle Time | ☐       | No             | Time in current status       |
+| Age        | ☐       | No             | Days since creation          |
+| Actions    | ☑       | No             | Quick action buttons         |
+
+> Column configuration is available in [12-configuration-view.md](12-configuration-view.md).
+> For MVP, columns are constant-mapped and not user-configurable.
+
+---
+
 ## Related Wireframes
+
 - [02-kanban-board.md](02-kanban-board.md) - Board view of same data
 - [03-issue-detail-modal.md](03-issue-detail-modal.md) - Issue detail overlay
 - [04-filter-panel.md](04-filter-panel.md) - Advanced filter panel
 - [05-create-issue-modal.md](05-create-issue-modal.md) - New issue form
 - [06-epics-view.md](06-epics-view.md) - Hierarchical epics view
+- [12-configuration-view.md](12-configuration-view.md) - Column configuration
 
 ## Scope Note
+
 MVP is single-project scoped. Multi-project switching is a Phase 5 feature.
 See ADR-0005 for decision rationale.
