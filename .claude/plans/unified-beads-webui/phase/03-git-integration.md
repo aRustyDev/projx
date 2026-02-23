@@ -363,6 +363,28 @@ Quick links to related/blocked tasks.
 
 ---
 
+### 3.13 Gantt Drag/Resize
+
+**Priority**: Should-Have | **Complexity**: 4 | **Source**: beads-pm-ui (moved from Phase 2)
+
+Interactive Gantt bar manipulation for date adjustments.
+
+**Deliverables**:
+- [ ] Drag bar to change dates
+- [ ] Resize bar to change duration
+- [ ] Update issue via `bd update --due`
+- [ ] Visual feedback during drag
+- [ ] Snap to day/week grid
+
+**Acceptance Criteria**:
+- Drag snaps to configurable grid (day/week)
+- Resize handles at bar ends
+- Update persists via CLI
+- Optimistic update with rollback on error
+- Undo support (Ctrl+Z)
+
+---
+
 ## Technical Architecture
 
 ### Git Integration Layer
@@ -394,6 +416,63 @@ function renderDependencyGraph(
   options: GraphOptions
 ): GraphController;
 ```
+
+### Dependency Graph Performance at Scale
+
+The dependency graph must handle real-world project sizes efficiently.
+
+**Node Limits and Performance Targets:**
+
+| Node Count | Target Render Time | Strategy |
+|------------|-------------------|----------|
+| ≤ 50 nodes | < 200ms | Full render, smooth animations |
+| 51-100 nodes | < 500ms | Full render, reduced animations |
+| 101-500 nodes | < 2s | Pagination UI, depth limiting |
+| > 500 nodes | N/A | Force filtering, show warning |
+
+**Rendering Strategy:**
+
+```typescript
+interface GraphPerformanceConfig {
+  // Rendering mode
+  renderMode: 'svg' | 'canvas';  // SVG for <100 nodes, Canvas for larger
+
+  // Force simulation
+  maxIterations: 300;           // Cap simulation iterations
+  alphaDecay: 0.0228;           // Default D3 value
+  useWebWorker: boolean;        // Offload to worker for >100 nodes
+
+  // Memory limits
+  maxMemoryMB: 50;              // Target memory budget
+
+  // Progressive loading
+  initialDepth: 2;              // Start with depth-limited view
+  expandOnDemand: boolean;      // Load deeper on user action
+}
+```
+
+**Progressive Loading:**
+
+1. Initial render: `bd dep tree --depth 2` (limited depth)
+2. Click node to expand: fetch children on demand
+3. Show "X more dependencies..." indicator for collapsed nodes
+
+**Web Worker Offloading:**
+
+For graphs with >100 nodes, offload force simulation to Web Worker:
+
+```typescript
+// Worker handles simulation, main thread handles rendering
+const worker = new Worker('graph-layout.worker.ts');
+worker.postMessage({ nodes, edges, config });
+worker.onmessage = (e) => renderPositions(e.data);
+```
+
+**Memory Management:**
+
+- Circular buffer for position history (undo support)
+- Dispose D3 simulation on unmount
+- Lazy load node details on hover
 
 ### API Endpoints
 
@@ -441,13 +520,151 @@ function renderDependencyGraph(
 
 ---
 
+## GitHub CLI Authentication
+
+### Authentication Flow
+
+```typescript
+// src/lib/git/auth.ts
+interface GitHubAuthStatus {
+  authenticated: boolean;
+  user: string | null;
+  scopes: string[];
+  method: 'oauth' | 'token' | 'ssh';
+}
+
+async function checkGitHubAuth(): Promise<GitHubAuthStatus> {
+  const result = await supervisor.execute('gh', ['auth', 'status', '--show-token']);
+  // Parse output for auth status
+}
+```
+
+### Browser-Based OAuth Flow
+
+Standard flow for environments with browser access:
+
+```typescript
+async function initiateOAuthFlow(): Promise<void> {
+  // Opens browser for GitHub OAuth
+  await supervisor.execute('gh', ['auth', 'login', '--web']);
+}
+```
+
+### Headless Environment Flow
+
+For servers, CI, or environments without browser access:
+
+```typescript
+interface HeadlessAuthOptions {
+  method: 'token' | 'device-code';
+}
+
+async function initiateHeadlessAuth(options: HeadlessAuthOptions): Promise<AuthResult> {
+  if (options.method === 'token') {
+    // User provides existing PAT
+    // gh auth login --with-token < token.txt
+    return { type: 'token-prompt', instructions: 'Enter GitHub PAT' };
+  }
+
+  // Device code flow - works without browser on server
+  const result = await supervisor.execute('gh', [
+    'auth', 'login',
+    '--hostname', 'github.com',
+    '--git-protocol', 'https',
+    '--web'  // Will output device code if no browser
+  ]);
+
+  // Parse device code from output
+  // User enters code at https://github.com/login/device
+  return {
+    type: 'device-code',
+    userCode: parseDeviceCode(result.stdout),
+    verificationUri: 'https://github.com/login/device',
+    expiresIn: 900,  // 15 minutes
+  };
+}
+```
+
+**UI Flow for Headless:**
+
+1. Detect headless environment (no `DISPLAY`, SSH session, etc.)
+2. Show device code and verification URL
+3. Poll `gh auth status` until authenticated (max 15 min)
+4. Show success/failure message
+
+---
+
+## Circuit Breaker for gh CLI
+
+### Configuration
+
+```typescript
+// src/lib/git/circuit-breaker.ts
+interface GitHubCircuitBreakerConfig {
+  // Failure thresholds
+  failureThreshold: 5;           // Opens after 5 consecutive failures
+  failureWindow: 60_000;         // Within 60 seconds
+
+  // Recovery
+  halfOpenTimeout: 30_000;       // Try one request after 30s
+  successThreshold: 2;           // Close after 2 successful requests
+
+  // Rate limiting
+  requestsPerMinute: 30;         // GitHub API rate limit buffer
+  burstLimit: 10;                // Max concurrent requests
+}
+```
+
+### State Machine
+
+```
+┌─────────┐   5 failures    ┌─────────┐
+│ CLOSED  │ ─────────────▶  │  OPEN   │
+│(normal) │                 │(failing)│
+└────┬────┘                 └────┬────┘
+     │                           │
+     │ success                   │ 30s timeout
+     │                           ▼
+     │                      ┌─────────┐
+     └──────────────────────│HALF-OPEN│
+        2 successes         │ (test)  │
+                            └─────────┘
+```
+
+### Error Categories
+
+```typescript
+type GitHubErrorCategory =
+  | 'rate-limited'      // 429, triggers immediate OPEN
+  | 'auth-failed'       // 401, requires re-auth
+  | 'not-found'         // 404, don't count as failure
+  | 'server-error'      // 5xx, count toward threshold
+  | 'network-error'     // Timeout/connection, count toward threshold
+  | 'unknown';
+
+function categorizeError(error: ExecError): GitHubErrorCategory;
+```
+
+### UI Feedback
+
+| State | UI Indicator | User Action |
+|-------|--------------|-------------|
+| CLOSED | None (normal operation) | - |
+| OPEN | Banner: "GitHub temporarily unavailable" | Show retry timer |
+| HALF-OPEN | Subtle indicator, testing | - |
+| Rate Limited | Banner with reset time | Wait or use cached data |
+
+---
+
 ## Risk Mitigation
 
 | Risk | Mitigation |
 |------|------------|
-| `gh` CLI not authenticated | Check auth status, show login prompt |
+| `gh` CLI not authenticated | Check auth status, show login prompt with headless support |
 | No git remote | Graceful degradation, show setup help |
-| Large dependency graph | Limit depth, lazy loading |
+| Large dependency graph | Limit depth, lazy loading, Web Worker offload |
+| GitHub API rate limiting | Circuit breaker, request queuing, caching |
+| gh CLI unavailable | Feature flag, graceful degradation to web links |
 | PR rate limiting | Cache results, respect rate limits |
 
 ---
@@ -489,8 +706,9 @@ function renderDependencyGraph(
 | Drag-and-Drop (Enhanced) | Should-Have | 3 | 2 days | Pending |
 | Batch Issue Creation | Should-Have | 3 | 2 days | Pending |
 | Related Tasks Links | Should-Have | 2 | 1.5 days | Pending |
+| Gantt Drag/Resize | Should-Have | 4 | 3 days | Pending |
 
-**Total Effort**: ~22.5 days (Must-Have: ~8.5 days, Should-Have: ~14 days)
+**Total Effort**: ~25.5 days (Must-Have: ~8.5 days, Should-Have: ~17 days)
 
 ---
 

@@ -257,6 +257,14 @@ Agent-to-human communication via mail.
 
 **Priority**: Should-Have | **Complexity**: 4 | **Source**: foolery
 
+**⚠️ REQUIRES FURTHER REFINEMENT** - Backend support unclear. This feature needs clarification on whether:
+- `gt` CLI supports scenes/waves natively, or
+- This is a UI-layer abstraction built on convoys + sling operations
+
+**Decision deferred until Phase 5 implementation begins.** Progress on other features will inform the approach.
+
+---
+
 Orchestrate work across multiple agents in waves.
 
 ```typescript
@@ -503,6 +511,90 @@ export const gasTownStore = new GasTownStore();
 | `gastown:convoy:updated` | Server → Client | `{ convoy }` |
 | `gastown:mail:new` | Server → Client | `{ message }` |
 
+### WebSocket Subscription Model
+
+Clients subscribe to specific event categories to reduce noise and bandwidth.
+
+**Subscription Protocol:**
+
+```typescript
+// Client → Server: Subscribe to events
+interface SubscribeMessage {
+  type: 'subscribe';
+  channels: SubscriptionChannel[];
+}
+
+type SubscriptionChannel =
+  | 'gastown:status'           // Global Gas-Town status
+  | 'gastown:rigs'             // All rig updates
+  | `gastown:rig:${string}`    // Specific rig by name
+  | 'gastown:polecats'         // All polecat updates
+  | `gastown:polecat:${string}` // Specific polecat
+  | 'gastown:convoys'          // All convoy updates
+  | `gastown:convoy:${string}` // Specific convoy
+  | 'gastown:mail';            // Mail notifications
+
+// Server → Client: Subscription confirmation
+interface SubscribeAck {
+  type: 'subscribed';
+  channels: SubscriptionChannel[];
+}
+```
+
+**Client Usage:**
+
+```typescript
+// Subscribe to relevant channels on connect
+ws.send(JSON.stringify({
+  type: 'subscribe',
+  channels: [
+    'gastown:status',
+    'gastown:rigs',
+    'gastown:mail',
+    `gastown:convoy:${activeConvoyId}`,  // Specific convoy being viewed
+  ]
+}));
+
+// Update subscriptions when navigating
+function onConvoySelected(convoyId: string) {
+  ws.send(JSON.stringify({
+    type: 'subscribe',
+    channels: [`gastown:convoy:${convoyId}`]
+  }));
+}
+```
+
+**Server Routing:**
+
+```typescript
+// src/lib/websocket/gastown.ts
+class GasTownWebSocketRouter {
+  private subscriptions = new Map<WebSocket, Set<SubscriptionChannel>>();
+
+  subscribe(ws: WebSocket, channels: SubscriptionChannel[]): void {
+    const subs = this.subscriptions.get(ws) ?? new Set();
+    channels.forEach(ch => subs.add(ch));
+    this.subscriptions.set(ws, subs);
+  }
+
+  broadcast(channel: SubscriptionChannel, payload: unknown): void {
+    for (const [ws, channels] of this.subscriptions) {
+      if (this.matchesChannel(channels, channel)) {
+        ws.send(JSON.stringify({ event: channel, payload }));
+      }
+    }
+  }
+
+  private matchesChannel(subscribed: Set<string>, event: string): boolean {
+    // Direct match
+    if (subscribed.has(event)) return true;
+    // Wildcard match (e.g., 'gastown:rigs' matches 'gastown:rig:main')
+    const wildcard = event.split(':').slice(0, 2).join(':') + 's';
+    return subscribed.has(wildcard);
+  }
+}
+```
+
 ---
 
 ## Dependencies
@@ -569,15 +661,18 @@ export const gasTownStore = new GasTownStore();
 | Agent Monitoring Dashboard | Must-Have | 3 | 3 days | Pending |
 | Convoy Tracking | Must-Have | 3 | 2.5 days | Pending |
 | Mail System Integration | Should-Have | 3 | 2.5 days | Pending |
-| Scene/Wave Orchestration | Should-Have | 4 | 4 days | Pending |
 | Knowledge Panel | Should-Have | 3 | 2 days | Pending |
 | SQL Explorer | Should-Have | 4 | 3 days | Pending |
-| Multi-rig Support | Should-Have | 4 | 3 days | Pending |
-| Merge Queue Visualization | Should-Have | 3 | 2 days | Pending |
 | Project Tags | Should-Have | 2 | 1.5 days | Pending |
-| Cross-Project View | Should-Have | 4 | 3 days | Pending |
+| Scene/Wave Orchestration | Post-MVP | 4 | - | Deferred |
+| Multi-rig Support | Post-MVP | 4 | - | Deferred |
+| Merge Queue Visualization | Post-MVP | 3 | - | Deferred |
+| Cross-Project View | Post-MVP | 4 | - | Deferred |
 
-**Total Effort**: ~31 days (Must-Have: ~10 days, Should-Have: ~21 days)
+**Total Effort**: ~19 days (fits in 4-week timeline with buffer)
+- Must-Have: ~10 days
+- Should-Have: ~9 days
+- Post-MVP (deferred): ~12 days
 
 ---
 
@@ -588,9 +683,13 @@ export const gasTownStore = new GasTownStore();
 | 1 | Foundation | Detection (1.5d), gt CLI (3d) | 4.5 |
 | 2 | Dashboard | Agent dashboard (3d), convoy tracking (2.5d) | 5.5 |
 | 3 | Communication | Mail system (2.5d), knowledge panel (2d) | 4.5 |
-| 4 | Advanced | SQL explorer (3d), tags (1.5d) | 4.5 |
+| 4 | Polish | SQL explorer (3d), tags (1.5d), buffer (0.5d) | 5 |
 
-**Note**: Scene/Wave Orchestration, Multi-rig Support, Merge Queue, and Cross-Project View deferred to post-MVP.
+**Post-MVP Features** (estimated ~12 days, to be scheduled after initial release):
+- Scene/Wave Orchestration (4 days) - requires backend clarification
+- Multi-rig Support (3 days)
+- Merge Queue Visualization (2 days)
+- Cross-Project View (3 days)
 
 ---
 

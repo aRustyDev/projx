@@ -34,23 +34,11 @@ This phase covers the foundational setup required before Phase 1 development beg
 
 ### bd CLI Installation
 
-The `bd` (Beads) CLI is required for issue management. Install before proceeding:
+The `bd` (Beads) CLI is required for issue management.
 
-```bash
-# Option 1: Install via cargo (recommended)
-cargo install beads-cli
+**Pre-installed via Brewfile:**
 
-# Option 2: Install from source
-git clone https://github.com/your-org/beads.git
-cd beads
-cargo install --path crates/bd
-
-# Option 3: Download pre-built binary
-curl -fsSL https://github.com/your-org/beads/releases/latest/download/bd-$(uname -s)-$(uname -m) -o /usr/local/bin/bd
-chmod +x /usr/local/bin/bd
-```
-
-**Verify installation:**
+The `bd` CLI is already installed via the project's Brewfile. Verify with:
 
 ```bash
 bd --version
@@ -58,6 +46,20 @@ bd --version
 
 bd init --help
 # Expected: Usage information
+```
+
+**Manual installation (if not using Brewfile):**
+
+```bash
+# Option 1: Install via Homebrew (recommended)
+brew install beads
+
+# Option 2: Install via cargo
+cargo install beads-cli
+
+# Option 3: Install from source
+git clone https://github.com/your-org/beads.git
+cd beads && cargo install --path crates/bd
 ```
 
 ### Optional: gt CLI (for Phase 5)
@@ -141,6 +143,58 @@ const config = {
 
 export default config;
 ```
+
+### Vite Configuration with Tailwind CSS v4
+
+Tailwind CSS v4 uses a Vite plugin instead of PostCSS. Configure `vite.config.ts`:
+
+```typescript
+// vite.config.ts
+import { sveltekit } from '@sveltejs/kit/vite';
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+    sveltekit(),
+  ],
+});
+```
+
+Create the CSS entry point `src/app.css`:
+
+```css
+/* src/app.css */
+@import "tailwindcss";
+
+/* Custom design tokens */
+@theme {
+  --color-primary: #3b82f6;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* RAG status colors */
+  --color-rag-green: #22c55e;
+  --color-rag-amber: #f59e0b;
+  --color-rag-red: #ef4444;
+}
+```
+
+Import in the root layout:
+
+```svelte
+<!-- src/routes/+layout.svelte -->
+<script>
+  import '../app.css';
+  let { children } = $props();
+</script>
+
+{@render children()}
+```
+
+**Note**: Tailwind CSS v4 does not require `tailwind.config.js` - configuration is done in CSS with `@theme` and `@source` directives.
 
 ### Directory Structure
 

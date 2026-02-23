@@ -235,12 +235,55 @@ Edit issue fields directly in the table/card.
 - [ ] Editable assignee (dropdown with search)
 - [ ] Edit via `bd update`
 - [ ] Cancel on Escape
+- [ ] Conflict detection and resolution UI
 
 **Acceptance Criteria**:
 - Click transforms to input
 - Enter saves, Escape cancels
 - Blur saves changes
 - Optimistic update with rollback
+- Conflict shown with resolution options
+
+**Conflict Resolution UI**:
+
+When a concurrent modification is detected (`bd update` returns conflict error):
+
+| Approach | Description | Recommendation |
+|----------|-------------|----------------|
+| **Refresh & Retry** | Show toast "Issue modified, refresh to see changes" with retry button | MVP - simplest |
+| **Diff Dialog** | Show side-by-side comparison with merge options | Post-MVP |
+| **Last Write Wins** | Force update with `--force` flag (if supported) | Not recommended |
+
+For MVP, implement "Refresh & Retry" pattern:
+1. Detect conflict from `bd update` error response
+2. Show dismissable toast with "Refresh" and "Retry" buttons
+3. Refresh reloads issue from database
+4. Retry re-attempts the user's edit
+
+---
+
+### 1.8a Issue Detail View
+
+**Priority**: Must-Have | **Complexity**: 2 | **Source**: All tools
+
+Full issue detail modal/panel for viewing complete issue context.
+
+**Deliverables**:
+- [ ] `IssueDetail.svelte` component
+- [ ] `IssueDetailModal.svelte` wrapper
+- [ ] Full description rendering (markdown)
+- [ ] Comments section (read-only for MVP)
+- [ ] Activity/event history
+- [ ] Related issues/dependencies section
+- [ ] Quick action buttons (edit, close, assign)
+
+**Acceptance Criteria**:
+- Opens via Enter key on selected issue
+- Opens via click on issue ID/title link
+- Shows all issue fields
+- Markdown description renders correctly
+- Escape closes modal
+- URL updates to `/issues/[id]` for deep linking
 
 ---
 
@@ -455,13 +498,14 @@ export const issueStore = new IssueStore();
 | Create Issue Modal | Must-Have | 2 | 2 days | Pending |
 | Quick Status Change | Must-Have | 1 | 1 day | Pending |
 | Inline Editing | Should-Have | 3 | 2 days | Pending |
+| Issue Detail View | Must-Have | 2 | 2 days | Pending |
 | Kanban Board | Must-Have | 3 | 3 days | Pending |
 | Epics View | Should-Have | 2 | 1 day | Pending |
 | File Watching | Must-Have | 2 | 2 days | Pending |
 | Keyboard Shortcuts | Should-Have | 2 | 1 day | Pending |
 | Owner/Assignee Filter | Should-Have | 1 | 0.5 day | Pending |
 
-**Total Effort**: ~23.5 days (fits in 4 weeks with buffer)
+**Total Effort**: ~25.5 days (fits in 4 weeks with buffer)
 
 ---
 
@@ -584,6 +628,7 @@ Before proceeding to Phase 2, provide:
 
 ## References
 
+- [Phase 0: Development Setup](./00-development-setup.md)
 - [API Contract](../spec/api-contract.md)
 - [CLI Integration](../spec/cli-integration.md)
 - [Data Flow](../spec/data-flow.md)

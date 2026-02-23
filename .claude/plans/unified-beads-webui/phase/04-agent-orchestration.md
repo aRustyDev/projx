@@ -350,25 +350,200 @@ View history of human-agent interactions.
 
 ## Technical Architecture
 
-### Agent Session Manager
+### Session Model: Single Focused Session
+
+The WebUI uses a **single focused session** model (like VSCode) rather than multi-session:
+
+- Only one active agent session at a time
+- Starting a new session prompts to terminate the current one
+- Session history preserved for review
+- Simpler UX and resource management
 
 ```typescript
 // src/lib/agents/manager.ts
 class AgentSessionManager {
-  private sessions = new Map<string, AgentSession>();
+  private activeSession: AgentSession | null = null;
+  private sessionHistory: AgentSession[] = [];
   private supervisor: ProcessSupervisor;
 
-  async launch(options: LaunchOptions): Promise<AgentSession>;
-  async pause(sessionId: string): Promise<void>;
-  async resume(sessionId: string): Promise<void>;
-  async terminate(sessionId: string): Promise<void>;
+  get current(): AgentSession | null {
+    return this.activeSession;
+  }
 
-  getSession(id: string): AgentSession | undefined;
-  getSessionsForIssue(issueId: string): AgentSession[];
+  async launch(options: LaunchOptions): Promise<AgentSession> {
+    if (this.activeSession) {
+      throw new Error('Session already active. Terminate first.');
+    }
+    // ... launch logic
+  }
 
+  async terminate(): Promise<void>;
+  getHistory(): AgentSession[];
   on(event: 'output' | 'status', handler: EventHandler): void;
 }
 ```
+
+### Claude CLI Integration
+
+**CLI**: [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code)
+
+**Installation Check:**
+```typescript
+async function checkClaudeInstalled(): Promise<ClaudeStatus> {
+  try {
+    const result = await supervisor.execute('claude', ['--version']);
+    return { installed: true, version: parseVersion(result.stdout) };
+  } catch {
+    return { installed: false, version: null };
+  }
+}
+```
+
+**Command Syntax:**
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `claude` | Interactive session (default) | `claude` |
+| `claude -p "<prompt>"` | Non-interactive with prompt | `claude -p "Fix the bug in auth.ts"` |
+| `claude --continue` | Resume last conversation | `claude --continue` |
+| `claude --output-format json` | JSON output for parsing | `claude --output-format json -p "..."` |
+| `claude --allowedTools` | Restrict available tools | `claude --allowedTools "Read,Grep,Glob"` |
+| `claude --model` | Specify model | `claude --model claude-sonnet-4-20250514` |
+
+**Launching Agent Session:**
+
+```typescript
+interface ClaudeLaunchOptions {
+  prompt: string;
+  workingDirectory: string;
+  allowedTools?: string[];
+  model?: string;
+  timeout?: number;
+}
+
+async function launchClaudeSession(options: ClaudeLaunchOptions): Promise<AgentSession> {
+  const args = ['-p', options.prompt];
+
+  if (options.allowedTools) {
+    args.push('--allowedTools', options.allowedTools.join(','));
+  }
+  if (options.model) {
+    args.push('--model', options.model);
+  }
+
+  // Launch via PTY for interactive output
+  const pty = spawn('claude', args, {
+    cwd: options.workingDirectory,
+    env: { ...process.env, CLAUDE_CODE_ENTRYPOINT: 'webui' },
+  });
+
+  return new AgentSession(pty, options);
+}
+```
+
+**Parsing Output:**
+
+Claude Code outputs structured markers that can be parsed:
+
+```typescript
+// Output patterns to detect
+const PATTERNS = {
+  toolUse: /^⏺ Using tool: (.+)$/m,
+  toolResult: /^⏺ Tool result/m,
+  thinking: /^💭 /m,
+  error: /^❌ Error: (.+)$/m,
+  complete: /^✓ Task completed$/m,
+};
+```
+
+### WebSocket Server Architecture
+
+**Implementation**: SvelteKit server hooks + native WebSocket
+
+```typescript
+// src/hooks.server.ts
+import { WebSocketServer } from 'ws';
+
+let wss: WebSocketServer | null = null;
+
+export async function handle({ event, resolve }) {
+  // Initialize WebSocket server on first request
+  if (!wss && event.platform?.server) {
+    wss = new WebSocketServer({ server: event.platform.server });
+    setupWebSocketHandlers(wss);
+  }
+  return resolve(event);
+}
+
+// Alternative: Separate WebSocket endpoint
+// src/routes/ws/+server.ts
+export function GET({ request }) {
+  const upgrade = request.headers.get('upgrade');
+  if (upgrade !== 'websocket') {
+    return new Response('Expected WebSocket', { status: 426 });
+  }
+  // Handle upgrade...
+}
+```
+
+**Connection Management:**
+
+```typescript
+// src/lib/websocket/server.ts
+class WebSocketManager {
+  private clients = new Set<WebSocket>();
+
+  addClient(ws: WebSocket): void {
+    this.clients.add(ws);
+    ws.on('close', () => this.clients.delete(ws));
+  }
+
+  broadcast(event: string, payload: unknown): void {
+    const message = JSON.stringify({ event, payload, timestamp: Date.now() });
+    for (const client of this.clients) {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(message);
+      }
+    }
+  }
+
+  // Session-specific events
+  sendToSession(sessionId: string, event: string, payload: unknown): void {
+    // Route to clients subscribed to this session
+  }
+}
+```
+
+**Client Reconnection:**
+
+```typescript
+// src/lib/websocket/client.ts
+class WebSocketClient {
+  private ws: WebSocket | null = null;
+  private reconnectAttempts = 0;
+  private maxReconnectAttempts = 5;
+  private reconnectDelay = 1000;
+
+  connect(): void {
+    this.ws = new WebSocket(`ws://${location.host}/ws`);
+
+    this.ws.onclose = () => {
+      if (this.reconnectAttempts < this.maxReconnectAttempts) {
+        setTimeout(() => {
+          this.reconnectAttempts++;
+          this.connect();
+        }, this.reconnectDelay * Math.pow(2, this.reconnectAttempts));
+      }
+    };
+
+    this.ws.onopen = () => {
+      this.reconnectAttempts = 0;
+    };
+  }
+}
+```
+
+### Agent Session Manager
 
 ### Terminal Integration
 

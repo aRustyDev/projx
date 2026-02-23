@@ -357,21 +357,11 @@ Timeline visualization with bars for date ranges.
 
 ### 2.12 Gantt Drag/Resize
 
-**Priority**: Should-Have | **Complexity**: 4 | **Source**: beads-pm-ui
+**Priority**: Deferred | **Complexity**: 4 | **Source**: beads-pm-ui
 
-Interactive Gantt bar manipulation.
+**⚠️ DEFERRED TO PHASE 3** - Interactive Gantt bar manipulation requires more polish time and is not critical for initial analytics.
 
-**Deliverables**:
-- [ ] Drag bar to change dates
-- [ ] Resize bar to change duration
-- [ ] Update issue via `bd update --due`
-- [ ] Visual feedback during drag
-
-**Acceptance Criteria**:
-- Drag snaps to day/week grid
-- Resize handles at bar ends
-- Update persists via CLI
-- Optimistic update with rollback
+See [Phase 3: Git Integration](./03-git-integration.md#313-gantt-dragresize) for full specification.
 
 ---
 
@@ -429,27 +419,34 @@ Predefined filter combinations for common queries.
 
 ### Chart Library
 
-Using Chart.js or D3.js for visualizations:
+Using **Layerchart** (Svelte-native, built on D3) for all analytics visualizations:
 
-```typescript
-// src/lib/charts/config.ts
-const chartConfig = {
-  leadTime: {
-    type: 'scatter',
-    options: {
-      scales: { y: { beginAtZero: true } },
-      plugins: { annotation: { /* percentile lines */ } }
-    }
-  },
-  cfd: {
-    type: 'line',
-    options: {
-      fill: true,
-      stacked: true
-    }
-  }
-};
+```svelte
+<!-- Example: Lead Time Scatterplot with Layerchart -->
+<script lang="ts">
+  import { Chart, Svg, Axis, Scatter, Tooltip } from 'layerchart';
+  import { scaleTime, scaleLinear } from 'd3-scale';
+
+  let { data, percentiles } = $props<{
+    data: LeadTimePoint[];
+    percentiles: { p50: number; p85: number };
+  }>();
+</script>
+
+<Chart {data} x="closeDate" y="leadTimeDays">
+  <Svg>
+    <Axis placement="bottom" format={(d) => d.toLocaleDateString()} />
+    <Axis placement="left" label="Lead Time (days)" />
+    <Scatter radius={4} class="fill-primary" />
+    <!-- Percentile reference lines -->
+    <Rule y={percentiles.p50} class="stroke-amber-500" />
+    <Rule y={percentiles.p85} class="stroke-red-500" />
+  </Svg>
+  <Tooltip />
+</Chart>
 ```
+
+**Note**: Dependency graph visualization (Phase 3) uses D3 directly (`d3-force`) since Layerchart doesn't support force-directed network graphs.
 
 ### API Endpoints
 
@@ -459,6 +456,122 @@ const chartConfig = {
 | `/api/metrics/throughput` | GET | Throughput by period |
 | `/api/metrics/cfd` | GET | CFD data for date range |
 | `/api/metrics/aging-wip` | GET | Current aging WIP data |
+
+### API Request/Response Specifications
+
+#### GET `/api/metrics/lead-time`
+
+**Request Parameters:**
+```typescript
+interface LeadTimeRequest {
+  startDate?: string;  // ISO date, default: 30 days ago
+  endDate?: string;    // ISO date, default: today
+  issueTypes?: string[];  // Filter by type
+  excludeWisps?: boolean; // Default: true
+}
+```
+
+**Response:**
+```typescript
+interface LeadTimeResponse {
+  points: Array<{
+    issueId: string;
+    title: string;
+    closeDate: string;  // ISO date
+    leadTimeDays: number;
+    issueType: string;
+  }>;
+  percentiles: {
+    p50: number;
+    p85: number;
+    p95: number;
+  };
+  stats: {
+    count: number;
+    mean: number;
+    stdDev: number;
+  };
+}
+```
+
+#### GET `/api/metrics/throughput`
+
+**Request Parameters:**
+```typescript
+interface ThroughputRequest {
+  startDate?: string;
+  endDate?: string;
+  period: 'day' | 'week';  // Aggregation period
+  groupBy?: 'type' | 'none';
+}
+```
+
+**Response:**
+```typescript
+interface ThroughputResponse {
+  buckets: Array<{
+    periodStart: string;  // ISO date
+    periodEnd: string;
+    count: number;
+    byType?: Record<string, number>;  // If groupBy='type'
+  }>;
+  trend: {
+    slope: number;  // Items per period change
+    direction: 'up' | 'down' | 'stable';
+  };
+}
+```
+
+#### GET `/api/metrics/cfd`
+
+**Request Parameters:**
+```typescript
+interface CFDRequest {
+  startDate?: string;
+  endDate?: string;
+  statuses?: string[];  // Filter/order statuses
+}
+```
+
+**Response:**
+```typescript
+interface CFDResponse {
+  dates: string[];  // ISO dates
+  series: Array<{
+    status: string;
+    color: string;
+    values: number[];  // Cumulative count per date
+  }>;
+}
+```
+
+#### GET `/api/metrics/aging-wip`
+
+**Request Parameters:**
+```typescript
+interface AgingWIPRequest {
+  statuses?: string[];  // Filter by status
+  includeBlocked?: boolean;
+}
+```
+
+**Response:**
+```typescript
+interface AgingWIPResponse {
+  items: Array<{
+    issueId: string;
+    title: string;
+    status: string;
+    ageDays: number;
+    priority: string;
+    isBlocked: boolean;
+  }>;
+  thresholds: {
+    p85: number;  // Days - amber zone starts
+    p95: number;  // Days - red zone starts
+  };
+}
+```
 
 ---
 
@@ -472,9 +585,11 @@ const chartConfig = {
 ### New Libraries
 | Library | Purpose |
 |---------|---------|
-| `chart.js` | Charting library |
+| `layerchart` | Svelte-native charting (built on D3) |
+| `d3-scale` | Scale functions (included with layerchart) |
+| `d3-shape` | Shape generators (included with layerchart) |
+| `d3-array` | Array utilities including quantile (included with layerchart) |
 | `date-fns` | Date manipulation |
-| `simple-statistics` | Percentile calculations |
 
 ---
 
@@ -525,7 +640,7 @@ const chartConfig = {
 | Date Prefix Parsing | Must-Have | 3 | 2 days | Pending |
 | Hierarchical Sorting | Should-Have | 2 | 1 day | Pending |
 | Gantt Chart (Basic) | Must-Have | 4 | 3 days | Pending |
-| Gantt Drag/Resize | Should-Have | 4 | 3 days | Pending |
+| Gantt Drag/Resize | Deferred | 4 | - | Moved to Phase 3 |
 | Due Date Management | Should-Have | 2 | 1.5 days | Pending |
 | Quick Filters | Should-Have | 2 | 1 day | Pending |
 
@@ -541,7 +656,7 @@ const chartConfig = {
 | 2 | Charts | CFD (2d), Aging WIP (2d), Health Badges (1.5d), Progress (0.5d) | 6 |
 | 3 | Timeline | Date Prefix (2d), Gantt Basic (3d), Due Dates (1.5d) | 6.5 |
 
-**Note**: Gantt Drag/Resize (3 days) deferred to Phase 2 buffer or Phase 3 if needed.
+**Note**: Gantt Drag/Resize moved to Phase 3 to allow more polish time for Gantt interactions.
 
 ---
 
@@ -620,9 +735,10 @@ bd metrics --recalculate  # Re-run metrics from source data
 - [ ] Aging WIP highlights stale items
 - [ ] Health badges show on cards
 - [ ] Gantt chart renders issues with date prefixes
-- [ ] Drag/resize updates due dates
 - [ ] All "Must-Have" features complete
 - [ ] Metrics calculations verified against `bd` CLI
+- [ ] Accessibility audit passes (0 critical violations)
+- [ ] Unit test coverage > 70%
 
 ---
 
