@@ -1092,4 +1092,4 @@ e = Quick edit
 - [Feature Matrix](../references/feature-matrix.md)
 - [Borrowable Components](../references/borrowable-components.md)
 - [gastown_ui Components](../references/gastown-webuis.md)
-- [ADR-0007: Component Strategy](../adrs/0007-borrow-components-from-gastown-ui-with-custom-extensions.md)
+- [ADR-0007: Component Strategy](../../../../../docs/src/adrs/0007-borrow-components-from-gastown-ui-with-custom-extensions.md)

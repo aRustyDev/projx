@@ -451,8 +451,8 @@ These directly support our SvelteKit + Tailwind + SQLite stack.
 - [MCP Market](https://mcpmarket.com/)
 - [Model Context Protocol Spec](https://modelcontextprotocol.io/)
 - [Svelte MCP Docs](https://svelte.dev/docs/mcp/local-setup)
-- [ADR-0002: Use Bun as Runtime](../adrs/0002-use-bun-as-primary-runtime.md)
-- [ADR-0003: Use SvelteKit](../adrs/0003-use-sveltekit-as-frontend-framework.md)
+- [ADR-0002: Use Bun as Runtime](../../../../../docs/src/adrs/0002-use-bun-as-primary-runtime.md)
+- [ADR-0003: Use SvelteKit](../../../../../docs/src/adrs/0003-use-sveltekit-as-frontend-framework.md)
 
 <!--https://smithery.ai/servers/Nekzus/npm-sentinel-mcp-->
 <!--https://smithery.ai/servers/icons8community/icons8mpc-->

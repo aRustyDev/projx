@@ -1330,6 +1330,46 @@ X-RateLimit-Remaining: 95
 X-RateLimit-Reset: 1708617600
 ```
 
+### Client-Side Rate Limit Handling
+
+```typescript
+async function fetchWithRateLimit(url: string, options?: RequestInit): Promise<Response> {
+  const response = await fetch(url, options);
+
+  if (response.status === 429) {
+    const retryAfter = response.headers.get('Retry-After');
+    const waitMs = retryAfter
+      ? parseInt(retryAfter, 10) * 1000
+      : 1000; // Default 1s
+
+    toast.warning(`Rate limited. Retrying in ${waitMs / 1000}s...`);
+
+    await sleep(waitMs);
+    return fetchWithRateLimit(url, options); // Retry
+  }
+
+  return response;
+}
+
+// Track rate limit state
+class RateLimitTracker {
+  remaining = $state(100);
+  resetAt = $state<Date | null>(null);
+
+  update(response: Response) {
+    const remaining = response.headers.get('X-RateLimit-Remaining');
+    const reset = response.headers.get('X-RateLimit-Reset');
+
+    if (remaining) this.remaining = parseInt(remaining, 10);
+    if (reset) this.resetAt = new Date(parseInt(reset, 10) * 1000);
+  }
+
+  get isLow(): boolean {
+    return this.remaining < 10;
+  }
+}
+```
+
 ---
 
 ## CORS Policy
@@ -1345,10 +1385,112 @@ Access-Control-Max-Age: 86400
 
 ---
 
+## Security Model (Network Mode)
+
+### CSRF Protection
+
+When `--network` mode is enabled, CSRF protection is required:
+
+```typescript
+// Server-side: Generate token
+function generateCSRFToken(sessionId: string): string {
+  return crypto.createHmac('sha256', SECRET_KEY)
+    .update(sessionId)
+    .digest('hex');
+}
+
+// Set token in cookie
+Set-Cookie: csrf_token=<token>; HttpOnly=false; SameSite=Strict; Path=/
+
+// Client must include in header
+X-CSRF-Token: <token>
+```
+
+### Request Validation
+
+```typescript
+// Server-side middleware
+function validateCSRF(request: Request): boolean {
+  // Skip for GET, HEAD, OPTIONS
+  if (['GET', 'HEAD', 'OPTIONS'].includes(request.method)) {
+    return true;
+  }
+
+  const cookieToken = getCookie(request, 'csrf_token');
+  const headerToken = request.headers.get('X-CSRF-Token');
+
+  return cookieToken && headerToken && cookieToken === headerToken;
+}
+```
+
+### Session Security
+
+```typescript
+interface SessionConfig {
+  // Cookie settings
+  cookie: {
+    name: 'ubw_session';
+    httpOnly: true;
+    secure: boolean;       // true if HTTPS
+    sameSite: 'strict';
+    maxAge: 86400;         // 24 hours
+    path: '/';
+  };
+
+  // Session settings
+  session: {
+    idleTimeout: 3600;     // 1 hour of inactivity
+    absoluteTimeout: 86400; // 24 hours max
+    renewThreshold: 1800;  // Renew if < 30 min left
+  };
+}
+```
+
+### Secure Headers
+
+```typescript
+// Applied to all responses in network mode
+const securityHeaders = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Content-Security-Policy': [
+    "default-src 'self'",
+    "script-src 'self'",
+    "style-src 'self' 'unsafe-inline'",
+    "connect-src 'self' ws://localhost:* wss://localhost:*",
+    "img-src 'self' data:",
+  ].join('; '),
+};
+```
+
+### Input Sanitization
+
+All user input is sanitized before:
+- Database queries (parameterized queries only)
+- CLI arguments (shell-safe escaping)
+- HTML rendering (XSS prevention)
+
+```typescript
+// CLI argument sanitization
+function sanitizeArg(arg: string): string {
+  // Remove shell metacharacters
+  return arg.replace(/[;&|`$(){}[\]<>\\]/g, '');
+}
+
+// Validate issue ID format
+function isValidIssueId(id: string): boolean {
+  return /^[a-z]+-[a-z0-9]+$/i.test(id);
+}
+```
+
+---
+
 ## References
 
 - [Data Flow Diagrams](./data-flow.md)
 - [CLI Integration Specification](./cli-integration.md)
 - [Beads Database Schema](../references/beads-schema.md)
-- [ADR-0005: CLI for Writes](../adrs/0005-cli-for-writes-and-direct-sql-for-reads.md)
-- [ADR-0006: WebSocket Broadcast](../adrs/0006-use-file-watching-with-websocket-broadcast.md)
+- [ADR-0005: CLI for Writes](../../../../../docs/src/adrs/0005-cli-for-writes-and-direct-sql-for-reads.md)
+- [ADR-0006: WebSocket Broadcast](../../../../../docs/src/adrs/0006-use-file-watching-with-websocket-broadcast.md)

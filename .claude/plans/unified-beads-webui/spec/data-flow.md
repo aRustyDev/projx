@@ -773,9 +773,201 @@ async function detectBackend(): Promise<'sqlite' | 'dolt'> {
 
 ---
 
+## Offline Handling
+
+### Design Decision: Online-Only MVP
+
+The MVP operates in **online-only mode**. This is an explicit decision based on:
+
+1. **Localhost deployment**: Network issues are rare
+2. **Simplicity**: Offline sync adds significant complexity
+3. **Data integrity**: CLI writes require server availability
+
+### Connection State Management
+
+```typescript
+type ConnectionState = 'connected' | 'connecting' | 'disconnected';
+
+class ConnectionManager {
+  state = $state<ConnectionState>('connecting');
+  reconnectAttempts = $state(0);
+
+  // Detect online/offline
+  constructor() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', () => this.handleOnline());
+      window.addEventListener('offline', () => this.handleOffline());
+    }
+  }
+
+  handleOffline() {
+    this.state = 'disconnected';
+    toast.warning('Connection lost. Some features may be unavailable.');
+  }
+
+  handleOnline() {
+    this.state = 'connecting';
+    this.reconnect();
+  }
+}
+```
+
+### Disconnected UI Behavior
+
+| Component | Disconnected Behavior |
+|-----------|----------------------|
+| Issue List | Show stale data with "Last updated X ago" |
+| Create Issue | Disable button, show "Offline" tooltip |
+| Update Issue | Disable, queue not supported in MVP |
+| Kanban DnD | Disable drag functionality |
+| Metrics | Show cached data with staleness warning |
+| Terminal | Show "Disconnected" status |
+
+### Reconnection Strategy
+
+```typescript
+const reconnectionConfig = {
+  baseDelay: 1000,        // 1 second
+  maxDelay: 30000,        // 30 seconds max
+  jitter: 0.2,            // 20% random jitter
+  maxAttempts: Infinity,  // Keep trying
+};
+
+function getReconnectDelay(attempt: number): number {
+  const delay = Math.min(
+    reconnectionConfig.baseDelay * Math.pow(2, attempt),
+    reconnectionConfig.maxDelay
+  );
+  const jitter = delay * reconnectionConfig.jitter * Math.random();
+  return delay + jitter;
+}
+```
+
+### Future: Offline-First (Post-MVP)
+
+If offline support is added later, consider:
+- IndexedDB for local issue cache
+- Service Worker for request queuing
+- Conflict resolution UI
+- Sync status indicator
+
+---
+
+## Database Schema Compatibility
+
+### Dual Backend Support
+
+The application supports **both SQLite and Dolt simultaneously**:
+
+```typescript
+type DatabaseBackend = 'sqlite' | 'dolt';
+
+interface DatabaseConfig {
+  backend: DatabaseBackend;
+  path?: string;          // SQLite: .beads/beads.db
+  host?: string;          // Dolt: 127.0.0.1
+  port?: number;          // Dolt: 3307
+}
+
+function detectBackend(): DatabaseConfig {
+  // Check for Dolt first (more specific)
+  if (fs.existsSync('.beads/dolt/.dolt')) {
+    return { backend: 'dolt', host: '127.0.0.1', port: 3307 };
+  }
+
+  // Fall back to SQLite
+  if (fs.existsSync('.beads/beads.db')) {
+    return { backend: 'sqlite', path: '.beads/beads.db' };
+  }
+
+  throw new Error('No Beads database found');
+}
+```
+
+### Schema Validation
+
+On startup, validate schema compatibility:
+
+```typescript
+const REQUIRED_TABLES = ['issues', 'issue_labels', 'dependencies', 'comments'];
+const REQUIRED_COLUMNS = {
+  issues: ['id', 'title', 'status', 'priority', 'issue_type', 'created_at'],
+};
+
+async function validateSchema(db: Database): Promise<ValidationResult> {
+  const errors: string[] = [];
+
+  // Check required tables
+  for (const table of REQUIRED_TABLES) {
+    const exists = await db.tableExists(table);
+    if (!exists) {
+      errors.push(`Missing table: ${table}`);
+    }
+  }
+
+  // Check required columns
+  for (const [table, columns] of Object.entries(REQUIRED_COLUMNS)) {
+    const tableColumns = await db.getColumns(table);
+    for (const col of columns) {
+      if (!tableColumns.includes(col)) {
+        errors.push(`Missing column: ${table}.${col}`);
+      }
+    }
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    backend: db.backend,
+  };
+}
+```
+
+### Dolt-Only Features
+
+These features require Dolt and gracefully degrade on SQLite:
+
+| Feature | Dolt | SQLite |
+|---------|------|--------|
+| Version history | Full commit log | Not available |
+| Time travel queries | `AS OF` clause | Not available |
+| Branching | Full support | Not available |
+| Diff between versions | `dolt_diff_*` tables | Not available |
+
+```typescript
+function canUseVersionHistory(): boolean {
+  return config.backend === 'dolt';
+}
+
+// Feature-gated UI
+{#if canUseVersionHistory()}
+  <VersionHistoryPanel {issueId} />
+{/if}
+```
+
+### Migration Support
+
+Simple migration path from existing databases:
+
+```typescript
+// Check bd CLI version for migration support
+async function checkMigrationSupport(): Promise<boolean> {
+  const result = await supervisor.execute('bd', ['--version']);
+  const version = parseVersion(result.stdout);
+  return version >= '2.0.0';
+}
+
+// Trigger migration via CLI
+async function migrateDatabase(): Promise<void> {
+  await supervisor.execute('bd', ['migrate', '--to-latest']);
+}
+```
+
+---
+
 ## References
 
-- [ADR-0005: CLI for Writes and Direct SQL for Reads](../adrs/0005-cli-for-writes-and-direct-sql-for-reads.md)
-- [ADR-0006: Use File Watching with WebSocket Broadcast](../adrs/0006-use-file-watching-with-websocket-broadcast.md)
+- [ADR-0005: CLI for Writes and Direct SQL for Reads](../../../../../docs/src/adrs/0005-cli-for-writes-and-direct-sql-for-reads.md)
+- [ADR-0006: Use File Watching with WebSocket Broadcast](../../../../../docs/src/adrs/0006-use-file-watching-with-websocket-broadcast.md)
 - [Beads Schema Reference](../references/beads-schema.md)
 - [ProcessSupervisor Pattern](../references/borrowable-components.md)

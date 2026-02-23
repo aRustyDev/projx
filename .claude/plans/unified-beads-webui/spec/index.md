@@ -6,7 +6,7 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                     Browser (SvelteKit)                     │
 ├─────────────────────────────────────────────────────────────┤
-│  Components    │  State (Zustand)  │  WebSocket Client      │
+│  Components    │  State (Runes)    │  WebSocket Client      │
 └────────┬───────┴─────────┬─────────┴──────────┬─────────────┘
          │                 │                    │
          ▼                 ▼                    ▼
@@ -46,6 +46,7 @@
 | Terminal Integration | [terminal.md](./terminal.md) |
 | Git Integration | [git.md](./git.md) |
 | Real-time Sync | [realtime.md](./realtime.md) |
+| Test Strategy | [test-strategy.md](./test-strategy.md) |
 
 ---
 
@@ -56,10 +57,11 @@
 - Node.js 18+ (fallback)
 
 ### Frontend
-- **SvelteKit 2.x** - SSR + API routes
+- **SvelteKit 2.x** with **Svelte 5** - SSR + API routes
 - Tailwind CSS 4 - Styling
-- Zustand - State management
-- Lucide - Icons
+- Svelte 5 Runes - State management (see below)
+- Lucide Svelte - Icons
+- tailwind-variants - Component styling
 
 ### Visualization
 - Recharts - Charts (CFD, scatterplots)
@@ -174,3 +176,361 @@ await supervisor.execute('bd', ['close', id]);
 | File change → UI update | < 1s | End-to-end |
 | CLI command | < 2s | Execution time |
 | Initial page load | < 2s | First contentful paint |
+
+---
+
+## Svelte 5 Patterns
+
+This project uses **Svelte 5 with runes** (not legacy `$:` reactive statements or `writable()` stores).
+
+### State Management with Runes
+
+```svelte
+<script lang="ts">
+  // Local reactive state
+  let count = $state(0);
+  let issues = $state<Issue[]>([]);
+
+  // Derived state (replaces $:)
+  let openIssues = $derived(issues.filter(i => i.status === 'open'));
+  let totalCount = $derived(issues.length);
+
+  // Effects (replaces $: with side effects)
+  $effect(() => {
+    console.log('Issue count changed:', totalCount);
+  });
+</script>
+```
+
+### Shared State (replaces stores)
+
+```typescript
+// src/lib/stores/issues.svelte.ts
+class IssueStore {
+  issues = $state<Issue[]>([]);
+  filter = $state<IssueFilter>({});
+
+  // Derived values
+  get filtered() {
+    return this.issues.filter(issue => {
+      if (this.filter.status?.length) {
+        return this.filter.status.includes(issue.status);
+      }
+      return true;
+    });
+  }
+
+  // Actions
+  setIssues(issues: Issue[]) {
+    this.issues = issues;
+  }
+
+  setFilter(filter: IssueFilter) {
+    this.filter = filter;
+  }
+}
+
+export const issueStore = new IssueStore();
+```
+
+### Props (replaces `export let`)
+
+```svelte
+<script lang="ts">
+  // Props with defaults
+  let { title, priority = 2, onClose }: {
+    title: string;
+    priority?: number;
+    onClose?: () => void;
+  } = $props();
+</script>
+```
+
+### Bindable Props
+
+```svelte
+<script lang="ts">
+  // Two-way bindable prop
+  let { value = $bindable() }: { value: string } = $props();
+</script>
+```
+
+### Migration Notes
+
+| Legacy Svelte 4 | Svelte 5 Runes |
+|-----------------|----------------|
+| `let x = 0;` (reactive) | `let x = $state(0);` |
+| `$: doubled = x * 2;` | `let doubled = $derived(x * 2);` |
+| `$: console.log(x);` | `$effect(() => console.log(x));` |
+| `export let prop;` | `let { prop } = $props();` |
+| `writable(0)` | `$state(0)` in class |
+| `derived(store, ...)` | `$derived(...)` |
+
+### File Naming
+
+- Components: `ComponentName.svelte`
+- Shared state files: `*.svelte.ts` (enables runes outside components)
+- Server-only: `+page.server.ts`, `+server.ts`
+
+### References
+
+- [Svelte 5 Runes Documentation](https://svelte.dev/docs/svelte/$state)
+- [ADR-0003: Use SvelteKit](../../../../../docs/src/adrs/0003-use-sveltekit-as-frontend-framework.md)
+- [ADR-0004: Svelte Stores](../../../../../docs/src/adrs/0004-use-svelte-stores-for-state-management.md)
+
+---
+
+## Performance Budgets
+
+### Bundle Size
+
+| Bundle | Target | Max | Measurement |
+|--------|--------|-----|-------------|
+| Initial JS | < 80KB | 120KB | gzip compressed |
+| Initial CSS | < 20KB | 40KB | gzip compressed |
+| Total initial | < 100KB | 150KB | gzip compressed |
+| Route chunk (avg) | < 30KB | 50KB | gzip compressed |
+
+### Render Performance
+
+| Metric | Target | Max | Measurement |
+|--------|--------|-----|-------------|
+| First Contentful Paint | < 1.5s | 2.5s | Lighthouse |
+| Largest Contentful Paint | < 2.0s | 3.0s | Lighthouse |
+| Time to Interactive | < 2.5s | 4.0s | Lighthouse |
+| Cumulative Layout Shift | < 0.1 | 0.25 | Lighthouse |
+| First Input Delay | < 100ms | 200ms | Lighthouse |
+
+### Runtime Performance
+
+| Operation | Target | Max | Notes |
+|-----------|--------|-----|-------|
+| Issue list render (100 items) | < 50ms | 100ms | Virtual scroll for > 100 |
+| Issue list render (1000 items) | < 100ms | 200ms | Must use virtual scroll |
+| Kanban board render | < 100ms | 200ms | All columns |
+| Chart render (CFD, 30 days) | < 200ms | 500ms | SVG rendering |
+| Filter change response | < 50ms | 100ms | Client-side filtering |
+| WebSocket message process | < 10ms | 50ms | Parse + update store |
+
+### API Response Times
+
+| Endpoint | Target | Max | Notes |
+|----------|--------|-----|-------|
+| GET /api/issues (50 items) | < 50ms | 100ms | Paginated |
+| GET /api/issues/:id | < 30ms | 50ms | Single issue |
+| POST /api/issues | < 500ms | 2s | CLI execution |
+| GET /api/metrics/* | < 200ms | 500ms | Aggregate queries |
+
+---
+
+## Observability
+
+### Logging
+
+```typescript
+// src/lib/logger.ts
+import { dev } from '$app/environment';
+
+type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+
+interface LogEntry {
+  level: LogLevel;
+  message: string;
+  timestamp: string;
+  context?: Record<string, unknown>;
+}
+
+class Logger {
+  private level: LogLevel = dev ? 'debug' : 'info';
+
+  private shouldLog(level: LogLevel): boolean {
+    const levels = ['debug', 'info', 'warn', 'error'];
+    return levels.indexOf(level) >= levels.indexOf(this.level);
+  }
+
+  log(level: LogLevel, message: string, context?: Record<string, unknown>) {
+    if (!this.shouldLog(level)) return;
+
+    const entry: LogEntry = {
+      level,
+      message,
+      timestamp: new Date().toISOString(),
+      context,
+    };
+
+    // Console output
+    const logFn = level === 'error' ? console.error :
+                  level === 'warn' ? console.warn : console.log;
+    logFn(`[${entry.level.toUpperCase()}] ${entry.message}`, entry.context || '');
+  }
+
+  debug(msg: string, ctx?: Record<string, unknown>) { this.log('debug', msg, ctx); }
+  info(msg: string, ctx?: Record<string, unknown>) { this.log('info', msg, ctx); }
+  warn(msg: string, ctx?: Record<string, unknown>) { this.log('warn', msg, ctx); }
+  error(msg: string, ctx?: Record<string, unknown>) { this.log('error', msg, ctx); }
+}
+
+export const logger = new Logger();
+```
+
+### Error Tracking
+
+```typescript
+// src/hooks.client.ts
+import { logger } from '$lib/logger';
+
+// Global error handler
+window.addEventListener('error', (event) => {
+  logger.error('Uncaught error', {
+    message: event.message,
+    filename: event.filename,
+    lineno: event.lineno,
+    colno: event.colno,
+  });
+});
+
+// Promise rejection handler
+window.addEventListener('unhandledrejection', (event) => {
+  logger.error('Unhandled promise rejection', {
+    reason: event.reason,
+  });
+});
+```
+
+### Request Timing
+
+```typescript
+// src/lib/api.ts
+async function fetchWithTiming(url: string, options?: RequestInit): Promise<Response> {
+  const start = performance.now();
+
+  try {
+    const response = await fetch(url, options);
+    const duration = performance.now() - start;
+
+    logger.info('API request', {
+      url,
+      method: options?.method || 'GET',
+      status: response.status,
+      duration: Math.round(duration),
+    });
+
+    return response;
+  } catch (error) {
+    const duration = performance.now() - start;
+    logger.error('API request failed', {
+      url,
+      method: options?.method || 'GET',
+      error: error.message,
+      duration: Math.round(duration),
+    });
+    throw error;
+  }
+}
+```
+
+### Health Endpoint
+
+```typescript
+// GET /api/health
+interface HealthResponse {
+  status: 'ok' | 'degraded' | 'error';
+  version: string;
+  uptime: number;
+  checks: {
+    database: 'ok' | 'error';
+    cli: 'ok' | 'error';
+    fileWatcher: 'ok' | 'error';
+  };
+}
+```
+
+---
+
+## Feature Flags
+
+### Configuration
+
+```typescript
+// src/lib/features.ts
+interface FeatureFlags {
+  // Phase-based features
+  gastown: boolean;           // Gas-Town integration
+  networkMode: boolean;       // Network deployment
+  multiProject: boolean;      // Multiple projects
+
+  // Experimental
+  ganttDragResize: boolean;   // Gantt drag to resize
+  terminalTabs: boolean;      // Multiple terminal tabs
+  agentStreaming: boolean;    // Stream agent output
+}
+
+// Default flags
+const defaultFlags: FeatureFlags = {
+  gastown: false,
+  networkMode: false,
+  multiProject: false,
+  ganttDragResize: false,
+  terminalTabs: false,
+  agentStreaming: false,
+};
+```
+
+### Environment-Based Flags
+
+```typescript
+function loadFeatureFlags(): FeatureFlags {
+  return {
+    ...defaultFlags,
+    gastown: env.ENABLE_GASTOWN === 'true',
+    networkMode: env.ENABLE_NETWORK_MODE === 'true',
+    multiProject: env.ENABLE_MULTI_PROJECT === 'true',
+    // Experimental flags from localStorage in dev
+    ...loadDevFlags(),
+  };
+}
+```
+
+### Usage in Components
+
+```svelte
+<script lang="ts">
+  import { features } from '$lib/features';
+</script>
+
+{#if features.gastown}
+  <AgentPanel />
+{/if}
+
+<Button disabled={!features.gastown}>
+  Sling to Agent
+</Button>
+```
+
+### Dev Mode Override
+
+```typescript
+// In browser console (dev only)
+window.__setFeatureFlag('ganttDragResize', true);
+
+// Stored in localStorage
+// Prefix: ubw_feature_
+```
+
+### Graceful Degradation
+
+```typescript
+// Features that depend on Gas-Town
+function canSlingToAgent(): boolean {
+  return features.gastown && gtCliAvailable();
+}
+
+// Show appropriate UI
+{#if canSlingToAgent()}
+  <SlingButton />
+{:else if features.gastown}
+  <DisabledButton tooltip="gt CLI not available" />
+{:else}
+  <!-- Don't show at all -->
+{/if}
+```

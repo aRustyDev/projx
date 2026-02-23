@@ -16,8 +16,11 @@
 | [PRD Index](./prds/index.md) | Product Requirements |
 | [Spec Index](./spec/index.md) | Technical Specifications |
 | [Roadmap](./ROADMAP.md) | Phased delivery plan |
-| [ADRs](./adrs/) | Architecture Decision Records |
-| [Constraints](./docs/constraints/) | Known limitations and constraints |
+| [ADRs](../../../../docs/src/adrs/) | Architecture Decision Records |
+| [Glossary](./glossary.md) | Terminology definitions |
+| [Phase 0: Dev Setup](./phase/00-development-setup.md) | Development environment setup |
+| [Operations Runbook](./docs/operations-runbook.md) | Troubleshooting and operations |
+| [Key References](./references/key-references.md) | Curated summary of reference materials |
 
 ---
 
@@ -55,13 +58,32 @@
 - **Reads**: Direct SQL via `bd sql` or native drivers
 - **Writes**: Always via `bd` CLI to maintain sync
 
-### Tech Stack (Proposed)
+### Database Backend
+- **Support both SQLite and Dolt simultaneously** - Not fallback, dual support
+- Dolt-only features: version history, branching, time travel queries
+- SQLite-only features: simpler setup, no server process
+
+### Multi-Project Support
+- **MVP**: Single project only (project selector hidden)
+- **Future**: Multi-project in Phase 5+ (design decisions should not prevent this)
+
+### Agent Framework
+- **Prefer AI-client agnostic**, but Claude Code is the primary target
+- Design decisions favor Claude Code user experience when trade-offs arise
+- `foolery` references are Claude-specific but patterns should be adaptable
+
+### Deployment Model
+- **MVP**: Localhost only (bind to 127.0.0.1)
+- **Future**: Hosted/shared deployments are out of scope but should not be blocked
+- Design for localhost, don't optimize for hosted yet
+
+### Tech Stack (Finalized)
 - **Runtime**: Bun
-- **Frontend**: SvelteKit 2.x or Next.js 15+
-- **Styling**: Tailwind CSS 4
-- **Charts**: Recharts
+- **Frontend**: SvelteKit 2.x with Svelte 5 runes
+- **Styling**: Tailwind CSS 4 + tailwind-variants
+- **Charts**: Recharts (or Svelte equivalent)
 - **Terminal**: xterm.js
-- **Drag-and-Drop**: @dnd-kit
+- **Drag-and-Drop**: @dnd-kit (or svelte-dnd-action)
 
 ---
 
