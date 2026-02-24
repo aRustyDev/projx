@@ -24,6 +24,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 | [0016](./0016-use-gh-cli-for-github-operations.md) | Use gh CLI for GitHub Operations | Proposed | git, infrastructure, cli |
 | [0017](./0017-use-layerchart-for-charts-and-d3-for-dependency-graphs.md) | Use Layerchart + D3 for Visualizations | Accepted | charts, visualization, ui |
 | [0018](./0018-use-storybook-for-visual-component-documentation.md) | Use Storybook for Component Documentation | Accepted | tooling, documentation, ui |
+| [0019](./0019-testing-strategy-and-conventions.md) | Testing Strategy and Conventions | Accepted | testing, conventions, infrastructure |
 
 ## Summary
 
@@ -43,6 +44,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 12. **GitHub**: gh CLI for PR/CI operations
 13. **Charts**: Layerchart for analytics, D3 for dependency graphs
 14. **Docs**: Storybook for visual component documentation
+15. **Testing**: Traditional pyramid (50/30/15/5), co-located tests, 70% coverage
 
 ### Architecture Overview
 
