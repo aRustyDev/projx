@@ -234,7 +234,8 @@ describe('DependenciesModal', () => {
 			});
 
 			const removeButtons = screen.getAllByRole('button', { name: /remove/i });
-			await fireEvent.click(removeButtons[0]);
+			expect(removeButtons.length).toBeGreaterThan(0);
+			await fireEvent.click(removeButtons[0]!);
 
 			expect(onRemove).toHaveBeenCalledWith('TEST-100', 'blockedBy');
 		});

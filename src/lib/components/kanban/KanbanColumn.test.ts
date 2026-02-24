@@ -47,7 +47,7 @@ describe('KanbanColumn', () => {
 
 			expect(screen.getByText('2')).toBeInTheDocument();
 
-			await rerender({ status: 'open', issues: [mockIssues[0]] });
+			await rerender({ status: 'open', issues: [mockIssues[0]!] });
 
 			expect(screen.getByText('1')).toBeInTheDocument();
 		});

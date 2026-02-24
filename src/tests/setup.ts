@@ -8,6 +8,13 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/svelte';
 import { afterEach, vi } from 'vitest';
+import { faker } from '@faker-js/faker';
+
+// Set fixed seed for reproducible test data
+faker.seed(12345);
+
+// Export faker for use in test files
+export { faker };
 
 // Cleanup after each test
 afterEach(() => {

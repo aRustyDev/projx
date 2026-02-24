@@ -53,6 +53,19 @@ class MockWebSocket {
 describe('useRealtime', () => {
 	let originalWebSocket: typeof globalThis.WebSocket;
 
+	// Helper to get the latest mock WebSocket instance
+	function getLastInstance(): MockWebSocket {
+		const instance = MockWebSocket.instances[MockWebSocket.instances.length - 1];
+		if (!instance) throw new Error('No WebSocket instance created');
+		return instance;
+	}
+
+	function getInstance(index: number): MockWebSocket {
+		const instance = MockWebSocket.instances[index];
+		if (!instance) throw new Error(`No WebSocket instance at index ${index}`);
+		return instance;
+	}
+
 	beforeEach(() => {
 		vi.useFakeTimers();
 		MockWebSocket.instances = [];
@@ -72,7 +85,7 @@ describe('useRealtime', () => {
 			client.connect();
 
 			expect(MockWebSocket.instances.length).toBe(1);
-			expect(MockWebSocket.instances[0].url).toBe('ws://localhost:8080');
+			expect(getInstance(0).url).toBe('ws://localhost:8080');
 
 			client.disconnect();
 		});
@@ -82,8 +95,8 @@ describe('useRealtime', () => {
 			client.connect();
 
 			// Simulate connection and then disconnect
-			MockWebSocket.instances[0].simulateOpen();
-			MockWebSocket.instances[0].simulateClose();
+			getInstance(0).simulateOpen();
+			getInstance(0).simulateClose();
 
 			// Wait for reconnect
 			await vi.advanceTimersByTimeAsync(150);
@@ -97,10 +110,10 @@ describe('useRealtime', () => {
 			const client = createRealtimeClient({ url: 'ws://localhost:8080' });
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
+			getInstance(0).simulateOpen();
 			client.disconnect();
 
-			expect(MockWebSocket.instances[0].close).toHaveBeenCalled();
+			expect(getInstance(0).close).toHaveBeenCalled();
 		});
 
 		it('handles connection errors', () => {
@@ -109,7 +122,7 @@ describe('useRealtime', () => {
 			client.on('error', onError);
 			client.connect();
 
-			MockWebSocket.instances[0].simulateError();
+			getInstance(0).simulateError();
 
 			expect(onError).toHaveBeenCalled();
 
@@ -124,8 +137,8 @@ describe('useRealtime', () => {
 			client.on('issues:changed', onIssuesChange);
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
-			MockWebSocket.instances[0].simulateMessage({
+			getInstance(0).simulateOpen();
+			getInstance(0).simulateMessage({
 				type: 'issues:changed',
 				payload: { ids: ['TEST-1'] }
 			});
@@ -141,8 +154,8 @@ describe('useRealtime', () => {
 			client.on('file:changed', onFileChange);
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
-			MockWebSocket.instances[0].simulateMessage({
+			getInstance(0).simulateOpen();
+			getInstance(0).simulateMessage({
 				type: 'file:changed',
 				payload: { path: '.beads/issues.db' }
 			});
@@ -158,8 +171,8 @@ describe('useRealtime', () => {
 			client.on('issues:changed', onIssuesChange);
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
-			MockWebSocket.instances[0].simulateMessage({
+			getInstance(0).simulateOpen();
+			getInstance(0).simulateMessage({
 				type: 'unknown:event',
 				payload: {}
 			});
@@ -177,7 +190,7 @@ describe('useRealtime', () => {
 
 			expect(client.isConnected()).toBe(false);
 
-			MockWebSocket.instances[0].simulateOpen();
+			getInstance(0).simulateOpen();
 
 			expect(client.isConnected()).toBe(true);
 
@@ -188,7 +201,7 @@ describe('useRealtime', () => {
 			const client = createRealtimeClient({ url: 'ws://localhost:8080' });
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
+			getInstance(0).simulateOpen();
 			client.disconnect();
 
 			expect(client.isConnected()).toBe(false);
@@ -203,10 +216,10 @@ describe('useRealtime', () => {
 			});
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
+			getInstance(0).simulateOpen();
 
 			// Disconnect triggers reconnection
-			MockWebSocket.instances[0].simulateClose();
+			getInstance(0).simulateClose();
 			await vi.advanceTimersByTimeAsync(150);
 
 			// Should have created a new connection
@@ -223,12 +236,11 @@ describe('useRealtime', () => {
 			});
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
+			getInstance(0).simulateOpen();
 
 			// Trigger multiple disconnects
 			for (let i = 0; i < 4; i++) {
-				const lastInstance = MockWebSocket.instances[MockWebSocket.instances.length - 1];
-				lastInstance.simulateClose();
+				getLastInstance().simulateClose();
 				await vi.advanceTimersByTimeAsync(500);
 			}
 
@@ -246,10 +258,10 @@ describe('useRealtime', () => {
 			client.on('issues:changed', handler);
 			client.connect();
 
-			MockWebSocket.instances[0].simulateOpen();
+			getInstance(0).simulateOpen();
 
 			// First message - handler called
-			MockWebSocket.instances[0].simulateMessage({
+			getInstance(0).simulateMessage({
 				type: 'issues:changed',
 				payload: { ids: ['TEST-1'] }
 			});
@@ -259,7 +271,7 @@ describe('useRealtime', () => {
 			client.off('issues:changed', handler);
 
 			// Second message - handler not called
-			MockWebSocket.instances[0].simulateMessage({
+			getInstance(0).simulateMessage({
 				type: 'issues:changed',
 				payload: { ids: ['TEST-2'] }
 			});

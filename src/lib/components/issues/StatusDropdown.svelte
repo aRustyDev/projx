@@ -46,8 +46,11 @@
 			event.preventDefault();
 			if (!isOpen) {
 				toggle();
-			} else if (highlightedIndex >= 0) {
-				selectStatus(statuses[highlightedIndex]);
+			} else {
+				const selectedStatus = statuses[highlightedIndex];
+				if (highlightedIndex >= 0 && selectedStatus) {
+					selectStatus(selectedStatus);
+				}
 			}
 		} else if (event.key === 'Escape') {
 			isOpen = false;

@@ -50,7 +50,8 @@ vi.mock('ws', () => {
 });
 
 import { RealtimeServer } from './RealtimeServer.js';
-import { WebSocketServer, __mockServer } from 'ws';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { WebSocketServer, __mockServer } = await vi.importMock<any>('ws');
 
 describe('RealtimeServer', () => {
 	let server: RealtimeServer;
@@ -130,7 +131,8 @@ describe('RealtimeServer', () => {
 
 			server.broadcast('issues:changed', { ids: ['TEST-1', 'TEST-2'] });
 
-			const message = JSON.parse(mockClient.send.mock.calls[0][0]);
+			expect(mockClient.send).toHaveBeenCalled();
+			const message = JSON.parse(mockClient.send.mock.calls[0]![0] as string);
 			expect(message.type).toBe('issues:changed');
 			expect(message.payload).toEqual({ ids: ['TEST-1', 'TEST-2'] });
 		});

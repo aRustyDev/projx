@@ -117,7 +117,9 @@ describe('CreateIssueModal', () => {
 		});
 
 		it('disables submit button while submitting', async () => {
-			const onSubmit = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
+			const onSubmit = vi.fn(
+				(): Promise<void> => new Promise((resolve) => setTimeout(resolve, 100))
+			);
 			render(CreateIssueModal, { props: { open: true, onsubmit: onSubmit } });
 
 			await fireEvent.input(screen.getByLabelText(/title/i), {
@@ -131,7 +133,9 @@ describe('CreateIssueModal', () => {
 		});
 
 		it('shows loading state while submitting', async () => {
-			const onSubmit = vi.fn(() => new Promise((resolve) => setTimeout(resolve, 100)));
+			const onSubmit = vi.fn(
+				(): Promise<void> => new Promise((resolve) => setTimeout(resolve, 100))
+			);
 			render(CreateIssueModal, { props: { open: true, onsubmit: onSubmit } });
 
 			await fireEvent.input(screen.getByLabelText(/title/i), {

@@ -48,6 +48,9 @@ install: build
 # ─────────────────────────────────────────────────────────────────────────────
 # Testing
 # ─────────────────────────────────────────────────────────────────────────────
+# NOTE: Use `bun run test:unit` (Vitest) NOT `bun test` (Bun's native runner)
+#       Bun's native runner doesn't support jsdom for DOM testing
+# ─────────────────────────────────────────────────────────────────────────────
 
 # Run tests (typecheck + pre-commit + unit tests)
 [arg("full", long, value="true")]
@@ -75,6 +78,38 @@ typecheck:
 # Run tests with coverage
 test-coverage:
     bun run test:coverage
+
+# Run only unit tests (fast, no type check or pre-commit)
+test-unit:
+    bun run test:unit
+
+# Run a specific test file
+test-file file:
+    bun run vitest run "{{ file }}"
+
+# Run tests matching a pattern
+test-grep pattern:
+    bun run vitest run -t "{{ pattern }}"
+
+# Run unit tests in watch mode
+test-watch:
+    bun run vitest
+
+# Run E2E tests only
+test-e2e:
+    bun run test:e2e
+
+# Run E2E tests with Playwright UI
+test-e2e-ui:
+    bun run test:e2e:ui
+
+# Run E2E tests in headed mode (visible browser)
+test-e2e-headed:
+    bun run playwright test --headed
+
+# Run specific E2E test file
+test-e2e-file file:
+    bun run playwright test "{{ file }}"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Linting & Formatting
@@ -262,9 +297,13 @@ _menu:
             ;;
         "Testing")
             recipe=$(gum choose --header "Testing:" \
-                "test        → Run quick tests (typecheck + unit)" \
-                "test --full → Run full test suite" \
-                "typecheck   → Run type checking only" \
+                "test          → Run quick tests (typecheck + unit)" \
+                "test --full   → Run full test suite (+ e2e)" \
+                "test-unit     → Run unit tests only (fast)" \
+                "test-watch    → Run unit tests in watch mode" \
+                "test-e2e      → Run E2E tests" \
+                "test-e2e-ui   → Run E2E tests with Playwright UI" \
+                "typecheck     → Run type checking only" \
                 "test-coverage → Run tests with coverage")
             ;;
         "Linting")

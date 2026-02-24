@@ -118,7 +118,8 @@ describe('KanbanBoard', () => {
 
 			// Find the in_progress column and drop a card
 			const columns = screen.getAllByRole('listbox');
-			const inProgressColumn = columns[1]; // Second column
+			expect(columns.length).toBeGreaterThan(1);
+			const inProgressColumn = columns[1]!; // Second column
 
 			await fireEvent.drop(inProgressColumn, {
 				dataTransfer: { getData: () => JSON.stringify(mockIssues[0]) }

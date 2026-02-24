@@ -18,7 +18,7 @@
 	function getNextTheme(current: Theme): Theme {
 		const currentIndex = THEME_ORDER.indexOf(current);
 		const nextIndex = (currentIndex + 1) % THEME_ORDER.length;
-		return THEME_ORDER[nextIndex];
+		return THEME_ORDER[nextIndex] ?? 'system';
 	}
 
 	function cycleTheme() {

@@ -59,7 +59,8 @@ describe('FileWatcher', () => {
 			watcher.start();
 
 			const watchCall = vi.mocked(chokidar.watch).mock.calls[0];
-			const patterns = watchCall[0] as string[];
+			expect(watchCall).toBeDefined();
+			const patterns = watchCall![0] as string[];
 			expect(patterns.some((p) => p.includes('*.db') || p.includes('*.jsonl'))).toBe(true);
 		});
 
