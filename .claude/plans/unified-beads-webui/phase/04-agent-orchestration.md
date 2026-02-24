@@ -667,21 +667,49 @@ class VerificationService {
 
 ## Testing Strategy
 
+> **Reference**: [ADR-0019: Testing Strategy and Conventions](../../../../docs/src/adrs/0019-testing-strategy-and-conventions.md)
+
+### Test Distribution
+
+| Type | Focus |
+|------|-------|
+| Unit (50%) | Session state, output parsing, queue logic |
+| Component (30%) | Terminal drawer, output display, controls |
+| Integration (15%) | Session lifecycle, output streaming, CLI |
+| E2E (5%) | Agent launch and interaction flow |
+
 ### Unit Tests
 - Session state transitions
 - Verification queue operations
 - Output buffering logic
+- Output parsing (ANSI, markdown)
+
+### Component Tests
+- TerminalDrawer render and toggle
+- SessionOutput displays streamed content
+- AgentControls (start/stop/restart)
+- VerificationQueue item rendering
 
 ### Integration Tests
-- Session launch via CLI
-- Output streaming
-- Verification workflow
+- Session launch via node-pty
+- Output streaming via WebSocket
+- Verification workflow with state updates
 
 ### E2E Tests
-- Launch agent on issue
+- Launch agent on issue (`@smoke`)
 - View output in terminal
 - Approve/reject workflow
 - Retry with modified prompt
+
+### Commit Workflow (Required)
+
+ALL tasks must follow this workflow:
+
+1. All acceptance tests pass
+2. Lint and type check pass
+3. Atomic commit: `{type}({scope}): {description}`
+4. Include test files in same commit
+5. Update beads issue status after commit
 
 ---
 

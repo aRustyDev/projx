@@ -432,6 +432,43 @@ export default {
 };
 ```
 
+### Task Completion Commit Workflow
+
+**All tasks across all phases MUST follow this commit workflow:**
+
+1. **Before committing**:
+   - All acceptance tests pass
+   - All unit/component tests pass (if applicable)
+   - Lint and type check pass
+
+2. **Commit requirements**:
+   - Atomic commit: one logical change per commit
+   - Include test files in same commit as implementation
+   - Use conventional commit format: `{type}({scope}): {description}`
+
+3. **After committing**:
+   - Update beads issue status: `bd update {issue-id} --status in_progress` or `--status closed`
+   - Push changes if ready for review
+
+**Example workflow**:
+```bash
+# After completing task 1.3 Issue List View
+bun test src/lib/components/issues/IssueTable.test.ts
+bun run check && bun run lint
+
+git add src/lib/components/issues/IssueTable.svelte
+git add src/lib/components/issues/IssueTable.test.ts
+git commit -m "feat(ui): add IssueTable component with virtual scrolling
+
+- Renders 100 issues in <100ms
+- Supports column sorting
+- Includes keyboard navigation (j/k)
+
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>"
+
+bd update projx-695.3 --status closed
+```
+
 ---
 
 ## 5. CI/CD Pipeline
@@ -824,19 +861,91 @@ bun install
 
 ---
 
+## Testing Infrastructure Verification
+
+Before Phase 1, verify testing infrastructure per [ADR-0019](../../../../docs/src/adrs/0019-testing-strategy-and-conventions.md):
+
+### Unit & Component Testing (Vitest)
+
+```bash
+# Verify Vitest runs
+bun test
+
+# Verify coverage thresholds are configured
+grep -q "thresholds" vitest.config.ts && echo "✓ Coverage thresholds configured"
+
+# Verify Testing Library is available
+bun test --reporter=verbose 2>&1 | head -5
+```
+
+**Verification checklist**:
+- [ ] `vitest.config.ts` exists with coverage thresholds (70/65/75/70)
+- [ ] `@testing-library/svelte` is installed
+- [ ] `jsdom` environment is configured
+- [ ] Test setup file exists at `src/tests/setup.ts`
+- [ ] `@faker-js/faker` is installed for test data
+
+### E2E Testing (Playwright)
+
+```bash
+# Verify Playwright is configured
+bunx playwright test --list
+
+# Verify browsers are installed
+bunx playwright install --dry-run
+```
+
+**Verification checklist**:
+- [ ] `playwright.config.ts` exists
+- [ ] E2E tests directory exists at `e2e/` or `tests/e2e/`
+- [ ] At least one browser configured (Chromium recommended for PRs)
+- [ ] `@axe-core/playwright` installed for accessibility testing
+
+### CI Pipeline Testing Stages
+
+Verify `.github/workflows/ci.yml` includes:
+
+- [ ] Stage 1: Lint + Type check + Unit tests
+- [ ] Stage 2: Component tests with coverage
+- [ ] Stage 3: Integration tests
+- [ ] Stage 4: E2E tests (required on PRs)
+
+### Pre-commit Hook Testing
+
+Verify pre-commit runs affected tests:
+
+```bash
+# Check pre-commit hook includes test running
+cat .husky/pre-commit | grep -q "vitest" && echo "✓ Tests in pre-commit"
+```
+
+---
+
 ## Phase 1 Entry Criteria
 
 Before proceeding to Phase 1, ALL of the following must be true:
 
+### Core Setup
 - [ ] All success criteria met (see table above)
 - [ ] `bun dev` serves application at localhost:3000
 - [ ] `bun run check && bun run lint` pass with 0 errors
 - [ ] Pre-commit hook fires and blocks bad commits
 - [ ] CI pipeline passes on a test push
+
+### Data Layer
 - [ ] `bd --version` returns valid version
 - [ ] `bd sql "SELECT 1"` returns 1 (database working)
 - [ ] `.beads/` directory exists with proper permissions
+
+### Documentation
 - [ ] Storybook runs with `bun run storybook`
+
+### Testing Infrastructure (ADR-0019)
+- [ ] Vitest configured with coverage thresholds
+- [ ] Playwright configured for E2E
+- [ ] Test setup file exists
+- [ ] CI pipeline includes all test stages
+- [ ] Pre-commit hook runs affected tests
 
 **Sign-off**: Phase 0 complete when all items checked and verified.
 

@@ -88,6 +88,26 @@ interface ProcessSupervisorConfig {
 - Half-open allows 1 test request after 60s
 - All command executions produce spans (per [Constraint 0003](../docs/constraint-0003-cli-instrumentation-patterns.md))
 
+**Testing Requirements**:
+
+*Unit Tests* (`supervisor.test.ts`):
+- [ ] Executes commands via execFile (not shell)
+- [ ] Resolves with stdout/stderr on success
+- [ ] Rejects with error on non-zero exit code
+- [ ] Kills process after timeout and rejects
+- [ ] Queues commands when max concurrent reached
+- [ ] Circuit breaker opens after threshold failures
+- [ ] Circuit breaker enters half-open after reset timeout
+- [ ] Circuit breaker closes on successful half-open request
+- [ ] Emits state change events
+
+*Integration Tests* (`supervisor.integration.test.ts`):
+- [ ] Executes real `bd --version` command
+- [ ] Handles concurrent command execution
+- [ ] Recovers from temporary failures
+
+**Commit**: `feat(cli): add ProcessSupervisor with circuit breaker`
+
 ---
 
 ### 1.2 Data Access Layer
@@ -122,6 +142,27 @@ interface DataAccessLayer {
 - Write operations always go through `bd` CLI
 - All database queries produce spans (per [observability.md](../spec/observability.md))
 
+**Testing Requirements**:
+
+*Unit Tests* (`dataAccess.test.ts`):
+- [ ] Detects SQLite backend from .beads/beads.db
+- [ ] Detects Dolt backend from running server
+- [ ] Builds parameterized queries correctly
+- [ ] Handles query builder for common operations
+- [ ] Returns typed results from queries
+
+*Integration Tests* (`dataAccess.integration.test.ts`):
+- [ ] Connects to SQLite database
+- [ ] Executes read queries and returns results
+- [ ] Handles connection failures gracefully
+- [ ] Reconnects after temporary failure
+
+*Contract Tests* (`dataAccess.contract.test.ts`):
+- [ ] Query results match Issue schema (Zod validation)
+- [ ] Database schema matches TypeScript types
+
+**Commit**: `feat(db): add Data Access Layer with backend auto-detection`
+
 ---
 
 ### 1.3 Issue List View
@@ -145,6 +186,32 @@ Table view of issues with sorting and filtering.
 - Keyboard navigation (j/k, Enter)
 
 > **Note**: Column configuration is constant-mapped for MVP. See [12-configuration-view.md](../wireframes/12-configuration-view.md) for future configurability.
+
+**Testing Requirements**:
+
+*Component Tests* (`IssueTable.test.ts`):
+- [ ] Renders table with columns (ID, Title, Status, Priority, Assignee)
+- [ ] Displays issue data in correct columns
+- [ ] Sorts by column when header clicked
+- [ ] Shows sort indicator on active column
+- [ ] Supports row selection (single click)
+- [ ] Supports multi-select (shift+click, ctrl+click)
+- [ ] Handles keyboard navigation (j/k, Enter)
+- [ ] Shows context menu on right-click
+- [ ] Renders empty state when no issues
+- [ ] Has accessible table markup (role="grid")
+
+*Integration Tests* (`IssueTable.integration.test.ts`):
+- [ ] Renders with real issue store data
+- [ ] Updates when store changes
+- [ ] Filters integrate with FilterPanel
+
+*E2E Tests* (`e2e/issues/list.spec.ts`) - `@smoke`:
+- [ ] Displays issue list on page load
+- [ ] Can sort by clicking column headers
+- [ ] Can select and open issue detail
+
+**Commit**: `feat(ui): add IssueTable with virtual scrolling and sorting`
 
 ---
 
@@ -170,6 +237,26 @@ Multi-faceted filtering for issue list.
 - Search debounces to prevent excessive queries
 - Filter state persists in URL params
 - Active filters shown as removable badges
+
+**Testing Requirements**:
+
+*Component Tests* (`FilterPanel.test.ts`):
+- [ ] Renders status filter with all status options
+- [ ] Renders type filter with all type options
+- [ ] Renders priority filter with priority levels
+- [ ] Renders assignee dropdown
+- [ ] Calls onfilterchange when filter selected
+- [ ] Shows filter badges for active filters
+- [ ] Removes filter when badge X clicked
+- [ ] Clears all filters when "Clear all" clicked
+- [ ] Has accessible form markup
+
+*Integration Tests* (`FilterPanel.integration.test.ts`):
+- [ ] Filter state syncs with URL params
+- [ ] Filters apply to issue list within 50ms
+- [ ] Multiple filters combine correctly (AND)
+
+**Commit**: `feat(ui): add FilterPanel with multi-select filters`
 
 ---
 
@@ -216,6 +303,8 @@ Accessibility:
 - [ ] clear button has accessible name
 ```
 
+**Commit**: `feat(ui): add TextSearch with debounce and highlighting`
+
 **ADR**: Record any decisions about search implementation (e.g., client-side vs server-side filtering) using `adrs new`
 
 ---
@@ -240,6 +329,33 @@ Modal dialog for creating new issues.
 - Escape closes modal
 - Success shows toast and closes modal
 - Error shows inline validation
+
+**Testing Requirements**:
+
+*Component Tests* (`CreateIssueModal.test.ts`):
+- [ ] Renders modal when open is true
+- [ ] Does not render when open is false
+- [ ] Renders all form fields (title, type, priority, description, assignee, labels)
+- [ ] Title field is required (shows validation error)
+- [ ] Calls oncreate with form data on submit
+- [ ] Calls onclose on Escape key
+- [ ] Calls onclose on backdrop click
+- [ ] Shows loading state during submission
+- [ ] Shows error message on submission failure
+- [ ] Has focus trap within modal
+- [ ] Has accessible modal markup (role="dialog", aria-modal)
+
+*Integration Tests* (`CreateIssueModal.integration.test.ts`):
+- [ ] Submits via ProcessSupervisor to bd create
+- [ ] Shows success toast after creation
+- [ ] Triggers issue list refresh
+
+*E2E Tests* (`e2e/issues/create.spec.ts`) - `@smoke`:
+- [ ] Opens modal with keyboard shortcut (c)
+- [ ] Can fill form and submit
+- [ ] New issue appears in list
+
+**Commit**: `feat(ui): add CreateIssueModal with validation`
 
 ---
 
@@ -291,6 +407,12 @@ Accessibility:
 - [ ] has role="option" on each status option
 - [ ] current status indicated with aria-selected
 ```
+
+*E2E Tests* (`e2e/issues/status.spec.ts`) - `@smoke`:
+- [ ] Can change status via dropdown
+- [ ] Status persists after page refresh
+
+**Commit**: `feat(ui): add StatusDropdown with optimistic updates`
 
 **ADR**: Record optimistic update pattern decision using `adrs new`
 
@@ -356,6 +478,13 @@ Accessibility:
 - [ ] maintains focus after mode transitions
 - [ ] input has associated label
 ```
+
+*E2E Tests* (`e2e/issues/edit.spec.ts`) - `@smoke`:
+- [ ] Can edit title inline
+- [ ] Edit persists after save
+- [ ] Escape cancels edit
+
+**Commit**: `feat(ui): add InlineEdit with conflict resolution`
 
 **ADR**: Record inline editing and conflict resolution decisions using `adrs new`
 
@@ -454,6 +583,8 @@ Accessibility:
 - [ ] action buttons have accessible names
 ```
 
+**Commit**: `feat(ui): add IssueDetail with tabs and markdown rendering`
+
 **ADR**: Record any markdown rendering library choice using `adrs new`
 
 ---
@@ -529,6 +660,13 @@ Accessibility:
 - [ ] drag/drop announced to screen readers
 ```
 
+*E2E Tests* (`e2e/kanban/board.spec.ts`) - `@smoke`:
+- [ ] Board displays columns for each status
+- [ ] Can drag card between columns
+- [ ] Status updates after drop
+
+**Commit**: `feat(kanban): add KanbanBoard with drag-and-drop`
+
 **ADR**: Record drag-and-drop library choice (svelte-dnd-action vs alternatives) using `adrs new`
 
 ---
@@ -588,6 +726,8 @@ Accessibility:
 
 > **Note**: Column configuration is constant-mapped for MVP. See [12-configuration-view.md](../wireframes/12-configuration-view.md) for future configurability.
 
+**Commit**: `feat(ui): add EpicsView with expandable rows`
+
 ---
 
 ### 1.11 File Watching (Real-time)
@@ -642,6 +782,8 @@ Integration:
 - [ ] client receives correct event payload
 - [ ] multiple clients receive same event
 ```
+
+**Commit**: `feat(realtime): add FileWatcher with WebSocket broadcast`
 
 **ADR**: Record WebSocket vs SSE decision using `adrs new`
 
@@ -709,6 +851,8 @@ Accessibility:
 - [ ] help modal is keyboard accessible
 ```
 
+**Commit**: `feat(ui): add keyboard shortcuts with help modal`
+
 **ADR**: Record keyboard shortcut handling approach using `adrs new`
 
 ---
@@ -765,6 +909,8 @@ Accessibility:
 - [ ] options have role="option"
 - [ ] aria-activedescendant tracks highlight
 ```
+
+**Commit**: `feat(ui): add AssigneeFilter with autocomplete`
 
 ---
 
@@ -832,6 +978,8 @@ Accessibility:
 - [ ] interactive nodes are keyboard focusable
 - [ ] relationships described for screen readers
 ```
+
+**Commit**: `feat(ui): add DependenciesModal with graph visualization`
 
 **ADR**: Record graph visualization library choice using `adrs new`
 
@@ -912,6 +1060,10 @@ Accessibility:
 **ADR**: Record theme system implementation using `adrs new`
 
 > **Note**: For MVP, theme and density options are constant-mapped. Full configurability in Phase 2.
+
+**Commit**: `feat(ui): add GlobalNav with theme and density controls`
+
+**ADR**: Record theme system implementation using `adrs new`
 
 ---
 
@@ -1017,6 +1169,17 @@ export const issueStore = new IssueStore();
 
 ## Testing Strategy
 
+> **Reference**: [ADR-0019: Testing Strategy and Conventions](../../../../docs/src/adrs/0019-testing-strategy-and-conventions.md)
+
+### Test Distribution (Traditional Pyramid)
+
+| Type | Target | Phase 1 Focus |
+|------|--------|---------------|
+| Unit | 50% | ProcessSupervisor, Data Access Layer, utilities |
+| Component | 30% | All UI components per Test Acceptance Criteria |
+| Integration | 15% | Issue list + filters, Kanban workflows, real-time |
+| E2E | 5% | Create/Edit/Kanban critical paths |
+
 ### TDD Approach (Required)
 
 All features must follow Test-Driven Development:
@@ -1025,13 +1188,35 @@ All features must follow Test-Driven Development:
 2. **GREEN**: Implement minimum code to pass tests
 3. **REFACTOR**: Clean up while keeping tests green
 
+### Commit Workflow (Required)
+
+**ALL tasks must follow this commit workflow**:
+
+1. All acceptance tests pass
+2. All unit/component tests pass
+3. Lint and type check pass
+4. Atomic commit with conventional format: `{type}({scope}): {description}`
+5. Include test files in same commit as implementation
+6. Update beads issue status after commit
+
+```bash
+# Example after completing a task
+bun test src/lib/components/issues/IssueTable.test.ts
+bun run check && bun run lint
+
+git add src/lib/components/issues/
+git commit -m "feat(ui): add IssueTable component with virtual scrolling"
+
+bd update projx-695.3 --status closed
+```
+
 ### Architecture Decision Records (ADRs)
 
 Record significant decisions using the `adrs` CLI:
 
 ```bash
 # Create new ADR
-adrs new "Decision Title"
+adrs --ng new --format madr "Decision Title" -t tag1,tag2
 
 # List existing ADRs
 adrs list
@@ -1040,6 +1225,7 @@ adrs list
 # - ADR-0008: Vitest with Testing Library
 # - ADR-0009: Callback Props for Component Events
 # - ADR-0010: Dependency Injection for Testability
+# - ADR-0019: Testing Strategy and Conventions
 ```
 
 ### Unit Tests
@@ -1053,16 +1239,20 @@ adrs list
 - Use callback props (`onselect`, `onchange`) instead of `createEventDispatcher`
 - Use dependency injection for external dependencies (ADR-0010)
 - Configure Vitest with `resolve.conditions: ['browser', 'development']` for Svelte 5
+- Use `@faker-js/faker` with fixed seed for test data
 
 ### Integration Tests
 - API routes with mock `bd` CLI
 - WebSocket connection/reconnection
 - Database operations
+- Issue list with filters and search
+- Kanban drag-drop with status update
 
-### E2E Tests
-- Create issue flow
+### E2E Tests (Tag critical paths with `@smoke`)
+- Create issue flow (`@smoke`)
+- Edit issue inline (`@smoke`)
 - Filter and search
-- Kanban drag-and-drop
+- Kanban drag-and-drop (`@smoke`)
 - Keyboard navigation
 
 ---

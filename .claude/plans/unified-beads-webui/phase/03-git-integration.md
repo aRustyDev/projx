@@ -698,22 +698,53 @@ function categorizeError(error: ExecError): GitHubErrorCategory;
 
 ## Testing Strategy
 
+> **Reference**: [ADR-0019: Testing Strategy and Conventions](../../../../docs/src/adrs/0019-testing-strategy-and-conventions.md)
+
+### Test Distribution
+
+| Type | Focus |
+|------|-------|
+| Unit (50%) | Worktree parsing, PR data transformation, graph layout |
+| Component (30%) | Git panels, PR cards, dependency graph nodes |
+| Integration (15%) | gh CLI execution, PR workflows |
+| E2E (5%) | PR creation flow, graph navigation |
+
 ### Unit Tests
 - Worktree data parsing
 - PR data transformation
-- Dependency graph layout
+- Dependency graph layout algorithms
 - Check status parsing
+
+### Component Tests
+- WorktreePanel renders git status
+- PRCard shows PR details and actions
+- DependencyGraph renders nodes and edges
+- CIStatusBadge shows correct state
 
 ### Integration Tests
 - `gh` CLI command execution
 - Worktree status updates
 - PR creation flow
 
+### Contract Tests
+- gh CLI output matches expected schema (Zod)
+- PR API response validation
+
 ### E2E Tests
 - View worktree list
-- Create and merge PR
+- Create and merge PR (`@smoke`)
 - Navigate dependency graph
 - Batch issue creation
+
+### Commit Workflow (Required)
+
+ALL tasks must follow this workflow:
+
+1. All acceptance tests pass
+2. Lint and type check pass
+3. Atomic commit: `{type}({scope}): {description}`
+4. Include test files in same commit
+5. Update beads issue status after commit
 
 ---
 

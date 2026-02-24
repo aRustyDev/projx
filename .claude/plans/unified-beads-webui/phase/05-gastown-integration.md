@@ -663,15 +663,39 @@ class GasTownWebSocketRouter {
 
 ## Testing Strategy
 
+> **Reference**: [ADR-0019: Testing Strategy and Conventions](../../../../docs/src/adrs/0019-testing-strategy-and-conventions.md)
+
+### Test Distribution
+
+| Type | Focus |
+|------|-------|
+| Unit (50%) | Detection logic, CLI parsing, stores |
+| Component (30%) | Dashboard cards, convoy tracking, mail UI |
+| Integration (15%) | gt CLI workflows, WebSocket subscriptions |
+| E2E (5%) | Dashboard loading, rig management |
+
 ### Unit Tests
 - Gas-Town detection logic
-- CLI command parsing
+- gt CLI command parsing
 - Store state management
+- Feature flag handling (graceful degradation)
+
+### Component Tests
+- AgentDashboard renders rig/polecat cards
+- ConvoyCard shows progress
+- MailInbox displays messages
+- SQLExplorer query input and results
 
 ### Integration Tests
 - gt CLI command execution
-- Mail send/receive
-- Convoy creation
+- Mail send/receive flow
+- Convoy creation workflow
+- WebSocket subscription model
+
+### Contract Tests
+- gt CLI output matches expected schema (Zod)
+- gt status --json validation
+- rig/polecat status parsing
 
 ### E2E Tests
 - Dashboard loads with data
@@ -679,6 +703,16 @@ class GasTownWebSocketRouter {
 - Create and track convoy
 - Send and read mail
 - Execute SQL query
+
+### Commit Workflow (Required)
+
+ALL tasks must follow this workflow:
+
+1. All acceptance tests pass
+2. Lint and type check pass
+3. Atomic commit: `{type}({scope}): {description}`
+4. Include test files in same commit
+5. Update beads issue status after commit
 
 ---
 

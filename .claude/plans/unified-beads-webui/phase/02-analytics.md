@@ -132,6 +132,27 @@ interface MetricsEngine {
 - Excludes wisps from calculations
 - Performance < 500ms for 1000 issues
 
+**Testing Requirements**:
+
+*Unit Tests* (`metricsEngine.test.ts`):
+- [ ] Calculates lead time correctly (created → closed)
+- [ ] Calculates cycle time correctly (in_progress → closed)
+- [ ] Calculates throughput per day/week
+- [ ] Aggregates CFD data by status and date
+- [ ] Calculates aging for open items
+- [ ] Handles missing created_at dates
+- [ ] Handles missing closed_at dates
+- [ ] Excludes items with type="wisp"
+- [ ] Calculates P50, P85, P95 percentiles accurately
+- [ ] Performance: < 500ms for 1000 issues
+
+*Test Data*:
+- Use `@faker-js/faker` with fixed seed
+- Create known test datasets with predictable outputs
+- Include edge cases: empty arrays, single item, null dates
+
+**Commit**: `feat(metrics): add MetricsEngine with lean calculations`
+
 ---
 
 ### 2.2 Lead Time Scatterplot
@@ -155,6 +176,19 @@ Visualize lead time distribution over time.
 - Can zoom/pan date range
 - Export to PNG/SVG
 
+**Testing Requirements**:
+
+*Component Tests* (`LeadTimeChart.test.ts`):
+- [ ] Renders chart container
+- [ ] Plots points for each closed issue
+- [ ] Shows tooltip on hover with issue details
+- [ ] Displays P50 and P85 percentile lines
+- [ ] Calls onclick when point clicked
+- [ ] Supports date range filtering
+- [ ] Has accessible chart markup (role="img", aria-label)
+
+**Commit**: `feat(metrics): add LeadTimeChart with percentile lines`
+
 ---
 
 ### 2.3 Throughput Chart
@@ -175,6 +209,17 @@ Bar chart showing items completed per time period.
 - Can filter by issue type
 - Shows rolling average trend
 - Export to PNG/SVG
+
+**Testing Requirements**:
+
+*Component Tests* (`ThroughputChart.test.ts`):
+- [ ] Renders bar chart with throughput data
+- [ ] Toggles between daily/weekly aggregation
+- [ ] Shows stacked bars by issue type when enabled
+- [ ] Displays trend line overlay
+- [ ] Shows count on hover
+
+**Commit**: `feat(metrics): add ThroughputChart with daily/weekly toggle`
 
 ---
 
@@ -697,22 +742,56 @@ interface AgingWIPResponse {
 
 ## Testing Strategy
 
-### Unit Tests
+> **Reference**: [ADR-0019: Testing Strategy and Conventions](../../../../docs/src/adrs/0019-testing-strategy-and-conventions.md)
+
+### Test Distribution
+
+| Type | Focus |
+|------|-------|
+| Unit (50%) | Metrics engine calculations, date parsing, percentiles |
+| Component (30%) | Chart components, badges, progress bars |
+| Integration (15%) | Dashboard data flow, filter → chart updates |
+| E2E (5%) | Dashboard loading, Gantt interactions |
+
+### Unit Tests (Priority for Phase 2)
 - Metrics calculations with known datasets
 - Date prefix parser edge cases
 - Percentile accuracy
-- Health status logic
+- Health status logic (RAG)
+- Hierarchical sorting
+
+### Component Tests
+- Chart rendering with mock data
+- Badge state variations
+- Progress bar calculations
+- Gantt item rendering
 
 ### Integration Tests
 - Metrics API endpoints
 - Chart data formatting
 - Filter impact on metrics
+- Real-time updates to charts
 
 ### E2E Tests
 - Dashboard loads with charts
 - Date range selection
 - Gantt interactions
 - Export functionality
+
+### Visual Regression (Deferred)
+- Chart baseline screenshots after design stable
+- Badge color states
+- Gantt layout
+
+### Commit Workflow (Required)
+
+ALL tasks must follow this workflow:
+
+1. All acceptance tests pass
+2. Lint and type check pass
+3. Atomic commit: `{type}({scope}): {description}`
+4. Include test files in same commit
+5. Update beads issue status after commit
 
 ---
 
