@@ -133,6 +133,17 @@ export default defineConfig({
 
 The `resolve.conditions: ['browser', 'development']` is critical for Svelte 5 testing. Without it, Vitest resolves Svelte to server exports, causing "mount(...) is not available on the server" errors.
 
+### Gotcha: `bun test` vs `bun run test:unit`
+
+**Always use `bun run test:unit`**, never `bun test`:
+
+| Command | Runner | jsdom | Result |
+|---------|--------|-------|--------|
+| `bun test` | Bun's native | ❌ No | DOM tests fail with "document is not defined" |
+| `bun run test:unit` | Vitest | ✅ Yes | Works correctly |
+
+This is a common mistake because `bun test` looks like it should work. Bun's native test runner is fast but lacks jsdom support required for component testing. The justfile recipes use the correct command.
+
 ### Test Setup File
 
 ```typescript

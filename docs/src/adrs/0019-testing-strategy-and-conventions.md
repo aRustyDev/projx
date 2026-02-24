@@ -58,8 +58,9 @@ Chosen option: **Traditional Test Pyramid**, because the current application is 
 | Unit | Co-located with source | `*.test.ts` |
 | Integration (component) | Co-located with source | `*.integration.test.ts` |
 | Integration (cross-cutting) | `tests/integration/` | `*.test.ts` |
-| E2E | `tests/e2e/` | `*.spec.ts` |
-| Smoke | E2E tests tagged `@smoke` | - |
+| E2E | `e2e/` | `*.spec.ts` |
+| Smoke | `e2e/smoke.spec.ts` | - |
+| Accessibility | `e2e/a11y.spec.ts` | - |
 
 ### Component Mocking Strategy
 
@@ -91,8 +92,30 @@ coverage: {
 ### Test Data
 
 * Use `@faker-js/faker` with fixed seed for reproducibility
-* Seed set in test setup for deterministic test runs
+* Seed configured in `src/tests/setup.ts`: `faker.seed(12345)`
 * Factories for common entities (Issue, Project, etc.)
+
+### Accessibility Testing
+
+Automated accessibility testing is integrated into the E2E test suite:
+
+* **Tool**: `@axe-core/playwright` for automated WCAG validation
+* **Target**: WCAG 2.1 AA compliance
+* **Location**: `e2e/a11y.spec.ts`
+
+Tests include:
+* Full page accessibility scans via axe-core
+* Heading hierarchy validation
+* Color contrast (WCAG AA)
+* Keyboard navigation and focus management
+* ARIA attribute validation
+* Reduced motion preference support
+
+```typescript
+// Example: axe-core accessibility scan
+const results = await new AxeBuilder({ page }).analyze();
+expect(results.violations).toEqual([]);
+```
 
 ### Regression Tests
 
