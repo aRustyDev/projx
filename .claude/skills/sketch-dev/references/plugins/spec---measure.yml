@@ -2,29 +2,46 @@
 - plugin: Sketch MeaXure
   link: https://github.com/qjebbs/sketch-meaxure
   description: Make it a fun to create spec for developers and teammates
-  summary: By utom & jebbs. Last updated 17 Feb 2025.
+  authors:
+  - utom & jebbs
+  updated: '2025-02-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Sketch Guides
   link: https://github.com/luvmex/Sketch-Guides
   description: Add Guides to edges and midpoints at once.
-  summary: By Celyn Xie. Last updated 28 Mar 2024.
+  authors:
+  - Celyn Xie
+  updated: '2024-03-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Angle
   link: https://angle.sh
   description: Apply perspective transforms on screen mockups. Auto-detect screens
-  summary: By resolution and works on shapes and symbols. Super fast.  by MengTo.
-    Last updated 2 Feb 2023.
+  authors:
+  - resolution
+  - works on shapes
+  - symbols
+  updated: '2023-02-02'
+  version:
+    value: unknown
   open-source: false
   tags:
   - spec---measure
 - plugin: Annotations
   link: https://github.com/BaguetteEngineering/annotations-sketch-plugin
   description: Hide/show layer groups named 'Annotations'.
-  summary: By Baguette Engineering. Last updated 7 Jan 2023.
+  authors:
+  - Baguette Engineering
+  updated: '2023-01-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -32,14 +49,22 @@
   link: https://github.com/13protons/sketch-foundation
   description: Toggle layer visibility for all matching layer names on any artboard
     to create foundational layers like notes and guides more manageable.
-  summary: By Alan Languirand. Last updated 6 Jan 2023.
+  authors:
+  - Alan Languirand
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Reset Image Aspect Ratio
   link: https://github.com/perrysmotors/reset-image-aspect-ratio
   description: A Sketch plugin that resets the aspect ratio of selected images.
-  summary: By Giles Perry. Last updated 4 Jan 2023.
+  authors:
+  - Giles Perry
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -47,14 +72,22 @@
   link: https://github.com/romannurik/Sketch-Stickers
   description: A Sketch plugin that lets you browse and quickly drag+drop stickers
     (specially tagged layers) in your Sketch Libraries.
-  summary: By Roman Nurik. Last updated 4 Jan 2023.
+  authors:
+  - Roman Nurik
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Sketch Lineout
   link: https://github.com/icona79/sketch-lineout
   description: Lineout your artboards for handoff preview
-  summary: By Matteo Gratton. Last updated 7 Jul 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-07-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -63,28 +96,44 @@
   description: 6Spiral is a sketch plugin to draw spiral shapes (archimedean and logarithmic
     spirals) and it also allows you to convert the 2D spirals into 3D-like helix shapes
     at a specified isometric angle.
-  summary: By Matej Marjanovic. Last updated 24 Feb 2022.
+  authors:
+  - Matej Marjanovic
+  updated: '2022-02-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Mockup
   link: https://github.com/ruslanlatypov/Mockup-Plugin-for-Sketch
   description: Perspective transformation plugin for devices mockups
-  summary: By ls.graphics. Last updated 3 Nov 2021.
+  authors:
+  - ls
+  updated: '2021-11-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Remove All Guides
   link: https://github.com/ichik/removeallguides
   description: Removes all the guides from selected artboards.
-  summary: By Vadim Mikhnov. Last updated 15 Jan 2021.
+  authors:
+  - Vadim Mikhnov
+  updated: '2021-01-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: 🐳 蓝湖
   link: https://lanhuapp.com/mac
   description: Automatic generate specs, share assets, auto-sync
-  summary: By lanhuapp.com. Last updated 24 Jun 2020.
+  authors:
+  - lanhuapp
+  updated: '2020-06-24'
+  version:
+    value: unknown
   open-source: false
   tags:
   - spec---measure
@@ -92,14 +141,22 @@
   link: https://modao.cc/sketch
   description: MockingBot Sketch Plugin, Your sweet Sketch companion making your handoff
     process more efficient than ever
-  summary: By MockingBot. Last updated 18 May 2020.
+  authors:
+  - MockingBot
+  updated: '2020-05-18'
+  version:
+    value: unknown
   open-source: false
   tags:
   - spec---measure
 - plugin: Specify (Alpha)
   link: https://specifyapp.com
   description: Export styles and assets to your Specify Libraries.
-  summary: By Specify SAS. Last updated 17 Mar 2020.
+  authors:
+  - Specify SAS
+  updated: '2020-03-17'
+  version:
+    value: unknown
   open-source: false
   tags:
   - spec---measure
@@ -107,21 +164,33 @@
   link: https://github.com/nathan5x/sketch-selectplus
   description: Helps you select different type of layers, specific Shapes like Rectangle,
     Ovals, Triangles, Lines, Arrows, Paths, etc.
-  summary: By Sabarinathan Masilamani. Last updated 15 Mar 2020.
+  authors:
+  - Sabarinathan Masilamani
+  updated: '2020-03-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: 📐 Sketch Guides
   link: http://guides.pratikshah.website/
   description: Quickly generate Guides for a selected element in Sketch
-  summary: By Pratik Shah. Last updated 9 Mar 2020.
+  authors:
+  - Pratik Shah
+  updated: '2020-03-09'
+  version:
+    value: unknown
   open-source: false
   tags:
   - spec---measure
 - plugin: Sketch Guides
   link: https://github.com/pratikjshah/Sketch-Guides
   description: Quickly generate Guides for a selected element in Sketch
-  summary: By Pratik Shah. Last updated 9 Mar 2020.
+  authors:
+  - Pratik Shah
+  updated: '2020-03-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -129,7 +198,11 @@
   link: https://idoc.mockplus.com/download/sketch
   description: Generating Assets and Specs Automatically, Make Design Collaboration
     Easier
-  summary: By Mockplus. Last updated 29 Mar 2019.
+  authors:
+  - Mockplus
+  updated: '2019-03-29'
+  version:
+    value: unknown
   open-source: false
   tags:
   - spec---measure
@@ -137,7 +210,11 @@
   link: https://github.com/turbobabr/Duplicator
   description: A Sketch 3 plugin that takes the currently selected layers and copies
     them one or multiple times in a specified direction.
-  summary: By Andrey Shakhmin. Last updated 8 Feb 2019.
+  authors:
+  - Andrey Shakhmin
+  updated: '2019-02-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -145,7 +222,11 @@
   link: https://github.com/bouchenoiremarc/Sketch-Maps
   description: A Sketch plugin that uses the Mapbox API to fill layers with specific
     and custom maps.
-  summary: By Marc Bouchenoire. Last updated 20 Dec 2018.
+  authors:
+  - Marc Bouchenoire
+  updated: '2018-12-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -153,16 +234,23 @@
   link: https://github.com/marcisme/sketch-preview
   description: This Sketch plugin provides a preview command (⌘P) that will open a
     specially named slice in Skala Preview. The plugin works
-  summary: By exporting the first slice named Preview to Sketch's cache directory
-    and opening that file in Skala Preview.  by Marc Schwieterman. Last updated 26
-    Oct 2018.
+  authors:
+  - exporting the first slice named Preview to Sketch's cache directory
+  - opening that file in Skala Preview
+  updated: '2018-10-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Gutter Cutter
   link: https://github.com/GCampi/gutter-cutter
   description: A Sketch plugin to create custom grids with guides
-  summary: By Gabriele Campi. Last updated 23 Oct 2018.
+  authors:
+  - Gabriele Campi
+  updated: '2018-10-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
@@ -170,14 +258,22 @@
   link: https://github.com/preciousforever/sketch-aspect-ratio
   description: A simple plugin to apply preset or custom aspect ratios to a selected
     layer.
-  summary: By precious design studio. Last updated 19 Aug 2018.
+  authors:
+  - precious design studio
+  updated: '2018-08-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure
 - plugin: Gridy
   link: https://github.com/Volorf/Gridy
   description: An easy way creating guidelines
-  summary: By Oleg Frolov. Last updated 26 May 2018.
+  authors:
+  - Oleg Frolov
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - spec---measure

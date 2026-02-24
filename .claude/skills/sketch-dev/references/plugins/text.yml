@@ -3,21 +3,33 @@
   link: https://github.com/inVoltag/awesome-ipsums
   description: Generate ipsums from an external Google spreadsheet. Make these datas
     collaborative!
-  summary: By Aurélien Grimaud. Last updated 23 May 2024.
+  authors:
+  - Aurélien Grimaud
+  updated: '2024-05-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: lippy
   link: https://github.com/abynim/lippy
   description: An interactive lorem ipsum generator plugin for Sketch
-  summary: By Aby Nimbalkar. Last updated 8 May 2024.
+  authors:
+  - Aby Nimbalkar
+  updated: '2024-05-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: autorename
   link: https://github.com/dchahla/autorename
   description: Lightweight, low-fi Auto Name Group ( ⌘ + g ) Sketch Plugin
-  summary: By dchahla. Last updated 11 Mar 2024.
+  authors:
+  - dchahla
+  updated: '2024-03-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -25,15 +37,22 @@
   link: https://datapopulator.com
   description: A Sketch App plugin to populate your documents with meaningful data.
     Goodbye Lorem Ipsum. Hello JSON.
-  summary: By precious design studio. Last updated 16 Feb 2024.
+  authors:
+  - precious design studio
+  updated: '2024-02-16'
+  version:
+    value: unknown
   open-source: false
   tags:
   - text
 - plugin: Find And Replace
   link: https://github.com/thierryc/Sketch-Find-And-Replace
   description: Sketch 3 plugin to do a simple find and replace on text within layers
-  summary: By Martin Steven. Maintained by Thierry Charbonnel. Last updated 31 Jan
-    2024.
+  authors:
+  - Martin Steven
+  updated: '2024-01-31'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -41,14 +60,22 @@
   link: https://github.com/sketch-hq/sketch-ipsum
   description: A DataSupplier plugin that fills your text layers with random Lorem
     Ipsum
-  summary: By Sketch. Last updated 4 Mar 2023.
+  authors:
+  - Sketch
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Title Case
   link: https://github.com/Hemmingsson/Sketch-Title-Case
   description: Sketch Plugin to make text Title Case
-  summary: By Mattias Hemmingsson. Last updated 1 Mar 2023.
+  authors:
+  - Mattias Hemmingsson
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -56,35 +83,55 @@
   link: https://github.com/jdwolk/sketch-csv-mailmerge
   description: A lightweight Sketch plugin for importing data from .csv files using
     "{}" text sections.
-  summary: By JD Wolk. Last updated 28 Feb 2023.
+  authors:
+  - JD Wolk
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Dad Jokes
   link: https://github.com/domhabersack/sketch-dadjokes
   description: Replace your text with dad jokes.
-  summary: By Dom Habersack. Last updated 9 Jan 2023.
+  authors:
+  - Dom Habersack
+  updated: '2023-01-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Export Flat SVGs
   link: https://github.com/KevinGutowski/ExportFlatSVGs
   description: Flatten text within SVGs on export.
-  summary: By Kevin Gutowski. Last updated 6 Jan 2023.
+  authors:
+  - Kevin Gutowski
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: rename-text-layers-by-style
   link: https://github.com/okaybueno/rename-text-layers-by-style
   description: Rename all text layers based on the name of the text style assigned.
-  summary: By Alexander Gerund. Last updated 6 Jan 2023.
+  authors:
+  - Alexander Gerund
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Text to Styles
   link: https://github.com/tbrasington/text-to-styles
   description: Generates Sketch type styles programmatically from Artboards
-  summary: By Thomas Brasington. Last updated 5 Jan 2023.
+  authors:
+  - Thomas Brasington
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -92,14 +139,22 @@
   link: https://github.com/giliamverheide/sketch-inter-letter-spacing
   description: Sketch plugin that dynamically sets letter spacing of layers using
     the Inter font.
-  summary: By Giliam Verheide. Last updated 5 Jan 2023.
+  authors:
+  - Giliam Verheide
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Inter UI Character Spacing
   link: https://github.com/qruzz/InterUI-Character-Spacing
   description: Package to correct the character spacing for the InterUI font in Sketch
-  summary: By Michael Nissen. Last updated 4 Jan 2023.
+  authors:
+  - Michael Nissen
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -107,21 +162,33 @@
   link: https://github.com/reinvanoyen/typex
   description: Highly configurable text styles to web (css, sass, html, json, ...)
     export plugin
-  summary: By reinvanoyen. Last updated 4 Jan 2023.
+  authors:
+  - reinvanoyen
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Truncat
   link: https://github.com/KevinGutowski/Truncat
   description: A Sketch plugin to truncate text.
-  summary: By Kevin Gutowski. Last updated 4 Jan 2023.
+  authors:
+  - Kevin Gutowski
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Copy Text Only
   link: https://github.com/explorador/sketch-copy-text-only
   description: Sketch plugin to copy only the text from selected artboard(s) or layer(s)
-  summary: By Cristian. Last updated 4 Jan 2023.
+  authors:
+  - Cristian
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -129,21 +196,33 @@
   link: https://github.com/afnizarnur/context-sketch-plugin
   description: Count character, words, and paragraphs from a text layer easily inside
     Sketch!
-  summary: By Afnizar Nur Ghifari. Last updated 4 Jan 2023.
+  authors:
+  - Afnizar Nur Ghifari
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: BRData
   link: https://github.com/jonathasbsouza/brdata
   description: Gerador de dados contextualizados com a realidade brasileira.
-  summary: By Jônathas Souza. Last updated 3 Jan 2023.
+  authors:
+  - Jônathas Souza
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: 🕵🏻‍ Find and Replace Text
   link: https://github.com/chriswetterman/sketch-find-and-replace-text
   description: Find and replace text throughout your Sketch document
-  summary: By Chris Wetterman. Last updated 3 Jan 2023.
+  authors:
+  - Chris Wetterman
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -151,14 +230,22 @@
   link: https://github.com/ysjn/bold-it
   description: Bold-it is a super simple plugin that bolds user-specified keyword
     in selected text layers.
-  summary: By ysjn. Last updated 3 Jan 2023.
+  authors:
+  - ysjn
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Rename Layers Based On Textstyle
   link: https://github.com/tbrasington/rename-layers-based-on-textstyle
   description: Renames text layers in the current page based on their text style name
-  summary: By Thomas Brasington. Last updated 3 Jan 2023.
+  authors:
+  - Thomas Brasington
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -167,22 +254,33 @@
   description: Deliver multilingual assets faster and smarter. Share context with
     your linguists, get early feedback about each market and preview the design in
     all languages.
-  summary: By Lokalise. Last updated 3 Jan 2023.
+  authors:
+  - Lokalise
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Datazier Lens
   link: https://github.com/enriquezgomez/datazier-lens
   description: Inspect and sort your local font book
-  summary: By Victor Enriquez. Last updated 9 Dec 2022.
+  authors:
+  - Victor Enriquez
+  updated: '2022-12-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Emoji Autocomplete Sketch Plugin
   link: https://github.com/zeplin/emoji-autocomplete-sketch-plugin
   description: While editing Sketch text layers, type “:” followed
-  summary: By the first few letters to autocomplete emojis. 🍒  by Zeplin. Last updated
-    8 Aug 2022.
+  authors:
+  - the first few letters to autocomplete emojis
+  updated: '2022-08-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -191,14 +289,22 @@
   description: A plugin that allowes the user to switch between languages to visualize
     how the webpage or app will look in the given language. The text fragments can
     be loaded as csv file.
-  summary: By Sebastian Götte. Last updated 23 May 2022.
+  authors:
+  - Sebastian Götte
+  updated: '2022-05-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: List Font Families in Styles
   link: https://github.com/icona79/Sketch---List-Font-Families-in-use
   description: Copy a list of all the used font families active in your text styles.
-  summary: By Matteo Gratton. Last updated 29 Mar 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-03-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -206,14 +312,22 @@
   link: https://github.com/endswithak/next
   description: Export designs as HTML, making it easy to quickly share design specs,
     css, and assets like fonts, svgs, and images.
-  summary: By Erik Myers. Last updated 18 Oct 2021.
+  authors:
+  - Erik Myers
+  updated: '2021-10-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Search Sketch
   link: https://candy02058912.github.io/search-sketch
   description: Search Sketch searches text in any language
-  summary: By Candy Tsai. Last updated 12 May 2021.
+  authors:
+  - Candy Tsai
+  updated: '2021-05-12'
+  version:
+    value: unknown
   open-source: false
   tags:
   - text
@@ -221,35 +335,55 @@
   link: https://github.com/ozgurgunes/Sketch-Baseline-Offsetter
   description: Raise, lower, set or reset the baseline of multiple text layers with
     a single command.
-  summary: By Ozgur Gunes. Last updated 8 May 2021.
+  authors:
+  - Ozgur Gunes
+  updated: '2021-05-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Rename It
   link: http://rodi01.github.io/RenameIt/
   description: Keep your Sketch files organized, batch rename layers and artboards.
-  summary: By Rodrigo Soares. Last updated 7 May 2021.
+  authors:
+  - Rodrigo Soares
+  updated: '2021-05-07'
+  version:
+    value: unknown
   open-source: false
   tags:
   - text
 - plugin: add-trailing-space
   link: https://github.com/tgfjt/sketch-add-trailing-space#readme
   description: add trailing space into selected text layers
-  summary: By tgfjt. Last updated 19 Apr 2021.
+  authors:
+  - tgfjt
+  updated: '2021-04-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Hyphenator
   link: https://github.com/golmakov/sketch-hyphenator
   description: Sketch plugin that hyphenates text
-  summary: By Aleksander Golmakov. Last updated 5 Apr 2021.
+  authors:
+  - Aleksander Golmakov
+  updated: '2021-04-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Variables
   link: https://github.com/murilo-campaner/sketch-variables-plugin
   description: Create text variables inside sketch to use file as template
-  summary: By murilo_campaner. Last updated 7 Feb 2021.
+  authors:
+  - murilo_campaner
+  updated: '2021-02-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -257,35 +391,55 @@
   link: https://github.com/getflourish/Sketch-Set-Line-Height-Plugin
   description: Plugin that allows you to set the line height of a text layer as a
     multiple of the font size.
-  summary: By Florian Schulz. Last updated 30 Oct 2020.
+  authors:
+  - Florian Schulz
+  updated: '2020-10-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: 2O3T Tools
   link: https://github.com/2o3t/2o3t-Sketch-Tools
   description: Easy Tools, batch rename layers and artboards, etc.
-  summary: By Zyao89. Last updated 7 Aug 2020.
+  authors:
+  - Zyao89
+  updated: '2020-08-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Handy Menu
   link: https://github.com/sergeishere/HandyMenu-SketchPlugin
   description: Gives quick access to your plugins through context menu
-  summary: By Sergey Dmitriev. Last updated 26 Jun 2020.
+  authors:
+  - Sergey Dmitriev
+  updated: '2020-06-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: FontFinder
   link: https://github.com/ukn530/FontFinder
   description: Sketch Plugin to find and select font items in a current page
-  summary: By Tatsuya Uchida. Last updated 9 Jun 2020.
+  authors:
+  - Tatsuya Uchida
+  updated: '2020-06-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Font Packer
   link: https://github.com/bigxixi/Font-Packer
   description: A Sketch plugin to collect font files you used in your sketch file.
-  summary: By Big XiXi. Last updated 1 Jun 2020.
+  authors:
+  - Big XiXi
+  updated: '2020-06-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -293,14 +447,22 @@
   link: https://github.com/youngxkk/AutoFixiOSTextLineHeight
   description: Auto Fix iOS Text Line Height, so that the font restoration degree
     of iOS design draft reaches 100%.
-  summary: By youngxkk. Last updated 26 Mar 2020.
+  authors:
+  - youngxkk
+  updated: '2020-03-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Twilio Ipsum
   link: https://github.com/twilio-labs/sketch-twilio-ipsum
   description: A realistic fake data populator for Sketch.
-  summary: By Paste. Last updated 25 Feb 2020.
+  authors:
+  - Paste
+  updated: '2020-02-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -309,14 +471,22 @@
   description: A fast and easy way to manage all your Text Styles. No more hassle
     with long and complex names, or renaming tons of styles because you misspelled
     a folder name.
-  summary: By Jaer Pollux. Last updated 14 Feb 2020.
+  authors:
+  - Jaer Pollux
+  updated: '2020-02-14'
+  version:
+    value: unknown
   open-source: false
   tags:
   - text
 - plugin: Fontily
   link: https://github.com/partyka1/Fontily
   description: Sketch plugin for finding & replacing fonts for Sketch 3+
-  summary: By partyka1. Last updated 6 Dec 2019.
+  authors:
+  - partyka1
+  updated: '2019-12-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -324,7 +494,11 @@
   link: https://github.com/kumo/sketch-mail-merge
   description: Sketch plugin that allows you to duplicate a layer/artboard and replace
     text with CSV data.
-  summary: By Robert Clarke. Last updated 29 Nov 2019.
+  authors:
+  - Robert Clarke
+  updated: '2019-11-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -332,7 +506,11 @@
   link: https://github.com/LeonardPauli/layer-renamer
   description: Find or rename multiple layers at once using RegEx and flags in Sketch
     (v.45 tested)
-  summary: By Leonard Pauli. Last updated 2 Nov 2019.
+  authors:
+  - Leonard Pauli
+  updated: '2019-11-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -340,14 +518,22 @@
   link: https://github.com/Creatide/Sketch_Sync-Text-Layer-Name
   description: Sketch plugin to rename text layers based on their text box values.
     It will automatically update the Text Layer name as the text box values change.
-  summary: By Creatide. Last updated 2 Oct 2019.
+  authors:
+  - Creatide
+  updated: '2019-10-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Fast Text Transfer
   link: https://github.com/jbentzen/sketch-fast-text-transfer
   description: Lightning fast copying, pasting and swapping text.
-  summary: By Jesper Bentzen. Last updated 28 Aug 2019.
+  authors:
+  - Jesper Bentzen
+  updated: '2019-08-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -355,35 +541,55 @@
   link: https://github.com/lazybearcreations/sketch-lazy-styles-generator#readme
   description: Generate shared layer and text styles using the name of the selected
     layer as the name of the generated style.
-  summary: By Adam Bruzon. Last updated 2 May 2019.
+  authors:
+  - Adam Bruzon
+  updated: '2019-05-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Unused Style Remover
   link: https://github.com/sonburn/unused-style-remover
   description: Remove unused layer and text styles.
-  summary: By Jason Burns. Last updated 11 Apr 2019.
+  authors:
+  - Jason Burns
+  updated: '2019-04-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: jerryipsum
   link: https://github.com/vinceangeloni/jerryipsum
   description: A Seinfeld data plugin for Sketch.
-  summary: By Vince Angeloni. Last updated 30 Mar 2019.
+  authors:
+  - Vince Angeloni
+  updated: '2019-03-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Foreign Ipsum
   link: https://github.com/3raxton/foreignipsum
   description: Generate text for your mockups in multiple languages 🗺
-  summary: By Braxton Huff. Last updated 17 Mar 2019.
+  authors:
+  - Braxton Huff
+  updated: '2019-03-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: String Value Puller
   link: https://github.com/YannickWidmer/sketch_strings_puller
   description: Plugin to handle pull string values from github repositories.
-  summary: By YannickWidmer. Last updated 4 Mar 2019.
+  authors:
+  - YannickWidmer
+  updated: '2019-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -391,14 +597,22 @@
   link: https://github.com/exevil/Sketch-Export-Text
   description: Helps you to save all text data on current page in customizable format
     and filter the excess.
-  summary: By Vyacheslav Dubovitsky. Last updated 25 Feb 2019.
+  authors:
+  - Vyacheslav Dubovitsky
+  updated: '2019-02-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Rename Artboards
   link: https://github.com/KevinvBre/Sketch-Rename-Artboards
   description: Rename Artboards based on their X and Y locations in Sketch
-  summary: By Kevin van Breemaat. Last updated 12 Feb 2019.
+  authors:
+  - Kevin van Breemaat
+  updated: '2019-02-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -406,7 +620,12 @@
   link: https://github.com/webkul/renamer
   description: Select multiple layers/groups/artboards and rename all of them on the
     go.
-  summary: By Webkul, Nitish Khagwal. Last updated 11 Dec 2018.
+  authors:
+  - Webkul
+  - Nitish Khagwal
+  updated: '2018-12-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -414,49 +633,78 @@
   link: https://github.com/webkul/renamer
   description: Select multiple layers/groups/artboards and rename all of them on the
     go.
-  summary: By Webkul, Nitish Khagwal. Last updated 11 Dec 2018.
+  authors:
+  - Webkul
+  - Nitish Khagwal
+  updated: '2018-12-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Codelight
   link: https://github.com/somebee/sketch-codelight
   description: Highlight code inside Text layers in Sketch
-  summary: By somebee. Last updated 15 Nov 2018.
+  authors:
+  - somebee
+  updated: '2018-11-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: 100 Shapesum
   link: https://github.com/markaleksanderh/100-shapesum
   description: Lorem Ipsum Sketch plugin based on 100 Shapes tone of voice.
-  summary: By markaleksanderh. Last updated 13 Nov 2018.
+  authors:
+  - markaleksanderh
+  updated: '2018-11-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Shared Text Styles
   link: https://github.com/nilshoenson/shared-text-styles
   description: Easily import and export your Text Styles in Sketch.
-  summary: By Nils Hoenson. Last updated 8 Nov 2018.
+  authors:
+  - Nils Hoenson
+  updated: '2018-11-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Character Count
   link: https://github.com/andrewfiorillo/sketch-character-count
   description: Sketch plugin to count number of characters in a text layer
-  summary: By Andrew Fiorillo. Last updated 7 Nov 2018.
+  authors:
+  - Andrew Fiorillo
+  updated: '2018-11-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: English and Persian Lorem Ipsum
   link: https://github.com/Rezaaa/english-and-persian-lorem-ipsum
   description: A Sketch extension to generate english and persian lorem ipsum text.
-  summary: By Mohammad Reza Mahmoudi. Last updated 17 Oct 2018.
+  authors:
+  - Mohammad Reza Mahmoudi
+  updated: '2018-10-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Font Mixer
   link: https://github.com/littlebusters/Sketch-Font-Mixer
   description: Plugin can apply other fonts for each character type of Text Layer.
-  summary: By littlebusters. Last updated 26 Sep 2018.
+  authors:
+  - littlebusters
+  updated: '2018-09-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -464,7 +712,11 @@
   link: https://github.com/kylehickinson/Sketch-SF-UI-Font-Fixer
   description: A Sketch plugin that adjusts the character spacing on text layers using
     iOS 9's SF UI Text/Display fonts to what it would be when used in an iOS app.
-  summary: By Kyle Hickinson. Last updated 19 Sep 2018.
+  authors:
+  - Kyle Hickinson
+  updated: '2018-09-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -472,14 +724,22 @@
   link: https://github.com/andyault/sketch-adjusttofit
   description: A quick Sketch plugin to resize text layers, groups, and artboards
     to fit their content. Also supports nested resizing.
-  summary: By andyault. Last updated 18 Sep 2018.
+  authors:
+  - andyault
+  updated: '2018-09-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sd Changer
   link: https://github.com/yeun/sd-changer
   description: Converts Apple SD Gothic Neo font to SF Pro Display
-  summary: By jeongheeyeun. Last updated 12 Sep 2018.
+  authors:
+  - jeongheeyeun
+  updated: '2018-09-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -487,7 +747,11 @@
   link: https://github.com/mamuso/sketch-truncate-textlines
   description: Truncate the number of lines of a textbox, adding an ellipsis if needed.
     It works using words or characters.
-  summary: By Manuel Muñoz. Last updated 8 Sep 2018.
+  authors:
+  - Manuel Muñoz
+  updated: '2018-09-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -495,63 +759,99 @@
   link: https://github.com/juliussohn/sketch-textbox-fit-content
   description: This plugin sets the height of a selected text layer or all text layers
     in a selected group to it's content's height.
-  summary: By Julius Sohn. Last updated 13 Jul 2018.
+  authors:
+  - Julius Sohn
+  updated: '2018-07-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Markup Listify
   link: https://github.com/marisaroque/sketch-markup-listify
   description: Sketch plugin for convert and copy text layers into HTML lists.
-  summary: By Marisa Roque. Last updated 29 May 2018.
+  authors:
+  - Marisa Roque
+  updated: '2018-05-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: TitleCase
   link: https://github.com/jessebilsten/Sketch-TitleCase
   description: A Sketch plugin that changes your text to TitleCase
-  summary: By Jesse Bilsten. Last updated 27 May 2018.
+  authors:
+  - Jesse Bilsten
+  updated: '2018-05-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: SketchTextSourcer
   link: https://github.com/hamidp/sketchtextsourcer
   description: Sketch plugin for easily populating a bunch of text layers from a source.
-  summary: By Hamid Palo. Last updated 26 May 2018.
+  authors:
+  - Hamid Palo
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Align Text Baseline
   link: https://github.com/soutaro/Align-text-baseline-sketch-plugin
   description: Align text layer vertically based on its baseline and cap height.
-  summary: By Soutaro Matsumoto. Last updated 26 May 2018.
+  authors:
+  - Soutaro Matsumoto
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Comma
   link: https://github.com/margusholland/Comma
   description: Sketch plugin for text modifications
-  summary: By Margus Holland. Last updated 22 May 2018.
+  authors:
+  - Margus Holland
+  updated: '2018-05-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: polyglot
   link: https://github.com/fruitfrills/polyglot
   description: Text translations
-  summary: By fruitfrills. Last updated 14 May 2018.
+  authors:
+  - fruitfrills
+  updated: '2018-05-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: BaseAlign
   link: https://github.com/abynim/BaseAlign
   description: A Sketch Plugin to align Text Layers
-  summary: By their baselines  by Aby Nimbalkar. Last updated 17 Mar 2018.
+  authors:
+  - their baselines  by Aby Nimbalkar
+  updated: '2018-03-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Bacon Ipsum
   link: https://github.com/zcallan/sketch-bacon-ipsum
   description: A simple & easy Bacon Ipsum text generator for Sketch.
-  summary: By zcallan. Last updated 13 Mar 2018.
+  authors:
+  - zcallan
+  updated: '2018-03-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
@@ -560,14 +860,22 @@
   description: 'Set of plugins for efficient work: change text linespacing and leading
     via keyboard, random sizing and random positioning of selected items, keep only
     text layers in selection.'
-  summary: By Andrew Shapiro. Last updated 12 Feb 2018.
+  authors:
+  - Andrew Shapiro
+  updated: '2018-02-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text
 - plugin: Sketch Copy Layers Styles
   link: https://github.com/FrancisVega/Sketch-Copy-Layers-Styles
   description: Sketch plugin to copy Layers and Text styles
-  summary: By Francis. Last updated 6 Feb 2018.
+  authors:
+  - Francis
+  updated: '2018-02-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - text

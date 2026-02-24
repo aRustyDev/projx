@@ -2,14 +2,22 @@
 - plugin: Ephoto Dam
   link: https://guides.addons.ephoto-dam.com/sketch/
   description: Integrate your Ephoto Dam on Sketch to import and export media.
-  summary: By Einden. Last updated 15 Jul 2025.
+  authors:
+  - Einden
+  updated: '2025-07-15'
+  version:
+    value: unknown
   open-source: false
   tags:
   - images-photos
 - plugin: Sketch Pexels
   link: https://github.com/pexels/pexels-sketchplugin
   description: A Pexels plugin for Sketch
-  summary: By Pexels. Last updated 16 Dec 2024.
+  authors:
+  - Pexels
+  updated: '2024-12-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -17,35 +25,55 @@
   link: https://github.com/frankko/Place-Linked-Bitmap
   description: A plugin to place external bitmap files into Sketch and update Sketch
     layers after external bitmaps are updated
-  summary: By Frank Kolodziej. Last updated 17 May 2024.
+  authors:
+  - Frank Kolodziej
+  updated: '2024-05-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Paste to Fill
   link: https://github.com/tgfjt/sketch-paste-to-fill#readme
   description: Paste your image from clipboard, to fill layer.
-  summary: By tgfjt. Last updated 16 Jan 2024.
+  authors:
+  - tgfjt
+  updated: '2024-01-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Remove.bg
   link: https://github.com/mathieudutour/sketch-remove-bg
   description: Remove image background in a single click
-  summary: By Mathieu Dutour. Last updated 28 Feb 2023.
+  authors:
+  - Mathieu Dutour
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Unsplash
   link: https://www.sketch.com/extensions/plugins/unsplash/
   description: Unsplash Data Provider plugin, for Sketch 52+.
-  summary: By Sketch BV. Last updated 6 Jan 2023.
+  authors:
+  - Sketch BV
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - images-photos
 - plugin: Potrace
   link: https://github.com/perrysmotors/sketch-potrace
   description: Convert bitmaps to vector graphics
-  summary: By Giles Perry. Last updated 5 Jan 2023.
+  authors:
+  - Giles Perry
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -53,28 +81,44 @@
   link: https://github.com/perrysmotors/photo-grid
   description: A Sketch plugin that can size layers to common photo dimensions and
     scale them to fit in a row.
-  summary: By Giles Perry. Last updated 4 Jan 2023.
+  authors:
+  - Giles Perry
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Images Assets Manager
   link: https://github.com/icona79/sketch-images-assets-manager
   description: Prepare all your image asstes in an artboard, ready to be exported
-  summary: By Matteo Gratton. Last updated 21 Jun 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-06-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Linked Data exporter
   link: https://github.com/icona79/sketch-linked-data-exporter
   description: Export selection as Linked Data-ready JSON file and images
-  summary: By Matteo Gratton. Last updated 2 Jun 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-06-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: ImageOptim Sketch Plugin
   link: https://github.com/ImageOptim/sketch-plugin
   description: ImageOptim plugin for the Sketch app
-  summary: By ImageOptim. Last updated 25 Mar 2022.
+  authors:
+  - ImageOptim
+  updated: '2022-03-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -82,21 +126,33 @@
   link: https://help.intelligencebank.com/hc/en-us/articles/4417559546009
   description: The IntelligenceBank Assets plugin for Sketch makes it easy for designers
     to browse, search and insert their approved IntelligenceBank image and brand assets
-  summary: By IntelligenceBank. Last updated 6 Mar 2022.
+  authors:
+  - IntelligenceBank
+  updated: '2022-03-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - images-photos
 - plugin: Slazzer for Sketch
   link: https://github.com/slazzercom/slazzer-sketch
   description: Remove image background in just few seconds 100% automatic.
-  summary: By Slazzer. Last updated 27 Apr 2021.
+  authors:
+  - Slazzer
+  updated: '2021-04-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Replace Images
   link: https://github.com/shakemno/sketch-replace-images
   description: Sketch 3 plugin to replace (as in update) existing images
-  summary: By name in a sketch document.  by shakemno. Last updated 27 Mar 2021.
+  authors:
+  - name in a sketch document
+  updated: '2021-03-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -104,7 +160,11 @@
   link: https://github.com/okcoker/Drake-Sketch-Plugin
   description: Sketch app plugin for generating dummy Drake content such as photos
     and lyrics.
-  summary: By Sean Coker. Last updated 16 Dec 2020.
+  authors:
+  - Sean Coker
+  updated: '2020-12-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -112,14 +172,22 @@
   link: https://github.com/herrhelms/social-artboards-sketch
   description: This is a Plugin for Sketch App that adds artboard presets for the
     most common image dimensions of different social media platforms.
-  summary: By herrhelms. Last updated 17 Nov 2020.
+  authors:
+  - herrhelms
+  updated: '2020-11-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Squash
   link: https://github.com/mcansh/squash-sketchplugin
   description: Export and optimize images with Realmac Squash
-  summary: By Logan McAnsh (https://mcan.sh). Last updated 10 Sep 2020.
+  authors:
+  - Logan McAnsh (https://mcan
+  updated: '2020-09-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -127,7 +195,11 @@
   link: https://github.com/mheesakkers/sketch-image-replaste
   description: A simple Sketch plugin for replacing images with your copied image
     of your clipboard.
-  summary: By Misha. Last updated 4 Apr 2020.
+  authors:
+  - Misha
+  updated: '2020-04-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -135,7 +207,11 @@
   link: https://github.com/alxrm/sketch-tinypng-compressor
   description: A Plugin that compresses bitmap assets using TinyPNG API. This Plugin
     *requires* Sketch 3.8.
-  summary: By Alex D. Last updated 22 Jun 2019.
+  authors:
+  - Alex D
+  updated: '2019-06-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -143,21 +219,33 @@
   link: https://github.com/timuric/Content-generator-sketch-plugin
   description: Sketch app plugin for generating dummy data such as avatars, names,
     photos, geo data etc.
-  summary: By Timur Carpeev. Last updated 12 Jun 2019.
+  authors:
+  - Timur Carpeev
+  updated: '2019-06-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Awesome Image Compressor
   link: https://github.com/naoyawatanabe/awesome-image-compressor
   description: Compress exported image assets
-  summary: By Naoya Watanabe. Last updated 5 Nov 2018.
+  authors:
+  - Naoya Watanabe
+  updated: '2018-11-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Advanced Responsive Images Default
   link: https://github.com/Nkzq/advanced-responsive-images-default
   description: Generate default images according to the sizes given.
-  summary: By Romain Lefort. Last updated 2 Nov 2018.
+  authors:
+  - Romain Lefort
+  updated: '2018-11-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -165,7 +253,11 @@
   link: https://github.com/eliasjulian/spooky-sketch
   description: Is this image ~🎃🔪spooky🔪🎃~ enough? You'll never have to ask yourself
     that question again. Happy Halloween!
-  summary: By Elias Julian. Last updated 1 Nov 2018.
+  authors:
+  - Elias Julian
+  updated: '2018-11-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -173,7 +265,11 @@
   link: https://github.com/ScottSavarie/Clipboard-Fill
   description: Sketch plugin to paste an image from your clipboard as the fill for
     any shape
-  summary: By Scott Savarie. Last updated 25 Oct 2018.
+  authors:
+  - Scott Savarie
+  updated: '2018-10-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
@@ -181,28 +277,45 @@
   link: https://github.com/fhuel/Unsplash-It-Sketch
   description: A plugin to quickly include great looking image from Unsplash.com in
     your Sketch projects.
-  summary: By Manuele Capacci. Last updated 6 Oct 2018.
+  authors:
+  - Manuele Capacci
+  updated: '2018-10-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Shutterstock
   link: https://www.shutterstock.com/explore/shutterstock-sketch-plugin
   description: Access Shutterstock's stunning images without leaving your workspace.
-  summary: By Shutterstock, Inc.. Last updated 3 Jul 2018.
+  authors:
+  - Shutterstock
+  - Inc
+  updated: '2018-07-03'
+  version:
+    value: unknown
   open-source: false
   tags:
   - images-photos
 - plugin: ImageExtractorSketch
   link: https://github.com/mendyismyname/ImageExtractorSketch
   description: Extract background fill image in Sketch
-  summary: By Mendy Seldowitz. Last updated 4 May 2018.
+  authors:
+  - Mendy Seldowitz
+  updated: '2018-05-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos
 - plugin: Unsplash
   link: https://github.com/sketch-hq/unsplash-sketchplugin
   description: Easily grab images from Unsplash.
-  summary: By Sketch. Last updated Official.
+  authors:
+  - Sketch
+  updated: '1970-01-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - images-photos

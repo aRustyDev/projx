@@ -108,10 +108,57 @@ def cmd_watch(link: str, status: str):
         print(f"Plugin not found: {link}")
 
 
+def cmd_export_schema(output_path: str):
+    """Export JSON schema for plugin entries."""
+    from lib import export_json_schema
+
+    export_json_schema(output_path)
+    print(f"Exported schema to {output_path}")
+
+
+def cmd_validate():
+    """Validate YAML files against schema."""
+    import yaml
+    from pathlib import Path
+
+    # Import with pydantic availability check
+    try:
+        from lib.schema import PluginEntry
+    except ImportError:
+        print("Error: pydantic not installed. Run: pip install pydantic")
+        sys.exit(1)
+
+    refs_dir = Path(__file__).parent.parent / "references" / "plugins"
+    errors = []
+    valid = 0
+
+    for yml_file in sorted(refs_dir.glob("*.yml")):
+        with open(yml_file, encoding="utf-8") as f:
+            entries = yaml.safe_load(f)
+        if not entries:
+            continue
+        for entry in entries:
+            try:
+                PluginEntry.model_validate(entry)
+                valid += 1
+            except Exception as e:
+                errors.append(f"{yml_file.name}: {entry.get('plugin', '?')}: {e}")
+
+    print(f"Validated {valid} entries")
+    if errors:
+        print(f"\n{len(errors)} validation errors:")
+        for err in errors[:20]:
+            print(f"  - {err}")
+        if len(errors) > 20:
+            print(f"  ... and {len(errors) - 20} more")
+    else:
+        print("All entries valid!")
+
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: helpers.py <command> [args...]")
-        print("Commands: crawl, load-state, list-category, search, watch")
+        print("Commands: crawl, load-state, list-category, search, watch, export-schema, validate")
         sys.exit(1)
 
     cmd = sys.argv[1]
@@ -136,6 +183,11 @@ def main():
             print("Usage: helpers.py watch <link> <status>")
             sys.exit(1)
         cmd_watch(sys.argv[2], sys.argv[3])
+    elif cmd == "export-schema":
+        output = sys.argv[2] if len(sys.argv) > 2 else "plugin.schema.json"
+        cmd_export_schema(output)
+    elif cmd == "validate":
+        cmd_validate()
     else:
         print(f"Unknown command: {cmd}")
         sys.exit(1)

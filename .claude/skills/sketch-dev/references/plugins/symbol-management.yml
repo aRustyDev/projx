@@ -2,7 +2,11 @@
 - plugin: Merge Duplicate Symbols
   link: https://github.com/oodesign/merge-duplicate-symbols
   description: Merge symbols or styles, replacing all instances and keeping overrides.
-  summary: By oodesign. Last updated 14 Nov 2025.
+  authors:
+  - oodesign
+  updated: '2025-11-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -10,35 +14,55 @@
   link: https://github.com/exevil/sketch-rename-instances
   description: Tiny single-command Sketch plugin that renames every symbol instance
     with its master's name.
-  summary: By Vyacheslav Dubovitsky. Last updated 27 May 2025.
+  authors:
+  - Vyacheslav Dubovitsky
+  updated: '2025-05-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Batch Create Symbols
   link: https://github.com/demersdesigns/sketch-batch-create-symbols
   description: A plugin for Sketch to convert selected layers to individual symbols.
-  summary: By Paul Demers. Last updated 12 Feb 2025.
+  authors:
+  - Paul Demers
+  updated: '2025-02-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Component Browser
   link: https://github.com/funk4d/Component-Browser-Sketch-Plugin
   description: Must-have for design systems. The symbol picker that actually works.
-  summary: By Dmytro Shevchuk. Last updated 11 Feb 2025.
+  authors:
+  - Dmytro Shevchuk
+  updated: '2025-02-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: killswitch
   link: https://github.com/madebysnacks/killswitch
   description: A simple Sketch plugin for disabling Symbol overrides.
-  summary: By Snacks Studio. Last updated 2 Oct 2024.
+  authors:
+  - Snacks Studio
+  updated: '2024-10-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol Finder
   link: https://github.com/afifkhaidir/symbol-finder
   description: Finder-like interface for browsing and inserting local symbols in Sketch
-  summary: By afifkhaidir. Last updated 13 Feb 2024.
+  authors:
+  - afifkhaidir
+  updated: '2024-02-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -46,21 +70,33 @@
   link: https://github.com/canisminor1990/sketch-name-organizer
   description: 🖌 Rename artboards based on their x and y position; Rename layers based
     on their Style and Symbol.
-  summary: By Canis Minor. Last updated 15 Dec 2023.
+  authors:
+  - Canis Minor
+  updated: '2023-12-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol Instance Locator
   link: https://github.com/sonburn/symbol-instance-locator
   description: Locate all instances of a selected symbol or instance.
-  summary: By Jason Burns. Last updated 9 Oct 2023.
+  authors:
+  - Jason Burns
+  updated: '2023-10-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Sketch Symbol Legend
   link: https://github.com/wix-incubator/sketch-symbol-legend
   description: Legend for your Sketch Symbols.
-  summary: By WIX Incubator. Last updated 20 Mar 2023.
+  authors:
+  - WIX Incubator
+  updated: '2023-03-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -68,28 +104,44 @@
   link: https://github.com/griffin-stewie/SymbolNameAutocomplete
   description: This plugin gives you autocompletion of symbol names when creating
     a symbol.
-  summary: By griffin-stewie. Last updated 6 Mar 2023.
+  authors:
+  - griffin-stewie
+  updated: '2023-03-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol and Artboard Organizer
   link: https://github.com/Myrronth/symbol-and-artboard-organizer
   description: Organize your symbols and artboards.
-  summary: By Myrronth. Last updated 6 Mar 2023.
+  authors:
+  - Myrronth
+  updated: '2023-03-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Sync with Library
   link: https://github.com/oodesign/sync-with-library
   description: Easily replace local symbols and layer & text styles with library ones.
-  summary: By oodesign. Last updated 4 Mar 2023.
+  authors:
+  - oodesign
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Fill-Updater
   link: https://github.com/lizhengDesign/Sketch-FillUpdater
   description: Fill shapes or symbols with content of selected artboards.
-  summary: By Li Zheng. Last updated 4 Mar 2023.
+  authors:
+  - Li Zheng
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -97,7 +149,11 @@
   link: https://github.com/griffin-stewie/SymbolNameSync
   description: This plugin gives you syncing names between Symbol masters and its
     instances.
-  summary: By griffin-stewie. Last updated 4 Mar 2023.
+  authors:
+  - griffin-stewie
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -105,14 +161,22 @@
   link: https://github.com/ozgurgunes/Sketch-Symbol-States
   description: A Sketch plugin which saves overrides of a symbol instance as states
     to be applyable on another instance of that symbol later.
-  summary: By Ozgur Gunes. Last updated 4 Mar 2023.
+  authors:
+  - Ozgur Gunes
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: layers-to-x
   link: https://github.com/asp55/sketch-plugin-layers-to-x
   description: Quickly turn layers into groups, artboards, and symbols.
-  summary: By Andrew S. Parnell. Last updated 6 Jan 2023.
+  authors:
+  - Andrew S
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -120,14 +184,23 @@
   link: https://github.com/tijmenvangurp/library-inventory
   description: List all symbols that a selected document is using from an external
     library
-  summary: By Gurp, Tijmen van. Last updated 6 Jan 2023.
+  authors:
+  - Gurp
+  - Tijmen van
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Case Converter
   link: https://github.com/ozgurgunes/Sketch-Case-Converter
   description: Convert text layers, symbols or all instances of a symbol.
-  summary: By Özgür Güneş. Last updated 6 Jan 2023.
+  authors:
+  - Özgür Güneş
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -135,7 +208,11 @@
   link: https://github.com/uxcourt/overlaytoggler
   description: A Sketch plug-in to seek specific style names in library-sourced symbols
     and toggle the styles.
-  summary: By uxcourt. Last updated 4 Jan 2023.
+  authors:
+  - uxcourt
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -143,7 +220,11 @@
   link: https://github.com/perrysmotors/sketch-library-unlinker
   description: Unlink symbols linked to a specific library, or unlink symbols that
     have been deleted in their libraries.
-  summary: By Giles Perry. Last updated 4 Jan 2023.
+  authors:
+  - Giles Perry
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -151,49 +232,77 @@
   link: https://github.com/perrysmotors/symbol-namer
   description: A plugin to help you rename symbols. Save default values, use override
     text, and do powerful, pattern-based renaming.
-  summary: By Giles Perry. Last updated 4 Jan 2023.
+  authors:
+  - Giles Perry
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Light Switch
   link: https://github.com/TheBerriman/lightswitch-sketch
   description: Toggle between Light or Dark symbols and text/layer styles.
-  summary: By Samuel Berriman. Last updated 4 Jan 2023.
+  authors:
+  - Samuel Berriman
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol Master Renamer
   link: https://github.com/miguelangelnarvaezgo/symbol-master-renamer
   description: Simple plugin to rename and organizing the master symbols with '/'.
-  summary: By Miguel Angel Narvaez. Last updated 4 Jan 2023.
+  authors:
+  - Miguel Angel Narvaez
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: symbol-insert
   link: https://github.com/lifeofmle/symbol-insert
   description: Simple plugin to insert Sketch symbols
-  summary: By Michael Le. Last updated 4 Jan 2023.
+  authors:
+  - Michael Le
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Disconnector
   link: https://github.com/njcrowther/Disconnector
   description: Quickly disconnect all symbols from a selection
-  summary: By Nathan Crowther. Last updated 3 Jan 2023.
+  authors:
+  - Nathan Crowther
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: QuickTextOverride
   link: https://github.com/dbilyk/QuickTextOverride
   description: Use a key command to target the first text override of a symbol.
-  summary: By Dmitri Bilyk. Last updated 3 Jan 2023.
+  authors:
+  - Dmitri Bilyk
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Library Replacer
   link: https://github.com/sketch-hq/library-replacer-sketchplugin
   description: Quickly replace instances of shared Symbols and Styles.
-  summary: By Sketch. Last updated 3 Jan 2023.
+  authors:
+  - Sketch
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -201,7 +310,11 @@
   link: https://github.com/atlassian/sketch-plugin
   description: Design your next Atlassian app with our component libraries and suite
     of Sketch tools 💎
-  summary: By Atlassian Design. Last updated 10 Dec 2022.
+  authors:
+  - Atlassian Design
+  updated: '2022-12-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -209,21 +322,33 @@
   link: https://github.com/websiddu/sketch-material
   description: Sketch material is a sketch plugin that will help you generate complex
     material components like tables, chips, forms etc…
-  summary: By Siddhartha Gudipati. Last updated 3 Dec 2022.
+  authors:
+  - Siddhartha Gudipati
+  updated: '2022-12-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: sketch-table-builder
   link: https://github.com/EricKramp/sketch-table-builder
   description: Quickly and easily use a single symbol and a CSV to create a data table.
-  summary: By Eric Kramp. Last updated 29 Nov 2022.
+  authors:
+  - Eric Kramp
+  updated: '2022-11-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Omnis Skeleton Generator
   link: https://github.com/taohsu/skeletongenerator
   description: Generate skeleton/placeholder UI from the selected components
-  summary: By taohsu. Last updated 22 Nov 2022.
+  authors:
+  - taohsu
+  updated: '2022-11-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -231,7 +356,11 @@
   link: https://github.com/sonburn/symbol-swapper
   description: Swap the selected symbols and/or symbol instances to a master of the
     same name in a library.
-  summary: By Jason Burns. Last updated 9 Nov 2022.
+  authors:
+  - Jason Burns
+  updated: '2022-11-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -239,7 +368,11 @@
   link: https://github.com/icona79/Sketch-canvas-item-manager
   description: Automatically show or hide all the Canvas items that are not part of
     an Artboard or a Main Symbol.
-  summary: By Matteo Gratton. Last updated 17 Dec 2021.
+  authors:
+  - Matteo Gratton
+  updated: '2021-12-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -247,7 +380,11 @@
   link: https://www.contentsync.com
   description: Sync and version your design content to and from Google Sheets and
     Microsoft 365. Deep support for symbols, overrides and more.
-  summary: By Syncify. Last updated 28 Oct 2021.
+  authors:
+  - Syncify
+  updated: '2021-10-28'
+  version:
+    value: unknown
   open-source: false
   tags:
   - symbol-management
@@ -256,35 +393,55 @@
   description: You can now move symbol from your project to any library and re-attach
     all the symbol instances to this library. also it keep the overrides without any
     problems and it work with abstract that have libraries not in your local machine
-  summary: By Ahmed Genaidy. Last updated 15 Sep 2021.
+  authors:
+  - Ahmed Genaidy
+  updated: '2021-09-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Duplicate Symbol Locator
   link: https://github.com/rijieli/duplicate-symbol-locator-plugin
   description: Locate duplicate symbols, anywhere.
-  summary: By Roger Lee. Last updated 30 Jul 2021.
+  authors:
+  - Roger Lee
+  updated: '2021-07-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: export-colors
   link: https://github.com/massimo-cassandro/sketch-export-colors-plugin
   description: Export document color components
-  summary: By Massimo Cassandro. Last updated 21 Jun 2021.
+  authors:
+  - Massimo Cassandro
+  updated: '2021-06-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol Organizer
   link: https://github.com/sonburn/symbol-organizer
   description: Organize your symbols page and layer list, based on the symbol names.
-  summary: By Jason Burns. Last updated 12 May 2021.
+  authors:
+  - Jason Burns
+  updated: '2021-05-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol Instance Renamer
   link: https://github.com/sonburn/symbol-instance-renamer
   description: Rename all symbol instances to the name of their master.
-  summary: By Jason Burns. Last updated 12 May 2021.
+  authors:
+  - Jason Burns
+  updated: '2021-05-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -292,22 +449,34 @@
   link: https://github.com/ozgurgunes/Sketch-Smart-Truncate
   description: Truncates text in selected layers, symbol overrides or even all overrides
     of all instances of a symbol to given length.
-  summary: By Ozgur Gunes. Last updated 8 May 2021.
+  authors:
+  - Ozgur Gunes
+  updated: '2021-05-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Sketch Find All Instances of Symbol
   link: https://github.com/mcansh/sketch-find-all-instances-of-symbol
   description: Find all instances of a symbol in Sketch
-  summary: By Logan McAnsh. Last updated 12 Apr 2021.
+  authors:
+  - Logan McAnsh
+  updated: '2021-04-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Symbol Browser
   link: http://symbol-browser.pratikshah.website
   description: A new way to browse your symbols. Make the most of your Design System
-  summary: By bringing symbols and UI Sticker sheet together.  by Pratik Shah. Last
-    updated 21 May 2020.
+  authors:
+  - bringing symbols
+  - UI Sticker sheet together
+  updated: '2020-05-21'
+  version:
+    value: unknown
   open-source: false
   tags:
   - symbol-management
@@ -315,7 +484,11 @@
   link: https://github.com/shantsis/swap-it-sketch
   description: A sketch plugin to replace symbols across multiple artboards easily
     from libraries or a local document.
-  summary: By Shaina Hantsis. Last updated 25 Mar 2020.
+  authors:
+  - Shaina Hantsis
+  updated: '2020-03-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -323,7 +496,11 @@
   link: https://github.com/perrysmotors/format-symbol-names
   description: A Sketch plugin to nicely format the names of all artboards or symbol
     masters on the current page
-  summary: By Giles Perry. Last updated 23 Feb 2020.
+  authors:
+  - Giles Perry
+  updated: '2020-02-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -332,14 +509,22 @@
   description: A fast and easy way to manage all your symbols. No more hassle with
     long and complex symbols name, or renaming tons of symbols because you misspelled
     a folder name.
-  summary: By Jaer Pollux. Last updated 14 Feb 2020.
+  authors:
+  - Jaer Pollux
+  updated: '2020-02-14'
+  version:
+    value: unknown
   open-source: false
   tags:
   - symbol-management
 - plugin: Compo
   link: https://github.com/romashamin/compo-sketch
   description: Makes it easier to work with interface components in Sketch
-  summary: By Roman Shamin. Last updated 24 Jun 2019.
+  authors:
+  - Roman Shamin
+  updated: '2019-06-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -348,28 +533,44 @@
   description: Sketch plugin to compress SVG and transform it to React (include React
     Native) components. By copy React component directly to you clipboard or export
     as files.
-  summary: By reeli. Last updated 11 Jun 2019.
+  authors:
+  - reeli
+  updated: '2019-06-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Sketch Manager Plugin
   link: https://www.sketchmanager.com
   description: The easiest way to manager your Symbols, Text styles and Layer styles.
-  summary: By Sketch Manager. Last updated 27 May 2019.
+  authors:
+  - Sketch Manager
+  updated: '2019-05-27'
+  version:
+    value: unknown
   open-source: false
   tags:
   - symbol-management
 - plugin: color-locator
   link: https://github.com/anavarromartin/sketch-color-locator
   description: Find all instances of a HEX color
-  summary: By Adria Navarro. Last updated 21 May 2019.
+  authors:
+  - Adria Navarro
+  updated: '2019-05-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Shared Style Finder
   link: https://github.com/sonburn/shared-style-finder
   description: Find instances of a shared layer or text style.
-  summary: By Jason Burns. Last updated 11 Apr 2019.
+  authors:
+  - Jason Burns
+  updated: '2019-04-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -377,28 +578,44 @@
   link: https://github.com/sonburn/symbol-instance-sheet
   description: Generate a sheet of symbol instances from your current document or
     a library.
-  summary: By Jason Burns. Last updated 11 Apr 2019.
+  authors:
+  - Jason Burns
+  updated: '2019-04-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: library-audit
   link: https://github.com/naughtandcross/sketch-library-audit
   description: Export Symbol and Shared Style data from any Sketch Library to CSV.
-  summary: By Colby Grenier. Last updated 27 Mar 2019.
+  authors:
+  - Colby Grenier
+  updated: '2019-03-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Airtabledata
   link: https://sketchairtabledataplugin.com/
   description: Use your Airtable data in your Sketch symbols
-  summary: By Rutger Willems. Last updated 8 Mar 2019.
+  authors:
+  - Rutger Willems
+  updated: '2019-03-08'
+  version:
+    value: unknown
   open-source: false
   tags:
   - symbol-management
 - plugin: Escriba
   link: https://github.com/Pausansol/Escriba
   description: Sketch plugin to copy paste symbol overrides
-  summary: By Pablo Sanchez Soler. Last updated 24 Feb 2019.
+  authors:
+  - Pablo Sanchez Soler
+  updated: '2019-02-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -406,14 +623,22 @@
   link: https://github.com/buba447/Lottie-Sketch-Export
   description: Native Sketch plugin for exporting Artboards and Symbols into Lottie
     JSON
-  summary: By Brandon Withrow. Last updated 12 Feb 2019.
+  authors:
+  - Brandon Withrow
+  updated: '2019-02-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Align artboards and symbols
   link: https://github.com/richardgazdik/sketch-align
   description: Group and align your Sketch symbols and artboards
-  summary: By name.  by Richard Gazdik. Last updated 13 Dec 2018.
+  authors:
+  - name
+  updated: '2018-12-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -421,42 +646,66 @@
   link: https://github.com/dbilyk/SymbolTextInspector
   description: Easily inspect the specifications of all text overrides in symbols,
     including in nested symbols.
-  summary: By Dmitri Bilyk. Last updated 19 Oct 2018.
+  authors:
+  - Dmitri Bilyk
+  updated: '2018-10-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Unsplasher
   link: https://github.com/perrysmotors/sketch-unsplasher
   description: Fills shapes or symbols with images from Unsplash
-  summary: By Giles Perry. Last updated 3 Oct 2018.
+  authors:
+  - Giles Perry
+  updated: '2018-10-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Copy as React Component (JSX)
   link: https://github.com/jasondonnette/sketch-copy-as-react-component
   description: Generate a React components from Sketch with a keyboard shortcut
-  summary: By Jason Donnette. Last updated 28 Jun 2018.
+  authors:
+  - Jason Donnette
+  updated: '2018-06-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Sketch Duplicatesymbol
   link: https://github.com/marianomike/sketch-duplicatesymbol
   description: Sketch plugin that creates a new symbol out of a selected symbol
-  summary: By Mike Mariano. Last updated 26 May 2018.
+  authors:
+  - Mike Mariano
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Export Symbols
   link: https://github.com/marianomike/sketch-exportsymbols
   description: Sketch Plugins
-  summary: By Mike Mariano. Last updated 26 May 2018.
+  authors:
+  - Mike Mariano
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Organize Symbols
   link: https://github.com/marianomike/sketch-organizesymbols
   description: Sketch plugin that arranges symbol artboards
-  summary: By Mike Mariano. Last updated 26 May 2018.
+  authors:
+  - Mike Mariano
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -464,7 +713,11 @@
   link: https://github.com/eivindbohler/Sketch-Unlinker
   description: Sketch plugin that lets you unlink selected layers and groups from
     either shared symbols, styles or text styles, en masse.
-  summary: By Eivind Bøhler. Last updated 26 May 2018.
+  authors:
+  - Eivind Bøhler
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
@@ -472,21 +725,33 @@
   link: https://github.com/zeroheight/library-symbol-replacer
   description: Sketch plugin to replace symbols in an existing documents with library
     symbols 💎 📚
-  summary: By zeroheight. Last updated 15 May 2018.
+  authors:
+  - zeroheight
+  updated: '2018-05-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Quick Export as PNG
   link: https://github.com/richardgazdik/sketch-quickexport
   description: Quick Export layers/artboards/symbols as PNG Plugin for Sketch.
-  summary: By Richard Gazdik. Last updated 15 May 2018.
+  authors:
+  - Richard Gazdik
+  updated: '2018-05-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management
 - plugin: Select Same Symbols
   link: https://github.com/yusukesaitoh/sketch-select-same-symbols
   description: Select same symbols as the currently selected symbol.
-  summary: By Yusuke Saitoh. Last updated 8 Jan 2018.
+  authors:
+  - Yusuke Saitoh
+  updated: '2018-01-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - symbol-management

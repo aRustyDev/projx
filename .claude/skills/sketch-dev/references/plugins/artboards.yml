@@ -3,21 +3,33 @@
   link: https://github.com/fnky/sketch-dockpreview
   description: A Sketch plugin that lets you preview your current artboard in the
     Dock.
-  summary: By Christian Petersen. Last updated 11 Aug 2025.
+  authors:
+  - Christian Petersen
+  updated: '2025-08-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: zerozero
   link: https://github.com/flavormingo/zerozero
   description: the sketch plugin that magically starts your page from (0,0)
-  summary: By mazz. Last updated 2 Oct 2024.
+  authors:
+  - mazz
+  updated: '2024-10-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Artboard Tools
   link: https://github.com/frankko/Artboard-Tools
   description: Sketch.app plugins for arranging artboards and navigating between artboards.
-  summary: By Frank Kolodziej. Last updated 26 Aug 2024.
+  authors:
+  - Frank Kolodziej
+  updated: '2024-08-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -25,49 +37,77 @@
   link: https://github.com/DWilliames/PDF-export-sketch-plugin
   description: Export all pages, current page or selected artboards into a PDF — based
     on a range of settings
-  summary: By David Williames. Last updated 4 Apr 2024.
+  authors:
+  - David Williames
+  updated: '2024-04-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Artboard Manager
   link: https://github.com/bomberstudios/artboard-manager#readme
   description: Because moving artboards manually is *so* 2016.
-  summary: By Ale Muñoz. Last updated 26 Oct 2023.
+  authors:
+  - Ale Muñoz
+  updated: '2023-10-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: States
   link: https://github.com/edenvidal/States
   description: Create different artboard states and switch between them easily
-  summary: By Eden Vidal. Last updated 25 Jul 2023.
+  authors:
+  - Eden Vidal
+  updated: '2023-07-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Browser Preview
   link: https://github.com/lukasoppermann/browser-preview
   description: Quickly preview an artboard in your browser.
-  summary: By Lukas Oppermann. Last updated 1 Mar 2023.
+  authors:
+  - Lukas Oppermann
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Collapse All Artboards And Groups
   link: https://github.com/littlebusters/Collapse-All-Artboards-and-Groups
   description: Collapse all artboards and groups in the current document.
-  summary: By littlebusters. Last updated 6 Jan 2023.
+  authors:
+  - littlebusters
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Light/Dark Switch
   link: https://github.com/chaos-machine/switch-theme
   description: Switch artboards' theme
-  summary: By Tudor Teisanu. Last updated 6 Jan 2023.
+  authors:
+  - Tudor Teisanu
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Artboard History
   link: https://github.com/jan-patrick/sketch_artboard-history
   description: A Sketch plugin to switch faster between your latest artboards.
-  summary: By Jan Schneider. Last updated 6 Jan 2023.
+  authors:
+  - Jan Schneider
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -75,35 +115,55 @@
   link: https://github.com/KevinGutowski/ToggleGreyscale
   description: A Sketch plugin that adds a layer to your artboard so that you can
     preview your mocks in greyscale.
-  summary: By Kevin Gutowski. Last updated 5 Jan 2023.
+  authors:
+  - Kevin Gutowski
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Sequence Artboard Names
   link: https://github.com/tbrasington/Sequence-Sketch-Artboards
   description: Simple sequencing of all artboards within a Sketch Document
-  summary: By Thomas Brasington. Last updated 3 Jan 2023.
+  authors:
+  - Thomas Brasington
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: sketch-export-to
   link: https://github.com/mascardoso/sketch-export
   description: Export an artboard layers to json or markdown
-  summary: By Marco Cardoso. Last updated 3 Jan 2023.
+  authors:
+  - Marco Cardoso
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: lazyboards
   link: https://github.com/lazybearcreations/sketch-lazyboards
   description: Artboard tools to help you with tedious batch tasks.
-  summary: By Adam Bruzon. Last updated 3 Jan 2023.
+  authors:
+  - Adam Bruzon
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Artboard Tricks
   link: https://github.com/romannurik/Sketch-ArtboardTricks
   description: Artboard Tricks plugin for Sketch
-  summary: By Roman Nurik. Last updated 3 Jan 2023.
+  authors:
+  - Roman Nurik
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -111,7 +171,11 @@
   link: https://kylehalevi.com/live-preview
   description: Wirelessly mirror Sketch artboards on iPhone and iPad, with pixel–perfect
     rendering.
-  summary: By Kyle Halevi. Last updated 1 Jan 2023.
+  authors:
+  - Kyle Halevi
+  updated: '2023-01-01'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
@@ -119,7 +183,12 @@
   link: https://blush.design
   description: Create and customize illustrations in your designs with Blush. Just
     choose a collection, pick a composition, and place it on the canvas.
-  summary: By Blush Design, Inc.. Last updated 1 Jan 2023.
+  authors:
+  - Blush Design
+  - Inc
+  updated: '2023-01-01'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
@@ -127,7 +196,11 @@
   link: https://github.com/eaugustine/how-many-artboards
   description: A Sketch plugin for counting the number of artboards in your file or
     on your page
-  summary: By Erica Augustine. Last updated 4 Aug 2022.
+  authors:
+  - Erica Augustine
+  updated: '2022-08-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -135,28 +208,44 @@
   link: https://github.com/oodesign/arrange-artboards-hierarchically
   description: Sketch.app plugin to arrange artboards hierarchically depending on
     their name (based on the Sketch Slash naming pattern).
-  summary: By oodesign. Last updated 30 Jul 2022.
+  authors:
+  - oodesign
+  updated: '2022-07-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Artboard Multi-Scale
   link: https://github.com/weibeld/artboard-multi-scale
   description: Scale an Artboard to multiple dimensions at once.
-  summary: By Daniel Weibel. Last updated 23 Apr 2022.
+  authors:
+  - Daniel Weibel
+  updated: '2022-04-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Framer Tools
   link: https://updates.framer.com/download-latest/com.framer.pasteboard
   description: Copy layers from Sketch onto the canvas in Framer
-  summary: By Framer B.V.. Last updated 23 Jun 2021.
+  authors:
+  - Framer B
+  updated: '2021-06-23'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
 - plugin: SketchTurbo
   link: https://github.com/usagimaru/SketchTurbo
   description: A plugin for Sketch that adjusts scroll speed on a canvas.
-  summary: By Satori Maru. Last updated 17 Apr 2021.
+  authors:
+  - Satori Maru
+  updated: '2021-04-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -164,21 +253,33 @@
   link: https://github.com/abynim/sketch-selective-upload
   description: Exclude Artboards and Pages when uploading your Document to Sketch
     Cloud
-  summary: By Aby Nimbalkar. Last updated 2 Apr 2021.
+  authors:
+  - Aby Nimbalkar
+  updated: '2021-04-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Sketch Copy Paste Layout Settings
   link: https://github.com/FrancisVega/sketch-copy-paste-layout-settings
   description: Copy layout settings from one artboard and paste into multiples artboards.
-  summary: By Francis. Last updated 13 Feb 2021.
+  authors:
+  - Francis
+  updated: '2021-02-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Sort Selected Layers
   link: https://github.com/ludovic-loridan/sketch-sort-selected-layers
   description: A handy plugin to sort layers or artboards
-  summary: By Y or by X position.  by Ludovic Loridan. Last updated 7 Feb 2021.
+  authors:
+  - Y or by X position
+  updated: '2021-02-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -186,7 +287,11 @@
   link: https://github.com/srbsingh3/autoarrange
   description: Automatically arrange the order of your artboards in the layer list
     according to their position on the canvas.
-  summary: By Saurabh Singh. Last updated 2 Jan 2021.
+  authors:
+  - Saurabh Singh
+  updated: '2021-01-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -194,14 +299,22 @@
   link: https://github.com/daxit/sketch-notes
   description: A Sketch plugin that lets you add notes that become part of your Artboard
     and can be exported to a PDF or other Sketch formats.
-  summary: By Daxit Agarwal. Last updated 13 Aug 2020.
+  authors:
+  - Daxit Agarwal
+  updated: '2020-08-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Tabula Rasa
   link: https://github.com/avk/sketch-tabula-rasa
   description: Add blank backgrounds to transparent artboards
-  summary: By Arthur Klepchukov. Last updated 30 Jul 2020.
+  authors:
+  - Arthur Klepchukov
+  updated: '2020-07-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -209,21 +322,33 @@
   link: https://www.axure.com/axure-sketch-plugin
   description: Easily copy design elements to Axure RP or publish artboards directly
     to Axure Cloud.
-  summary: By Axure Software Solutions Inc.. Last updated 21 May 2020.
+  authors:
+  - Axure Software Solutions Inc
+  updated: '2020-05-21'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
 - plugin: Sketch Artboard Notes
   link: https://github.com/abynim/sketch-artboard-notes
   description: A minimal plugin to add notes to artboards in Sketch
-  summary: By Aby Nimbalkar. Last updated 22 Feb 2020.
+  authors:
+  - Aby Nimbalkar
+  updated: '2020-02-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Pixelworm
   link: https://github.com/pixelworm/pixelworm-sketch-plugin-publish
   description: Upload your artboards to Pixelworm with one click.
-  summary: By Pixelworm. Last updated 4 Feb 2020.
+  authors:
+  - Pixelworm
+  updated: '2020-02-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -231,14 +356,22 @@
   link: https://animaapp.github.io/Auto-Layout/
   description: Responsive design inside Sketch. Design for all screen sizes on one
     artboard.
-  summary: By Anima Team. Last updated 25 Sep 2019.
+  authors:
+  - Anima Team
+  updated: '2019-09-25'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
 - plugin: Sort Me
   link: https://github.com/romashamin/sort-me-sketch
   description: Sort artboards and layers
-  summary: By name  by Roman Shamin. Last updated 24 Jun 2019.
+  authors:
+  - name  by Roman Shamin
+  updated: '2019-06-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -246,21 +379,33 @@
   link: https://sketch-to-web.com
   description: Turn any Sketch artboard in a real website using Sparkle Visual Website
     Builder
-  summary: By Sparkle App. Last updated 20 May 2019.
+  authors:
+  - Sparkle App
+  updated: '2019-05-20'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
 - plugin: SnipSnap
   link: https://github.com/wescraig/SnipSnap
   description: Remove extra padding on multiple layers or artboards with ease.
-  summary: By Wes Craig. Last updated 19 May 2019.
+  authors:
+  - Wes Craig
+  updated: '2019-05-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Sketch Number Artboards by Position
   link: https://github.com/radermacher/sketch-number-artboards-by-position
   description: Sketch plugin to number artboards in order of position.
-  summary: By Richard Radermacher. Last updated 27 Mar 2019.
+  authors:
+  - Richard Radermacher
+  updated: '2019-03-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -268,7 +413,11 @@
   link: http://blur.duanjun.net
   description: Add blur effect to artboards for testing visual hierarchy easily in
     your design process.
-  summary: By Duan. Last updated 2 Mar 2019.
+  authors:
+  - Duan
+  updated: '2019-03-02'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
@@ -276,7 +425,11 @@
   link: https://github.com/einancunlu/Flatten-Plugin-for-Sketch
   description: Flatten single or multiple layers instantly, create shared artboard
     styles, keep them all updated like a boss and boost your Sketch document performance.
-  summary: By Emin İnanç Ünlü. Last updated 12 Feb 2019.
+  authors:
+  - Emin İnanç Ünlü
+  updated: '2019-02-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -284,14 +437,22 @@
   link: https://pointbreak.protowire.com
   description: Add breakpoints to artboards so you can have mobile and desktop designs
     on the one artboard.
-  summary: By Mark Horgan. Last updated 6 Feb 2019.
+  authors:
+  - Mark Horgan
+  updated: '2019-02-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
 - plugin: Prott Sketch Plugin
   link: https://github.com/goodpatch/Prott-Sketch-Plugin
   description: Sync Sketch artboards to Prott like a boss.
-  summary: By Goodpatch Inc.. Last updated 7 Dec 2018.
+  authors:
+  - Goodpatch Inc
+  updated: '2018-12-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -299,21 +460,33 @@
   link: https://github.com/andrewfiorillo/sketch-artboards-to-pdf
   description: Sketch plugin to export artboards to PDF slideshow, from either the
     current page or from all pages
-  summary: By Andrew Fiorillo. Last updated 19 Jul 2018.
+  authors:
+  - Andrew Fiorillo
+  updated: '2018-07-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Caravel
   link: https://github.com/CaravelDesign/caravel.sketchplugin
   description: Export your artboards directly to Caravel projects.
-  summary: By CaravelDesign. Last updated 11 Jun 2018.
+  authors:
+  - CaravelDesign
+  updated: '2018-06-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Export for Replia
   link: https://github.com/bunguu/SketchExportForRepliaPlugin
   description: Sketch Plugins to export selected artboard or layers for Replia.
-  summary: By Kazuya Hirobe. Last updated 30 May 2018.
+  authors:
+  - Kazuya Hirobe
+  updated: '2018-05-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -321,49 +494,77 @@
   link: https://github.com/mmilano/sketch-rotate-artboards
   description: Rotate the orientation of an artboard - from portrait to landscape,
     and vice versa.
-  summary: By Michel Milano. Last updated 26 May 2018.
+  authors:
+  - Michel Milano
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: giancartboard
   link: https://github.com/MattCowBoy/giancartboard
   description: Sketch plugin to export artboards in folders automatically numbered
-  summary: By Matteo Vacca. Last updated 26 May 2018.
+  authors:
+  - Matteo Vacca
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Sketch Paginate
   link: https://github.com/jorgemartins/sketch-paginate
   description: Add page numbers to artboards.
-  summary: By Jorge Martins. Last updated 26 May 2018.
+  authors:
+  - Jorge Martins
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Formr
   link: https://github.com/lessthanzero/Formr
   description: Helps to maintain simple proportions of layers and artboards
-  summary: By Alexander Katin. Last updated 26 May 2018.
+  authors:
+  - Alexander Katin
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Radial Lines
   link: https://github.com/herrhelms/radial-lines-sketch
   description: Generate lines originating from a certain coordinate of an artboard.
-  summary: By herrhelms. Last updated 26 May 2018.
+  authors:
+  - herrhelms
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Upload to CloudApp
   link: https://github.com/delighted/sketch-upload-to-cloudapp
   description: 'Upload to CloudApp: Upload the current artboard or page to CloudApp.'
-  summary: By Delighted Inc.. Last updated 13 May 2018.
+  authors:
+  - Delighted Inc
+  updated: '2018-05-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Duplicate to New Artboard
   link: https://github.com/delighted/sketch-duplicate-to-new-artboard
   description: Sketch plugin to duplicate the current selection(s) to new artboard(s).
-  summary: By Delighted Inc.. Last updated 12 May 2018.
+  authors:
+  - Delighted Inc
+  updated: '2018-05-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
@@ -371,28 +572,44 @@
   link: https://github.com/timothywhalin/Sketch-Quick-Presentation
   description: A Sketch plugin to quickly share multiple artboards with an optional
     title.
-  summary: By Timothy Whalin. Last updated 8 Apr 2018.
+  authors:
+  - Timothy Whalin
+  updated: '2018-04-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Droplr
   link: https://droplr.com/integrations/sketch/
   description: Droplr for Sketch lets designers quickly and easily share their Artboards
-  summary: By jimboroberts. Last updated 27 Mar 2018.
+  authors:
+  - jimboroberts
+  updated: '2018-03-27'
+  version:
+    value: unknown
   open-source: false
   tags:
   - artboards
 - plugin: Draw and Render
   link: https://github.com/nichenqin/draw-and-render-sketch-plugin
   description: A plugin to render canvas to sketch
-  summary: By nichenqin. Last updated 27 Mar 2018.
+  authors:
+  - nichenqin
+  updated: '2018-03-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards
 - plugin: Artboardzoom
   link: https://github.com/Arkkimaagi/ArtboardZoom
   description: '"Zoom" to currently selected Artboard.'
-  summary: By Mikko Tapionlinna. Last updated 2 Jan 2018.
+  authors:
+  - Mikko Tapionlinna
+  updated: '2018-01-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - artboards

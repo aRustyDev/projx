@@ -159,15 +159,47 @@ state.save()
 - plugin: Plugin Name
   link: https://github.com/owner/repo
   description: Plugin description text
-  summary: By Author. Last updated 15 Jan 2026.
+  authors:
+    - Author Name
+    - Another Author
+  updated: "2026-01-15"  # YYYY-MM-DD format
+  version:
+    value: "abc123def456789..."  # SHA for GitHub, semver for others
+    url: https://github.com/owner/repo/releases  # Optional
   open-source: true
   tags:
-  - icons
+    - icons
   # Optional tracking fields (only written when set):
-  github_sha: abc123def456
   watch_status: watch
-  last_reviewed: "2026-02-24T12:00:00"
+  last_reviewed: "2026-02-24"
   review_summary: "Useful icon library, actively maintained"
+```
+
+### Schema Validation
+
+The schema is defined using Pydantic and can be exported as JSON Schema:
+
+```bash
+# Export JSON schema
+just scrape export-schema
+
+# Validate all YAML files against schema
+just scrape validate
+```
+
+### Schema Migration
+
+To migrate from old schema (with `summary` field) to new schema:
+
+```bash
+# Preview changes
+just scrape migrate --dry-run
+
+# Apply migration
+just scrape migrate
+
+# Optionally fetch GitHub SHAs (slow)
+just scrape migrate --fetch-sha
 ```
 
 ## Legacy Scripts

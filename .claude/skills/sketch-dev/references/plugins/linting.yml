@@ -3,21 +3,33 @@
   link: https://github.com/toyboxsystems/roller
   description: Roller is the first Linter for Designers. It works just like spell-check
     but within your Sketch files.
-  summary: By Jono Kolnik. Last updated 14 Oct 2022.
+  authors:
+  - Jono Kolnik
+  updated: '2022-10-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - linting
 - plugin: Tidy
   link: https://github.com/gbrunow/tidy
   description: Keep your sketch files Tidy.
-  summary: By Gui Brunow Gomes. Last updated 16 Aug 2022.
+  authors:
+  - Gui Brunow Gomes
+  updated: '2022-08-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - linting
 - plugin: SketchCleaner
   link: http://www.sketchcleaner.com/
   description: Sketch plugin that helps you get your design files as clean as a whistle.
-  summary: By Yummygum. Last updated 5 Dec 2018.
+  authors:
+  - Yummygum
+  updated: '2018-12-05'
+  version:
+    value: unknown
   open-source: false
   tags:
   - linting
@@ -25,7 +37,11 @@
   link: https://github.com/exevil/sketch-grid-master
   description: Grid Master is a Sketch plugin that fixes long-standing bugs and adds
     new functionaity related on work with Grid and Layout.
-  summary: By Vyacheslav Dubovitsky. Last updated 31 Jan 2018.
+  authors:
+  - Vyacheslav Dubovitsky
+  updated: '2018-01-31'
+  version:
+    value: unknown
   open-source: true
   tags:
   - linting

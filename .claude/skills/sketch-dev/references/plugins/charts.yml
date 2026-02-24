@@ -3,14 +3,22 @@
   link: https://github.com/design4use/gb-sketch-segmentcircle
   description: Create precise segmented circular graphics for diagrams, instrumentation
     and analytics.
-  summary: By German Bauer. Last updated 19 Oct 2023.
+  authors:
+  - German Bauer
+  updated: '2023-10-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
 - plugin: Sketch Topographic
   link: https://github.com/ziven27/Sketch-topographic
   description: Display Topographic Information
-  summary: By ziven27. Last updated 2 Dec 2022.
+  authors:
+  - ziven27
+  updated: '2022-12-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
@@ -18,21 +26,33 @@
   link: https://github.com/Saint-loup/typographie-frenchy
   description: Sketch plugin to automatically add typographic french conventions and
     non-breaking spaces
-  summary: By Saint-loup. Last updated 30 Jun 2022.
+  authors:
+  - Saint-loup
+  updated: '2022-06-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
 - plugin: chart
   link: https://github.com/pavelkuligin/chart
   description: Create the most popular types of charts
-  summary: By real or random data  by Pavel Kuligin. Last updated 25 Sep 2020.
+  authors:
+  - real or random data  by Pavel Kuligin
+  updated: '2020-09-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
 - plugin: Freeman Finchart Sketchplugin
   link: https://github.com/freeman990/Freeman-FinChart-SketchPlugin
   description: Draw financial chart like candle-stick or line chart like a boss.
-  summary: By freeman990. Last updated 2 Aug 2019.
+  authors:
+  - freeman990
+  updated: '2019-08-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
@@ -40,21 +60,33 @@
   link: https://github.com/abynim/sketchy-pies
   description: A Sketch plugin to magically convert regular circle layers into pie
     charts!
-  summary: By Aby Nimbalkar. Last updated 16 May 2019.
+  authors:
+  - Aby Nimbalkar
+  updated: '2019-05-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
 - plugin: AEFlowchart
   link: https://github.com/tadija/AEFlowchart
   description: Flowchart diagram plugin for Bohemian Coding Sketch app.
-  summary: By Marko Tadić. Last updated 4 Nov 2018.
+  authors:
+  - Marko Tadić
+  updated: '2018-11-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts
 - plugin: Sparkliner
   link: https://github.com/Volorf/Sparkliner
   description: Sparkliner — easy way to make sparkline graph
-  summary: By Oleg Frolov. Last updated 26 Apr 2018.
+  authors:
+  - Oleg Frolov
+  updated: '2018-04-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - charts

@@ -4,14 +4,22 @@
   description: Give life to your Sketch designs! Export all or selected artboards
     to Proto.io screens, preserving layer positioning and hierarchy. By exporting
     to Proto.io you can link screens together, add interactions and animations.
-  summary: By Proto.io. Last updated 13 Feb 2024.
+  authors:
+  - Proto
+  updated: '2024-02-13'
+  version:
+    value: unknown
   open-source: false
   tags:
   - automations
 - plugin: Automate Sketch
   link: https://github.com/Ashung/Automate-Sketch
   description: Make Sketch more efficient. A lot of useful plugins in one.
-  summary: By Ashung Hung. Last updated 30 May 2023.
+  authors:
+  - Ashung Hung
+  updated: '2023-05-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - automations
@@ -19,21 +27,33 @@
   link: https://github.com/skpm/sketch-dev-tools
   description: See your plugin logs, inspect the state of Sketch documents, explore
     actions, and more
-  summary: By skpm. Last updated 28 Feb 2023.
+  authors:
+  - skpm
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - automations
 - plugin: Helpify
   link: https://github.com/Luckyfoxdesign/helpify
   description: 'Plugin with simple actions: Generate random numbers'
-  summary: By Lucky Fox Design. Last updated 5 Dec 2022.
+  authors:
+  - Lucky Fox Design
+  updated: '2022-12-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - automations
 - plugin: Sketch Action
   link: https://github.com/onmyway133/sketch-action
   description: Spotlight in Sketch
-  summary: By Khoa Pham. Last updated 2 Aug 2022.
+  authors:
+  - Khoa Pham
+  updated: '2022-08-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - automations
@@ -41,7 +61,11 @@
   link: https://protopie.io/sketch
   description: Export your designs and add powerful interactions—conditional logic,
     text input, camera, voice, and more.
-  summary: By ProtoPie. Last updated 6 Apr 2021.
+  authors:
+  - ProtoPie
+  updated: '2021-04-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - automations
@@ -49,7 +73,11 @@
   link: https://github.com/KevinGutowski/toggleLayers
   description: One action to toggle layers on / off so that you can more easily remap
     this to a custom keyboard shortcut.
-  summary: By Kevin Gutowski. Last updated 8 Nov 2018.
+  authors:
+  - Kevin Gutowski
+  updated: '2018-11-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - automations

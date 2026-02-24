@@ -3,14 +3,22 @@
   link: https://github.com/jan-dh/sketch-tailwind
   description: Export your design to a theme-file you can use in your Tailwind Css
     config.
-  summary: By Jan D'Hollander. Last updated 21 Jan 2026.
+  authors:
+  - Jan D'Hollander
+  updated: '2026-01-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: picasso
   link: https://github.com/wuba/Picasso
   description: Picasso是58同城推出的一款sketch生成代码插件，可将sketch设计稿自动解析成还原精准，可用度高的前端代码
-  summary: By huangwencun. Last updated 22 Sep 2025.
+  authors:
+  - huangwencun
+  updated: '2025-09-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -19,42 +27,66 @@
   description: Make it a fun to create spec for developers and teammates! Automatically
     generating html page with one click, inspect all the design details including
     CSS Styles on it offline.
-  summary: By utom. Last updated 30 Jul 2025.
+  authors:
+  - utom
+  updated: '2025-07-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: easy-code
   link: https://github.com/luchaoqun125/sketch-version/
   description: easy code
-  summary: By luchaoqun125. Last updated 7 May 2024.
+  authors:
+  - luchaoqun125
+  updated: '2024-05-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: CodeWave
   link: https://github.com/netease-lcap/sketch-plugin
   description: 导出 Sketch 设计稿中的任意部分到 CodeWave
-  summary: By liuyiqi. Last updated 22 Mar 2024.
+  authors:
+  - liuyiqi
+  updated: '2024-03-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: imgcook
   link: https://www.imgcook.com
   description: A cook who can transform design to code
-  summary: By Taobao FED. Last updated 31 Oct 2023.
+  authors:
+  - Taobao FED
+  updated: '2023-10-31'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
 - plugin: css-to-shadow-style
   link: https://github.com/oliverpitsch/CSS-Shadow-to-Sketch-Style-Plugin
   description: CSS box-shadow to Layer Style Converter
-  summary: By Oliver Pitsch. Last updated 7 Aug 2023.
+  authors:
+  - Oliver Pitsch
+  updated: '2023-08-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: Copy Optimized SVG Code
   link: https://github.com/chenxsan/copy-optimized-svg-code
   description: Sketch plugin to copy optimized svg code
-  summary: By chenxsan. Last updated 2 Mar 2023.
+  authors:
+  - chenxsan
+  updated: '2023-03-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -62,7 +94,11 @@
   link: https://github.com/robflaherty/sketch-share
   description: Sketch plugin that exports artboards and generates an HTML file linking
     to each one
-  summary: By Rob Flaherty. Last updated 1 Mar 2023.
+  authors:
+  - Rob Flaherty
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -70,7 +106,11 @@
   link: https://github.com/perrysmotors/copy-framer-code
   description: A Sketch plugin that copies any selected layer to the clipboard as
     code that can be pasted straight into a Framer prototype.
-  summary: By Giles Perry. Last updated 6 Jan 2023.
+  authors:
+  - Giles Perry
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -78,21 +118,33 @@
   link: https://github.com/keplerlab/genus
   description: A sketch plugin for exporting prototype website (static html css) from
     your sketch designs
-  summary: By Kepler Lab. Last updated 5 Jan 2023.
+  authors:
+  - Kepler Lab
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: ImageCodeExporter
   link: https://github.com/funfungo/ImageCodeExporter
   description: A Plugin that export your sketch layer for code usage
-  summary: By funfungo. Last updated 4 Jan 2023.
+  authors:
+  - funfungo
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: Sketch QR Code
   link: https://github.com/lerte/sketch-qr-code
   description: A Plugin for generate SVG QR Code in Sketch app.
-  summary: By Lerte Smith. Last updated 3 Dec 2022.
+  authors:
+  - Lerte Smith
+  updated: '2022-12-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -100,7 +152,11 @@
   link: https://github.com/ingrammicro/puzzle-publisher
   description: Exports Sketch artboards into linked HTML files and publish it on external
     site using SFTP.
-  summary: By Ingram Micro. Last updated 28 Oct 2022.
+  authors:
+  - Ingram Micro
+  updated: '2022-10-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -108,7 +164,11 @@
   link: https://tiled.co/tiled-for-sketch-plugin
   description: Sync screens, hotspots, and feedback directly from Sketch to Tiled
     to create interactive microapps without code.
-  summary: By Tiled Inc.. Last updated 21 Jun 2022.
+  authors:
+  - Tiled Inc
+  updated: '2022-06-21'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
@@ -116,21 +176,33 @@
   link: https://github.com/markhorgan/click-thru-prototype
   description: Generates a HTML click-through prototype of your responsive website
     design.
-  summary: By Mark Horgan. Last updated 16 Jul 2021.
+  authors:
+  - Mark Horgan
+  updated: '2021-07-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: 腾讯 CoDesign
   link: https://codesign.qq.com
   description: 腾讯 CoDesign 是产品设计研发一站式协作平台，帮助团队提升设计协作效率，有效管理使用设计资产，让产品设计更轻松高效。
-  summary: By CDC. Last updated 1 Jun 2021.
+  authors:
+  - CDC
+  updated: '2021-06-01'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
 - plugin: svgToKeyshape
   link: https://github.com/CyrilSiman/svgToKeyshape
   description: Plugin used to convert SVG filter into CSS
-  summary: By Cyril Siman. Last updated 21 Mar 2021.
+  authors:
+  - Cyril Siman
+  updated: '2021-03-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -138,42 +210,66 @@
   link: https://github.com/kodika/kodika-import-from-sketch-plugin
   description: Export your designs to Kodika.io No Code App Builder and create your
     iOS apps with Drag and Drop!
-  summary: By Kodika Team. Last updated 1 Mar 2021.
+  authors:
+  - Kodika Team
+  updated: '2021-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: import-shadows
   link: https://github.com/cozy/sketch-import-shadows
   description: Import CSS shadows
-  summary: By Cozy. Last updated 4 Jan 2021.
+  authors:
+  - Cozy
+  updated: '2021-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: P5 Sketchplugin
   link: https://github.com/jacopocolo/p5-sketchplugin
   description: A plugin for using p5.js code inside Sketch
-  summary: By Jacopo Colò. Last updated 20 Oct 2020.
+  authors:
+  - Jacopo Colò
+  updated: '2020-10-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: Launchpad
   link: https://launchpad.animaapp.com
   description: Export your Sketch design into HTML website.
-  summary: By Anima Team. Last updated 30 Sep 2020.
+  authors:
+  - Anima Team
+  updated: '2020-09-30'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
 - plugin: helpweb
   link: https://github.com/mybenmao/sketch-helpweb
   description: web html css image
-  summary: By caorukang. Last updated 22 Jul 2020.
+  authors:
+  - caorukang
+  updated: '2020-07-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: Avocode Sketch Plugin
   link: https://avocode.com/download?origin=sketch
   description: Sync Sketch designs to Avocode.
-  summary: By Avocode Inc.. Last updated 30 Jun 2020.
+  authors:
+  - Avocode Inc
+  updated: '2020-06-30'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
@@ -181,28 +277,44 @@
   link: https://github.com/alanfraneo/sketch-neo-preview
   description: A plugin to create HTML based preview and gallery straight from sketch
     artboards
-  summary: By Alan Francis. Last updated 1 Jun 2020.
+  authors:
+  - Alan Francis
+  updated: '2020-06-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: PaintCode Code Generator
   link: https://www.paintcodeapp.com/sketch
   description: Convert your Sketch drawings into Swift or Objective-C
-  summary: By PixelCut. Last updated 28 Nov 2019.
+  authors:
+  - PixelCut
+  updated: '2019-11-28'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
 - plugin: Presto-Dom-Gen
   link: https://github.com/iarthstar/presto-dom-code
   description: Generates Presto Dom Code from Sketch Layers.
-  summary: By iarthstar. Last updated 4 Mar 2019.
+  authors:
+  - iarthstar
+  updated: '2019-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: Anima
   link: https://www.animaapp.com
   description: Create High-Fidelity Prototypes and Export to HTML.
-  summary: By Anima Team. Last updated 3 Mar 2019.
+  authors:
+  - Anima Team
+  updated: '2019-03-03'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
@@ -210,14 +322,22 @@
   link: http://tudou527.github.io/marketch/
   description: Marketch is a Sketch 3 plug-in for automatically generating html page
     that can measure and get CSS styles on it.
-  summary: By tudou527. Last updated 10 Dec 2018.
+  authors:
+  - tudou527
+  updated: '2018-12-10'
+  version:
+    value: unknown
   open-source: false
   tags:
   - code
 - plugin: SVG Insert
   link: https://github.com/tankxu/SVG-Insert
   description: Insert SVG code as a Layer.
-  summary: By tankxu. Last updated 5 Nov 2018.
+  authors:
+  - tankxu
+  updated: '2018-11-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -225,21 +345,33 @@
   link: https://github.com/liawesomesaucer/StyleClip
   description: Sketch plugin that copies an element's styles directly to your Mac
     clipboard. Supports CSS & SCSS
-  summary: By Vincent. Last updated 3 Oct 2018.
+  authors:
+  - Vincent
+  updated: '2018-10-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: iOSViews
   link: https://github.com/Charimon/iosViews
   description: Sketch Plugin to generate iOS view code
-  summary: By Andrew Charkin. Last updated 30 May 2018.
+  authors:
+  - Andrew Charkin
+  updated: '2018-05-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
 - plugin: Slinky
   link: https://github.com/finchalyzer/slinky
   description: Export your Sketch designs as HTML email templates
-  summary: By Finch.io. Last updated 26 May 2018.
+  authors:
+  - Finch
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -247,7 +379,11 @@
   link: https://github.com/JohnCoates/CSSketch
   description: CSS Stylesheet integration to improve your workflow, with Less support.
     Attach once, updates your design automatically on stylesheet changes.
-  summary: By John Coates. Last updated 26 May 2018.
+  authors:
+  - John Coates
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code
@@ -255,7 +391,11 @@
   link: https://github.com/futantan/sketch-style-to-react-native
   description: Sketch plugin that copies an element's styles in React Native way directly
     to your Mac clipboard.
-  summary: By Tantan Fu. Last updated 16 May 2018.
+  authors:
+  - Tantan Fu
+  updated: '2018-05-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - code

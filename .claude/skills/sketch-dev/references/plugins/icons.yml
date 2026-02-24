@@ -3,21 +3,33 @@
   link: https://phosphoricons.com
   description: A flexible icon family for interfaces, diagrams, presentations — whatever,
     really.
-  summary: By Tobias Fried. Last updated 6 Jan 2026.
+  authors:
+  - Tobias Fried
+  updated: '2026-01-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - icons
 - plugin: App Asset Export
   link: https://github.com/work4blue/sketch-app-asset-export
   description: Sketch3 plugin, One key export Android/iOS App icons.
-  summary: By Andrew Huang. Last updated 29 Nov 2023.
+  authors:
+  - Andrew Huang
+  updated: '2023-11-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: Icondrop
   link: https://github.com/iconscout/icondrop
   description: Get access to 300,000+ icons right into Sketch App
-  summary: By Iconscout. Last updated 24 May 2023.
+  authors:
+  - Iconscout
+  updated: '2023-05-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -25,7 +37,11 @@
   link: https://github.com/Ashung/Android_Res_Export
   description: Export Android resouces in Sketch, include PNG assets, app icon, nine-patch
     image and vector drawable.
-  summary: By Ashung Hung. Last updated 6 Mar 2023.
+  authors:
+  - Ashung Hung
+  updated: '2023-03-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -33,7 +49,11 @@
   link: https://github.com/Sugarcode-Team/icons-to-code-sketch-plugin-live
   description: Export Icons as vector-perfect code components for Android, React,
     ReactNative, Angular, Vue, TTF, EPS, PDF, Custom components and more.
-  summary: By Sugarcode. Last updated 5 Mar 2023.
+  authors:
+  - Sugarcode
+  updated: '2023-03-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -42,7 +62,11 @@
   description: A Sketch plugin that exports design Tokens to JSON format. You can
     export colors, typography, icons and utilis. A must-have tool for design system
     project.
-  summary: By Andreas Koutsoukos. Last updated 2 Mar 2023.
+  authors:
+  - Andreas Koutsoukos
+  updated: '2023-03-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -50,35 +74,55 @@
   link: https://github.com/Sugarcode-Team/icanicon-live-sketch-plugin
   description: icanicon.io allows you to keep your icon libraries in sync with your
     Design System.
-  summary: By Sugarcode. Last updated 5 Jan 2023.
+  authors:
+  - Sugarcode
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: Sketch Flow
   link: https://github.com/hite/Sketch-Flow
   description: Make Icon Slicing simple for app developers!
-  summary: By hite. Last updated 5 Jan 2023.
+  authors:
+  - hite
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: Sketch a Sketch
   link: https://github.com/mathieudutour/sketch-a-sketch
   description: Bringing the iconic knobs from the famous toy to Sketch.
-  summary: By Mathieu Dutour. Last updated 3 Jan 2023.
+  authors:
+  - Mathieu Dutour
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: Sketch Iconscope
   link: https://github.com/ziven27/Sketch-IconScope
   description: Wrap the Icon with a square(4n) scope.
-  summary: By ziven27. Last updated 2 Dec 2022.
+  authors:
+  - ziven27
+  updated: '2022-12-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: icon2React
   link: https://github.com/jjj201200/icon2React
   description: a sketch plugin to converting icons to React Components
-  summary: By DrowsyFlesh. Last updated 25 Jul 2022.
+  authors:
+  - DrowsyFlesh
+  updated: '2022-07-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -86,35 +130,55 @@
   link: https://github.com/iconify/iconify-sketch
   description: Iconify integration. Import MDI, FontAwesome, Jam, EmojiOne and many
     other icons to Sketch document.
-  summary: By Vjacheslav Trushkin. Last updated 15 Jun 2022.
+  authors:
+  - Vjacheslav Trushkin
+  updated: '2022-06-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: AEIconizer
   link: https://github.com/tadija/AEIconizer
   description: iOS icon generator plugin for Bohemian Coding Sketch app.
-  summary: By Marko Tadić. Last updated 17 Sep 2021.
+  authors:
+  - Marko Tadić
+  updated: '2021-09-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: iconfont-webview
   link: https://github.com/keremciu/sketch-iconfont-web
   description: New and easy way of using Icons in Sketch
-  summary: By Kerem Sevencan. Last updated 30 Apr 2021.
+  authors:
+  - Kerem Sevencan
+  updated: '2021-04-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: Use Icon Fonts in Sketch
   link: https://github.com/keremciu/sketch-iconfont
   description: Use icon fonts in sketch
-  summary: By Kerem Sevencan. Last updated 26 Feb 2021.
+  authors:
+  - Kerem Sevencan
+  updated: '2021-02-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
 - plugin: Sketch Icons
   link: https://github.com/AMoreaux/Sketch-Icons
   description: Import your icons, apply a color mask and create a dynamic icons library.
-  summary: By AMoreaux. Last updated 28 May 2020.
+  authors:
+  - AMoreaux
+  updated: '2020-05-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -122,7 +186,11 @@
   link: https://github.com/oodesign/icon-tools
   description: Sketch.app plugin to clean icons and to prepare them for a clean export
     without tints and masks.
-  summary: By oodesign. Last updated 12 Apr 2019.
+  authors:
+  - oodesign
+  updated: '2019-04-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons
@@ -130,7 +198,11 @@
   link: https://github.com/inker8/sketch-plugin
   description: A spec exporter for Sketch which can copy text/css/svg icons with only
     one click.
-  summary: By Zack Young. Last updated 5 Nov 2018.
+  authors:
+  - Zack Young
+  updated: '2018-11-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - icons

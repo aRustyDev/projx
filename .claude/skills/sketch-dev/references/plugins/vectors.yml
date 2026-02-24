@@ -2,7 +2,11 @@
 - plugin: Import SVG as Artboards
   link: https://github.com/mathieudutour/import-svg-as-artboard
   description: Import SVG files as Artboards.
-  summary: By mathieudutour. Last updated 10 Oct 2023.
+  authors:
+  - mathieudutour
+  updated: '2023-10-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
@@ -11,7 +15,11 @@
   description: A Plugin for SVG export to convert IDs to Classes, create BEM Styled
     Naming Based on Layers. Uses SVGO to compresse and Clean up SVGs, right when you
     export them. Based on the SVGO Compressor Plugin
-  summary: By mLihs. Last updated 6 Jan 2023.
+  authors:
+  - mLihs
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
@@ -19,7 +27,11 @@
   link: https://sketch.com/extensions/plugins/svgo-compressor/
   description: A Plugin that compresses SVG assets using SVGO, right when you export
     them. This Plugin requires Sketch 3.8.
-  summary: By Sketch BV. Last updated 6 Jan 2023.
+  authors:
+  - Sketch BV
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - vectors
@@ -27,49 +39,77 @@
   link: https://github.com/soulchild/sketch-logo-fetcher
   description: Place logos from either the Logos API (SVG format) or Clearbit API
     (PNG format)
-  summary: By Tobi Kremer. Last updated 3 Jan 2023.
+  authors:
+  - Tobi Kremer
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
 - plugin: path-tools
   link: https://github.com/rdunk/sketch-path-tools
   description: A collection of path tools for Sketch
-  summary: By Rupert Dunk. Last updated 1 Jun 2021.
+  authors:
+  - Rupert Dunk
+  updated: '2021-06-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
 - plugin: Composite SVG
   link: https://github.com/alanfraneo/svg-composite
   description: A Sketch plugin to create a composite SVG file from sketch artboards
-  summary: By Alan Francis. Last updated 2 Jan 2019.
+  authors:
+  - Alan Francis
+  updated: '2019-01-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
 - plugin: slice-it
   link: https://github.com/deepakshrma/sketch-slice-it
   description: Slice-it tool, Export the slices from the local sketch file in png,jpeg,svg
-  summary: By xdeepakv. Last updated 28 Oct 2018.
+  authors:
+  - xdeepakv
+  updated: '2018-10-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
 - plugin: StickyGrid
   link: https://github.com/uetchy/Sketch-StickyGrid
   description: Sketch plugin to make paths be snapped to grid.
-  summary: By Yasuaki Uechi. Last updated 6 Aug 2018.
+  authors:
+  - Yasuaki Uechi
+  updated: '2018-08-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
 - plugin: SVGO Export
   link: https://github.com/josephmcasey/sketch-plugin-svgo-unique-id
   description: Uses SVGO to compress exported SVG assets
-  summary: By Joseph Casey. Last updated 12 Apr 2018.
+  authors:
+  - Joseph Casey
+  updated: '2018-04-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors
 - plugin: SVGO Compressor
   link: https://github.com/sketch-hq/svgo-compressor
   description: Automatically compress your SVG assets using SVGO at export time.
-  summary: By Sketch. Last updated Official.
+  authors:
+  - Sketch
+  updated: '1970-01-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - vectors

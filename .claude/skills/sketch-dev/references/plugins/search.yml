@@ -2,7 +2,11 @@
 - plugin: Copy-Updater
   link: https://github.com/lizhengDesign/Sketch-CopyUpdater
   description: A Sketch plugin that updates copy based on selected JSON
-  summary: By Li Zheng. Last updated 4 Mar 2023.
+  authors:
+  - Li Zheng
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search
@@ -10,14 +14,22 @@
   link: https://github.com/mfouquet/Reselect
   description: Reselect allows you to restore a previous selection or save selections
     for later use (even after you close the document).
-  summary: By Michael Fouquet. Last updated 25 Feb 2022.
+  authors:
+  - Michael Fouquet
+  updated: '2022-02-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search
 - plugin: Select 'n' Slice
   link: https://github.com/kevintoepfer/select-n-slice
   description: A Sketch plugin to create a slice around anything you've selected.
-  summary: By Kevin Töpfer. Last updated 3 Feb 2022.
+  authors:
+  - Kevin Töpfer
+  updated: '2022-02-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search
@@ -25,7 +37,11 @@
   link: https://github.com/PEZ/SketchDistributor
   description: Distribute selection objects vertically or horizontally with a given
     spacing between them.
-  summary: By Peter Strömberg. Last updated 22 May 2021.
+  authors:
+  - Peter Strömberg
+  updated: '2021-05-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search
@@ -34,21 +50,33 @@
   description: Pickle lets you get quick feedback on anything you design. By integrating
     research early in your design process, you'll be more confident in your final
     designs.
-  summary: By billychasen. Last updated 31 Jan 2021.
+  authors:
+  - billychasen
+  updated: '2021-01-31'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search
 - plugin: Viewfinder Sketchplugin
   link: https://github.com/ahmedmigo/ViewFinder-Sketchplugin
   description: Easy access anywhere in you project file
-  summary: By Ahmed Genaidy. Last updated 5 Feb 2020.
+  authors:
+  - Ahmed Genaidy
+  updated: '2020-02-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search
 - plugin: Sketch Reverse
   link: https://github.com/lucaorio/sketch-reverse
   description: Reverse the position or depth of selected elements.
-  summary: By Luca Orio. Last updated 18 Apr 2019.
+  authors:
+  - Luca Orio
+  updated: '2019-04-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - search

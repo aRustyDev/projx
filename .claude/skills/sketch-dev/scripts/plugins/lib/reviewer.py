@@ -12,7 +12,8 @@ from typing import Optional, Callable
 import json
 
 from .differ import DiffResult, ChangeType
-from .state import PluginRecord, WatchStatus
+from .state import PluginRecord
+from .schema import WatchStatus
 from .categorizer import PluginCategorizer
 
 

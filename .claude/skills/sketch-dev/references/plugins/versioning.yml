@@ -3,7 +3,11 @@
   link: https://goabstract.com/
   description: Abstract lets you manage, version, and document your designs in one
     place
-  summary: By Abstract. Last updated 6 May 2025.
+  authors:
+  - Abstract
+  updated: '2025-05-06'
+  version:
+    value: unknown
   open-source: false
   tags:
   - versioning
@@ -11,28 +15,44 @@
   link: https://github.com/bvmensvoort/sketch-last-updated
   description: Mark your designs with a version indicator which automatically changes
     as you update.
-  summary: By Bram van Mensvoort. Last updated 2 Feb 2023.
+  authors:
+  - Bram van Mensvoort
+  updated: '2023-02-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - versioning
 - plugin: Git Sketch Plugin
   link: https://github.com/mathieudutour/git-sketch-plugin
   description: A Git client generating pretty diffs built right into Sketch.
-  summary: By Mathieu Dutour. Last updated 5 Jan 2023.
+  authors:
+  - Mathieu Dutour
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - versioning
 - plugin: Sketch Plugin Manager 🔌
   link: https://mludowise.github.io/Sketch-Plugin-Manager
   description: Keeping your Sketch plugins up to date with the power of Git.
-  summary: By Mel Ludowise. Last updated 17 Oct 2019.
+  authors:
+  - Mel Ludowise
+  updated: '2019-10-17'
+  version:
+    value: unknown
   open-source: false
   tags:
   - versioning
 - plugin: Sketch Git Pro
   link: https://github.com/xuming/sketch-git-pro
   description: Git tools for sketch.
-  summary: By xuming. Last updated 13 Jan 2019.
+  authors:
+  - xuming
+  updated: '2019-01-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - versioning

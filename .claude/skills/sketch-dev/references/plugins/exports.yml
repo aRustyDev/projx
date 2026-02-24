@@ -2,7 +2,11 @@
 - plugin: Export King Plugin
   link: https://github.com/hecflores/export-king-plugin
   description: A Sketch Plugin that provides exporting for any scenario
-  summary: By hecflores. Last updated 5 Jan 2023.
+  authors:
+  - hecflores
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
@@ -10,14 +14,22 @@
   link: https://github.com/icona79/sketch-design-tokens-exporter
   description: With this plugin you can export to your desktop a design-tokens.json
     file compatible with Amazon Style Dictionary.
-  summary: By Matteo Gratton. Last updated 24 Sep 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-09-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
 - plugin: Drafta
   link: https://github.com/fragmentlv/drafta
   description: Export designs directly to Drafta
-  summary: By Fragment. Last updated 25 Nov 2020.
+  authors:
+  - Fragment
+  updated: '2020-11-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
@@ -25,35 +37,55 @@
   link: https://github.com/cranksoftwaredev/SketchPlugins
   description: Export Sketch based designs to be used within Crank Software's Storyboard
     Suite
-  summary: By Crank Software Inc.. Last updated 17 Jun 2020.
+  authors:
+  - Crank Software Inc
+  updated: '2020-06-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
 - plugin: Page Export
   link: https://github.com/charliecm/sketch-page-export
   description: A simple Sketch plugin for exporting page(s).
-  summary: By Charlie Chao. Last updated 4 Oct 2019.
+  authors:
+  - Charlie Chao
+  updated: '2019-10-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
 - plugin: Somino
   link: https://github.com/melsomino/sketch-somino
   description: Attachable styles, Advanced clipboard, Silent export
-  summary: By Michael Vlasov. Last updated 24 Feb 2019.
+  authors:
+  - Michael Vlasov
+  updated: '2019-02-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
 - plugin: Clear Export Options
   link: https://github.com/emrerussia/sketch-clear-export-options
   description: Clear export options for all elements on all pages in a Sketch file.
-  summary: By Emre C. Coskun (EMRECC). Last updated 14 Nov 2018.
+  authors:
+  - Emre C
+  updated: '2018-11-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports
 - plugin: Sketch2AE
   link: https://github.com/bigxixi/Sketch2AE
   description: A Sketch plugin to export sketch file to Adobe After Effect
-  summary: By Big XiXi. Last updated 23 Jul 2018.
+  authors:
+  - Big XiXi
+  updated: '2018-07-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - exports

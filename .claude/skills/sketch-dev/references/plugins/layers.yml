@@ -2,7 +2,11 @@
 - plugin: 🦁 A Lion
   link: https://github.com/KevinGutowski/A-Lion
   description: Align your layers to a key layer.
-  summary: By Kevin Gutowski. Last updated 15 Jan 2026.
+  authors:
+  - Kevin Gutowski
+  updated: '2026-01-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -10,56 +14,88 @@
   link: https://github.com/commonpike/sketch-recursive-export
   description: Simple plugin to recursively export exportable layers in a selected
     naming scheme
-  summary: By commonpike. Last updated 15 Dec 2024.
+  authors:
+  - commonpike
+  updated: '2024-12-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Single Border
   link: https://github.com/sureskumar/single-border
   description: Add single borders with advanced controls.
-  summary: By Sures Kumar. Last updated 3 May 2024.
+  authors:
+  - Sures Kumar
+  updated: '2024-05-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: AEUX
   link: https://github.com/google/sketch2ae
   description: Transfer layer to After Effects
-  summary: By Battle Axe. Last updated 18 Apr 2024.
+  authors:
+  - Battle Axe
+  updated: '2024-04-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Move Half Pixel
   link: https://github.com/canisminor1990/sketch-move-half-pixel
   description: 🐾 Move layers half pixel
-  summary: By Canis Minor. Last updated 3 Apr 2024.
+  authors:
+  - Canis Minor
+  updated: '2024-04-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Select
   link: https://github.com/canisminor1990/sketch-select
   description: Make it much more convenient to select layers with similar attributes.
-  summary: By Canis Minor. Last updated 15 Dec 2023.
+  authors:
+  - Canis Minor
+  updated: '2023-12-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: File Cleaner
   link: https://github.com/monzo/file-cleaner
   description: Keep your Sketch files immaculately clean and in order.
-  summary: By Monzo. Last updated 26 Oct 2023.
+  authors:
+  - Monzo
+  updated: '2023-10-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Map Generator
   link: https://github.com/eddiesigner/sketch-map-generator
   description: Plugin to fill a layer with a map generated from a location (Powered
-  summary: By Google Maps)  by Eduardo Gómez Vásquez. Last updated 5 Mar 2023.
+  authors:
+  - Google Maps)  by Eduardo Gómez Vásquez
+  updated: '2023-03-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Styler
   link: https://github.com/oodesign/sketch-styler
   description: Assigns styles automatically to all of your unstyled layers.
-  summary: By oodesign. Last updated 4 Mar 2023.
+  authors:
+  - oodesign
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -67,7 +103,11 @@
   link: https://github.com/ozgurgunes/Sketch-Layer-Comps
   description: A plugin which saves and applies layer states to create different compositions
     of current page.
-  summary: By Özgür Güneş. Last updated 4 Mar 2023.
+  authors:
+  - Özgür Güneş
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -75,28 +115,44 @@
   link: https://github.com/materik/sketchplugin-pixelperfect
   description: Plugin for Sketch for handling layout and sizing of layers automatically
     based on their names.
-  summary: By Mattias Eriksson. Last updated 1 Mar 2023.
+  authors:
+  - Mattias Eriksson
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Snatch
   link: https://github.com/ZhichengChen/snatch
   description: Sketch plugin which upload layer to CDN directly.
-  summary: By ZhichengChen. Last updated 28 Feb 2023.
+  authors:
+  - ZhichengChen
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: DuplicateLater
   link: https://github.com/KevinGutowski/Duplicate-Later
   description: Duplicate layers in the same direction after duplicating (like in Figma).
-  summary: By Kevin Gutowski. Last updated 6 Jan 2023.
+  authors:
+  - Kevin Gutowski
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Flat Export
   link: https://github.com/TheSonOfThomp/sketch-flat-export
   description: Use this plugin to batch export layers to a single folder.
-  summary: By Adam Thompson. Last updated 6 Jan 2023.
+  authors:
+  - Adam Thompson
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -104,7 +160,11 @@
   link: https://github.com/mheesakkers/sketch-plugin-snap-to-8pt-grid
   description: A Sketch plugin which helps with snapping layer properties to the 8
     point grid.
-  summary: By Misha. Last updated 5 Jan 2023.
+  authors:
+  - Misha
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -112,7 +172,11 @@
   link: https://github.com/KevinGutowski/FindDirtyStyles
   description: A Sketch plugin to easily find layers that are out of sync with their
     shared styles.
-  summary: By Kevin Gutowski. Last updated 5 Jan 2023.
+  authors:
+  - Kevin Gutowski
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -120,7 +184,11 @@
   link: https://github.com/charliecm/sketch-snap
   description: A Sketch plugin that lets you snap layers below, above, left of or
     right of selected layer to one of its edges.
-  summary: By Charlie Chao. Last updated 5 Jan 2023.
+  authors:
+  - Charlie Chao
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -128,7 +196,11 @@
   link: https://github.com/eunicejson/organizeLayers
   description: A plugin that allows short key commands to move layers up, down and
     reverse positions ↕️
-  summary: By Eunice J. Son. Last updated 4 Jan 2023.
+  authors:
+  - Eunice J
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -136,7 +208,11 @@
   link: https://github.com/aparajita/sketch-groupie
   description: Sketch plugin providing commands to align layers with their parent
     group
-  summary: By Aparajita Fishman. Last updated 3 Jan 2023.
+  authors:
+  - Aparajita Fishman
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -144,7 +220,11 @@
   link: https://github.com/mathieudutour/sketch-styles-hierarchy
   description: Organize your shared styles using the layers list, create a hierarchy
     where children inherit properties from their parent.
-  summary: By Mathieu Dutour. Last updated 3 Jan 2023.
+  authors:
+  - Mathieu Dutour
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -152,28 +232,44 @@
   link: https://github.com/SimonTakman/BillUI
   description: Interactive artificial evolutionary tool in order to help you come
     up with design suggestions that are similar to your initial design.
-  summary: By Carl Albertsson & Simon Takman. Last updated 3 Jan 2023.
+  authors:
+  - Carl Albertsson & Simon Takman
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Paddy
   link: https://github.com/DWilliames/paddy-sketch-plugin
   description: Automated padding, spacing and alignment for your Sketch layers
-  summary: By David Williames. Last updated 19 Aug 2022.
+  authors:
+  - David Williames
+  updated: '2022-08-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Gretel
   link: https://github.com/StyleShare/Gretel
   description: A Sketch plugin that flattens files after exporting.
-  summary: By Suyeol Jeon. Last updated 20 Jul 2022.
+  authors:
+  - Suyeol Jeon
+  updated: '2022-07-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Invert Fills
   link: https://github.com/icona79/sketch-invert-fills
   description: Invert fills beween 2 selected layers
-  summary: By Matteo Gratton. Last updated 14 Jul 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-07-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -181,7 +277,11 @@
   link: https://github.com/wonderbit/sketch-select-similar-layers
   description: A plugin that selects layers with similar attributes to those of the
     layer currently selected.
-  summary: By Wessley Roche. Last updated 10 Jun 2022.
+  authors:
+  - Wessley Roche
+  updated: '2022-06-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -189,7 +289,11 @@
   link: https://github.com/pplcallmesatz/SketchDefaultNameCheck
   description: Check the default sketch layer naming, this plugin is for the user
     who needs to standardise his Sketch layer namings.
-  summary: By Satheesh Kumar S. Last updated 13 Oct 2021.
+  authors:
+  - Satheesh Kumar S
+  updated: '2021-10-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -198,42 +302,67 @@
   description: A plugin to help working with bootstrap grids and grids in general.
     It allows to create (Bootstrap) grids and align and de-/increase width of layers
     accordingly.
-  summary: By Konstantin Demblin. Last updated 2 Jul 2021.
+  authors:
+  - Konstantin Demblin
+  updated: '2021-07-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Butter
   link: https://github.com/pberrecloth/butter-sketch-plugin
   description: Butter will butt your layers together.
-  summary: By Peter Berrecloth. Last updated 27 Jun 2021.
+  authors:
+  - Peter Berrecloth
+  updated: '2021-06-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Shadows Utilities
   link: https://github.com/iarthstar/Shadows-Utilities
   description: Plugin to copy paste shadows across layers
-  summary: By iarthstar. Last updated 8 Dec 2020.
+  authors:
+  - iarthstar
+  updated: '2020-12-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Magic Aligner
   link: https://github.com/HugoLis/Magic-Aligner
   description: Align objects
-  summary: By their centers of mass  by Hugo Lispector. Last updated 1 Aug 2020.
+  authors:
+  - their centers of mass  by Hugo Lispector
+  updated: '2020-08-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Search Everywhere
   link: https://github.com/MrPeak/sketch-search-everywhere
   description: Search layer and select it,
-  summary: By matching textValue, name or ObjectID.  by 捻捻转儿. Last updated 2 Jun 2020.
+  authors:
+  - matching textValue
+  - name or ObjectID
+  updated: '2020-06-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Pixel Perfecter
   link: https://github.com/swiadek/pixel-perfecter-sketch-plugin
   description: Pixel Perfecter helps you find pixel imperfect layers in your documents.
-  summary: By Jakub Świadek. Last updated 5 May 2020.
+  authors:
+  - Jakub Świadek
+  updated: '2020-05-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -242,28 +371,44 @@
   description: A fast and easy way to manage all your layer styles. No more hassle
     with long and complex style names, or renaming tons of styles because you misspelled
     a folder name.
-  summary: By Jaer Pollux. Last updated 14 Feb 2020.
+  authors:
+  - Jaer Pollux
+  updated: '2020-02-14'
+  version:
+    value: unknown
   open-source: false
   tags:
   - layers
 - plugin: Move It
   link: https://github.com/dawidw/move-it
   description: Sketch plugin that let's you move selected layers vertically and horizontally.
-  summary: By Dawid Woźniak. Last updated 30 Jul 2019.
+  authors:
+  - Dawid Woźniak
+  updated: '2019-07-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Spell Check Whole Page
   link: https://github.com/Tallwave/sketch-spellcheck-all-layers
   description: A basic spellchecker that checks all layers on a page in Sketch
-  summary: By Tallwave. Last updated 13 Jun 2019.
+  authors:
+  - Tallwave
+  updated: '2019-06-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: swap-width-height
   link: https://github.com/dannymcclain/swap-width-height
   description: Swap a layer's width and height.
-  summary: By dannymcclain. Last updated 13 May 2019.
+  authors:
+  - dannymcclain
+  updated: '2019-05-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -271,14 +416,22 @@
   link: https://github.com/oodesign/duplicate-under
   description: Sketch plugin to duplicate layers, but placing copies under the originals
     in the layer list.
-  summary: By oodesign. Last updated 24 Apr 2019.
+  authors:
+  - oodesign
+  updated: '2019-04-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Resize
   link: https://github.com/lucaorio/sketch-resize
   description: Resize (not scale) multiple layers at once via shortcut.
-  summary: By Luca Orio. Last updated 18 Apr 2019.
+  authors:
+  - Luca Orio
+  updated: '2019-04-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -286,7 +439,11 @@
   link: https://github.com/ryanmclaughlin/styledrop
   description: A plugin for Sketch allows you to easily copy styles from one layer
     to another.
-  summary: By Ryan McLaughlin. Last updated 8 Apr 2019.
+  authors:
+  - Ryan McLaughlin
+  updated: '2019-04-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -294,7 +451,11 @@
   link: https://github.com/d4rekanguok/sketch-slicer
   description: Create slice layers from selected layers, with padding or set a fixed
     size.
-  summary: By Derek Nguyen. Last updated 20 Mar 2019.
+  authors:
+  - Derek Nguyen
+  updated: '2019-03-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -302,50 +463,78 @@
   link: https://github.com/preciousforever/sketch-bounding-boxer
   description: A simple plugin to toggle visibility of 'boundingBox' layers in a Sketch
     document.
-  summary: By precious design studio. Last updated 4 Feb 2019.
+  authors:
+  - precious design studio
+  updated: '2019-02-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: bztone-plugin
   link: https://github.com/wangjunwangjunwang/sketch2pixi-plugin
   description: switch layers of sketch to pixi.json
-  summary: By wangjunwangjunwang. Last updated 29 Dec 2018.
+  authors:
+  - wangjunwangjunwang
+  updated: '2018-12-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Align and Resize To Layout
   link: https://github.com/KevinvBre/Align-and-resize-to-layout
   description: Align and resize layers to your layout in Sketch
-  summary: By Kevin. Last updated 1 Nov 2018.
+  authors:
+  - Kevin
+  updated: '2018-11-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Better Shadow
   link: https://github.com/JJYing/Sketch-Better-Shadow
   description: Quickly generate multi-layered shadow to mimic non-linear decay.
-  summary: By JJ Ying. Last updated 8 Sep 2018.
+  authors:
+  - JJ Ying
+  updated: '2018-09-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Replace Layer
   link: https://github.com/daneden/sketch-replace-layer
   description: Replace selected layer(s) with copied content/layer(s)
-  summary: By Daniel Eden. Last updated 31 Jul 2018.
+  authors:
+  - Daniel Eden
+  updated: '2018-07-31'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Cleanup Useless Groups
   link: https://github.com/bomberstudios/Cleanup-Useless-Groups
   description: A Sketch plugin that cleans up your layer list
-  summary: By removing empty groups and flattening deeply nested groups.  by Ale Muñoz.
-    Last updated 12 Jun 2018.
+  authors:
+  - removing empty groups
+  - flattening deeply nested groups
+  updated: '2018-06-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Swappr
   link: https://github.com/pranusarna94/Swappr
   description: Swap layer positions and styles
-  summary: By pranusarna94. Last updated 26 May 2018.
+  authors:
+  - pranusarna94
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -353,28 +542,44 @@
   link: https://github.com/screenfork/ScreenFork
   description: ScreenFork is the Sketchapp plugin that export screens and their variants
     based on Layer prefix
-  summary: By ScreenFork. Last updated 26 May 2018.
+  authors:
+  - ScreenFork
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Toggle NoPrint
   link: https://github.com/sudilkovsky/Toggle-NoPrint-Visibility-Sketch-Plugin
   description: Toggle Visibility of 'NoPrint' layers in Sketch
-  summary: By Denis Sudilkovsky. Last updated 26 May 2018.
+  authors:
+  - Denis Sudilkovsky
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Swap Styles
   link: https://github.com/ozzik/swap-styles
   description: Sketch plugin for swaping styles between two layers.
-  summary: By Oz Pinhas. Last updated 26 May 2018.
+  authors:
+  - Oz Pinhas
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Constraints
   link: https://github.com/bouchenoiremarc/Sketch-Constraints
   description: A plugin that integrates constraints in Sketch to lay out layers.
-  summary: By Marc Bouchenoire. Last updated 21 May 2018.
+  authors:
+  - Marc Bouchenoire
+  updated: '2018-05-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -382,14 +587,22 @@
   link: https://github.com/ryanjohnson-me/Sketch-Copy-Paste-Shadows
   description: Copy & paste only shadow styles from layers without others styles getting
     in the way.
-  summary: By Ryan Johnson. Last updated 11 May 2018.
+  authors:
+  - Ryan Johnson
+  updated: '2018-05-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Perfecto
   link: https://github.com/pranusarna94/Perfecto-
   description: A sketch plugin to round off all sub-pixel layers at once
-  summary: By Pranu Sarna. Last updated 28 Mar 2018.
+  authors:
+  - Pranu Sarna
+  updated: '2018-03-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -397,15 +610,23 @@
   link: https://github.com/KevinGutowski/NudgeRTL
   description: Quickly resize a layer horizontally from right to left with keyboard
     shortcuts
-  summary: By Kevin Gutowski. Last updated 16 Mar 2018.
+  authors:
+  - Kevin Gutowski
+  updated: '2018-03-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Wanderer
   link: https://github.com/turbobabr/sketch-wanderer
   description: Frictionless, Finder like navigation in layer list
-  summary: By using beloved arrow keys and simple shortcuts.  by Andrey Shakhmin.
-    Last updated 16 Mar 2018.
+  authors:
+  - using beloved arrow keys
+  - simple shortcuts
+  updated: '2018-03-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
@@ -413,21 +634,33 @@
   link: https://github.com/DWilliames/nudge-resize-sketch-plugin
   description: Resize a layer horizontally and vertically from the centre with easy
     keyboard shortcuts
-  summary: By David Williames. Last updated 25 Feb 2018.
+  authors:
+  - David Williames
+  updated: '2018-02-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: Sketch Marginbox
   link: https://github.com/FrancisVega/sketch-marginbox
   description: Simple scritp to create layers as margins
-  summary: By Francis. Last updated 13 Feb 2018.
+  authors:
+  - Francis
+  updated: '2018-02-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers
 - plugin: DeepSelect
   link: https://github.com/fhuel/DeepSelect
   description: A quick and easy way to select layers inside a group, filtering
-  summary: By layer type  by fhuel. Last updated 6 Feb 2018.
+  authors:
+  - layer type  by fhuel
+  updated: '2018-02-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - layers

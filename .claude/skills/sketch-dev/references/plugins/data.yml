@@ -2,133 +2,209 @@
 - plugin: Turkish Data
   link: https://github.com/ozgurgunes/Sketch-Turkish-Data
   description: Turkish data supplier plugin.
-  summary: By Özgür Güneş. Last updated 21 Jan 2026.
+  authors:
+  - Özgür Güneş
+  updated: '2026-01-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Data from Clipboard
   link: https://github.com/Saint-loup/data-from-clipboard
   description: A DataSupplier plugin
-  summary: By Saint-loup. Last updated 19 Mar 2023.
+  authors:
+  - Saint-loup
+  updated: '2023-03-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: TinyFaces 👦🏼👨🏾👩🏻
   link: https://github.com/maximedegreve/TinyFaces-Sketch-Plugin
   description: Fill content with random avatars & data
-  summary: By Maxime De Greve. Last updated 4 Mar 2023.
+  authors:
+  - Maxime De Greve
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Sketch Times
   link: https://github.com/xaddict/sketch-times
   description: A DataSupplier plugin to get Times
-  summary: By Luuk Lamers. Last updated 2 Mar 2023.
+  authors:
+  - Luuk Lamers
+  updated: '2023-03-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: stuffing
   link: https://github.com/Ashung/Sketch-Stuffing
   description: A DataSupplier plugin which supplies chinese data.
-  summary: By Ashung. Last updated 28 Feb 2023.
+  authors:
+  - Ashung
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: foodreau
   link: https://github.com/maxdavid/sketch-foodreau
   description: Data supplier plugin for populating designs with real food recipes.
-  summary: By Max David. Last updated 4 Jan 2023.
+  authors:
+  - Max David
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Live Planet Sketch DataSupplier
   link: https://github.com/Craigtut/liveplanet-sketch-datasupplier
   description: Supply's real data from Live Planet's API to Sketch for testing designs
-  summary: By Craig Tuttle. Last updated 3 Jan 2023.
+  authors:
+  - Craig Tuttle
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Chemfill
   link: https://github.com/ahadik/chemfill
   description: A Chemical Structure data supplier plugin.
-  summary: By Alexander Hadik. Last updated 3 Jan 2023.
+  authors:
+  - Alexander Hadik
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: IBAN Generator
   link: https://github.com/idriesalbender/iban-sketch-plugin
   description: Generate random International Bank Account Numbers (IBAN)
-  summary: By idix. Last updated 3 Jan 2023.
+  authors:
+  - idix
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: DatesFromNow
   link: https://github.com/LeipeLeon/Sketch_DatesFormNow
   description: Simple data plugin to fill dates from now
-  summary: By Leon Berenschot. Last updated 13 Sep 2022.
+  authors:
+  - Leon Berenschot
+  updated: '2022-09-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Nederlandse Namen
   link: https://github.com/sasjakoning/sketch-nederlandse-namen
   description: Sketch plugin for Dutch names
-  summary: By Sasja Koning. Last updated 2 Jun 2022.
+  authors:
+  - Sasja Koning
+  updated: '2022-06-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: ghost
   link: https://github.com/tmdvs/ghost-sketch-plugin
   description: Randomly change the opacity of selected layers
-  summary: By Tim Davies. Last updated 8 Jul 2021.
+  authors:
+  - Tim Davies
+  updated: '2021-07-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: mktgoo-data
   link: https://github.com/marketgoo/sketch-copies
   description: A data supplier plugin for copies,
-  summary: By marketgoo  by Oscar Otero. Last updated 11 May 2021.
+  authors:
+  - marketgoo  by Oscar Otero
+  updated: '2021-05-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Base64 PNG Export
   link: https://github.com/jawayang/Sketch-Base64-PNG-Export
   description: sketch plugin for Export Data URI
-  summary: By james yang. Last updated 1 Dec 2020.
+  authors:
+  - james yang
+  updated: '2020-12-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Random Sizing
   link: https://github.com/longzheng/sketch-randomSize
   description: Sketch plugin to randomly resize selected elements.
-  summary: By Long Zheng. Last updated 1 Aug 2020.
+  authors:
+  - Long Zheng
+  updated: '2020-08-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: VK-Data
   link: https://github.com/VKCOM/vkdata-sketchplugin
   description: Plugin for using data from your account at vk.com
-  summary: By VKCOM. Last updated 10 Dec 2019.
+  authors:
+  - VKCOM
+  updated: '2019-12-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Seoul
   link: https://github.com/sunkibaek/Seoul
   description: A DataSupplier plugin
-  summary: By Sunki Baek. Last updated 30 Oct 2018.
+  authors:
+  - Sunki Baek
+  updated: '2018-10-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Fake Chinese Name for Sketch
   link: https://github.com/JJYing/fake-chinese-name-for-sketch
   description: Generate Chinese names for text layers.
-  summary: By JJ Ying. Last updated 1 Sep 2018.
+  authors:
+  - JJ Ying
+  updated: '2018-09-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
 - plugin: Sketch Data Studio
   link: https://github.com/thetylerwolf/sketch-data-studio
   description: Sketch plugin to generate charts and data for data tables.
-  summary: By thetylerwolf. Last updated 1 Aug 2018.
+  authors:
+  - thetylerwolf
+  updated: '2018-08-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data
@@ -136,7 +212,11 @@
   link: https://github.com/usagimaru/Sketch-AppleSystemFont-Plugin
   description: A Sketch plugin for applying Apple system font to text layers. (For
     Japanese designers.)
-  summary: By usagimaru. Last updated 27 Jan 2018.
+  authors:
+  - usagimaru
+  updated: '2018-01-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - data

@@ -126,3 +126,19 @@ search query:
 # Set watch status for a plugin
 watch link status="watch":
     cd "{{ plugins_dir }}" && {{ python }} helpers.py watch "{{ link }}" "{{ status }}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Schema Management
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Migrate YAML files from old schema to new schema
+migrate *args:
+    cd "{{ plugins_dir }}" && {{ python }} migrate_schema.py {{ args }}
+
+# Export JSON schema for plugin entries
+export-schema output="plugin.schema.json":
+    cd "{{ plugins_dir }}" && {{ python }} helpers.py export-schema "{{ output }}"
+
+# Validate YAML files against schema
+validate:
+    cd "{{ plugins_dir }}" && {{ python }} helpers.py validate

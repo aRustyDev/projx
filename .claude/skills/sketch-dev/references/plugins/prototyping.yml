@@ -3,7 +3,11 @@
   link: https://github.com/heshamCO/flow-plugin
   description: Sketch plugin for Flow design handoff – publish designs with full prototype
     flows for developer inspection
-  summary: By Hesham. Last updated 16 Feb 2026.
+  authors:
+  - Hesham
+  updated: '2026-02-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - prototyping
@@ -11,7 +15,11 @@
   link: https://github.com/JustinmindDevelopment/justinmind-sketch
   description: You can export artboards, layers and pages you’ve made in Sketch to
     Justinmind and turn them into interactive shareable prototypes.
-  summary: By Justinmind. Last updated 12 Jun 2023.
+  authors:
+  - Justinmind
+  updated: '2023-06-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - prototyping
@@ -20,7 +28,11 @@
   description: Overflow is the world’s first user flow diagramming tool tailored for
     designers. It empowers designers to design, present and share beautiful user flow
     diagrams that tell a story.
-  summary: By proto.io. Last updated 9 Jun 2023.
+  authors:
+  - proto
+  updated: '2023-06-09'
+  version:
+    value: unknown
   open-source: false
   tags:
   - prototyping
@@ -28,15 +40,23 @@
   link: https://github.com/romannurik/Sketch-FlowExporter
   description: A Sketch plugin that exports prototype flows built with Sketch 49+
     to HTML.
-  summary: By Roman Nurik. Last updated 1 Mar 2023.
+  authors:
+  - Roman Nurik
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - prototyping
 - plugin: Mupixa
   link: https://github.com/mupixa/sketch-plugin-mupixa
   description: Mupixa allows you to leverage the full potential of your prototypes
-  summary: By conducting usability research fast and effortlessly.  by www.mupixa.com.
-    Last updated 6 Jan 2023.
+  authors:
+  - conducting usability research fast
+  - effortlessly
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - prototyping
@@ -44,21 +64,33 @@
   link: https://beatflyer.com
   description: Animate your artboards in a few clicks with a lite and free version
     of Beatflyer.
-  summary: By Christian Giordano. Last updated 5 Nov 2021.
+  authors:
+  - Christian Giordano
+  updated: '2021-11-05'
+  version:
+    value: unknown
   open-source: false
   tags:
   - prototyping
 - plugin: AnimateMate
   link: https://github.com/Creatide/AnimateMate
   description: Create your animations directly in Sketch
-  summary: By Sakari Niittymaa. Last updated 21 Mar 2021.
+  authors:
+  - Sakari Niittymaa
+  updated: '2021-03-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - prototyping
 - plugin: Sketch Map
   link: https://github.com/she1991/Sketch-Map
   description: Get a bird's eye views of your prototype flows.
-  summary: By Akash Shetye. Last updated 9 Aug 2020.
+  authors:
+  - Akash Shetye
+  updated: '2020-08-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - prototyping
@@ -66,7 +98,11 @@
   link: https://cloud.indigo.design/resources
   description: Create, edit, and apply themes to your Indigo.Design UI Kit based designs
     and publish them as prototypes to the Indigo.Design cloud.
-  summary: By Infragistics. Last updated 27 Jun 2019.
+  authors:
+  - Infragistics
+  updated: '2019-06-27'
+  version:
+    value: unknown
   open-source: false
   tags:
   - prototyping
@@ -74,7 +110,11 @@
   link: http://timurnurutdinov.github.io/framerinventory/
   description: Sketch plugin to generate FramerJS prototypes. Just have your motion
     done.
-  summary: By Timur Nurutdinov. Last updated 8 Mar 2018.
+  authors:
+  - Timur Nurutdinov
+  updated: '2018-03-08'
+  version:
+    value: unknown
   open-source: false
   tags:
   - prototyping

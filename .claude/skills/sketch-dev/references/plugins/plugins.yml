@@ -3,14 +3,22 @@
   link: https://github.com/griffin-stewie/PluginsList
   description: Sketch Plugin that gives you list of plugins you enabled as several
     text formats.
-  summary: By griffin-stewie. Last updated 5 Mar 2023.
+  authors:
+  - griffin-stewie
+  updated: '2023-03-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - plugins
 - plugin: Plugin Reloader
   link: https://github.com/TheNounProject/SketchPluginReloader
   description: A simple plugin to reload another plugins
-  summary: By Wes Byrne. Last updated 3 Jan 2023.
+  authors:
+  - Wes Byrne
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - plugins

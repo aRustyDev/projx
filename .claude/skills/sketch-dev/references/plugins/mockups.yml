@@ -3,28 +3,44 @@
   link: https://github.com/SwipeCircus/represent
   description: Present your UX/UI Designs lightning fast on client's devices without
     leaving Sketch. 📲
-  summary: By Swipe Circus. Last updated 29 Oct 2024.
+  authors:
+  - Swipe Circus
+  updated: '2024-10-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
 - plugin: Sketch Isometric
   link: https://github.com/sureskumar/sketch-isometric
   description: Generate Isometric views from Artboards and Rectangles.
-  summary: By Sures Kumar. Last updated 3 May 2024.
+  authors:
+  - Sures Kumar
+  updated: '2024-05-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
 - plugin: Sketch Data Faker
   link: https://github.com/paintedbicycle/sketch-data-faker
   description: A Sketch data plugin providing data for you mockups from Faker.js
-  summary: By paintedbicycle. Last updated 4 Mar 2023.
+  authors:
+  - paintedbicycle
+  updated: '2023-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
 - plugin: Isometry
   link: https://github.com/maxkonovalov/Isometry
   description: Create isometric projections from layers
-  summary: By Max Konovalov. Last updated 6 Jan 2023.
+  authors:
+  - Max Konovalov
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
@@ -33,28 +49,44 @@
   description: Bar chart creator for your mockups using random data. Change the size
     of selected rectangles. Works for both horizontal and vertical bar charts. Made
     with love in Chippendale.
-  summary: By Martin von Lupin. Last updated 4 Jan 2023.
+  authors:
+  - Martin von Lupin
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
 - plugin: areanow
   link: https://github.com/norman-woz/areanow
   description: Get the total area of selected rectangle layers.
-  summary: By norman-woz. Last updated 3 Jan 2023.
+  authors:
+  - norman-woz
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
 - plugin: Sketch Split Shape
   link: https://github.com/kupe517/sketch-split-shape
   description: Sketch plugin to split up a rectangle evenly
-  summary: By a user generated value  by kupe517. Last updated 17 Dec 2020.
+  authors:
+  - a user generated value  by kupe517
+  updated: '2020-12-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
 - plugin: triangle-field
   link: https://github.com/0la0/triangle-fields
   description: Generate Delaunay triangle tessellation inside a shape.
-  summary: By Luke Anderson. Last updated 1 Dec 2018.
+  authors:
+  - Luke Anderson
+  updated: '2018-12-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
@@ -62,7 +94,11 @@
   link: https://github.com/DWilliames/nudge-corner-radius-sketch-plugin
   description: Increase/decrease the corner radius of a rectangle, or path nodes —
     with easy keyboard shortcuts
-  summary: By David Williames. Last updated 21 Nov 2018.
+  authors:
+  - David Williames
+  updated: '2018-11-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups
@@ -70,7 +106,11 @@
   link: https://github.com/sylvainleris/fr.y3s.sketch.screenshot
   description: A Sketch plugin to take screenshots of Android device connected over
     USB.
-  summary: By Sylvain Leris. Last updated 18 Oct 2018.
+  authors:
+  - Sylvain Leris
+  updated: '2018-10-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - mockups

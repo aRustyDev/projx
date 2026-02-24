@@ -12,7 +12,8 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
 
-from .state import PluginState, PluginRecord, WatchStatus
+from .state import PluginState, PluginRecord
+from .schema import WatchStatus
 from .scraper import ScrapedPlugin, PluginScraper
 
 

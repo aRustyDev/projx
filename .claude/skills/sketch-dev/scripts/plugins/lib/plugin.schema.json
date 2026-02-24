@@ -1,0 +1,166 @@
+{
+  "$defs": {
+    "VersionInfo": {
+      "description": "Version information for a plugin.",
+      "properties": {
+        "value": {
+          "description": "Version string (SHA for GitHub, semver for others)",
+          "title": "Value",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "URL to version info (changelog, release page)",
+          "title": "Url"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "VersionInfo",
+      "type": "object"
+    },
+    "WatchStatus": {
+      "description": "Watch status for tracking updates.",
+      "enum": [
+        "watch",
+        "ignore",
+        "major_only",
+        "default"
+      ],
+      "title": "WatchStatus",
+      "type": "string"
+    }
+  },
+  "description": "Schema for a single plugin entry in YAML files.\n\nExample:\n    plugin: Phosphor Icons\n    link: https://phosphoricons.com\n    description: A flexible icon family for interfaces\n    authors:\n      - Tobias Fried\n    updated: 2026-01-06\n    version:\n      value: \"2.1.0\"\n      url: https://github.com/phosphor-icons/homepage/releases\n    open-source: false\n    tags:\n      - icons",
+  "examples": [
+    {
+      "authors": [
+        "Tobias Fried"
+      ],
+      "description": "A flexible icon family for interfaces",
+      "link": "https://phosphoricons.com",
+      "open-source": false,
+      "plugin": "Phosphor Icons",
+      "tags": [
+        "icons"
+      ],
+      "updated": "2026-01-06",
+      "version": {
+        "url": "https://github.com/phosphor-icons/homepage/releases",
+        "value": "2.1.0"
+      }
+    }
+  ],
+  "properties": {
+    "plugin": {
+      "description": "Plugin name",
+      "title": "Plugin",
+      "type": "string"
+    },
+    "link": {
+      "description": "Plugin URL (GitHub repo or homepage)",
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Link",
+      "type": "string"
+    },
+    "description": {
+      "description": "Plugin description",
+      "title": "Description",
+      "type": "string"
+    },
+    "authors": {
+      "description": "List of author names",
+      "items": {
+        "type": "string"
+      },
+      "title": "Authors",
+      "type": "array"
+    },
+    "updated": {
+      "description": "Last update date (YYYY-MM-DD)",
+      "format": "date",
+      "title": "Updated",
+      "type": "string"
+    },
+    "version": {
+      "$ref": "#/$defs/VersionInfo",
+      "description": "Version information"
+    },
+    "open-source": {
+      "description": "Whether plugin is open source",
+      "title": "Open-Source",
+      "type": "boolean"
+    },
+    "tags": {
+      "description": "Category tags",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "watch_status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WatchStatus"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Update tracking status"
+    },
+    "last_reviewed": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Last review date",
+      "title": "Last Reviewed"
+    },
+    "review_summary": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Summary from last review",
+      "title": "Review Summary"
+    }
+  },
+  "required": [
+    "plugin",
+    "link",
+    "description",
+    "updated",
+    "version",
+    "open-source"
+  ],
+  "title": "PluginEntry",
+  "type": "object"
+}

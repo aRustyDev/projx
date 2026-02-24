@@ -3,21 +3,33 @@
   link: https://github.com/dploeger/sketch-plugin-units
   description: A Sketch plugin for working with print units (inch, cm, mm) in Sketch's
     pixel world.
-  summary: By Dennis Ploeger. Last updated 8 Mar 2023.
+  authors:
+  - Dennis Ploeger
+  updated: '2023-03-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
 - plugin: PinIt
   link: https://github.com/acollurafici/PinIt
   description: A collection of Resizing Shortcuts.
-  summary: By Anthony Collurafici. Last updated 1 Mar 2023.
+  authors:
+  - Anthony Collurafici
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
 - plugin: Toggle Pixel Fitting
   link: https://github.com/KevinGutowski/PixelFit
   description: A simple plugin to change your pixel fitting preference.
-  summary: By KevinGutowski. Last updated 5 Jan 2023.
+  authors:
+  - KevinGutowski
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
@@ -25,14 +37,22 @@
   link: https://github.com/ajilderda/Sketch-Copy-Paste-Position-Size
   description: A Sketch plugin that lets you easily copy & paste width, height, x
     & y values from and to objects
-  summary: By Andre Jilderda. Last updated 14 Nov 2022.
+  authors:
+  - Andre Jilderda
+  updated: '2022-11-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
 - plugin: Sketch Pixel Cleanup
   link: https://github.com/stackdevelopment/sketch-pixel-cleanup
   description: A plugin for Sketch to fix all of those partial pixels
-  summary: By Stackdevelopment. Last updated 28 Jan 2021.
+  authors:
+  - Stackdevelopment
+  updated: '2021-01-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
@@ -40,29 +60,46 @@
   link: https://github.com/dribbble/dribbble-sketch
   description: Share your creative process directly to the Dribbble community from
     within Sketch.
-  summary: By Dribbble Holdings Ltd.. Last updated 21 Apr 2020.
+  authors:
+  - Dribbble Holdings Ltd
+  updated: '2020-04-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
 - plugin: Resize Commands
   link: https://github.com/ajilderda/Sketch-Resize-Commands
   description: A Sketch plugin that lets you resize and reposition objects
-  summary: By using simple arithmetic commands, like `b+20,lr+20`. Multiple objects
-    are supported.  by Andre Jilderda. Last updated 12 Feb 2019.
+  authors:
+  - using simple arithmetic commands
+  - like `b+20
+  - lr+20`
+  updated: '2019-02-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
 - plugin: Transpose
   link: https://github.com/wescraig/Transpose
   description: Transpose your selection and set pixel margins between elements.
-  summary: By Wes Craig. Last updated 8 Mar 2018.
+  authors:
+  - Wes Craig
+  updated: '2018-03-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing
 - plugin: Sketch Export Generator
   link: https://github.com/kang-chen/sketch-export-generator
   description: Sketch plugin to export assets at different scale sizes
-  summary: By Kang Chen. Last updated 23 Jan 2018.
+  authors:
+  - Kang Chen
+  updated: '2018-01-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - sizing

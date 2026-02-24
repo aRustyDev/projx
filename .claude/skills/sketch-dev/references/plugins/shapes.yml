@@ -4,14 +4,22 @@
   description: Looper helps automate duplication of groups and layers. One can control
     properties like Rotate, Scale and Opacity while duplicating. This powerful combination
     enables artists and designers to create interesting geometric and organic patterns.
-  summary: By Sures Kumar. Last updated 3 May 2024.
+  authors:
+  - Sures Kumar
+  updated: '2024-05-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Super Shapes
   link: https://github.com/sureskumar/super-shapes
   description: Generate complex organic super-shapes using super formula.
-  summary: By Sures Kumar. Last updated 3 May 2024.
+  authors:
+  - Sures Kumar
+  updated: '2024-05-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
@@ -19,28 +27,44 @@
   link: https://github.com/delighted/sketch-scale-all-in-place
   description: 'Scale all in place: Resize all selected shapes or layers, in place,
     from center.'
-  summary: By Delighted Inc.. Last updated 16 Apr 2023.
+  authors:
+  - Delighted Inc
+  updated: '2023-04-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: ddSpiral
   link: https://github.com/Design-Dude/ddSpiral
   description: Magically shape almost any kind of 🌀 spiral.
-  summary: By Mek van’t Hoff. Last updated 6 Mar 2023.
+  authors:
+  - Mek van’t Hoff
+  updated: '2023-03-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Rough
   link: https://github.com/mathieudutour/rough-sketch
   description: Transform your shapes in a sketchy, scribbly, hand-drawn-like, style.
-  summary: By mathieudutour. Last updated 28 Feb 2023.
+  authors:
+  - mathieudutour
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: BlobMaker
   link: https://github.com/Rawnly/blobmaker_sketch
   description: Generate blobs with ease
-  summary: By Federico Vitale. Last updated 6 Jan 2023.
+  authors:
+  - Federico Vitale
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
@@ -48,28 +72,44 @@
   link: https://github.com/mheesakkers/sketch-plugin-metaball
   description: A simple plugin to draw shapes based on inner and outer tangents between
     two circles.
-  summary: By mheesakkers. Last updated 5 Jan 2023.
+  authors:
+  - mheesakkers
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Elevation Shadows
   link: https://github.com/YitingLiu/Elevation-Shadows
   description: A Sketch Plugin to apply consistent Elevation Shadows
-  summary: By Yiting Liu. Last updated 4 Jan 2023.
+  authors:
+  - Yiting Liu
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Easy Buttons
   link: https://github.com/icona79/easy-buttons-sketch-plugin
   description: Easily create button archetypes
-  summary: By Matteo Gratton. Last updated 2 Jun 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-06-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: User Flows
   link: https://github.com/abynim/userflows
   description: Generate user walkthroughs from Artboards in Sketch.
-  summary: By Aby Nimbalkar. Last updated 14 Apr 2022.
+  authors:
+  - Aby Nimbalkar
+  updated: '2022-04-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
@@ -77,7 +117,11 @@
   link: https://github.com/PEZ/SketchSeparateShapes
   description: A Sketch-app plugin that does a ”boolean” separate operation on two
     selected shapes. Like divide in Pathfinder in Adobe Illustrator.
-  summary: By Peter Strömberg. Last updated 26 Mar 2019.
+  authors:
+  - Peter Strömberg
+  updated: '2019-03-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
@@ -85,42 +129,66 @@
   link: https://github.com/kenmoore/Sketch-Relabel-Button
   description: Update a button's label and it gets resized automatically, preserving
     existing padding.
-  summary: By Ken Moore. Last updated 7 Mar 2019.
+  authors:
+  - Ken Moore
+  updated: '2019-03-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Sketch Plugin Skew
   link: https://github.com/mheesakkers/sketch-plugin-skew
   description: A Sketch plugin for skewing (or shearing) shapes horizontally or vertically.
-  summary: By Misha. Last updated 19 Feb 2019.
+  authors:
+  - Misha
+  updated: '2019-02-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Egmont Plugin
   link: https://github.com/interfacemarket/Egmont-plugin
   description: Sketch plugin for create squircle shapes.
-  summary: By Interface.Market. Last updated 5 Feb 2019.
+  authors:
+  - Interface
+  updated: '2019-02-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Sketch Make Long Shadow
   link: https://github.com/JayHoltslander/Sketch-Make-Long-Shadow
   description: A plugin for Sketch to create long shadows from a shape.
-  summary: By Jay Holtslander. Last updated 9 Aug 2018.
+  authors:
+  - Jay Holtslander
+  updated: '2018-08-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: FlipSize
   link: https://github.com/apertureless/sketch-flip-size
   description: Flip the size of any artboard or shape
-  summary: By Jakub Juszczak. Last updated 16 Jul 2018.
+  authors:
+  - Jakub Juszczak
+  updated: '2018-07-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
 - plugin: Pull to Center
   link: https://github.com/delighted/sketch-pull-to-center
   description: 'Pull to center: Move selected shapes or layers toward center of artboard.'
-  summary: By Delighted Inc.. Last updated 22 May 2018.
+  authors:
+  - Delighted Inc
+  updated: '2018-05-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes
@@ -128,7 +196,11 @@
   link: https://github.com/joshdjuric/Skatter
   description: A plugin with tools (currently very basic tools) to assist with creating
     patterns out of shapes.
-  summary: By Josh Djuric. Last updated 10 Jan 2018.
+  authors:
+  - Josh Djuric
+  updated: '2018-01-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - shapes

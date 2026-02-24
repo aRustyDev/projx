@@ -2,28 +2,44 @@
 - plugin: WtDesign
   link: https://github.com/wantedly/sketch-wt-design
   description: Sketch plugin for Wantedly Design System
-  summary: By Yoshinori Kawasaki. Last updated 15 Dec 2023.
+  authors:
+  - Yoshinori Kawasaki
+  updated: '2023-12-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Sketch Style Master
   link: https://github.com/aparajita/sketch-style-master
   description: Sketch plugin for renaming shared styles
-  summary: By Aparajita Fishman. Last updated 28 Oct 2023.
+  authors:
+  - Aparajita Fishman
+  updated: '2023-10-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Kitchen
   link: https://github.com/ant-design/kitchen
   description: Make your design work delicious 🍽
-  summary: By Ant-Design. Last updated 18 May 2023.
+  authors:
+  - Ant-Design
+  updated: '2023-05-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Detach out of sync text styles
   link: https://github.com/tijmenvangurp/detach-out-of-sync-text-styles
   description: Detach all out of sync text styles from a chosen sketch library.
-  summary: By Tijmen van Gurp. Last updated 6 Jan 2023.
+  authors:
+  - Tijmen van Gurp
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
@@ -31,28 +47,44 @@
   link: https://github.com/bomberstudios/install-library-bundle
   description: Installs a bunch of shared Sketch Libraries at once, because life is
     too short for clicking links.
-  summary: By Ale Muñoz. Last updated 6 Jan 2023.
+  authors:
+  - Ale Muñoz
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Orbison
   link: https://github.com/ilikescience/orbison
   description: A Sketch plugin for Bitly's product design system
-  summary: By ilikescience. Last updated 4 Jan 2023.
+  authors:
+  - ilikescience
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Puzzle Tokens
   link: https://github.com/ingrammicro/puzzle-tokens
   description: Sketch.app plugin to apply design tokens to Sketch layers
-  summary: By Ingram Micro. Last updated 21 Sep 2022.
+  authors:
+  - Ingram Micro
+  updated: '2022-09-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Design Token Exporter
   link: https://github.com/here-erhe/Design-Token-Exporter
   description: Simple Design Token Exporter
-  summary: By Herkko Huttunen. Last updated 23 Jan 2022.
+  authors:
+  - Herkko Huttunen
+  updated: '2022-01-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
@@ -60,14 +92,22 @@
   link: https://github.com/KevinGutowski/Swap-Color-Libraries
   description: Change all your colors in a document to point to a different library
     using the same color variable names.
-  summary: By Kevin Gutowski. Last updated 5 Nov 2020.
+  authors:
+  - Kevin Gutowski
+  updated: '2020-11-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Typograph
   link: https://github.com/dezonik/Typograph
   description: Typograph — Sketch plugin and js-library
-  summary: By Dmitry Gerasimov. Last updated 11 Aug 2020.
+  authors:
+  - Dmitry Gerasimov
+  updated: '2020-08-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
@@ -75,7 +115,11 @@
   link: https://zeroheight.com
   description: Document your design system using beautifully simple styleguides synced
     with Sketch and code 💎 💻
-  summary: By zeroheight. Last updated 26 Jun 2020.
+  authors:
+  - zeroheight
+  updated: '2020-06-26'
+  version:
+    value: unknown
   open-source: false
   tags:
   - library-management
@@ -83,35 +127,55 @@
   link: https://github.com/Ashung/design-systems
   description: Help you find out popular design systems and download official Sketch
     UI kit.
-  summary: By Ashung Hung. Last updated 8 May 2020.
+  authors:
+  - Ashung Hung
+  updated: '2020-05-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Design System Validator
   link: https://github.com/oneuxco/Sketch-Design-systems-validator
   description: Check consistency of text layers.
-  summary: By Matthew Talebi. Last updated 18 Nov 2019.
+  authors:
+  - Matthew Talebi
+  updated: '2019-11-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Sketch Styles Generator
   link: https://github.com/lucaorio/sketch-styles-generator
   description: Generate hundreds of Sketch Shared Styles in a matter of seconds.
-  summary: By Luca Orio. Last updated 18 Apr 2019.
+  authors:
+  - Luca Orio
+  updated: '2019-04-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: DesignToken2Code
   link: https://github.com/m-yoshiro/DesignToken2Code
   description: Convert design tokens to SCSS variables as code
-  summary: By m-yoshiro. Last updated 8 Feb 2019.
+  authors:
+  - m-yoshiro
+  updated: '2019-02-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Sketch Style Libraries
   link: https://github.com/sigtm/sketch-style-libraries
   description: Sync layer & text styles from any Sketch Library
-  summary: By Sigurd Mannsaker. Last updated 17 Jul 2018.
+  authors:
+  - Sigurd Mannsaker
+  updated: '2018-07-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
@@ -119,14 +183,22 @@
   link: https://github.com/alssndro/sandros-sketch-plugins
   description: A library of Sketch Plugins aimed towards working with horizontal/vertical
     grid layouts and typography.
-  summary: By Alessandro. Last updated 26 May 2018.
+  authors:
+  - Alessandro
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management
 - plugin: Sketch Smart Style Switcher
   link: https://github.com/FrancisVega/Sketch-Smart-Style-Switcher
   description: Switch to an existing test style if attributes matches.
-  summary: By Francis. Last updated 8 Apr 2018.
+  authors:
+  - Francis
+  updated: '2018-04-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - library-management

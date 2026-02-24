@@ -4,7 +4,11 @@
   description: Start localization during the design phase. Easily preview your designs
     in multiple languages and optimize your UI for all markets with the Phrase Strings
     plugin.
-  summary: By Phrase. Last updated 22 Jul 2025.
+  authors:
+  - Phrase
+  updated: '2025-07-22'
+  version:
+    value: unknown
   open-source: false
   tags:
   - localization
@@ -12,7 +16,11 @@
   link: https://github.com/crowdin/sketch-crowdin
   description: Localize the UI before programming starts. Translate and preview any
     design with ease
-  summary: By Crowdin. Last updated 14 Oct 2024.
+  authors:
+  - Crowdin
+  updated: '2024-10-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - localization
@@ -20,21 +28,33 @@
   link: https://github.com/mathieudutour/prototypes-invision-sketch
   description: Translate your prototyping links back and forth between Sketch and
     Invision
-  summary: By mathieudutour. Last updated 28 Feb 2023.
+  authors:
+  - mathieudutour
+  updated: '2023-02-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - localization
 - plugin: Sketch Auto Translate
   link: https://github.com/symdesign/sketch-auto-translate
   description: Plugin to translate Sketch files into via Google Translate.
-  summary: By Friedrich Schultheiss. Last updated 30 Sep 2022.
+  authors:
+  - Friedrich Schultheiss
+  updated: '2022-09-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - localization
 - plugin: Translate From JSON
   link: https://github.com/kbirgoren/sketch-json-translator
   description: A Sketch plugin lets you use variables for texts in your designs.
-  summary: By kbirgoren. Last updated 16 Jan 2021.
+  authors:
+  - kbirgoren
+  updated: '2021-01-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - localization
@@ -42,7 +62,11 @@
   link: https://smartling.github.io/smartling-sketch-plugin/
   description: Plugin for Sketch that allows to translate and pseudo-localize designs
     using the Smartling platform.
-  summary: By Smartling. Last updated 4 Jun 2020.
+  authors:
+  - Smartling
+  updated: '2020-06-04'
+  version:
+    value: unknown
   open-source: false
   tags:
   - localization
@@ -50,15 +74,22 @@
   link: https://github.com/eddiesigner/sketch-translate-me
   description: Translations. Simplified. Translate your Sketch text layers, artboards
     and pages in over 100 languages with Translate.me plugin. Powered
-  summary: By Google.  by Eduardo Gómez Vásquez. Last updated 18 May 2019.
+  authors:
+  - Google
+  updated: '2019-05-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - localization
 - plugin: Jane Doe
   link: https://github.com/konki-vienna/jane_doe
   description: This Sketch Data plugin adds localized profile names (powered
-  summary: By uinames.com) to your design. - Get diversity into your content.  by
-    Konstantin Demblin. Last updated 18 Mar 2019.
+  authors:
+  - uinames
+  updated: '2019-03-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - localization

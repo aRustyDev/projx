@@ -4,23 +4,43 @@ Plugin State Management
 Tracks plugin metadata using YAML files as the source of truth.
 The YAML files in references/plugins/*.yml serve as both documentation
 and version tracking state.
+
+Supports both old schema (with 'summary' field) and new schema (with
+'authors', 'updated', 'version' fields) for backwards compatibility
+during migration.
 """
 
 import re
 import yaml
 from dataclasses import dataclass, field
-from datetime import datetime
-from enum import Enum
+from datetime import datetime, date
 from typing import Optional
 from pathlib import Path
 
+from .schema import WatchStatus
 
-class WatchStatus(str, Enum):
-    """Watch status for a plugin."""
-    WATCH = "watch"           # Track all updates
-    IGNORE = "ignore"         # Skip all updates
-    MAJOR_ONLY = "major_only" # Only track major updates
-    DEFAULT = "default"       # Use default behavior
+
+# Month name to number mapping for parsing old format
+MONTHS = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def parse_date_string(date_str: str) -> Optional[str]:
+    """Parse date string like '6 Jan 2026' to '2026-01-06'."""
+    match = re.search(r"(\d{1,2})\s+(\w+)\s+(\d{4})", date_str)
+    if match:
+        day = int(match.group(1))
+        month_name = match.group(2).lower()
+        year = int(match.group(3))
+        month = MONTHS.get(month_name)
+        if month:
+            try:
+                return f"{year:04d}-{month:02d}-{day:02d}"
+            except ValueError:
+                pass
+    return None
 
 
 @dataclass
@@ -32,12 +52,15 @@ class PluginRecord:
 
     # Metadata
     description: str = ""
-    author: str = ""
+    authors: list = field(default_factory=list)  # New: list of authors
     category: str = "Other"
-    last_updated: str = ""        # Date string from Sketch page
+    updated: str = ""  # New: YYYY-MM-DD format
 
-    # Tracking (optional fields, stored in YAML when set)
-    github_sha: Optional[str] = None
+    # Version tracking
+    version: str = "unknown"  # SHA for GitHub, semver for others
+    version_url: Optional[str] = None  # URL to changelog/releases
+
+    # Watch status
     watch_status: WatchStatus = WatchStatus.DEFAULT
     last_reviewed: Optional[str] = None
     review_summary: Optional[str] = None
@@ -52,27 +75,57 @@ class PluginRecord:
         """Unique key for this plugin (normalized link)."""
         return self.link.lower().rstrip("/")
 
+    @property
+    def author(self) -> str:
+        """Get primary author (for backwards compatibility)."""
+        return self.authors[0] if self.authors else "Unknown"
+
     @classmethod
     def from_yaml_entry(cls, entry: dict, category: str) -> "PluginRecord":
-        """Create from YAML entry."""
-        # Parse author and date from summary
-        # Format: "By {author}. Last updated {date}."
-        author = ""
-        last_updated = ""
-        summary = entry.get("summary", "")
-
-        author_match = re.match(r"By ([^.]+)\.", summary)
-        if author_match:
-            author = author_match.group(1).strip()
-
-        date_match = re.search(r"Last updated (.+)\.$", summary)
-        if date_match:
-            last_updated = date_match.group(1).strip()
-
+        """Create from YAML entry (supports both old and new schema)."""
         link = entry.get("link", "")
         is_github = "github.com" in link.lower()
 
-        # Parse watch status if present
+        # Detect schema version by checking for 'authors' field
+        is_new_schema = "authors" in entry
+
+        if is_new_schema:
+            # New schema
+            authors = entry.get("authors", [])
+            updated = entry.get("updated", "")
+            if isinstance(updated, date):
+                updated = updated.isoformat()
+
+            version_data = entry.get("version", {})
+            if isinstance(version_data, dict):
+                version = version_data.get("value", "unknown")
+                version_url = version_data.get("url")
+            else:
+                version = str(version_data) if version_data else "unknown"
+                version_url = None
+        else:
+            # Old schema - parse from summary
+            summary = entry.get("summary", "")
+            authors = []
+            updated = ""
+
+            # Extract author(s)
+            author_match = re.match(r"By\s+([^.]+)\.", summary)
+            if author_match:
+                author_text = author_match.group(1).strip()
+                authors = [a.strip() for a in re.split(r",\s*|\s+and\s+", author_text)]
+
+            # Extract and convert date
+            date_match = re.search(r"Last updated (.+)\.$", summary)
+            if date_match:
+                date_str = date_match.group(1).strip()
+                updated = parse_date_string(date_str) or date_str
+
+            # Version from old github_sha field
+            version = entry.get("github_sha", "unknown")
+            version_url = None
+
+        # Parse watch status
         watch_str = entry.get("watch_status", "default")
         try:
             watch_status = WatchStatus(watch_str)
@@ -83,10 +136,11 @@ class PluginRecord:
             name=entry.get("plugin", ""),
             link=link,
             description=entry.get("description", ""),
-            author=author,
+            authors=authors if authors else ["Unknown"],
             category=category,
-            last_updated=last_updated,
-            github_sha=entry.get("github_sha"),
+            updated=updated,
+            version=version,
+            version_url=version_url,
             watch_status=watch_status,
             last_reviewed=entry.get("last_reviewed"),
             review_summary=entry.get("review_summary"),
@@ -96,19 +150,23 @@ class PluginRecord:
         )
 
     def to_yaml_entry(self) -> dict:
-        """Convert to YAML entry format."""
+        """Convert to YAML entry format (new schema)."""
         entry = {
             "plugin": self.name,
             "link": self.link,
             "description": self.description,
-            "summary": f"By {self.author}. Last updated {self.last_updated}.",
+            "authors": self.authors,
+            "updated": self.updated,
+            "version": {"value": self.version},
             "open-source": self.open_source,
             "tags": self.tags or [self.category.lower().replace(" ", "-").replace("/", "-")]
         }
 
+        # Add version URL if set
+        if self.version_url:
+            entry["version"]["url"] = self.version_url
+
         # Only include tracking fields if set (to keep YAML clean)
-        if self.github_sha:
-            entry["github_sha"] = self.github_sha
         if self.watch_status != WatchStatus.DEFAULT:
             entry["watch_status"] = self.watch_status.value
         if self.last_reviewed:
@@ -191,7 +249,7 @@ class PluginState:
         return stem.replace("-", " ").title()
 
     def save(self):
-        """Save state back to YAML files."""
+        """Save state back to YAML files (new schema)."""
         # Group plugins by category
         by_category: dict[str, list[PluginRecord]] = {}
 

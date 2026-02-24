@@ -2,7 +2,11 @@
 - plugin: UI Color Palette /one・WCAG Color Palette Manager for Apps & Websites
   link: https://uicp.ylb.lt/website
   description: Color Palettes that meet WCAG Guidelines and Operations
-  summary: By Aurélien Grimaud. Last updated 19 Feb 2026.
+  authors:
+  - Aurélien Grimaud
+  updated: '2026-02-19'
+  version:
+    value: unknown
   open-source: false
   tags:
   - a11y
@@ -10,7 +14,12 @@
   link: http://www.getstark.co
   description: Ensure your design is accessible and high contrast for every type of
     color blindness.
-  summary: By Stark Lab, Inc.. Last updated 9 Sep 2025.
+  authors:
+  - Stark Lab
+  - Inc
+  updated: '2025-09-09'
+  version:
+    value: unknown
   open-source: false
   tags:
   - a11y
@@ -18,28 +27,44 @@
   link: https://github.com/lifeofmle/check-contrast
   description: Allows you to select layers in Sketch and get realtime feedback about
     the contrast ratio
-  summary: By Michael Le. Last updated 4 Jan 2023.
+  authors:
+  - Michael Le
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
 - plugin: Contrast
   link: https://github.com/romannurik/Sketch-Contrast#readme
   description: A Sketch plugin to show a pass/fail type contrast report.
-  summary: By Roman Nurik. Last updated 2 Dec 2022.
+  authors:
+  - Roman Nurik
+  updated: '2022-12-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
 - plugin: Attention prediction plugin
   link: https://github.com/fixate-ai/sketch-attention-prediction-plugin
   description: Attention prediction - know what your users see as they view you design
-  summary: By fixate-ai. Last updated 28 Apr 2021.
+  authors:
+  - fixate-ai
+  updated: '2021-04-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
 - plugin: Color Blindless
   link: https://github.com/doreenyou/color-blindless
   description: Simulate design in different types of color vision deficiency
-  summary: By Youran You. Last updated 7 Apr 2021.
+  authors:
+  - Youran You
+  updated: '2021-04-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
@@ -47,7 +72,11 @@
   link: https://github.com/attentioninsight/attention-insight-sketch-plugin
   description: Generate attention heatmaps and instantly know where users look when
     engaging with your designs
-  summary: By Attention Insight. Last updated 24 Mar 2021.
+  authors:
+  - Attention Insight
+  updated: '2021-03-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
@@ -55,7 +84,11 @@
   link: https://www.adeeapp.com/
   description: Design for all. The most comprehensive free accessibility testing tool
     for inclusive design!
-  summary: By AdeeApp.com. Last updated 1 Feb 2021.
+  authors:
+  - AdeeApp
+  updated: '2021-02-01'
+  version:
+    value: unknown
   open-source: false
   tags:
   - a11y
@@ -64,7 +97,11 @@
   description: A Sketch plugin to check color contrast for web accessibility based
     on WCAG 2.0. Fitting seamlessly into your team's workflow, Cluse allows you to
     remotely change your design and see the updated WCAG score live.
-  summary: By Anonymous. Last updated 9 Jun 2020.
+  authors:
+  - Anonymous
+  updated: '2020-06-09'
+  version:
+    value: unknown
   open-source: false
   tags:
   - a11y
@@ -72,7 +109,11 @@
   link: https://github.com/getflourish/Sketch-Color-Contrast-Analyser
   description: A Sketch plugin that calculates the color contrast of two selected
     layers and evaluates it against the WCAG2.0.
-  summary: By Florian Schulz. Last updated 21 Feb 2020.
+  authors:
+  - Florian Schulz
+  updated: '2020-02-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
@@ -80,7 +121,11 @@
   link: https://github.com/akiersky/color-swatcher
   description: A Sketch plugin to analyze document colors and show the WCAG color
     contrast value.
-  summary: By akiersky. Last updated 2 Apr 2019.
+  authors:
+  - akiersky
+  updated: '2019-04-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y
@@ -88,7 +133,11 @@
   link: https://github.com/bryanberger/sketch-wcag
   description: A Sketch plugin that lets you contrast test your entire color palette
     against the WCAG guidelines all at once
-  summary: By Bryan Berger. Last updated 11 Oct 2018.
+  authors:
+  - Bryan Berger
+  updated: '2018-10-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - a11y

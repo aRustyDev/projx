@@ -2,35 +2,55 @@
 - plugin: Quopi
   link: https://github.com/LukeFinch/Quopi
   description: Fetches copy from the comments on your Abstract branch
-  summary: By Luke Finch. Last updated 1 Mar 2023.
+  authors:
+  - Luke Finch
+  updated: '2023-03-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - copy-paste
 - plugin: copycat
   link: https://github.com/azhsetiawan/sketch-copycat
   description: sketch plugin
-  summary: By Ashar Setiawan. Last updated 6 Jan 2023.
+  authors:
+  - Ashar Setiawan
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - copy-paste
 - plugin: Paste Paddings
   link: https://github.com/simonlidesign/pastePaddings
   description: Allows you to copy the paddings of one element and apply them to another
-  summary: By simonlidesign. Last updated 5 Jan 2023.
+  authors:
+  - simonlidesign
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - copy-paste
 - plugin: Frontitude
   link: https://www.frontitude.com
   description: One place for your UX copy, from design to production.
-  summary: By Frontitude. Last updated 29 Aug 2021.
+  authors:
+  - Frontitude
+  updated: '2021-08-29'
+  version:
+    value: unknown
   open-source: false
   tags:
   - copy-paste
 - plugin: Paste Direct
   link: https://github.com/yudiz-solutions/paste-direct
   description: Design like a guitarist!
-  summary: By Sudev Kiyada. Last updated 18 Oct 2018.
+  authors:
+  - Sudev Kiyada
+  updated: '2018-10-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - copy-paste

@@ -2,7 +2,11 @@
 - plugin: 'UXarts: Screenshot to Design Component'
   link: https://github.com/qyxghcl007/UXarts-Screenshot-to-Design-Component
   description: Use AI to detect and convert screenshots into editable Sketch layers.
-  summary: By Uxarts. Last updated 30 May 2025.
+  authors:
+  - Uxarts
+  updated: '2025-05-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - ai
@@ -11,9 +15,11 @@
   description: 'Elevate your Sketch designs with the Picsart Plugin: effortlessly
     remove backgrounds from product photos, cars, furniture, jewelry, and more, and
     upscale images'
-  summary: By up to 8x per side (64x resolution). Achieve clean, high-quality visuals
-    directly in Sketch with AI-powered tools that streamline your creative process.  by
-    PicsArt, Inc. Last updated 15 Jan 2025.
+  authors:
+  - up to 8x per side (64x resolution)
+  updated: '2025-01-15'
+  version:
+    value: unknown
   open-source: false
   tags:
   - ai
@@ -22,7 +28,11 @@
   description: Transform screenshots into editable Sketch UI designs effortlessly.
     Simply upload a snapshot of an app or website, and let our tool do the rest. Then,
     begin our design journey.
-  summary: By Codia.AI. Last updated 21 Nov 2024.
+  authors:
+  - Codia
+  updated: '2024-11-21'
+  version:
+    value: unknown
   open-source: false
   tags:
   - ai

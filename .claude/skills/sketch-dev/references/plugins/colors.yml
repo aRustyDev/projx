@@ -3,28 +3,44 @@
   link: https://github.com/freddiewrites/color-magic
   description: Import color variables from CSS or JSON files into your Sketch document
     as Color Variables (Swatches)
-  summary: By Freddie Harrison. Last updated 30 Jan 2026.
+  authors:
+  - Freddie Harrison
+  updated: '2026-01-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Mesh gradients
   link: https://github.com/oodesign/mesh-gradients
   description: Create awesome mesh gradients, right inside of Sketch.
-  summary: By oodesign. Last updated 18 Jul 2025.
+  authors:
+  - oodesign
+  updated: '2025-07-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Palette Stripes
   link: https://github.com/sureskumar/palette-stripes
   description: Generate palette stripes in sketch from shape fills.
-  summary: By Sures Kumar. Last updated 3 May 2024.
+  authors:
+  - Sures Kumar
+  updated: '2024-05-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Chromata
   link: https://github.com/vladimir-ionita/Chromata
   description: Find rogue colors
-  summary: By Vladimir Ionița. Last updated 12 Apr 2023.
+  authors:
+  - Vladimir Ionița
+  updated: '2023-04-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -32,7 +48,11 @@
   link: https://github.com/Carlosarturo28/Appalette
   description: A Sketch plugin that let you find the color palette of (almost) any
     App.
-  summary: By Carlos Navarro. Last updated 17 Mar 2023.
+  authors:
+  - Carlos Navarro
+  updated: '2023-03-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -40,21 +60,33 @@
   link: https://github.com/Sugarcode-Team/colors-to-code-sketch-plugin-live
   description: Export Colors as organized Stylesheets for Android, CSS, Less, SCSS,
     Sass, React, ReactNative, Stylus, PostCSS and CSS Crush.
-  summary: By Sugarcode. Last updated 5 Mar 2023.
+  authors:
+  - Sugarcode
+  updated: '2023-03-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Sketch Dark Mode
   link: https://sketch-dark-mode.eduardogomez.io
   description: Generate a dark mode version of any document, the right way.
-  summary: By Eduardo Gómez. Last updated 2 Mar 2023.
+  authors:
+  - Eduardo Gómez
+  updated: '2023-03-02'
+  version:
+    value: unknown
   open-source: false
   tags:
   - colors
 - plugin: Color Variables Migrator
   link: https://github.com/sketch-hq/color-variables-migrator
   description: Migrate your Layers and Styles to use Color Variables
-  summary: By Sketch. Last updated 6 Jan 2023.
+  authors:
+  - Sketch
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -62,7 +94,11 @@
   link: https://github.com/receptiryaki/darkside
   description: Design light and dark themes easily. Switch between themes. Export
     color assets for Xcode and Android Studio.
-  summary: By Recep Tiryaki. Last updated 5 Jan 2023.
+  authors:
+  - Recep Tiryaki
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -70,7 +106,11 @@
   link: https://github.com/hecflores/sketch-color-manager
   description: Sketch Plugin to manage all rogue colors in the sketch, along with
     other styling properties
-  summary: By hecflores. Last updated 5 Jan 2023.
+  authors:
+  - hecflores
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -78,14 +118,22 @@
   link: https://github.com/chewbecky/tinty
   description: Sketch Plugin that lets you create tints and shades of any color as
     shared styles and document colors.
-  summary: By chewbecca. Last updated 5 Jan 2023.
+  authors:
+  - chewbecca
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: DarkModeSystem
   link: https://github.com/BDiogo/DarkMode-System
   description: Apply a Dark Theme to your Project
-  summary: By BDiogo. Last updated 4 Jan 2023.
+  authors:
+  - BDiogo
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -93,7 +141,11 @@
   link: https://github.com/larsenwork/sketch-easing-gradient
   description: Supercharge your gradients in Sketch with no-linear color mix and custom
     color spaces
-  summary: By larsenwork. Last updated 4 Jan 2023.
+  authors:
+  - larsenwork
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -102,7 +154,11 @@
   description: 'Colormate is a kickass sketch plugin that will help you figure out
     how in the hell you ended up with 457 different greys, instead of the 1 grey Mandy
     gave you in the handover. Oops :flushed:'
-  summary: By The Main Ingredient. Last updated 3 Jan 2023.
+  authors:
+  - The Main Ingredient
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -110,21 +166,33 @@
   link: https://github.com/icona79/sketch-m3-color-palettes
   description: With this plugin you can import Material Design themes from the tokens
     generated with the Material Theme Builder
-  summary: By Matteo Gratton. Last updated 29 Sep 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-09-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: import-colors
   link: https://github.com/Ashung/import-colors-sketch
   description: Import colors from swatches file to Sketch.
-  summary: By Ashung. Last updated 21 Sep 2022.
+  authors:
+  - Ashung
+  updated: '2022-09-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Light to Dark 🌓
   link: https://github.com/pplcallmesatz/lighttodark
   description: To create light to dark mode
-  summary: By Satheesh Kumar Selvaraj. Last updated 29 Jun 2022.
+  authors:
+  - Satheesh Kumar Selvaraj
+  updated: '2022-06-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -132,49 +200,77 @@
   link: https://github.com/fbmore/Colors-Manager-Sketch-Plugin
   description: Import, Export and Update Sketch Color Variables to and from Color
     Tokens.
-  summary: By Francesco Bertocci. Last updated 9 May 2022.
+  authors:
+  - Francesco Bertocci
+  updated: '2022-05-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Colors In Use
   link: https://github.com/icona79/Sketch---Colors-in-use
   description: Copy a list of all the used colors in your layers
-  summary: By Matteo Gratton. Last updated 29 Mar 2022.
+  authors:
+  - Matteo Gratton
+  updated: '2022-03-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: ColorVariablesExporter
   link: https://github.com/griffin-stewie/ColorVariablesExporter
   description: Export Color Variables for development
-  summary: By griffin-stewie. Last updated 15 Feb 2022.
+  authors:
+  - griffin-stewie
+  updated: '2022-02-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Palette Cleanser
   link: https://github.com/proteanstudio/sketch-palette-cleanser
   description: Get a full rundown of the colors you're using in your Sketch document.
-  summary: By Protean Studio. Last updated 16 Sep 2021.
+  authors:
+  - Protean Studio
+  updated: '2021-09-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: json-color-palette-importer
   link: https://github.com/ziyafenn/sketch-json-color-palette-importer
   description: Create shared layer styles
-  summary: By importing JSON color palettes  by Ziya Fenn. Last updated 20 Jan 2021.
+  authors:
+  - importing JSON color palettes  by Ziya Fenn
+  updated: '2021-01-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Prism2ColorVariables
   link: https://github.com/griffin-stewie/Prism2ColorVariables
   description: Migrate your Prism named color to Color Variables
-  summary: By griffin-stewie. Last updated 13 Jan 2021.
+  authors:
+  - griffin-stewie
+  updated: '2021-01-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Randomcolors
   link: https://github.com/avadhbsd/RandomColors
   description: Sketch App Plugin For Applying Random Colors To A Selection Of Objects.
-  summary: By Avadh. Last updated 3 Sep 2020.
+  authors:
+  - Avadh
+  updated: '2020-09-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -182,7 +278,11 @@
   link: https://github.com/colesperks/QuickColor
   description: Sketch plugin that lets you quickly apply colors from the color palette
     to selected elements- 🎨
-  summary: By Cole Perkins. Last updated 28 Aug 2020.
+  authors:
+  - Cole Perkins
+  updated: '2020-08-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -190,21 +290,33 @@
   link: https://github.com/carloscabo/gradient-matrix-generator-sketch
   description: Plugin that generates a matrix of gradient combinations from a selection
     of colors
-  summary: By CarlosCabo. Last updated 10 Jul 2020.
+  authors:
+  - CarlosCabo
+  updated: '2020-07-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Blender
   link: https://github.com/bunnieabc/Blender
   description: A sketch plugin to create awesome gradient layers
-  summary: By bunnieabc. Last updated 19 Jun 2020.
+  authors:
+  - bunnieabc
+  updated: '2020-06-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Sketch Image Average Color
   link: https://github.com/AntonioJMartinez/sketch-ImageAverageColor
   description: A plugin to save and use the average color of an image.
-  summary: By Antonio J. Martinez. Last updated 31 May 2020.
+  authors:
+  - Antonio J
+  updated: '2020-05-31'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -212,14 +324,23 @@
   link: https://github.com/ment-mx/Prism
   description: Creates a beautiful artboard color palette with all your 'Document
     Colors' and their respective color label in a variety of formats.
-  summary: By Lalo Mrtnz. Last updated 22 May 2020.
+  authors:
+  - Lalo Mrtnz
+  updated: '2020-05-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: CoolHue
   link: https://github.com/webkul/coolhue
   description: Coolest handpicked Gradient Palette for super amazing stuff
-  summary: By Webkul, Nitish Khagwal. Last updated 15 Feb 2020.
+  authors:
+  - Webkul
+  - Nitish Khagwal
+  updated: '2020-02-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -227,21 +348,33 @@
   link: https://github.com/carlosflrg/name-my-color
   description: Give your colors unique names. Generates labels for the Color Name,
     Hexcode and changes the name of the selected layer.
-  summary: By Carlos Flores. Last updated 4 Feb 2020.
+  authors:
+  - Carlos Flores
+  updated: '2020-02-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Sketch Palettes
   link: https://github.com/andrewfiorillo/sketch-palettes
   description: Sketch plugin that lets you save and load colors in the color picker
-  summary: By Andrew Fiorillo. Last updated 23 Oct 2019.
+  authors:
+  - Andrew Fiorillo
+  updated: '2019-10-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: img-pal-gen
   link: https://github.com/iarthstar/Image2Palette
   description: Generates Color Palette from Image Layer
-  summary: By Arth K. Gajjar. Last updated 16 Oct 2019.
+  authors:
+  - Arth K
+  updated: '2019-10-16'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -249,14 +382,22 @@
   link: https://github.com/getflourish/Sketch-Style-Inventory
   description: Generate a visual style sheet with all colors and text styles that
     you are using in Sketch.
-  summary: By Florian Schulz. Last updated 19 Aug 2019.
+  authors:
+  - Florian Schulz
+  updated: '2019-08-19'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: add-selected-colors
   link: https://github.com/jorgemartins/add-selected-colors
   description: Add selected colors to document palette, sketch plugin
-  summary: By Jorge Martins. Last updated 7 Mar 2019.
+  authors:
+  - Jorge Martins
+  updated: '2019-03-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -264,21 +405,33 @@
   link: https://github.com/weixin/Miaow
   description: A set of plugins for Sketch include drawing links & marks, UI Kit &
     Color sync, font & text replacing.
-  summary: By Tencent WeChat Team. Last updated 4 Mar 2019.
+  authors:
+  - Tencent WeChat Team
+  updated: '2019-03-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Material Design Color Palette
   link: https://github.com/t32k/material-design-color-palette
   description: Sketch app plugin for displaying Google material design color palette.
-  summary: By t32k. Last updated 28 Nov 2018.
+  authors:
+  - t32k
+  updated: '2018-11-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: system-styles
   link: https://github.com/sebcglbailey/sketch-system-styles
   description: Generate all the text styles you'll need, including alignment and colour.
-  summary: By Seb Bailey. Last updated 25 Oct 2018.
+  authors:
+  - Seb Bailey
+  updated: '2018-10-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -286,7 +439,11 @@
   link: https://github.com/rezaaa/Laboji
   description: A sketch plugin for adding emoji on layer name like colorful labels
     or tags.
-  summary: By Mohammad Reza Mahmoudi. Last updated 20 Oct 2018.
+  authors:
+  - Mohammad Reza Mahmoudi
+  updated: '2018-10-20'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -294,42 +451,66 @@
   link: https://github.com/philsinatra/Sketch-Color-Vars
   description: A Sketch plugin that will export the fill color of selected layers
     to SCSS, LESS and CSS files.
-  summary: By Phil Sinatra. Last updated 15 Oct 2018.
+  authors:
+  - Phil Sinatra
+  updated: '2018-10-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Convert To Grayscale
   link: https://github.com/mheesakkers/sketch-plugin-convert-to-grayscale
   description: A simple Sketch plugin to convert selected shapes to grayscale colors
-  summary: By Misha. Last updated 11 Oct 2018.
+  authors:
+  - Misha
+  updated: '2018-10-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: ColorBrightness
   link: https://github.com/andexds/ColorBrightness
   description: Color Brightness sketch plugin
-  summary: By Andrey Anashkin. Last updated 11 Oct 2018.
+  authors:
+  - Andrey Anashkin
+  updated: '2018-10-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Chromatic Sketch
   link: https://github.com/petterheterjag/chromatic-sketch
   description: Create good-looking and perceptually uniform gradients and color scales.
-  summary: By Petter Nilsson. Last updated 24 Aug 2018.
+  authors:
+  - Petter Nilsson
+  updated: '2018-08-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: keyColor
   link: https://github.com/KevinGutowski/keyColor
   description: A Sketch plugin to apply colors via the keyboard.
-  summary: By Kevin Gutowski. Last updated 31 Jul 2018.
+  authors:
+  - Kevin Gutowski
+  updated: '2018-07-31'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: arrowfy
   link: https://github.com/joclin/arrowfy
   description: Add simple arrowhead to end of selected paths. Matches color and weight.
-  summary: By Jocelyn Lin. Last updated 22 Jul 2018.
+  authors:
+  - Jocelyn Lin
+  updated: '2018-07-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -337,14 +518,22 @@
   link: https://github.com/einancunlu/Sketch-iOS-Bar-Color-Calculator
   description: A Sketch plugin that calculates and applies the correct color for you
     to get actual design color after applying it to a translucent UIToolbar or UINavigationBar.
-  summary: By Emin İnanç Ünlü. Last updated 13 Jun 2018.
+  authors:
+  - Emin İnanç Ünlü
+  updated: '2018-06-13'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: SwiftColorPalette
   link: https://github.com/nahitheper/SwiftColorPalette
   description: Sketch plugin that generates Swift Color Theme with enums
-  summary: By nahitheper. Last updated 30 May 2018.
+  authors:
+  - nahitheper
+  updated: '2018-05-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -352,21 +541,33 @@
   link: https://github.com/poyi/CopyColor
   description: Plugin that provides shortcut to copy layer fill color, border color,
     or text color to your clipboard for Sketch 4
-  summary: By Poyi. Last updated 29 May 2018.
+  authors:
+  - Poyi
+  updated: '2018-05-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Color Copier
   link: https://github.com/mfouquet/Color-Copier
   description: Sketch Plugin to quickly copy color RGB/HEX values.
-  summary: By Michael Fouquet. Last updated 26 May 2018.
+  authors:
+  - Michael Fouquet
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Chain
   link: https://lalomts.github.io/Chain/
   description: Dynamic color relations in Sketch.
-  summary: By Lalo Mrtnz. Last updated 26 May 2018.
+  authors:
+  - Lalo Mrtnz
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: false
   tags:
   - colors
@@ -374,28 +575,44 @@
   link: https://github.com/awkward/Alembic
   description: A Sketch plugin to extract a color palette from any layer that contains
     bitmap data.
-  summary: By Awkward. Last updated 22 May 2018.
+  authors:
+  - Awkward
+  updated: '2018-05-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: GGradient
   link: https://github.com/andexds/ggradient
   description: Simple way to create perfect gradient
-  summary: By Andrey Anashkin. Last updated 7 May 2018.
+  authors:
+  - Andrey Anashkin
+  updated: '2018-05-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Bonsai Standards
   link: https://github.com/thechinesekid/bonsai-plugin
   description: Update all the colors in an artboard to the latest Bonsai colors.
-  summary: By Hui Zheng. Last updated 25 Apr 2018.
+  authors:
+  - Hui Zheng
+  updated: '2018-04-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
 - plugin: Sketch Palette Generator
   link: https://github.com/awkward/sketch-palette-generator
   description: Output a JSON colour palette to Sketch 💎
-  summary: By Awkward. Last updated 6 Apr 2018.
+  authors:
+  - Awkward
+  updated: '2018-04-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -403,7 +620,11 @@
   link: https://github.com/ngs/sketchplugin-swift-color
   description: A Sketch Plugin for generating UIColor and NSColor initializer Swift
     code from fill color of selected layers.
-  summary: By Atsushi NAGASE. Last updated 23 Feb 2018.
+  authors:
+  - Atsushi NAGASE
+  updated: '2018-02-23'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors
@@ -411,7 +632,11 @@
   link: https://github.com/sketch-hq/color-variables-migrator
   description: Migrate your Layers and Styles to use the new Color Variables feature
     in Sketch 69.
-  summary: By Sketch. Last updated Official.
+  authors:
+  - Sketch
+  updated: '1970-01-01'
+  version:
+    value: unknown
   open-source: true
   tags:
   - colors

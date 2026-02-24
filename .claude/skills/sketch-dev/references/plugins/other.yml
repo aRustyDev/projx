@@ -2,56 +2,88 @@
 - plugin: 🍳Pan
   link: https://github.com/arvinxx/pan
   description: 用平底锅才是王者
-  summary: By arvinxx. Last updated 24 Jun 2025.
+  authors:
+  - arvinxx
+  updated: '2025-06-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: GxDesignOps
   link: https://github.com/genexuslabs/sketchdesignops
   description: Sketch Plugin For GeneXus internal use
-  summary: By Gastón Milano. Last updated 22 Jul 2024.
+  authors:
+  - Gastón Milano
+  updated: '2024-07-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Anto
   link: https://github.com/canisminor1990/anto
   description: Sketch Tools for AFX Designers
-  summary: By CanisMinor. Last updated 15 Dec 2023.
+  authors:
+  - CanisMinor
+  updated: '2023-12-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: sketch-json
   link: https://github.com/arvinxx/sketch-json
   description: a plugin to transfer sketch JSON into sketch Object
-  summary: By arvinxx. Last updated 8 Jan 2023.
+  authors:
+  - arvinxx
+  updated: '2023-01-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: CODING Toolkit
   link: https://github.com/Coding/coding-sketch-toolkit
   description: A series of commands for CODING designers.
-  summary: By tankxu. Last updated 6 Jan 2023.
+  authors:
+  - tankxu
+  updated: '2023-01-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: sketch-ignore
   link: https://github.com/theboi/sketch-ignore
   description: s
-  summary: By Ryan The. Last updated 5 Jan 2023.
+  authors:
+  - Ryan The
+  updated: '2023-01-05'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: FS_StockSummaryFiller
   link: https://github.com/freeman990/FS_StockInfoFiller
   description: 一系列关于股票数据的自动填充/生成工具
-  summary: By Freeman Sun. Last updated 4 Jan 2023.
+  authors:
+  - Freeman Sun
+  updated: '2023-01-04'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: labelizer
   link: https://github.com/nOograss/labelizer
   description: Extract, replace and download labels from Sketch file.
-  summary: By Maxime Peeters. Last updated 3 Jan 2023.
+  authors:
+  - Maxime Peeters
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
@@ -59,92 +91,145 @@
   link: https://github.com/madwaro/MiseEnPlace
   description: Mise En Place is a Sketch plug-in that helps you prep before you start
     cooking your designs.
-  summary: By Carlos Madrigal. Last updated 3 Jan 2023.
+  authors:
+  - Carlos Madrigal
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: microwave
   link: https://github.com/arvinxx/microwave-release
   description: 叮！你的设计已出炉~
-  summary: By arvinxx. Last updated 26 Jun 2022.
+  authors:
+  - arvinxx
+  updated: '2022-06-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Transifex Sketch Plugin
   link: https://github.com/transifex/transifex-sketch-plugin
   description: Start localization at the design phase. Accelerate your workflow
-  summary: By bringing the Product, Design and Localization teams closer.  by Transifex.
-    Last updated 10 Nov 2021.
+  authors:
+  - bringing the Product
+  - Design
+  - Localization teams closer
+  updated: '2021-11-10'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Hubble Sketch Plugin
   link: https://github.com/inthepocket/hubble-sketch-plugin
   description: A Sketch plugin to extract assets and primitives and send them to Hubble.app
-  summary: By inthepocket. Last updated 21 Sep 2021.
+  authors:
+  - inthepocket
+  updated: '2021-09-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: hs-plugin
   link: https://github.com/Weibotaoa/Weibotaoa
   description: sketch插件
-  summary: By 韦博韬. Last updated 21 Aug 2021.
+  authors:
+  - 韦博韬
+  updated: '2021-08-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: FreeFlow
   link: http://free-flow.co/
   description: Speed up common tasks and boost your productivity.
-  summary: By Francesco Bertocci. Last updated 30 Apr 2021.
+  authors:
+  - Francesco Bertocci
+  updated: '2021-04-30'
+  version:
+    value: unknown
   open-source: false
   tags:
   - other
 - plugin: Fake News
   link: https://github.com/JasonBernert/fake-news-sketchplugin
   description: Auto-populate Washington Post news content
-  summary: By The Washington Post. Last updated 18 Feb 2021.
+  authors:
+  - The Washington Post
+  updated: '2021-02-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Crafttor
   link: https://crafttor.com/sketch/
   description: Illustrations For Everyone
-  summary: By Crafttor. Last updated 16 Jan 2021.
+  authors:
+  - Crafttor
+  updated: '2021-01-16'
+  version:
+    value: unknown
   open-source: false
   tags:
   - other
 - plugin: babelfish
   link: https://github.com/SpaceBank/babelfish-sketch-plugin
   description: babelfish plugin
-  summary: By BilousAlexandr. Last updated 30 Dec 2020.
+  authors:
+  - BilousAlexandr
+  updated: '2020-12-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Custom Zoom
   link: https://github.com/alexkaessner/custom-zoom-sketch
   description: Zoom your document to a custom zoom level.
-  summary: By Alexander Käßner. Last updated 6 Nov 2020.
+  authors:
+  - Alexander Käßner
+  updated: '2020-11-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Runner
   link: https://sketchrunner.com
   description: Speed up your Sketch workflow
-  summary: By Sketch Runner. Last updated 27 Jun 2020.
+  authors:
+  - Sketch Runner
+  updated: '2020-06-27'
+  version:
+    value: unknown
   open-source: false
   tags:
   - other
 - plugin: Nudged
   link: https://github.com/KevinWoodhouse/Sketch-Nudged
   description: A Sketch plugin to easily edit your nudge distance settings.
-  summary: By Kevin Woodhouse. Last updated 17 Jun 2020.
+  authors:
+  - Kevin Woodhouse
+  updated: '2020-06-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Translation
   link: https://github.com/hoai265/Language-Sketch-Plugin
   description: A Sketch plugin for easy multi-language design
-  summary: By Hoai Nguyen. Last updated 25 Feb 2020.
+  authors:
+  - Hoai Nguyen
+  updated: '2020-02-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
@@ -152,91 +237,143 @@
   link: https://github.com/devinmancuso/sketch-rtl
   description: Automatically create RTL layouts of your designs with this plugin for
     Bohemian Coding's Sketch 3
-  summary: By Devin Mancuso. Last updated 3 Jan 2020.
+  authors:
+  - Devin Mancuso
+  updated: '2020-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Minimap
   link: https://github.com/abynim/sketch-minimap
   description: Navigate large pages with ease
-  summary: By Aby Nimbalkar. Last updated 7 Dec 2019.
+  authors:
+  - Aby Nimbalkar
+  updated: '2019-12-07'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Table of Contents
   link: https://github.com/youwenliang/Table-of-Contents
   description: Sketch plugin for generating table of contents for documentations
-  summary: By You-Wen Liang (Mark). Last updated 24 Sep 2019.
+  authors:
+  - You-Wen Liang (Mark)
+  updated: '2019-09-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch To View
   link: https://github.com/kiranpuppala/sketch-to-view
   description: Generate android views from sketch
-  summary: By kiranpuppala. Last updated 22 Sep 2019.
+  authors:
+  - kiranpuppala
+  updated: '2019-09-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Method
   link: https://github.com/KikeSz/Method-Sketch-Plugin
   description: Tool to apply your methodology systems
-  summary: By KikeSz. Last updated 6 Aug 2019.
+  authors:
+  - KikeSz
+  updated: '2019-08-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: ViewController for Framer
   link: https://github.com/awt2542/ViewController-for-Framer
   description: Multi step user flows in Framer.js
-  summary: By Andreas Wahlström. Last updated 14 Jul 2019.
+  authors:
+  - Andreas Wahlström
+  updated: '2019-07-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Commands
   link: https://github.com/bomberstudios/sketch-commands
   description: A collection of script commands for Bohemian Coding's Sketch.app
-  summary: By Ale Muñoz. Last updated 11 Jun 2019.
+  authors:
+  - Ale Muñoz
+  updated: '2019-06-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Logodrop
   link: https://github.com/Iconscout/logodrop
   description: A Sketch Plugin to get brand logos right into Sketch App.
-  summary: By Iconscout. Last updated 11 May 2019.
+  authors:
+  - Iconscout
+  updated: '2019-05-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Diverse UI Sketch Plugin
   link: https://github.com/reneepadgham/diverseui-sketch-plugin
   description: The official Sketch plugin for Diverse UI.
-  summary: By Renée Padgham. Last updated 3 Apr 2019.
+  authors:
+  - Renée Padgham
+  updated: '2019-04-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Typesettings
   link: https://github.com/buames/typesettings-sketch-plugin
   description: A quest for consistency
-  summary: By buames. Last updated 29 Mar 2019.
+  authors:
+  - buames
+  updated: '2019-03-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: sketch-camera-hotkeys
   link: https://github.com/jayhxmo/sketch-camera-hotkeys
   description: Navigate around and present more efficiently
-  summary: By Jay Mo. Last updated 18 Mar 2019.
+  authors:
+  - Jay Mo
+  updated: '2019-03-18'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Notes
   link: https://github.com/cshdllr/Notes
   description: A sketch plugin for taking notes
-  summary: By Jason Cashdollar. Last updated 8 Mar 2019.
+  authors:
+  - Jason Cashdollar
+  updated: '2019-03-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: DS Automator Sketch Plugin
   link: https://github.com/pavelneznanov/ds-automator-sketch-plugin
   description: Tools for automating designer work
-  summary: By Pavel Neznanov. Last updated 27 Feb 2019.
+  authors:
+  - Pavel Neznanov
+  updated: '2019-02-27'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
@@ -244,14 +381,22 @@
   link: https://github.com/designforhuman/event-badges-by-david
   description: A Sketch plugin to make a large quantity of name tags for any kind
     of events
-  summary: By davidlee. Last updated 22 Feb 2019.
+  authors:
+  - davidlee
+  updated: '2019-02-22'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Line2rect
   link: https://github.com/KevinvBre/Sketch-Line2Rect
   description: Replace Lines
-  summary: By Rectangles in Sketch  by Kevin van Breemaat. Last updated 21 Feb 2019.
+  authors:
+  - Rectangles in Sketch  by Kevin van Breemaat
+  updated: '2019-02-21'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
@@ -259,14 +404,22 @@
   link: https://github.com/zehfernandes/sketch-pochette
   description: A Sketch plugin that lets you carry your most used properties close
     to your mouse
-  summary: By Zeh Fernandes. Last updated 14 Jan 2019.
+  authors:
+  - Zeh Fernandes
+  updated: '2019-01-14'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Bootstrap Grid
   link: https://github.com/De-La-Vega/BootstrapGrid
   description: Sketch plugin inserts correct bootstrap grid in nested blocks.
-  summary: By Vitaliy Kirenkov. Last updated 29 Oct 2018.
+  authors:
+  - Vitaliy Kirenkov
+  updated: '2018-10-29'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
@@ -274,42 +427,66 @@
   link: https://github.com/matt-curtis/fluid-for-sketch
   description: Fluid is a Sketch plugin that provides a means to create more constraint-based,
     responsive designs. It is based on Auto Layout constraints.
-  summary: By Matt Curtis. Last updated 3 Sep 2018.
+  authors:
+  - Matt Curtis
+  updated: '2018-09-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Plugin Monster
   link: https://github.com/PeachScript/sketch-plugin-monster
   description: A Sketch plugin for managing all plugin shortcuts.
-  summary: By Peach. Last updated 15 Aug 2018.
+  authors:
+  - Peach
+  updated: '2018-08-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Y Tools
   link: https://github.com/yued-fe/y-tools
   description: Sketch plugin tools yued-fe.TM
-  summary: By yued-fe.TM. Last updated 8 Aug 2018.
+  authors:
+  - yued-fe
+  updated: '2018-08-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Acl Sketch Plugin
   link: https://github.com/duyluonganduin/acl-sketch-plugin
   description: Internal tool for Anduin Design Team
-  summary: By Duy Luong. Last updated 2 Aug 2018.
+  authors:
+  - Duy Luong
+  updated: '2018-08-02'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: FusionCool
   link: https://github.com/alibaba-fusion/cool
   description: Plugin to using resources of Fusion Design.
-  summary: By wwsun. Last updated 15 Jul 2018.
+  authors:
+  - wwsun
+  updated: '2018-07-15'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Tiles
   link: https://github.com/kumo/sketch-tiles
   description: A Sketch plugin for playing with seamless tiles.
-  summary: By Robert Clarke. Last updated 28 Jun 2018.
+  authors:
+  - Robert Clarke
+  updated: '2018-06-28'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
@@ -317,78 +494,122 @@
   link: https://github.com/ErikFontanel/sketch-toggle-constrain-proportions
   description: Toggles the contrain proportions setting with keyboard shortcut ⌘ +
     P. Sketch v39+ compatible.
-  summary: By Erik Gelderblom. Last updated 12 Jun 2018.
+  authors:
+  - Erik Gelderblom
+  updated: '2018-06-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Rotator
   link: https://github.com/pberrecloth/rotator-sketch-plugin
   description: Rotate objects at preset amounts
-  summary: By Peter Berrecloth. Last updated 26 May 2018.
+  authors:
+  - Peter Berrecloth
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: MagicPresenter
   link: https://github.com/MagicSketch/MagicPresenter
   description: Sketch Plugin to Present Slides or Deck directly in Sketch 3
-  summary: By jamztang. Last updated 26 May 2018.
+  authors:
+  - jamztang
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Mouse Pointers
   link: https://github.com/stuartromanek/sketch-mouse-pointers
   description: Add Mouse Pointers to Sketch.
-  summary: By Stuart Romanek. Last updated 26 May 2018.
+  authors:
+  - Stuart Romanek
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Mate
   link: https://github.com/getflourish/Sketch-Mate
   description: These plugins will make you best friends with Sketch.
-  summary: By Florian Schulz. Last updated 26 May 2018.
+  authors:
+  - Florian Schulz
+  updated: '2018-05-26'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Assistant
   link: https://github.com/jordansinger/Assistant
   description: Talk to Sketch
-  summary: By Jordan Singer. Last updated 25 May 2018.
+  authors:
+  - Jordan Singer
+  updated: '2018-05-25'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: charapara
   link: https://github.com/kd-co/charapara-sketch-extension
   description: Charapara, an initiative
-  summary: By Kerala Designers Collaborative (KDCo), is a dummy text generator for
-    Malayalam  by kd-co. Last updated 24 May 2018.
+  authors:
+  - Kerala Designers Collaborative (KDCo)
+  - is a dummy text generator for Malayalam  by kd-co
+  updated: '2018-05-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Utility Belt
   link: https://github.com/frankko/UtilityBelt
   description: An always-expanding collection of simple, focused plugins for Sketch.
-  summary: By Frank Kolodziej. Last updated 9 May 2018.
+  authors:
+  - Frank Kolodziej
+  updated: '2018-05-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: ZEN Sketch
   link: https://github.com/FrancisVega/ZEN-Sketch
   description: A collection of Sketch plugins
-  summary: By Francis Vega. Last updated 9 Apr 2018.
+  authors:
+  - Francis Vega
+  updated: '2018-04-09'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: SketchReloadPlugins
   link: https://github.com/liangjingyang/SketchReloadPlugins
   description: Reload Plugins.
-  summary: By Simple Liang. Last updated 3 Apr 2018.
+  authors:
+  - Simple Liang
+  updated: '2018-04-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other
 - plugin: Sketch Exchanger
   link: https://github.com/littlebusters/Sketch-Exchanger
   description: Convert from Sketch to JSON w/assets and JSON w/assets to Sketch.
-  summary: By littlebusters. Last updated 17 Jan 2018.
+  authors:
+  - littlebusters
+  updated: '2018-01-17'
+  version:
+    value: unknown
   open-source: true
   tags:
   - other

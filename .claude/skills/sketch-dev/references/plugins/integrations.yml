@@ -3,42 +3,66 @@
   link: https://github.com/miroapp/sketch_plugin
   description: Add, share and discuss your Sketch artboards with the team in Miro.
     The plugin allow to sync the artboards with the boards in one click
-  summary: By Miro. Last updated 24 Apr 2025.
+  authors:
+  - Miro
+  updated: '2025-04-24'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
 - plugin: Sketch Wakatime
   link: https://github.com/wakatime/sketch-wakatime
   description: A Plugin to update your WakaTime stats automatically from Sketch.
-  summary: By WakaTime. Last updated 12 Oct 2023.
+  authors:
+  - WakaTime
+  updated: '2023-10-12'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
 - plugin: Cloudinary Plugin
   link: https://github.com/cloudinary-devs/cloudinary-sketch-plugin
   description: Cloudinary plugin for Sketch projects
-  summary: By Maya Shavin. Last updated 11 Jul 2023.
+  authors:
+  - Maya Shavin
+  updated: '2023-07-11'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
 - plugin: SketchContentSync
   link: https://github.com/contentsync/SketchContentSync
   description: Sync sketch files with google docs.
-  summary: By ContentSync. Last updated 30 Mar 2023.
+  authors:
+  - ContentSync
+  updated: '2023-03-30'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
 - plugin: Sketch Chat
   link: https://github.com/mathieudutour/sketch-chat
   description: A Sketch plugin to chat in Sketch Cloud files
-  summary: By Mathieu Dutour. Last updated 3 Mar 2023.
+  authors:
+  - Mathieu Dutour
+  updated: '2023-03-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
 - plugin: Connection Flow Arrows
   link: https://github.com/faridsabitov/Sketch-Connection-Flow-Arrows
   description: Plugin for generating easy to use connection flow arrows in Sketch
-  summary: By Farid Sabitov. Last updated 3 Jan 2023.
+  authors:
+  - Farid Sabitov
+  updated: '2023-01-03'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
@@ -46,14 +70,22 @@
   link: https://github.com/DWilliames/Google-sheets-content-sync-sketch-plugin
   description: Edit and collaborate on your content in Google Sheets, then sync in
     back to your sketch files.
-  summary: By David Williames. Last updated 8 Aug 2021.
+  authors:
+  - David Williames
+  updated: '2021-08-08'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
 - plugin: Primary Sync
   link: https://github.com/Primary-app/primary-sync
   description: Sync your Sketch designs 💎 with Primary's user flows and design documents.
-  summary: By Primary. Last updated 6 May 2020.
+  authors:
+  - Primary
+  updated: '2020-05-06'
+  version:
+    value: unknown
   open-source: true
   tags:
   - integrations
