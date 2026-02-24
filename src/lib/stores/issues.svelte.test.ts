@@ -6,7 +6,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { IssueStore, createIssueStore } from './issues.svelte.js';
 import type { Issue } from '$lib/db/types.js';
-import type { DataAccessLayer } from '$lib/db/dal.js';
+import type { DataAccessLayer } from '$lib/db/types.js';
 import type { ProcessSupervisor } from '$lib/cli/index.js';
 
 // Mock issue factory

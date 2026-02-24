@@ -18,7 +18,7 @@ vi.mock('$lib/stores/app.svelte.js', () => ({
 	}
 }));
 
-import Layout from './+layout.svelte';
+import Layout from '../../src/routes/+layout.svelte';
 
 // Mock localStorage
 const mockStorage: Record<string, string> = {};

@@ -1,12 +1,13 @@
 /**
- * Database Module
+ * Database Module - Browser-safe exports
  * @module db
  *
- * Provides unified database access for SQLite and Dolt backends.
- * All write operations go through the `bd` CLI via ProcessSupervisor.
+ * Types and interfaces for database access.
+ * The actual implementation is in $lib/server/db/dal.ts (server-only).
+ *
+ * For server-side code that needs the DataAccessLayer implementation:
+ * import { DataAccessLayer, getDataAccessLayer } from '$lib/server/db/dal.js';
  */
-
-export { DataAccessLayer, getDataAccessLayer, initDataAccessLayer } from './dal.js';
 
 export type {
 	DatabaseBackend,
@@ -16,5 +17,6 @@ export type {
 	Dependency,
 	Comment,
 	Label,
-	IssueFilter
+	IssueFilter,
+	DataAccessLayer
 } from './types.js';

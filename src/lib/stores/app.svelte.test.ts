@@ -5,7 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AppStore } from './app.svelte.js';
-import type { DataAccessLayer } from '$lib/db/dal.js';
+import type { DataAccessLayer } from '$lib/db/types.js';
 import type { ProcessSupervisor } from '$lib/cli/index.js';
 import type { Issue } from '$lib/db/types.js';
 

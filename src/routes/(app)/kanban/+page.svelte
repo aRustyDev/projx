@@ -5,11 +5,14 @@
 	 */
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import KanbanBoard from '$lib/components/kanban/KanbanBoard.svelte';
 	import FilterPanel from '$lib/components/issues/FilterPanel.svelte';
-	import { createIssueStore, type IssueStore } from '$lib/stores/issues.svelte.js';
-	import { createDataAccessLayer, type DataAccessLayer } from '$lib/db/dal.js';
-	import { createProcessSupervisor, type ProcessSupervisor } from '$lib/cli/index.js';
+	import { appStore } from '$lib/stores/app.svelte.js';
+	import { parseFilterFromURL, buildFilterURL } from '$lib/utils/url-state.js';
+	import type { DataAccessLayer } from '$lib/db/types.js';
+	import type { ProcessSupervisor } from '$lib/cli/types.js';
 	import type { IssueFilter } from '$lib/db/types.js';
 
 	interface Props {
@@ -19,12 +22,12 @@
 
 	const props: Props = $props();
 
-	// Use injected dependencies or create defaults
-	const dal: DataAccessLayer = props.dal ?? createDataAccessLayer({ dbPath: '.beads/issues.db' });
-	const supervisor: ProcessSupervisor = props.supervisor ?? createProcessSupervisor();
+	// Initialize app store with injected dependencies for testing
+	if (props.dal || props.supervisor) {
+		appStore.reset({ dal: props.dal, supervisor: props.supervisor });
+	}
 
-	// Create store
-	const store: IssueStore = createIssueStore({ dal, supervisor });
+	const store = appStore;
 
 	// Local state
 	let loading = $state(true);
@@ -83,11 +86,17 @@
 		if (!browser) return;
 
 		try {
+			// Initialize filter from URL params
+			const urlFilter = parseFilterFromURL($page.url.searchParams);
+			if (Object.keys(urlFilter).length > 0) {
+				store.setFilter(urlFilter);
+			}
+
 			// Load metadata for filters
 			const [statuses, assignees, types] = await Promise.all([
-				dal.getStatuses(),
-				dal.getAssignees(),
-				dal.getIssueTypes()
+				store.getStatuses(),
+				store.getAssignees(),
+				store.getIssueTypes()
 			]);
 
 			availableStatuses = statuses;
@@ -97,11 +106,25 @@
 			// Load issues
 			await store.load();
 			loading = false;
+
+			// Start watching for changes
+			store.startWatching({ pollingInterval: 10000 });
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load issues';
 			loading = false;
 		}
+
+		return () => {
+			store.stopWatching();
+		};
 	});
+
+	function updateURL(newFilter: IssueFilter) {
+		if (!browser) return;
+		const url = buildFilterURL('/kanban', newFilter);
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
+		goto(url, { replaceState: true, keepFocus: true, noScroll: true });
+	}
 
 	function handleFilterChange(filters: {
 		status: string[];
@@ -129,19 +152,33 @@
 		}
 
 		store.setFilter(newFilter);
+		updateURL(newFilter);
 	}
 
 	function handleCardClick(kanbanIssue: KanbanIssue) {
-		store.setSelected(kanbanIssue.id);
-		// TODO: Open issue detail modal
+		const issue = issues.find((i) => i.id === kanbanIssue.id);
+		if (issue) {
+			store.openDetailModal(issue);
+		}
 	}
 
 	async function handleStatusChange(kanbanIssue: KanbanIssue, newStatus: string) {
 		try {
-			await store.update(kanbanIssue.id, { status: newStatus });
+			await store.update(kanbanIssue.id, { status: newStatus } as { title?: string });
 		} catch (e) {
-			// TODO: Show error toast
 			console.error('Failed to update status:', e);
+		}
+	}
+
+	async function handleRetry() {
+		loading = true;
+		error = null;
+		try {
+			await store.load();
+		} catch (e) {
+			error = e instanceof Error ? e.message : 'Failed to load issues';
+		} finally {
+			loading = false;
 		}
 	}
 </script>
@@ -168,7 +205,7 @@
 				<p class="text-red-600 dark:text-red-400">Error loading issues: {error}</p>
 				<button
 					type="button"
-					onclick={() => location.reload()}
+					onclick={handleRetry}
 					class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
 				>
 					Retry

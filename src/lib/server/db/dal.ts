@@ -15,8 +15,9 @@ import type {
 	Comment,
 	Label,
 	IssueFilter
-} from './types.js';
-import { ProcessSupervisor, getProcessSupervisor } from '../cli/index.js';
+} from '$lib/db/types.js';
+import type { ProcessSupervisor } from '$lib/cli/types.js';
+import { getProcessSupervisor } from '../cli/supervisor.js';
 
 /** Default configuration values */
 const DEFAULT_CONFIG: Required<Omit<DatabaseConfig, 'backend' | 'dolt' | 'beadsPath'>> = {

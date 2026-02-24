@@ -4,8 +4,8 @@
  */
 
 import type { Issue, IssueFilter } from '$lib/db/types.js';
-import type { DataAccessLayer } from '$lib/db/dal.js';
-import type { ProcessSupervisor } from '$lib/cli/index.js';
+import type { DataAccessLayer } from '$lib/db/types.js';
+import type { ProcessSupervisor } from '$lib/cli/types.js';
 
 export interface IssueStoreConfig {
 	dal: DataAccessLayer;

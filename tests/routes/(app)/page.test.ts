@@ -6,9 +6,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/svelte';
 import { tick } from 'svelte';
-import Page from './+page.svelte';
+import Page from '../../../src/routes/(app)/+page.svelte';
 import type { Issue } from '$lib/db/types.js';
-import type { DataAccessLayer } from '$lib/db/dal.js';
+import type { DataAccessLayer } from '$lib/db/types.js';
 import type { ProcessSupervisor } from '$lib/cli/index.js';
 
 // Helper to wait for async operations

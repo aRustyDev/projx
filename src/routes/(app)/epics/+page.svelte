@@ -12,8 +12,8 @@
 	import TextSearch from '$lib/components/issues/TextSearch.svelte';
 	import { appStore } from '$lib/stores/app.svelte.js';
 	import { parseFilterFromURL, buildFilterURL } from '$lib/utils/url-state.js';
-	import type { DataAccessLayer } from '$lib/db/dal.js';
-	import type { ProcessSupervisor } from '$lib/cli/index.js';
+	import type { DataAccessLayer } from '$lib/db/types.js';
+	import type { ProcessSupervisor } from '$lib/cli/types.js';
 	import type { IssueFilter, Issue } from '$lib/db/types.js';
 
 	interface Props {

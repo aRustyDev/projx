@@ -9,7 +9,7 @@ import {
 	getProcessSupervisor,
 	initProcessSupervisor,
 	type ExecFunction
-} from './supervisor.js';
+} from '$lib/server/cli/supervisor.js';
 
 /** Create a mock exec function for testing */
 function createMockExec(): {

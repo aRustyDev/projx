@@ -95,3 +95,45 @@ export interface IssueFilter {
 		direction: 'asc' | 'desc';
 	};
 }
+
+/**
+ * DataAccessLayer interface for browser-safe type imports.
+ * The actual implementation is in $lib/server/db/dal.ts (server-only).
+ */
+export interface DataAccessLayer {
+	/** Get the current backend type */
+	getBackend(): DatabaseBackend;
+
+	/** Execute a raw SQL query (read operations only) */
+	query<T = Record<string, unknown>>(sql: string, params?: unknown[]): Promise<QueryResult<T>>;
+
+	/** Get issues with optional filtering */
+	getIssues(filter?: IssueFilter): Promise<Issue[]>;
+
+	/** Get a single issue by ID */
+	getIssue(id: string): Promise<Issue | null>;
+
+	/** Get dependencies for an issue */
+	getDependencies(issueId: string): Promise<Dependency[]>;
+
+	/** Get comments for an issue */
+	getComments(issueId: string): Promise<Comment[]>;
+
+	/** Get labels for an issue */
+	getLabels(issueId: string): Promise<string[]>;
+
+	/** Get all unique statuses in use */
+	getStatuses(): Promise<string[]>;
+
+	/** Get all unique assignees */
+	getAssignees(): Promise<string[]>;
+
+	/** Get all unique issue types */
+	getIssueTypes(): Promise<string[]>;
+
+	/** Get issue count with optional filter */
+	getIssueCount(filter?: IssueFilter): Promise<number>;
+
+	/** Close database connections */
+	close(): Promise<void>;
+}

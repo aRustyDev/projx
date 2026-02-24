@@ -1,20 +1,19 @@
 /**
- * CLI Module
+ * CLI Module - Browser-safe exports
  * @module cli
  *
- * Provides CLI execution capabilities with circuit breaker protection.
+ * Types and interfaces for CLI execution.
+ * The actual implementation is in $lib/server/cli/supervisor.ts (server-only).
+ *
+ * For server-side code that needs the ProcessSupervisor implementation:
+ * import { getProcessSupervisor } from '$lib/server/cli/supervisor.js';
  */
 
-export {
-	ProcessSupervisor,
-	getProcessSupervisor,
-	initProcessSupervisor,
-	type ExecFunction
-} from './supervisor.js';
-
 export type {
+	ProcessSupervisor,
 	ProcessSupervisorConfig,
 	CommandResult,
 	CircuitState,
-	SupervisorEvents
+	SupervisorEvents,
+	EventListener
 } from './types.js';

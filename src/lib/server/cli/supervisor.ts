@@ -18,7 +18,7 @@ import type {
 	CircuitState,
 	SupervisorEvents,
 	EventListener
-} from './types.js';
+} from '$lib/cli/types.js';
 
 /** Type for the exec function used by ProcessSupervisor */
 export type ExecFunction = (

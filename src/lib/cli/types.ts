@@ -67,3 +67,46 @@ export interface SupervisorEvents {
 
 /** Event listener function type */
 export type EventListener<T> = (data: T) => void;
+
+/**
+ * ProcessSupervisor interface for browser-safe type imports.
+ * The actual implementation is in supervisor.ts (server-only).
+ */
+export interface ProcessSupervisor {
+	/**
+	 * Execute a command with circuit breaker protection.
+	 * @param command - The command to execute (e.g., 'bd')
+	 * @param args - Command arguments
+	 * @returns Promise resolving to CommandResult
+	 */
+	execute(command: string, args?: string[]): Promise<CommandResult>;
+
+	/** Get current circuit breaker state */
+	getCircuitState(): CircuitState;
+
+	/** Get queue statistics */
+	getStats(): {
+		active: number;
+		queued: number;
+		circuitState: CircuitState;
+		failures: number;
+	};
+
+	/** Register an event listener */
+	on<K extends keyof SupervisorEvents>(
+		event: K,
+		listener: EventListener<SupervisorEvents[K]>
+	): void;
+
+	/** Remove an event listener */
+	off<K extends keyof SupervisorEvents>(
+		event: K,
+		listener: EventListener<SupervisorEvents[K]>
+	): void;
+
+	/** Manually reset the circuit breaker to closed state */
+	resetCircuit(): void;
+
+	/** Clear the command queue, rejecting all queued commands */
+	clearQueue(): void;
+}

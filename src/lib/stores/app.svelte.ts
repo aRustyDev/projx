@@ -8,11 +8,11 @@
 
 import { browser } from '$app/environment';
 import { SvelteSet } from 'svelte/reactivity';
-import { createDataAccessLayer, type DataAccessLayer } from '$lib/db/dal.js';
-import { createProcessSupervisor, type ProcessSupervisor } from '$lib/cli/index.js';
-import { createRealtimeClient, type RealtimeClient } from '$lib/realtime/index.js';
+import { createRealtimeClient, type RealtimeClient } from '$lib/realtime/useRealtime.js';
 import { toastStore } from './toast.svelte.js';
 import type { Issue, IssueFilter } from '$lib/db/types.js';
+import type { DataAccessLayer } from '$lib/db/types.js';
+import type { ProcessSupervisor } from '$lib/cli/types.js';
 
 export interface CreateIssueInput {
 	title: string;
@@ -121,18 +121,41 @@ class AppStore {
 	/**
 	 * Initialize the store with dependencies
 	 */
-	init(config: AppStoreConfig = {}): void {
+	async init(config: AppStoreConfig = {}): Promise<void> {
 		if (this.#initialized) return;
 
 		// Only create real instances if explicitly provided or in browser and not testing
 		const isTest = typeof process !== 'undefined' && process.env?.VITEST;
 		const shouldCreateInstances = browser && !isTest;
 
-		this.#dal =
-			config.dal ??
-			(shouldCreateInstances ? createDataAccessLayer({ dbPath: '.beads/issues.db' }) : null);
-		this.#supervisor =
-			config.supervisor ?? (shouldCreateInstances ? createProcessSupervisor() : null);
+		if (config.dal) {
+			this.#dal = config.dal;
+		} else if (shouldCreateInstances) {
+			try {
+				// Use non-static import path to bypass SvelteKit guard
+				// These modules are only loaded during SSR, never in browser
+				const dalPath = '$lib/server/db/dal.js';
+				const mod = await import(/* @vite-ignore */ dalPath);
+				this.#dal = await mod.DataAccessLayer.create();
+			} catch {
+				// DAL creation failed, will use null
+				this.#dal = null;
+			}
+		}
+
+		if (config.supervisor) {
+			this.#supervisor = config.supervisor;
+		} else if (shouldCreateInstances) {
+			try {
+				// Use non-static import path to bypass SvelteKit guard
+				const supervisorPath = '$lib/server/cli/supervisor.js';
+				const mod = await import(/* @vite-ignore */ supervisorPath);
+				this.#supervisor = mod.getProcessSupervisor();
+			} catch {
+				this.#supervisor = null;
+			}
+		}
+
 		this.#initialized = true;
 	}
 
@@ -181,7 +204,7 @@ class AppStore {
 	 */
 	async load(): Promise<void> {
 		if (!this.#dal) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#dal) return;
 
@@ -200,7 +223,7 @@ class AppStore {
 	 */
 	async create(input: CreateIssueInput): Promise<Issue | null> {
 		if (!this.#supervisor || !this.#dal) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#supervisor || !this.#dal) {
 			toastStore.error('Store not initialized');
@@ -261,7 +284,7 @@ class AppStore {
 	 */
 	async update(id: string, changes: Partial<CreateIssueInput>): Promise<void> {
 		if (!this.#supervisor) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#supervisor) {
 			toastStore.error('Store not initialized');
@@ -323,7 +346,7 @@ class AppStore {
 	 */
 	async delete(id: string): Promise<void> {
 		if (!this.#supervisor) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#supervisor) {
 			toastStore.error('Store not initialized');
@@ -377,7 +400,7 @@ class AppStore {
 	 */
 	async getStatuses(): Promise<string[]> {
 		if (!this.#dal) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#dal) return ['open', 'in_progress', 'done'];
 		return this.#dal.getStatuses();
@@ -388,7 +411,7 @@ class AppStore {
 	 */
 	async getAssignees(): Promise<string[]> {
 		if (!this.#dal) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#dal) return [];
 		return this.#dal.getAssignees();
@@ -399,7 +422,7 @@ class AppStore {
 	 */
 	async getIssueTypes(): Promise<string[]> {
 		if (!this.#dal) {
-			this.init();
+			await this.init();
 		}
 		if (!this.#dal) return ['task', 'bug', 'feature'];
 		return this.#dal.getIssueTypes();
