@@ -1,6 +1,6 @@
 {
 	"name": "projx-ui",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Unified Beads WebUI - A comprehensive interface for Beads and Gas-Town",
 	"type": "module",
 	"bin": {
