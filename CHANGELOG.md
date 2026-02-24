@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.0.2] - 2026-02-24
+## [unreleased]
 
 ### Features
 
@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - **build:** Separate server-only modules for proper client/server bundling
 - **tests:** Update E2E tests to match actual app structure
 - **core:** Resolve TypeScript errors for release
+- **ci:** Update bun version to 1.3.9 for lockfile compatibility
 
 ### Refactor
 
