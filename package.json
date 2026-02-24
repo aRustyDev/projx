@@ -43,7 +43,9 @@
 		"test:coverage": "vitest run --coverage",
 		"prepare": "husky",
 		"release": "./scripts/release.sh",
-		"changelog": "git cliff --unreleased"
+		"changelog": "git cliff --unreleased",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	},
 	"lint-staged": {
 		"*.{js,ts,svelte}": [
@@ -87,7 +89,16 @@
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.56.0",
 		"vite": "^6.0.0",
-		"vitest": "^4.0.18"
+		"vitest": "^4.0.18",
+		"storybook": "^10.2.11",
+		"@storybook/sveltekit": "^10.2.11",
+		"@storybook/addon-svelte-csf": "^5.0.11",
+		"@chromatic-com/storybook": "^5.0.1",
+		"@storybook/addon-vitest": "^10.2.11",
+		"@storybook/addon-a11y": "^10.2.11",
+		"@storybook/addon-docs": "^10.2.11",
+		"eslint-plugin-storybook": "^10.2.11",
+		"@vitest/browser-playwright": "4.0.18"
 	},
 	"engines": {
 		"node": ">=18.0.0"

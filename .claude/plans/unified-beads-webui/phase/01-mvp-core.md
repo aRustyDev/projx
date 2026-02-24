@@ -1259,6 +1259,8 @@ adrs list
 
 ## Deliverables Checklist
 
+### Components
+
 | Component | Priority | Complexity | Effort | Status |
 |-----------|----------|------------|--------|--------|
 | ProcessSupervisor | Must-Have | 3 | 3 days | Pending |
@@ -1278,7 +1280,26 @@ adrs list
 | Issue Dependencies Modal | Must-Have | 2 | 1.5 days | Pending |
 | Global Navigation Bar | Must-Have | 2 | 1.5 days | Pending |
 
-**Total Effort**: ~28.5 days (fits in 4 weeks with buffer)
+**Components Subtotal**: ~28.5 days
+
+### Application Assembly
+
+| Task | Priority | Complexity | Effort | Status |
+|------|----------|------------|--------|--------|
+| AA.1 Issue Store | Must-Have | 2 | 1.5 days | Pending |
+| AA.2 Root Layout Shell | Must-Have | 1 | 0.5 day | Pending |
+| AA.3 Issues List Route | Must-Have | 3 | 2 days | Pending |
+| AA.4 Kanban Board Route | Must-Have | 2 | 1 day | Pending |
+| AA.5 Epics View Route | Should-Have | 1 | 0.5 day | Pending |
+| AA.6 Modal Integration | Must-Have | 2 | 1 day | Pending |
+| AA.7 CLI Write Integration | Must-Have | 2 | 1 day | Pending |
+| AA.8 Real-time Updates | Must-Have | 2 | 1 day | Pending |
+| AA.9 URL State Sync | Should-Have | 2 | 0.5 day | Pending |
+| AA.10 Error Handling | Must-Have | 2 | 1 day | Pending |
+
+**Assembly Subtotal**: ~10 days
+
+**Total Effort**: ~38.5 days (5-6 weeks with buffer)
 
 ---
 
@@ -1289,7 +1310,11 @@ adrs list
 | 1 | Foundation | ProcessSupervisor (3d), Data Access Layer (3d) | 6 |
 | 2 | List View | Issue list (2d), filters (2d), search (1d), create modal (2d), Global Nav (1.5d) | 8.5 |
 | 3 | Kanban | Kanban board (3d), Quick Status (1d), File Watching (2d) | 6 |
-| 4 | Polish | Issue Detail (2d), Dependencies Modal (1.5d), Inline editing (2d), epics view (1d), shortcuts (1d), buffer (0.5d) | 8 |
+| 4 | Detail & Polish | Issue Detail (2d), Dependencies Modal (1.5d), Inline editing (2d), epics view (1d), shortcuts (1d) | 7.5 |
+| 5 | Assembly | Issue Store (1.5d), Routes (3.5d), Modal/CLI Integration (2d), Error Handling (1d), Real-time (1d) | 9 |
+| 6 | Buffer | Integration testing, bug fixes, E2E polish | 3 |
+
+**Note**: Weeks 1-4 can proceed in parallel with some Assembly tasks if components are completed early.
 
 ---
 
@@ -1369,6 +1394,828 @@ If Phase 1 cannot be completed:
 3. Document blockers in `BLOCKERS.md`
 4. Reduce scope to Must-Have only
 5. Extend timeline by 1 week
+
+---
+
+## Application Assembly
+
+**Context**: All Phase 1 components have been built and tested in isolation. This section defines the tasks required to wire these components into working SvelteKit routes to achieve a functional MVP.
+
+**MVP Exit Criteria** (these must work after assembly):
+- Can view issues in list and Kanban views
+- Can create new issues via modal
+- Can edit issue fields inline
+- Changes persist correctly via `bd` CLI
+- Real-time updates work (< 1s latency)
+
+---
+
+### Application Assembly Entry Gate
+
+Before starting Application Assembly, verify component completion:
+
+**Infrastructure (Required)**:
+- [x] ProcessSupervisor with circuit breaker (1.1)
+- [x] Data Access Layer with backend detection (1.2)
+- [x] FileWatcher with WebSocket broadcast (1.11)
+
+**Core UI Components (Required)**:
+- [x] IssueTable with virtual scrolling (1.3)
+- [x] FilterPanel with multi-select (1.4)
+- [x] TextSearch with debounce (1.5)
+- [x] CreateIssueModal with validation (1.6)
+- [x] StatusDropdown with optimistic updates (1.7)
+- [x] KanbanBoard/Column/Card (1.9)
+- [x] GlobalNav with theme/density (1.15)
+
+**Supporting Components (Required for full MVP)**:
+- [x] InlineEdit with conflict resolution (1.8)
+- [x] IssueDetail/IssueDetailModal (1.8a)
+- [x] DependenciesModal with graph (1.14)
+- [x] EpicsView with expandable rows (1.10)
+- [x] KeyboardHelp modal (1.12)
+- [x] AssigneeFilter with autocomplete (1.13)
+
+**Verification**:
+```bash
+# All component tests pass
+bun run test:unit
+
+# Type check passes
+bun run check
+
+# Lint passes
+bun run lint
+```
+
+---
+
+### AA.1 Issue Store (State Management)
+
+**Bead**: `projx-695.21` | **Priority**: Must-Have | **Complexity**: 2 | **Depends On**: Data Access Layer (1.2)
+
+Reactive Svelte 5 store for issue state management.
+
+**Files**:
+- `src/lib/stores/issues.svelte.ts`
+- `src/lib/stores/issues.test.ts`
+
+**Deliverables**:
+- [ ] `IssueStore` class with `$state` for issues array
+- [ ] `filter` state for current filter criteria
+- [ ] `selectedId` state for current selection
+- [ ] `filtered` derived getter for filtered issues
+- [ ] `selected` derived getter for current issue
+- [ ] `load()` method to fetch issues from Data Access Layer
+- [ ] `create(issue)` method via ProcessSupervisor → `bd create`
+- [ ] `update(id, fields)` method via ProcessSupervisor → `bd update`
+- [ ] `refresh()` method for real-time reload
+
+**Acceptance Criteria**:
+- Store is singleton exported as `issueStore`
+- State is reactive using Svelte 5 runes
+- Filter changes immediately update `filtered` getter
+- CRUD operations use ProcessSupervisor (never direct DB writes)
+- Optimistic updates with rollback on failure
+
+**Test Acceptance Criteria** (`issues.svelte.test.ts`):
+```
+Initialization:
+- [ ] initializes with empty issues array
+- [ ] initializes with empty filter
+- [ ] initializes with null selectedId
+
+Loading:
+- [ ] load() fetches issues from Data Access Layer
+- [ ] load() updates issues state
+- [ ] load() handles errors gracefully
+
+Filtering:
+- [ ] filtered getter returns all issues when no filter
+- [ ] filtered getter applies status filter
+- [ ] filtered getter applies type filter
+- [ ] filtered getter applies priority filter
+- [ ] filtered getter applies assignee filter
+- [ ] filtered getter applies text search
+- [ ] multiple filters combine with AND logic
+
+Selection:
+- [ ] selected getter returns null when no selection
+- [ ] selected getter returns issue matching selectedId
+- [ ] setSelected(id) updates selectedId
+
+CRUD Operations:
+- [ ] create() calls ProcessSupervisor with bd create
+- [ ] create() adds new issue to store optimistically
+- [ ] create() reverts on failure
+- [ ] update() calls ProcessSupervisor with bd update
+- [ ] update() updates issue in store optimistically
+- [ ] update() reverts on failure
+- [ ] refresh() reloads all issues from database
+```
+
+**Commit**: `feat(stores): add IssueStore with reactive state management`
+
+---
+
+### AA.2 Root Layout Shell
+
+**Bead**: `projx-695.22` | **Priority**: Must-Have | **Complexity**: 1 | **Depends On**: GlobalNav (1.15)
+
+Wire GlobalNav into root layout for persistent navigation.
+
+**Files**:
+- `src/routes/+layout.svelte` (modify)
+- `src/routes/+layout.ts` (create)
+- `src/routes/+layout.test.ts` (create)
+
+**Deliverables**:
+- [ ] Import and render `GlobalNav` in layout
+- [ ] Set up main content area with proper structure
+- [ ] Initialize theme from localStorage/system preference
+- [ ] Initialize density from localStorage
+- [ ] Add skip link for accessibility
+- [ ] Add keyboard shortcut manager at root
+
+**Acceptance Criteria**:
+- GlobalNav renders on all pages
+- Theme persists across page reloads
+- Density persists across page reloads
+- Skip link focuses main content
+- Keyboard shortcuts work globally
+
+**Test Acceptance Criteria** (`+layout.test.ts`):
+```
+Rendering:
+- [ ] renders GlobalNav component
+- [ ] renders children slot
+- [ ] renders skip link before main content
+- [ ] applies theme class to document
+
+Navigation:
+- [ ] GlobalNav receives correct active tab prop
+- [ ] navigating updates active tab state
+
+Theme Persistence:
+- [ ] reads theme from localStorage on mount
+- [ ] falls back to system preference when no stored value
+- [ ] updates localStorage when theme changes
+
+Density Persistence:
+- [ ] reads density from localStorage on mount
+- [ ] defaults to 'standard' when no stored value
+- [ ] updates localStorage when density changes
+
+Accessibility:
+- [ ] skip link is first focusable element
+- [ ] skip link navigates to main content
+- [ ] layout has proper landmark structure
+```
+
+**Commit**: `feat(routes): add root layout with GlobalNav and theme`
+
+---
+
+### AA.3 Issues List Route
+
+**Bead**: `projx-695.23` | **Priority**: Must-Have | **Complexity**: 3 | **Depends On**: AA.1, AA.2, Issue List (1.3), Filter Panel (1.4), Text Search (1.5)
+
+Main issues view wiring IssueTable, FilterPanel, and TextSearch.
+
+**Files**:
+- `src/routes/(app)/+page.svelte` (create - issues is default view)
+- `src/routes/(app)/+page.ts` (create)
+- `src/routes/(app)/+layout.svelte` (create - app shell)
+- `e2e/issues/list.spec.ts` (update)
+
+**Deliverables**:
+- [ ] Create `(app)` route group for authenticated layout
+- [ ] Wire `IssueTable` with `issueStore.filtered`
+- [ ] Wire `FilterPanel` with `issueStore.filter`
+- [ ] Wire `TextSearch` with debounced search
+- [ ] Connect filter changes to URL query params
+- [ ] Load issues on route mount via `+page.ts`
+- [ ] Show loading skeleton during initial load
+
+**Acceptance Criteria**:
+- Route loads issues from Data Access Layer
+- IssueTable displays filtered issues
+- FilterPanel changes update URL and filter state
+- TextSearch triggers filtered results
+- URL can be shared to restore filter state
+- Loading state shown during data fetch
+
+**Test Acceptance Criteria** (`issues/+page.test.ts`):
+```
+Data Loading:
+- [ ] loads issues from Data Access Layer on mount
+- [ ] displays loading skeleton while loading
+- [ ] displays IssueTable when loaded
+- [ ] displays error message on load failure
+
+Component Wiring:
+- [ ] passes filtered issues to IssueTable
+- [ ] passes filter state to FilterPanel
+- [ ] passes search term to TextSearch
+
+Filter Integration:
+- [ ] FilterPanel changes update issueStore.filter
+- [ ] filter changes update URL query params
+- [ ] URL query params restore filter on load
+- [ ] clearing filters resets URL
+
+Search Integration:
+- [ ] TextSearch input updates search filter
+- [ ] search is debounced (300ms)
+- [ ] clearing search shows all issues
+
+Selection:
+- [ ] clicking row updates selectedId
+- [ ] pressing Enter on row opens detail modal
+- [ ] j/k navigation moves selection
+
+Empty State:
+- [ ] shows "No issues" when no issues exist
+- [ ] shows "No matches" when filter yields no results
+```
+
+*E2E Tests* (`e2e/issues/list.spec.ts`) - `@smoke`:
+- [ ] Page loads and displays issue list
+- [ ] Can filter by status
+- [ ] Can search by text
+- [ ] Filters persist in URL
+- [ ] Can navigate between issues with j/k
+
+**Commit**: `feat(routes): add issues list route with filtering`
+
+---
+
+### AA.4 Kanban Board Route
+
+**Bead**: `projx-695.24` | **Priority**: Must-Have | **Complexity**: 2 | **Depends On**: AA.1, Kanban Board (1.9)
+
+Kanban board view route.
+
+**Files**:
+- `src/routes/(app)/kanban/+page.svelte` (create)
+- `src/routes/(app)/kanban/+page.ts` (create)
+- `e2e/kanban/board.spec.ts` (update)
+
+**Deliverables**:
+- [ ] Wire `KanbanBoard` with `issueStore.filtered`
+- [ ] Connect drag-drop to `issueStore.update()`
+- [ ] Show optimistic status update during drag
+- [ ] Revert on update failure with toast
+- [ ] Sync with URL filter params (same as list view)
+
+**Acceptance Criteria**:
+- Route displays KanbanBoard with issues grouped by status
+- Drag-drop changes issue status via `bd update`
+- Failed updates revert with error toast
+- Filter panel state shared with list view
+- Real-time updates refresh board
+
+**Test Acceptance Criteria** (`kanban/+page.test.ts`):
+```
+Data Loading:
+- [ ] loads issues from issueStore on mount
+- [ ] displays loading skeleton while loading
+- [ ] displays KanbanBoard when loaded
+
+Component Wiring:
+- [ ] passes filtered issues to KanbanBoard
+- [ ] KanbanBoard groups issues by status
+
+Drag and Drop:
+- [ ] dropping card calls issueStore.update with new status
+- [ ] shows optimistic status update immediately
+- [ ] reverts status on update failure
+- [ ] shows error toast on failure
+
+Filter Sync:
+- [ ] reads filter from URL query params
+- [ ] filter changes update URL
+- [ ] filters shared with list view route
+
+Real-time Updates:
+- [ ] board refreshes when issues:changed received
+- [ ] maintains scroll position on refresh
+```
+
+*E2E Tests* (`e2e/kanban/board.spec.ts`) - `@smoke`:
+- [ ] Board displays columns for each status
+- [ ] Can drag card between columns
+- [ ] Status persists after drag
+
+**Commit**: `feat(routes): add kanban board route with drag-drop`
+
+---
+
+### AA.5 Epics View Route
+
+**Bead**: `projx-695.25` | **Priority**: Should-Have | **Complexity**: 1 | **Depends On**: AA.1, Epics View (1.10)
+
+Epics hierarchical view route.
+
+**Files**:
+- `src/routes/(app)/epics/+page.svelte` (create)
+- `src/routes/(app)/epics/+page.ts` (create)
+
+**Deliverables**:
+- [ ] Wire `EpicsView` with `issueStore.issues`
+- [ ] Connect epic selection to detail modal
+- [ ] Show epic children on expand
+
+**Acceptance Criteria**:
+- Route displays EpicsView with all epics
+- Clicking epic opens detail modal
+- Expand shows child issues
+- Progress reflects child completion
+
+**Test Acceptance Criteria** (`epics/+page.test.ts`):
+```
+Data Loading:
+- [ ] loads issues from issueStore on mount
+- [ ] filters to show only epics
+- [ ] displays loading skeleton while loading
+
+Component Wiring:
+- [ ] passes issues to EpicsView
+- [ ] EpicsView filters to epics
+
+Interaction:
+- [ ] clicking epic row opens detail modal
+- [ ] expanding epic shows children
+- [ ] progress bar reflects child completion
+```
+
+**Commit**: `feat(routes): add epics view route`
+
+---
+
+### AA.6 Modal Integration
+
+**Bead**: `projx-695.26` | **Priority**: Must-Have | **Complexity**: 2 | **Depends On**: AA.1, AA.3, Create Issue (1.6), Issue Detail (1.8a), Dependencies Modal (1.14)
+
+Wire modals to routes and keyboard shortcuts.
+
+**Files**:
+- `src/routes/(app)/+layout.svelte` (modify)
+- `src/lib/stores/modals.svelte.ts` (create)
+
+**Deliverables**:
+- [ ] Create `modalStore` for modal state management
+- [ ] Wire `CreateIssueModal` to `c`/`n` keyboard shortcut
+- [ ] Wire `CreateIssueModal` to GlobalNav [+ Issue] button
+- [ ] Wire `IssueDetailModal` to Enter key on selected issue
+- [ ] Wire `DependenciesModal` to [Show Dependencies] link
+- [ ] Handle modal stacking (detail → dependencies)
+- [ ] URL updates to `/issues/[id]` when detail modal opens
+
+**Acceptance Criteria**:
+- `c` key opens CreateIssueModal (when not in input)
+- Enter on selected issue opens IssueDetailModal
+- [Show Dependencies] in detail opens DependenciesModal
+- Escape closes topmost modal
+- URL reflects open issue detail for deep linking
+
+**Test Acceptance Criteria** (`modals.svelte.test.ts`, `(app)/+layout.test.ts`):
+```
+Modal Store:
+- [ ] tracks isCreateOpen state
+- [ ] tracks isDetailOpen state with issueId
+- [ ] tracks isDependenciesOpen state with issueId
+- [ ] openCreate() sets isCreateOpen true
+- [ ] closeCreate() sets isCreateOpen false
+- [ ] openDetail(id) sets isDetailOpen and issueId
+- [ ] closeDetail() clears state
+- [ ] topModal() returns currently open modal
+
+CreateIssueModal Integration:
+- [ ] renders when modalStore.isCreateOpen
+- [ ] opens on 'c' keypress (not in input)
+- [ ] opens on 'n' keypress (not in input)
+- [ ] opens when [+ Issue] clicked
+- [ ] closes on Escape
+- [ ] submitting creates issue and closes
+- [ ] created issue appears in list
+
+IssueDetailModal Integration:
+- [ ] renders when modalStore.isDetailOpen
+- [ ] opens on Enter when issue selected
+- [ ] opens when issue row clicked
+- [ ] closes on Escape
+- [ ] URL updates to /issues/[id]
+- [ ] navigating to /issues/[id] opens modal
+
+DependenciesModal Integration:
+- [ ] renders when modalStore.isDependenciesOpen
+- [ ] opens from [Show Dependencies] link
+- [ ] stacks on top of detail modal
+- [ ] closes on Escape (reveals detail modal)
+```
+
+*E2E Tests* (`e2e/issues/create.spec.ts`) - `@smoke`:
+- [ ] Opens modal with keyboard shortcut (c)
+- [ ] Can fill form and submit
+- [ ] New issue appears in list
+
+**Commit**: `feat(routes): add modal integration with keyboard shortcuts`
+
+---
+
+### AA.7 CLI Write Integration
+
+**Bead**: `projx-695.27` | **Priority**: Must-Have | **Complexity**: 2 | **Depends On**: AA.1, ProcessSupervisor (1.1)
+
+Connect all write operations to `bd` CLI via ProcessSupervisor.
+
+**Files**:
+- `src/lib/services/issueService.ts` (create)
+- `src/lib/services/issueService.test.ts` (create)
+
+**Deliverables**:
+- [ ] `createIssue(data)` → `bd create --title "..." --type ...`
+- [ ] `updateIssue(id, fields)` → `bd update [id] --field value`
+- [ ] `closeIssue(id)` → `bd close [id]`
+- [ ] `reopenIssue(id)` → `bd reopen [id]`
+- [ ] `addDependency(id, blockedBy)` → `bd update [id] --blocked-by [blockedBy]`
+- [ ] `removeDependency(id, blockedBy)` → `bd update [id] --remove-blocked-by [blockedBy]`
+- [ ] Error handling with user-friendly messages
+- [ ] Conflict detection from CLI output
+
+**Acceptance Criteria**:
+- All write operations go through ProcessSupervisor
+- Circuit breaker protects against CLI failures
+- Errors surface to UI with actionable messages
+- Conflict errors show "Refresh & Retry" toast
+
+**Test Acceptance Criteria** (`issueService.test.ts`):
+```
+createIssue:
+- [ ] calls ProcessSupervisor with bd create command
+- [ ] passes title as required argument
+- [ ] passes optional fields (type, priority, assignee)
+- [ ] returns created issue ID from CLI output
+- [ ] throws on CLI failure with error message
+
+updateIssue:
+- [ ] calls ProcessSupervisor with bd update command
+- [ ] passes issue ID as first argument
+- [ ] passes changed fields as flags
+- [ ] handles multiple field updates in one call
+- [ ] detects conflict error from CLI output
+- [ ] throws ConflictError for conflicts
+
+closeIssue:
+- [ ] calls ProcessSupervisor with bd close command
+- [ ] passes issue ID
+
+reopenIssue:
+- [ ] calls ProcessSupervisor with bd reopen command
+- [ ] passes issue ID
+
+addDependency:
+- [ ] calls ProcessSupervisor with bd update --blocked-by
+- [ ] passes both issue IDs correctly
+
+removeDependency:
+- [ ] calls ProcessSupervisor with bd update --remove-blocked-by
+
+Error Handling:
+- [ ] circuit breaker open returns ServiceUnavailableError
+- [ ] timeout returns TimeoutError
+- [ ] parse error returns descriptive error
+```
+
+**Commit**: `feat(services): add issueService for CLI write operations`
+
+---
+
+### AA.8 Real-time Updates Integration
+
+**Bead**: `projx-695.28` | **Priority**: Must-Have | **Complexity**: 2 | **Depends On**: AA.1, File Watching (1.11)
+
+Wire FileWatcher/WebSocket to automatically refresh issue data.
+
+**Files**:
+- `src/routes/(app)/+layout.svelte` (modify)
+- `src/lib/hooks/useRealtime.svelte.ts` (verify/create)
+
+**Deliverables**:
+- [ ] Connect `useRealtime` hook in app layout
+- [ ] On `issues:changed` event → `issueStore.refresh()`
+- [ ] Debounce rapid refreshes (100ms)
+- [ ] Show toast on refresh completion
+- [ ] Reconnect on WebSocket disconnect
+
+**Acceptance Criteria**:
+- External changes appear in UI within 1s
+- Multiple rapid changes coalesce
+- Connection loss shows warning indicator
+- Automatic reconnection on disconnect
+
+**Test Acceptance Criteria** (`useRealtime.integration.test.ts`):
+```
+WebSocket Connection:
+- [ ] connects to WebSocket server on mount
+- [ ] handles connection errors gracefully
+- [ ] reconnects automatically on disconnect
+- [ ] shows connection warning when disconnected
+
+Event Handling:
+- [ ] calls issueStore.refresh on issues:changed
+- [ ] debounces rapid refresh calls (100ms)
+- [ ] shows "Updated" toast after refresh
+- [ ] maintains current selection after refresh
+
+File Change Propagation:
+- [ ] file change triggers issues:changed within 1s
+- [ ] multiple file changes coalesce
+- [ ] UI updates reflect database changes
+```
+
+**Commit**: `feat(realtime): integrate real-time updates with issue store`
+
+---
+
+### AA.9 URL State Synchronization
+
+**Bead**: `projx-695.29` | **Priority**: Should-Have | **Complexity**: 2 | **Depends On**: AA.3
+
+Synchronize filter state with URL query parameters for shareable links.
+
+**Files**:
+- `src/lib/utils/urlState.ts` (create)
+- `src/lib/utils/urlState.test.ts` (create)
+
+**Deliverables**:
+- [ ] `serializeFilter(filter)` → URL query string
+- [ ] `deserializeFilter(searchParams)` → filter object
+- [ ] Hook to sync filter with `$page.url.searchParams`
+- [ ] Deep link support: `/issues?status=open&priority=high`
+- [ ] Handle invalid/stale URL params gracefully
+
+**Acceptance Criteria**:
+- Filter changes update URL without page reload
+- Loading URL with params restores filter
+- Invalid params are ignored (not error)
+- Browser back/forward updates filter
+
+**Test Acceptance Criteria** (`urlState.test.ts`):
+```
+Serialization:
+- [ ] serializes empty filter to empty string
+- [ ] serializes status filter to ?status=open
+- [ ] serializes multiple statuses to ?status=open,in_progress
+- [ ] serializes type filter to ?type=bug
+- [ ] serializes priority filter to ?priority=high
+- [ ] serializes assignee filter to ?assignee=alice
+- [ ] serializes search to ?q=search+term
+- [ ] combines multiple filters correctly
+
+Deserialization:
+- [ ] deserializes empty string to empty filter
+- [ ] deserializes ?status=open to status filter
+- [ ] deserializes multiple statuses from comma-separated
+- [ ] deserializes all filter types
+- [ ] ignores unknown params
+- [ ] handles invalid values gracefully
+
+URL Sync Hook:
+- [ ] reads filter from URL on mount
+- [ ] updates URL when filter changes
+- [ ] handles browser back/forward
+- [ ] debounces URL updates (100ms)
+```
+
+**Commit**: `feat(utils): add URL state synchronization for filters`
+
+---
+
+### AA.10 Error Handling & Loading States
+
+**Bead**: `projx-695.210` | **Priority**: Must-Have | **Complexity**: 2 | **Depends On**: AA.1
+
+Global error handling and consistent loading states.
+
+**Files**:
+- `src/routes/(app)/+error.svelte` (create)
+- `src/lib/components/common/LoadingSkeleton.svelte` (create)
+- `src/lib/components/common/Toast.svelte` (create if not exists)
+- `src/lib/stores/toast.svelte.ts` (create)
+
+**Deliverables**:
+- [ ] Error boundary component for route errors
+- [ ] Loading skeleton for issue list
+- [ ] Loading skeleton for kanban board
+- [ ] Toast notification system for feedback
+- [ ] `bd` CLI unavailable detection with setup instructions
+
+**Acceptance Criteria**:
+- Unhandled errors show user-friendly error page
+- Loading states prevent content flash
+- Toasts auto-dismiss after 5s (configurable)
+- CLI unavailable shows setup instructions link
+
+**Test Acceptance Criteria** (`error.test.ts`, `Toast.test.ts`, `toast.svelte.test.ts`):
+```
+Error Boundary:
+- [ ] renders error message from thrown error
+- [ ] shows "Go back" button
+- [ ] shows "Try again" button
+- [ ] logs error for debugging
+
+Loading Skeleton:
+- [ ] renders placeholder rows for issue list
+- [ ] renders placeholder cards for kanban
+- [ ] matches approximate layout of real content
+
+Toast Store:
+- [ ] show(message, type) adds toast to queue
+- [ ] dismiss(id) removes toast
+- [ ] toasts auto-dismiss after duration
+- [ ] supports success, error, warning, info types
+
+Toast Component:
+- [ ] renders toast message
+- [ ] applies type-based styling
+- [ ] shows dismiss button
+- [ ] calls dismiss on button click
+- [ ] has role="alert" for screen readers
+```
+
+**Commit**: `feat(ui): add error handling and loading states`
+
+---
+
+## Application Assembly Summary
+
+| Task | Priority | Complexity | Depends On | Status |
+|------|----------|------------|------------|--------|
+| AA.1 Issue Store | Must-Have | 2 | 1.2 (DAL) | Pending |
+| AA.2 Root Layout Shell | Must-Have | 1 | 1.15 (GlobalNav) | Pending |
+| AA.3 Issues List Route | Must-Have | 3 | AA.1, AA.2 | Pending |
+| AA.4 Kanban Board Route | Must-Have | 2 | AA.1, 1.9 | Pending |
+| AA.5 Epics View Route | Should-Have | 1 | AA.1, 1.10 | Pending |
+| AA.6 Modal Integration | Must-Have | 2 | AA.1, AA.3 | Pending |
+| AA.7 CLI Write Integration | Must-Have | 2 | AA.1, 1.1 | Pending |
+| AA.8 Real-time Updates | Must-Have | 2 | AA.1, 1.11 | Pending |
+| AA.9 URL State Sync | Should-Have | 2 | AA.3 | Pending |
+| AA.10 Error Handling | Must-Have | 2 | AA.1 | Pending |
+
+**Recommended Order**:
+1. AA.1 (Issue Store) - Foundation for all routes
+2. AA.2 (Root Layout) - App shell
+3. AA.10 (Error Handling) - Need loading/error states early
+4. AA.3 (Issues List Route) - Primary view
+5. AA.7 (CLI Write Integration) - Enable mutations
+6. AA.6 (Modal Integration) - Create/edit workflows
+7. AA.4 (Kanban Board Route) - Alternative view
+8. AA.8 (Real-time Updates) - Live sync
+9. AA.9 (URL State Sync) - Polish
+10. AA.5 (Epics View Route) - Nice-to-have
+
+**Total Effort**: ~17 complexity points ≈ 8-10 days
+
+---
+
+### Application Assembly Dependency Graph
+
+```
+                    ┌─────────────────────────────────────────────────────────────┐
+                    │                    INFRASTRUCTURE                           │
+                    │  ProcessSupervisor (1.1)   Data Access Layer (1.2)          │
+                    │  FileWatcher (1.11)        WebSocket Server                 │
+                    └───────────────────────────────┬─────────────────────────────┘
+                                                    │
+                    ┌───────────────────────────────▼─────────────────────────────┐
+                    │                    AA.1 ISSUE STORE                         │
+                    │  State management, CRUD operations, filtering               │
+                    └───────────────────────────────┬─────────────────────────────┘
+                                                    │
+          ┌─────────────────────────────────────────┼─────────────────────────────┐
+          │                                         │                             │
+          ▼                                         ▼                             ▼
+┌─────────────────────┐              ┌─────────────────────┐           ┌──────────────────┐
+│  AA.2 ROOT LAYOUT   │              │ AA.10 ERROR HANDLING│           │AA.7 CLI WRITES   │
+│  GlobalNav, Theme   │              │ Toast, Loading, etc │           │ issueService     │
+└─────────┬───────────┘              └──────────┬──────────┘           └────────┬─────────┘
+          │                                     │                               │
+          └─────────────────────────────────────┼───────────────────────────────┘
+                                                │
+          ┌─────────────────────────────────────▼─────────────────────────────────┐
+          │                       AA.3 ISSUES LIST ROUTE                          │
+          │  IssueTable + FilterPanel + TextSearch + Selection                    │
+          └─────────────────────────────────────┬─────────────────────────────────┘
+                                                │
+     ┌──────────────────────────────────────────┼───────────────────────────────────┐
+     │                                          │                                   │
+     ▼                                          ▼                                   ▼
+┌────────────────┐                    ┌─────────────────────┐            ┌──────────────────┐
+│ AA.4 KANBAN    │                    │  AA.6 MODALS        │            │ AA.5 EPICS VIEW  │
+│ Drag-drop      │                    │  Create, Detail,    │            │ Hierarchical     │
+│ Status update  │                    │  Dependencies       │            │                  │
+└────────────────┘                    └─────────────────────┘            └──────────────────┘
+     │                                          │
+     └──────────────────────────────────────────┼───────────────────────────────────┐
+                                                │                                   │
+                                                ▼                                   ▼
+                                    ┌─────────────────────┐            ┌──────────────────┐
+                                    │ AA.8 REAL-TIME      │            │ AA.9 URL STATE   │
+                                    │ WebSocket refresh   │            │ Filter persistence│
+                                    └─────────────────────┘            └──────────────────┘
+```
+
+---
+
+### Implementation Notes
+
+**Svelte 5 Patterns**:
+- Use `$state` for reactive state in stores (not `writable`)
+- Use `$derived` for computed values (not `$:`)
+- Use callback props (`onselect`, `onchange`) not `createEventDispatcher`
+- Use `SvelteSet`/`SvelteMap` for reactive collections
+
+**Store Pattern**:
+```typescript
+// src/lib/stores/issues.svelte.ts
+class IssueStore {
+  issues = $state<Issue[]>([]);
+  filter = $state<IssueFilter>({});
+
+  get filtered() {
+    return this.issues.filter(i => this.matchesFilter(i));
+  }
+
+  async load() {
+    this.issues = await dataAccess.query<Issue>('SELECT * FROM issues');
+  }
+}
+
+export const issueStore = new IssueStore();
+```
+
+**Route Data Loading Pattern**:
+```typescript
+// src/routes/(app)/+page.ts
+export const load = async () => {
+  await issueStore.load();
+  return {};
+};
+```
+
+**Modal State Pattern**:
+```typescript
+// src/lib/stores/modals.svelte.ts
+class ModalStore {
+  createOpen = $state(false);
+  detailOpen = $state(false);
+  detailIssueId = $state<string | null>(null);
+
+  openCreate() { this.createOpen = true; }
+  closeCreate() { this.createOpen = false; }
+  openDetail(id: string) { this.detailOpen = true; this.detailIssueId = id; }
+  closeDetail() { this.detailOpen = false; this.detailIssueId = null; }
+}
+
+export const modalStore = new ModalStore();
+```
+
+**Testing Routes**:
+- Use `@testing-library/svelte` for component tests
+- Use `vi.mock` to mock stores and services
+- Test routes with mock data, not real database
+
+---
+
+### Gaps Identified (Future Consideration)
+
+| Gap | Description | Recommendation |
+|-----|-------------|----------------|
+| Pagination | Large issue lists not paginated | Defer to Phase 2 - virtual scroll handles MVP |
+| Offline Support | No offline capability | Out of scope for MVP |
+| Multi-project | Single project only | Per spec, deferred to Phase 5+ |
+| Undo/Redo | No undo for operations | Consider for Phase 2 |
+| Bulk Operations | No multi-select bulk actions | Consider for Phase 2 |
+| Export | No export to CSV/JSON | Consider for Phase 2 |
+
+---
+
+### Rollback for Application Assembly
+
+If assembly fails:
+
+1. **Route Issues**: Revert to placeholder pages, add error boundary
+2. **Store Issues**: Fall back to direct DAL queries in components
+3. **Real-time Issues**: Disable WebSocket, add manual refresh button
+4. **Modal Issues**: Use full-page routes instead of modals
+
+```bash
+# Quick disable flags
+DISABLE_REALTIME=true    # Manual refresh only
+DISABLE_MODALS=true      # Use page routes for create/detail
+```
 
 ---
 

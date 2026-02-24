@@ -111,6 +111,22 @@ test-e2e-headed:
 test-e2e-file file:
     bun run playwright test "{{ file }}"
 
+# Run Storybook tests (component tests in real browser)
+test-storybook:
+    bun run vitest --project=storybook
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Storybook
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Start Storybook development server
+storybook:
+    bun run storybook
+
+# Build Storybook static site
+storybook-build:
+    bun run build-storybook
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Linting & Formatting
 # ─────────────────────────────────────────────────────────────────────────────
@@ -279,6 +295,7 @@ _menu:
     category=$(gum choose --header "Select category:" \
         "Development" \
         "Testing" \
+        "Storybook" \
         "Linting" \
         "Documentation" \
         "Release" \
@@ -305,6 +322,12 @@ _menu:
                 "test-e2e-ui   → Run E2E tests with Playwright UI" \
                 "typecheck     → Run type checking only" \
                 "test-coverage → Run tests with coverage")
+            ;;
+        "Storybook")
+            recipe=$(gum choose --header "Storybook:" \
+                "storybook       → Start Storybook dev server" \
+                "storybook-build → Build Storybook static site" \
+                "test-storybook  → Run Storybook component tests")
             ;;
         "Linting")
             recipe=$(gum choose --header "Linting:" \

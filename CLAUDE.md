@@ -169,13 +169,43 @@ bun run test:coverage # Coverage report
 
 ## Beads Issue Tracking
 
-Issues are tracked in `.beads/issues.jsonl`. Use the beads CLI or justfile recipes:
+**CRITICAL**: NEVER edit `.beads/issues.jsonl` directly. ALWAYS use the `bd` CLI to interact with beads.
+
+### Why This Matters
+
+**The database is the source of truth, NOT the JSONL file.**
+
+- `bd sync` exports DB → JSONL (overwrites the file)
+- `bd import` has merge conflicts if issues already exist
+- Direct JSONL edits are **lost** when sync runs
+- The bd CLI reads from the database, not JSONL
+- Auto-generated IDs follow patterns like `projx-695.21`
 
 ```bash
+# Issue operations - ALWAYS use bd CLI
+bd list                          # List all issues
+bd list --status open            # List open issues
+bd show projx-695.1              # Show issue details
+bd create --title "..." --type task  # Create issue
+bd update projx-695.1 --status closed  # Update issue
+bd close projx-695.1             # Close issue
+
+# Sync database to JSONL (for git commits)
+bd sync                          # Export DB → JSONL
+
+# Query/browse (read-only)
 just db status        # View issue counts
 just db query '.[]'   # Query issues with jq
 just db browse        # Interactive issue browser (fzf)
 ```
+
+### Prohibited Actions
+
+- ❌ Edit `.beads/issues.jsonl` with `Write`, `Edit`, `sed`, `awk`, or any direct manipulation
+- ❌ Use `cat >>` or `echo >>` to append to issues.jsonl
+- ❌ Create issues with manual IDs (let bd auto-generate them)
+- ✅ ALWAYS use `bd` CLI for create, update, close, reopen operations
+- ✅ Run `bd sync` after CLI operations to update the JSONL file for git
 
 ## Code Style
 
