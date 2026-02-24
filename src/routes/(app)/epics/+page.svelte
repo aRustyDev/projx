@@ -1,20 +1,20 @@
 <script lang="ts">
 	/**
-	 * Issues List Page - Main issues view
+	 * Epics Page - Hierarchical view of epics with children
 	 * @component
 	 */
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import IssueTable from '$lib/components/issues/IssueTable.svelte';
+	import EpicsView from '$lib/components/epics/EpicsView.svelte';
 	import FilterPanel from '$lib/components/issues/FilterPanel.svelte';
 	import TextSearch from '$lib/components/issues/TextSearch.svelte';
 	import { appStore } from '$lib/stores/app.svelte.js';
 	import { parseFilterFromURL, buildFilterURL } from '$lib/utils/url-state.js';
 	import type { DataAccessLayer } from '$lib/db/dal.js';
 	import type { ProcessSupervisor } from '$lib/cli/index.js';
-	import type { IssueFilter } from '$lib/db/types.js';
+	import type { IssueFilter, Issue } from '$lib/db/types.js';
 
 	interface Props {
 		dal?: DataAccessLayer;
@@ -28,28 +28,22 @@
 		appStore.reset({ dal: props.dal, supervisor: props.supervisor });
 	}
 
-	// Use the shared app store
 	const store = appStore;
 
 	// Local state
 	let loading = $state(true);
 	let error = $state<string | null>(null);
 	let searchValue = $state('');
-	let selectedId = $state<string | null>(null);
 	let availableStatuses = $state<string[]>(['open', 'in_progress', 'done']);
 	let availableAssignees = $state<string[]>([]);
-	let availableTypes = $state<string[]>(['task', 'bug', 'feature']);
 
-	// Derived from store
+	// Derived from store - all issues (epics will be filtered by EpicsView)
 	const issues = $derived(store.filtered);
 	const filter = $derived(store.filter);
 
-	// Filter state for FilterPanel (convert IssueFilter to array format)
+	// Filter state for FilterPanel
 	const filterStatus = $derived(
 		Array.isArray(filter.status) ? filter.status : filter.status ? [filter.status] : []
-	);
-	const filterIssueType = $derived(
-		Array.isArray(filter.issueType) ? filter.issueType : filter.issueType ? [filter.issueType] : []
 	);
 	const filterPriority = $derived(
 		Array.isArray(filter.priority)
@@ -62,7 +56,7 @@
 		Array.isArray(filter.assignee) ? filter.assignee[0] || '' : filter.assignee || ''
 	);
 
-	// Load initial data and start watching for changes
+	// Load initial data
 	onMount(async () => {
 		if (!browser) return;
 
@@ -76,29 +70,20 @@
 				}
 			}
 
-			// Load metadata for filters
-			const [statuses, assignees, types] = await Promise.all([
-				store.getStatuses(),
-				store.getAssignees(),
-				store.getIssueTypes()
-			]);
+			const [statuses, assignees] = await Promise.all([store.getStatuses(), store.getAssignees()]);
 
 			availableStatuses = statuses;
 			availableAssignees = assignees;
-			availableTypes = types;
 
-			// Load issues
 			await store.load();
 			loading = false;
 
-			// Start watching for external changes (polling fallback, 10s interval)
 			store.startWatching({ pollingInterval: 10000 });
 		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load issues';
+			error = e instanceof Error ? e.message : 'Failed to load epics';
 			loading = false;
 		}
 
-		// Cleanup on unmount
 		return () => {
 			store.stopWatching();
 		};
@@ -106,7 +91,7 @@
 
 	function updateURL(newFilter: IssueFilter) {
 		if (!browser) return;
-		const url = buildFilterURL('/', newFilter);
+		const url = buildFilterURL('/epics', newFilter);
 		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		goto(url, { replaceState: true, keepFocus: true, noScroll: true });
 	}
@@ -122,9 +107,6 @@
 
 		if (filters.status.length > 0) {
 			newFilter.status = filters.status;
-		}
-		if (filters.issueType.length > 0) {
-			newFilter.issueType = filters.issueType;
 		}
 		if (filters.priority.length > 0) {
 			newFilter.priority = filters.priority;
@@ -147,8 +129,8 @@
 		updateURL(newFilter);
 	}
 
-	function handleSelect(id: string) {
-		selectedId = id;
+	function handleSelect(issue: Issue) {
+		store.openDetailModal(issue);
 	}
 
 	async function handleRetry() {
@@ -157,33 +139,32 @@
 		try {
 			await store.load();
 		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load issues';
+			error = e instanceof Error ? e.message : 'Failed to load epics';
 		} finally {
 			loading = false;
 		}
 	}
 
-	// Computed empty state
-	const showNoIssues = $derived(!loading && !error && store.issues.length === 0);
-	const showNoMatches = $derived(
-		!loading && !error && store.issues.length > 0 && issues.length === 0
-	);
+	// Check for epics in the current issues
+	const hasEpics = $derived(issues.some((i) => i.issue_type === 'epic'));
+	const showNoEpics = $derived(!loading && !error && !hasEpics);
 </script>
 
 <div class="flex h-full flex-col gap-4 p-4">
 	<!-- Header with search and filters -->
 	<div class="flex items-center gap-4">
+		<h1 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Epics</h1>
 		<div class="w-64">
 			<TextSearch value={searchValue} onsearch={handleSearch} {loading} />
 		</div>
 		<FilterPanel
 			status={filterStatus}
-			issueType={filterIssueType}
+			issueType={[]}
 			priority={filterPriority}
 			assignee={filterAssignee}
 			search={searchValue}
 			{availableStatuses}
-			{availableTypes}
+			availableTypes={[]}
 			{availableAssignees}
 			onfilterchange={handleFilterChange}
 		/>
@@ -194,12 +175,12 @@
 		{#if loading}
 			<div data-testid="loading-skeleton" class="space-y-2">
 				{#each { length: 5 } as _, i (i)}
-					<div class="h-12 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
+					<div class="h-16 animate-pulse rounded bg-gray-200 dark:bg-gray-700"></div>
 				{/each}
 			</div>
 		{:else if error}
 			<div class="flex flex-col items-center justify-center gap-4 py-12 text-center">
-				<p class="text-red-600 dark:text-red-400">Error loading issues: {error}</p>
+				<p class="text-red-600 dark:text-red-400">Error loading epics: {error}</p>
 				<button
 					type="button"
 					onclick={handleRetry}
@@ -208,18 +189,15 @@
 					Retry
 				</button>
 			</div>
-		{:else if showNoIssues}
+		{:else if showNoEpics}
 			<div class="flex flex-col items-center justify-center py-12 text-center">
-				<p class="text-gray-500 dark:text-gray-400">No issues found. Create your first issue!</p>
-			</div>
-		{:else if showNoMatches}
-			<div class="flex flex-col items-center justify-center py-12 text-center">
-				<p class="text-gray-500 dark:text-gray-400">
-					No matches found. Try adjusting your filters.
+				<p class="text-gray-500 dark:text-gray-400">No epics found.</p>
+				<p class="mt-2 text-sm text-gray-400 dark:text-gray-500">
+					Create an epic to organize related issues.
 				</p>
 			</div>
 		{:else}
-			<IssueTable {issues} {loading} {selectedId} onselect={handleSelect} onretry={handleRetry} />
+			<EpicsView {issues} onselect={handleSelect} />
 		{/if}
 	</div>
 </div>
