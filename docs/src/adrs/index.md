@@ -20,6 +20,8 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 | [0012](./0012-use-just-as-command-runner.md) | Use Just as Command Runner | Proposed | tooling, developer-experience |
 | [0013](./0013-justfile-patterns-and-conventions.md) | Justfile Patterns and Conventions | Proposed | tooling, conventions |
 | [0014](./0014-use-adrs-cli-for-adr-management.md) | Use adrs CLI for ADR Management | Proposed | tooling, conventions |
+| [0015](./0015-use-xterm-js-with-node-pty-for-terminal-integration.md) | Use xterm.js with node-pty for Terminal | Proposed | terminal, ui, infrastructure |
+| [0016](./0016-use-gh-cli-for-github-operations.md) | Use gh CLI for GitHub Operations | Proposed | git, infrastructure, cli |
 
 ## Summary
 
@@ -35,6 +37,8 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 8. **Observability**: OpenTelemetry for tracing and metrics
 9. **Tooling**: Just command runner with modular structure
 10. **ADR Management**: adrs CLI for all ADR operations
+11. **Terminal**: xterm.js + node-pty for agent sessions
+12. **GitHub**: gh CLI for PR/CI operations
 
 ### Architecture Overview
 
