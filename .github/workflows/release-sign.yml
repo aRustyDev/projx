@@ -27,15 +27,17 @@ jobs:
         run: |
           cd artifacts
           for file in *.tar.gz; do
-            echo "Signing $file..."
-            cosign sign-blob --yes --output-signature "${file}.sig" --output-certificate "${file}.pem" "$file"
-          done
+            if [[ -f "$file" ]]; then
+              echo "Signing $file..."
+              cosign sign-blob --yes \
+                --output-signature "${file}.sig" \
+                --output-certificate "${file}.pem" \
+                "$file"
 
-      - name: Generate SLSA provenance
-        uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
-        with:
-          base64-subjects: |
-            $(cd artifacts && sha256sum *.tar.gz | base64 -w0)
+              # Generate SHA256 checksum
+              sha256sum "$file" > "${file}.sha256"
+            fi
+          done
 
       - name: Upload signatures to release
         uses: softprops/action-gh-release@v2
@@ -44,19 +46,34 @@ jobs:
           files: |
             artifacts/*.sig
             artifacts/*.pem
+            artifacts/*.sha256
           fail_on_unmatched_files: false
 
       - name: Verification instructions
         run: |
-          echo "## Verification Instructions" >> $GITHUB_STEP_SUMMARY
+          TAG="${{ github.event.release.tag_name }}"
+          VERSION="${TAG#v}"
+
+          echo "## Artifact Signing Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Release \`$TAG\` artifacts have been signed with Sigstore." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Verification Instructions" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "To verify the signed artifacts:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
           echo "# Download the artifact, signature, and certificate" >> $GITHUB_STEP_SUMMARY
-          echo "cosign verify-blob \\" >> $GITHUB_STEP_SUMMARY
-          echo "  --signature projx-ui-VERSION.tar.gz.sig \\" >> $GITHUB_STEP_SUMMARY
-          echo "  --certificate projx-ui-VERSION.tar.gz.pem \\" >> $GITHUB_STEP_SUMMARY
-          echo "  --certificate-identity-regexp='https://github.com/p-b-d-z/projx-ui/.*' \\" >> $GITHUB_STEP_SUMMARY
-          echo "  --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \\" >> $GITHUB_STEP_SUMMARY
-          echo "  projx-ui-VERSION.tar.gz" >> $GITHUB_STEP_SUMMARY
+          echo "gh release download $TAG -p 'projx-ui-*.tar.gz*'" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "# Verify with cosign" >> $GITHUB_STEP_SUMMARY
+          echo "cosign verify-blob \\\\" >> $GITHUB_STEP_SUMMARY
+          echo "  --signature projx-ui-${VERSION}.tar.gz.sig \\\\" >> $GITHUB_STEP_SUMMARY
+          echo "  --certificate projx-ui-${VERSION}.tar.gz.pem \\\\" >> $GITHUB_STEP_SUMMARY
+          echo "  --certificate-identity-regexp='https://github.com/aRustyDev/projx/.*' \\\\" >> $GITHUB_STEP_SUMMARY
+          echo "  --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \\\\" >> $GITHUB_STEP_SUMMARY
+          echo "  projx-ui-${VERSION}.tar.gz" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "# Verify SHA256 checksum" >> $GITHUB_STEP_SUMMARY
+          echo "sha256sum -c projx-ui-${VERSION}.tar.gz.sha256" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

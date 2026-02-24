@@ -119,6 +119,7 @@ jobs:
     name: Publish to npm
     needs: build
     runs-on: ubuntu-latest
+    environment: release
     steps:
       - name: Checkout
         uses: actions/checkout@v4
