@@ -57,32 +57,37 @@
 	);
 
 	// Load initial data
-	onMount(async () => {
+	onMount(() => {
 		if (!browser) return;
 
-		try {
-			// Initialize filter from URL params
-			const urlFilter = parseFilterFromURL($page.url.searchParams);
-			if (Object.keys(urlFilter).length > 0) {
-				store.setFilter(urlFilter);
-				if (urlFilter.search) {
-					searchValue = urlFilter.search;
+		(async () => {
+			try {
+				// Initialize filter from URL params
+				const urlFilter = parseFilterFromURL($page.url.searchParams);
+				if (Object.keys(urlFilter).length > 0) {
+					store.setFilter(urlFilter);
+					if (urlFilter.search) {
+						searchValue = urlFilter.search;
+					}
 				}
+
+				const [statuses, assignees] = await Promise.all([
+					store.getStatuses(),
+					store.getAssignees()
+				]);
+
+				availableStatuses = statuses;
+				availableAssignees = assignees;
+
+				await store.load();
+				loading = false;
+
+				store.startWatching({ pollingInterval: 10000 });
+			} catch (e) {
+				error = e instanceof Error ? e.message : 'Failed to load epics';
+				loading = false;
 			}
-
-			const [statuses, assignees] = await Promise.all([store.getStatuses(), store.getAssignees()]);
-
-			availableStatuses = statuses;
-			availableAssignees = assignees;
-
-			await store.load();
-			loading = false;
-
-			store.startWatching({ pollingInterval: 10000 });
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load epics';
-			loading = false;
-		}
+		})();
 
 		return () => {
 			store.stopWatching();

@@ -63,40 +63,43 @@
 	);
 
 	// Load initial data and start watching for changes
-	onMount(async () => {
+	onMount(() => {
 		if (!browser) return;
 
-		try {
-			// Initialize filter from URL params
-			const urlFilter = parseFilterFromURL($page.url.searchParams);
-			if (Object.keys(urlFilter).length > 0) {
-				store.setFilter(urlFilter);
-				if (urlFilter.search) {
-					searchValue = urlFilter.search;
+		// Load data asynchronously
+		(async () => {
+			try {
+				// Initialize filter from URL params
+				const urlFilter = parseFilterFromURL($page.url.searchParams);
+				if (Object.keys(urlFilter).length > 0) {
+					store.setFilter(urlFilter);
+					if (urlFilter.search) {
+						searchValue = urlFilter.search;
+					}
 				}
+
+				// Load metadata for filters
+				const [statuses, assignees, types] = await Promise.all([
+					store.getStatuses(),
+					store.getAssignees(),
+					store.getIssueTypes()
+				]);
+
+				availableStatuses = statuses;
+				availableAssignees = assignees;
+				availableTypes = types;
+
+				// Load issues
+				await store.load();
+				loading = false;
+
+				// Start watching for external changes (polling fallback, 10s interval)
+				store.startWatching({ pollingInterval: 10000 });
+			} catch (e) {
+				error = e instanceof Error ? e.message : 'Failed to load issues';
+				loading = false;
 			}
-
-			// Load metadata for filters
-			const [statuses, assignees, types] = await Promise.all([
-				store.getStatuses(),
-				store.getAssignees(),
-				store.getIssueTypes()
-			]);
-
-			availableStatuses = statuses;
-			availableAssignees = assignees;
-			availableTypes = types;
-
-			// Load issues
-			await store.load();
-			loading = false;
-
-			// Start watching for external changes (polling fallback, 10s interval)
-			store.startWatching({ pollingInterval: 10000 });
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load issues';
-			loading = false;
-		}
+		})();
 
 		// Cleanup on unmount
 		return () => {

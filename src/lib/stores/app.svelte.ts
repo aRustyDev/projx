@@ -291,12 +291,10 @@ class AppStore {
 			return;
 		}
 
-		const issueIndex = this.#issues.findIndex((i) => i.id === id);
-		if (issueIndex === -1) {
+		const original = this.#issues.find((i) => i.id === id);
+		if (!original) {
 			throw new Error(`Issue ${id} not found`);
 		}
-
-		const original = this.#issues[issueIndex];
 
 		// Optimistic update
 		this.#issues = this.#issues.map((issue) =>
@@ -353,14 +351,13 @@ class AppStore {
 			return;
 		}
 
-		const issueIndex = this.#issues.findIndex((i) => i.id === id);
-		if (issueIndex === -1) {
+		const original = this.#issues.find((i) => i.id === id);
+		if (!original) {
 			throw new Error(`Issue ${id} not found`);
 		}
 
-		const original = this.#issues[issueIndex];
-
-		// Optimistic update
+		// Optimistic update - store the original list for rollback
+		const originalIssues = [...this.#issues];
 		this.#issues = this.#issues.filter((issue) => issue.id !== id);
 		this.#notifyListeners();
 
@@ -374,11 +371,7 @@ class AppStore {
 			toastStore.success(`Closed issue ${id}`);
 		} catch (error) {
 			// Rollback on failure
-			this.#issues = [
-				...this.#issues.slice(0, issueIndex),
-				original,
-				...this.#issues.slice(issueIndex)
-			];
+			this.#issues = originalIssues;
 			this.#notifyListeners();
 
 			const message = error instanceof Error ? error.message : 'Failed to delete issue';

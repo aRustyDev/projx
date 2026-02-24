@@ -175,7 +175,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: 'Created issue: TEST-NEW',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 			vi.mocked(mockDAL.getIssue).mockResolvedValue(createMockIssue({ id: 'TEST-NEW' }));
 
@@ -201,7 +203,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: 'Created issue: TEST-NEW',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 			vi.mocked(mockDAL.getIssue).mockResolvedValue(newIssue);
 
@@ -218,7 +222,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: 'Created issue: TEST-NEW',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 			vi.mocked(mockDAL.getIssue).mockResolvedValue(createMockIssue({ id: 'TEST-NEW' }));
 
@@ -231,7 +237,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 1,
 				stdout: '',
-				stderr: 'Failed to create'
+				stderr: 'Failed to create',
+				duration: 100,
+				timedOut: false
 			});
 
 			await expect(store.create({ title: 'Test', issue_type: 'task' })).rejects.toThrow();
@@ -247,7 +255,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: '',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 
 			await store.load();
@@ -262,7 +272,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 1,
 				stdout: '',
-				stderr: 'Failed'
+				stderr: 'Failed',
+				duration: 100,
+				timedOut: false
 			});
 
 			await store.load();
@@ -280,7 +292,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: '',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 
 			await store.load();
@@ -295,7 +309,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: '',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 
 			await store.load();
@@ -310,7 +326,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 1,
 				stdout: '',
-				stderr: 'Failed'
+				stderr: 'Failed',
+				duration: 100,
+				timedOut: false
 			});
 
 			await store.load();
@@ -356,7 +374,9 @@ describe('AppStore', () => {
 			vi.mocked(mockSupervisor.execute).mockResolvedValue({
 				exitCode: 0,
 				stdout: 'Created issue: TEST-1',
-				stderr: ''
+				stderr: '',
+				duration: 100,
+				timedOut: false
 			});
 			vi.mocked(mockDAL.getIssue).mockResolvedValue(createMockIssue());
 

@@ -178,13 +178,10 @@ export class IssueStore {
 	// Update an existing issue via bd CLI
 	async update(id: string, changes: UpdateIssueInput): Promise<void> {
 		// Find the issue to update
-		const issueIndex = this.#issues.findIndex((i) => i.id === id);
-		if (issueIndex === -1) {
+		const original = this.#issues.find((i) => i.id === id);
+		if (!original) {
 			throw new Error(`Issue ${id} not found`);
 		}
-
-		// Store original for rollback
-		const original = this.#issues[issueIndex];
 
 		// Optimistic update
 		this.#issues = this.#issues.map((issue) =>
