@@ -19,6 +19,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 | [0011](./0011-use-opentelemetry-for-observability.md) | Use OpenTelemetry for Observability | Proposed | observability, infrastructure |
 | [0012](./0012-use-just-as-command-runner.md) | Use Just as Command Runner | Proposed | tooling, developer-experience |
 | [0013](./0013-justfile-patterns-and-conventions.md) | Justfile Patterns and Conventions | Proposed | tooling, conventions |
+| [0014](./0014-use-adrs-cli-for-adr-management.md) | Use adrs CLI for ADR Management | Proposed | tooling, conventions |
 
 ## Summary
 
@@ -33,6 +34,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 7. **Testing**: Vitest + Testing Library with callback props and DI
 8. **Observability**: OpenTelemetry for tracing and metrics
 9. **Tooling**: Just command runner with modular structure
+10. **ADR Management**: adrs CLI for all ADR operations
 
 ### Architecture Overview
 
