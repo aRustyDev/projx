@@ -149,6 +149,20 @@ vite.config.ts.timestamp-*
 .vite/
 
 ###------------------------###
+###  Project: Binary/Data  ###
+###------------------------###
+
+# ML model files (large binaries)
+models/*.onnx
+models/tokenizer.json
+
+# DevRAG vector database
+docs/devrag/vectors.db
+
+# Docker persistent data
+.docker/data/
+
+###------------------------###
 ###  GitHub Global: macOS  ###
 ###------------------------###
 
