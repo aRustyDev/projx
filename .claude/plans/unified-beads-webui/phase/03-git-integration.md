@@ -53,6 +53,33 @@ Before starting Phase 3, verify Phase 2 completion:
 
 ---
 
+## Observability Requirements
+
+All Phase 3 implementations must include telemetry per [ADR-0011](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md).
+
+### Acceptance Criteria
+
+- [ ] Git CLI operations traced with span including command and repo
+- [ ] PR operations traced with span including PR number and action
+- [ ] Errors include span ID for correlation
+- [ ] Metrics: `git.commands.total`, `git.commands.duration`, `pr.operations.total`
+
+### Per-Feature Requirements
+
+| Feature | Traces | Metrics | Logs |
+|---------|--------|---------|------|
+| Worktree Listing | `git.worktree.list` span | `git.commands.duration` | Git command errors |
+| PR Management | `git.pr.create`, `git.pr.merge` spans | `pr.operations.total` | PR operation results |
+| CI Status | `ci.status.fetch` span | `ci.status.duration` | CI fetch failures |
+| Dependency Graph | `graph.render` span | `graph.render.duration` | Render errors |
+
+### References
+
+- [Spec: Observability Architecture](../spec/observability.md)
+- [ADR-0011: Use OpenTelemetry](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+
+---
+
 ## Features
 
 ### 3.1 Worktree Listing

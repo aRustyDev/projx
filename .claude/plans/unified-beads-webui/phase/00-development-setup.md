@@ -116,6 +116,16 @@ bun add -d @types/ws
 # CLI Integration
 bun add execa
 
+# Observability (ADR-0011)
+bun add @opentelemetry/api
+bun add @opentelemetry/sdk-node
+bun add @opentelemetry/sdk-trace-node
+bun add @opentelemetry/sdk-metrics
+bun add @opentelemetry/exporter-trace-otlp-http
+bun add @opentelemetry/exporter-metrics-otlp-http
+bun add @opentelemetry/semantic-conventions
+bun add pino pino-pretty
+
 # Testing
 bun add -d vitest @testing-library/svelte jsdom
 bun add -d playwright @playwright/test
@@ -214,6 +224,7 @@ projx-ui/
 │   │   ├── stores/         # Svelte 5 state (*.svelte.ts)
 │   │   ├── cli/            # ProcessSupervisor, command builders
 │   │   ├── db/             # Data access layer
+│   │   ├── telemetry/      # OpenTelemetry setup (ADR-0011)
 │   │   ├── utils/          # Utility functions
 │   │   └── types/          # TypeScript types
 │   ├── routes/
@@ -290,8 +301,15 @@ PORT=3000
 ENABLE_GASTOWN=false
 ENABLE_NETWORK_MODE=false
 
+# Observability (ADR-0011)
+# Set endpoint to enable telemetry export
+OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
+OTEL_SERVICE_NAME=projx-ui
+OTEL_SDK_DISABLED=false  # Set true to disable in tests
+LOG_LEVEL=info
+
 # Development
-LOG_LEVEL=debug
+NODE_ENV=development
 ```
 
 ---
@@ -561,7 +579,57 @@ export default config;
 
 ---
 
-## 8. Database Setup for Development
+## 8. Telemetry Setup
+
+### Module Structure
+
+Create the telemetry module structure per [observability.md](../spec/observability.md):
+
+```
+src/lib/telemetry/
+├── index.ts           # Public API exports
+├── init.ts            # SDK initialization (preload)
+├── tracer.ts          # Tracer configuration
+├── metrics.ts         # Metrics definitions
+├── logger.ts          # Pino logger with trace context
+└── types.ts           # Type definitions
+```
+
+### Bun Preload Configuration
+
+```toml
+# bunfig.toml
+preload = ["./src/lib/telemetry/init.ts"]
+```
+
+### Development Collector (Optional)
+
+For local development with trace visibility, add to Docker Compose:
+
+```yaml
+# .docker/compose.yaml
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    ports:
+      - "4318:4318"   # OTLP HTTP
+    command: ["--config=/etc/otel-collector-config.yaml"]
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686" # UI
+```
+
+### References
+
+- [ADR-0011: Use OpenTelemetry for Observability](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+- [Spec: Observability Architecture](../spec/observability.md)
+- [Constraint 0001: Bun OTEL Compatibility](../docs/constraint-0001-bun-otel-compatibility.md)
+
+---
+
+## 9. Database Setup for Development
 
 ### SQLite (Default)
 
@@ -601,6 +669,8 @@ Before starting Phase 1, verify:
 - [ ] VS Code extensions installed and working
 - [ ] `.beads/` directory exists (or can be created)
 - [ ] `bd --version` works (CLI installed)
+- [ ] Telemetry module structure exists (`src/lib/telemetry/`)
+- [ ] `bunfig.toml` has preload configured for telemetry
 
 ---
 
@@ -615,6 +685,7 @@ Before starting Phase 1, verify:
 | CI/CD workflows | Pending |
 | Storybook setup | Pending |
 | Database setup | Pending |
+| Telemetry setup | Pending |
 
 ---
 

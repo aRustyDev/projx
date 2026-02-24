@@ -66,6 +66,41 @@ See [Terminal Spec Security Section](../spec/terminal.md#security-model) for det
 
 ---
 
+## Observability Requirements
+
+All Phase 4 implementations must include telemetry per [ADR-0011](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md).
+
+### Acceptance Criteria
+
+- [ ] Agent session lifecycle traced with spans (launch, stop, error)
+- [ ] Terminal output events traced with context
+- [ ] Verification actions traced with span including action type
+- [ ] Errors include span ID for correlation
+- [ ] Metrics: `agent.sessions.active`, `agent.sessions.duration`, `verification.actions.total`
+
+### Per-Feature Requirements
+
+| Feature | Traces | Metrics | Logs |
+|---------|--------|---------|------|
+| Terminal Drawer | `terminal.session` span | `terminal.sessions.active` | Session events |
+| Agent Session | `agent.launch`, `agent.stop` spans | `agent.sessions.duration` | Lifecycle events |
+| Verification Queue | `verification.action` span | `verification.actions.total` | Approve/reject outcomes |
+| Output Streaming | `terminal.output` span | `terminal.bytes.total` | Stream errors |
+
+### Security Observability
+
+- All session creation attempts logged with trace context
+- Command execution logged (without sensitive content)
+- Security violations trigger error spans
+
+### References
+
+- [Spec: Observability Architecture](../spec/observability.md)
+- [ADR-0011: Use OpenTelemetry](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+- [Terminal Security Model](../spec/terminal.md#security-model)
+
+---
+
 ## Features
 
 ### 4.1 Terminal Drawer

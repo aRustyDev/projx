@@ -77,12 +77,16 @@ interface ProcessSupervisorConfig {
 - [ ] Command queue for rate limiting
 - [ ] Event emitter for state changes
 - [ ] Unit tests with mocked processes
+- [ ] **O11y**: `cli.execute` spans with `process.command`, `process.command_args`, `process.exit.code`
+- [ ] **O11y**: Metrics for `cli.commands.total`, `cli.commands.duration`, `cli.circuit_breaker.state`
+- [ ] **O11y**: Circuit breaker state change logs with trace context
 
 **Acceptance Criteria**:
 - Commands execute via `execFile` (no shell)
 - Timeout kills long-running processes
 - Circuit opens after 5 consecutive failures
 - Half-open allows 1 test request after 60s
+- All command executions produce spans (per [Constraint 0003](../docs/constraint-0003-cli-instrumentation-patterns.md))
 
 ---
 
@@ -107,12 +111,16 @@ interface DataAccessLayer {
 - [ ] Dolt connection via mysql2
 - [ ] Query builder for common operations
 - [ ] Connection pooling (Dolt only)
+- [ ] **O11y**: `db.query` spans with `db.system`, `db.statement`, `db.operation`
+- [ ] **O11y**: Metrics for `db.queries.total`, `db.queries.duration`
+- [ ] **O11y**: Query error logs with trace context
 
 **Acceptance Criteria**:
 - Auto-detects backend on startup
 - Read queries complete in < 50ms for 100 rows
 - Handles connection failures gracefully
 - Write operations always go through `bd` CLI
+- All database queries produce spans (per [observability.md](../spec/observability.md))
 
 ---
 
@@ -183,6 +191,33 @@ Full-text search across issue title and description.
 - Empty search shows all issues
 - Supports `bd query` syntax for power users
 
+**Test Acceptance Criteria** (`TextSearch.test.ts`):
+```
+Rendering:
+- [ ] renders search input with placeholder
+- [ ] renders clear button when text is present
+- [ ] hides clear button when input is empty
+
+Search Behavior:
+- [ ] debounces search input by 300ms (vi.useFakeTimers)
+- [ ] calls onsearch callback with search term after debounce
+- [ ] clears search when clear button is clicked
+- [ ] triggers search immediately on Enter key
+
+Text Highlighting:
+- [ ] renders SearchHighlight component with matches
+- [ ] highlights matching substrings in issue title
+- [ ] highlights matching substrings in description
+- [ ] handles case-insensitive matching
+
+Accessibility:
+- [ ] has role="searchbox"
+- [ ] has aria-label for search input
+- [ ] clear button has accessible name
+```
+
+**ADR**: Record any decisions about search implementation (e.g., client-side vs server-side filtering) using `adrs new`
+
 ---
 
 ### 1.6 Create Issue
@@ -226,6 +261,39 @@ Inline status dropdown for rapid workflow.
 - Failed update shows error and reverts
 - Keyboard accessible (Enter to select)
 
+**Test Acceptance Criteria** (`StatusDropdown.test.ts`):
+```
+Rendering:
+- [ ] renders current status as button/badge
+- [ ] displays all available statuses when opened
+- [ ] shows status color coding
+
+Interaction:
+- [ ] opens dropdown on click
+- [ ] closes dropdown when clicking outside
+- [ ] calls onchange with new status when selected
+- [ ] closes dropdown after selection
+
+Optimistic Updates:
+- [ ] updates UI immediately on selection (before API call)
+- [ ] shows loading indicator during update
+- [ ] reverts to original status on error
+- [ ] shows error toast on failure
+
+Keyboard Navigation:
+- [ ] opens dropdown with Enter or Space
+- [ ] navigates options with Arrow keys
+- [ ] selects option with Enter
+- [ ] closes dropdown with Escape
+
+Accessibility:
+- [ ] has role="listbox" on dropdown
+- [ ] has role="option" on each status option
+- [ ] current status indicated with aria-selected
+```
+
+**ADR**: Record optimistic update pattern decision using `adrs new`
+
 ---
 
 ### 1.8 Inline Editing
@@ -248,6 +316,48 @@ Edit issue fields directly in the table/card.
 - Blur saves changes
 - Optimistic update with rollback
 - Conflict shown with resolution options
+
+**Test Acceptance Criteria** (`InlineEdit.test.ts`):
+```
+Rendering:
+- [ ] renders value as text by default (view mode)
+- [ ] renders input when clicked (edit mode)
+- [ ] shows save/cancel buttons in edit mode
+
+Edit Mode:
+- [ ] enters edit mode on click
+- [ ] enters edit mode on Enter key when focused
+- [ ] pre-populates input with current value
+- [ ] focuses input automatically
+
+Saving:
+- [ ] saves on Enter key
+- [ ] saves on blur (unless cancelled)
+- [ ] calls onsave with new value
+- [ ] exits edit mode after save
+
+Cancelling:
+- [ ] cancels on Escape key
+- [ ] restores original value on cancel
+- [ ] exits edit mode on cancel
+
+Optimistic Updates:
+- [ ] shows new value immediately
+- [ ] reverts on save failure
+- [ ] shows error indicator on failure
+
+Conflict Detection:
+- [ ] detects concurrent modification error
+- [ ] shows conflict toast with Refresh/Retry options
+- [ ] Refresh button reloads issue data
+- [ ] Retry button re-attempts save
+
+Accessibility:
+- [ ] maintains focus after mode transitions
+- [ ] input has associated label
+```
+
+**ADR**: Record inline editing and conflict resolution decisions using `adrs new`
 
 **Conflict Resolution UI**:
 
@@ -295,6 +405,57 @@ Full issue detail modal/panel for viewing complete issue context.
 - Escape closes modal
 - URL updates to `/issues/[id]` for deep linking
 
+**Test Acceptance Criteria** (`IssueDetail.test.ts`, `IssueDetailModal.test.ts`):
+```
+Rendering (IssueDetail):
+- [ ] displays issue ID and title
+- [ ] displays status badge with correct color
+- [ ] displays priority indicator
+- [ ] displays assignee (or "Unassigned" placeholder)
+- [ ] displays created/updated timestamps
+- [ ] renders description as markdown
+- [ ] displays issue type badge
+
+Tabs:
+- [ ] renders Description tab by default
+- [ ] renders Design tab when present
+- [ ] renders Acceptance tab when present
+- [ ] switches content when tab clicked
+- [ ] maintains tab state during re-renders
+
+Comments Section:
+- [ ] displays list of comments
+- [ ] shows comment author and timestamp
+- [ ] renders comment content as markdown
+- [ ] shows "No comments" for empty list
+
+Dependencies Section:
+- [ ] shows [Show Dependencies] link
+- [ ] calls onshowdependencies when clicked
+- [ ] displays count of blocking/blocked-by issues
+
+Quick Actions:
+- [ ] renders Edit button
+- [ ] renders Close/Reopen button based on status
+- [ ] renders Assign button
+- [ ] calls appropriate handlers when clicked
+
+Modal Behavior (IssueDetailModal):
+- [ ] renders modal when open is true
+- [ ] does not render when open is false
+- [ ] closes on Escape key
+- [ ] closes on backdrop click
+- [ ] has focus trap
+- [ ] has role="dialog" and aria-modal="true"
+
+Accessibility:
+- [ ] modal has aria-labelledby pointing to title
+- [ ] tabs are keyboard navigable
+- [ ] action buttons have accessible names
+```
+
+**ADR**: Record any markdown rendering library choice using `adrs new`
+
 ---
 
 ### 1.9 Kanban Board
@@ -321,6 +482,55 @@ Column-based view grouped by status.
 - Columns configurable (which statuses to show)
 - Card context menu shows: View Details, Change Status, Change Priority, Assign, Copy Link
 
+**Test Acceptance Criteria** (`KanbanBoard.test.ts`, `KanbanColumn.test.ts`, `KanbanCard.test.ts`):
+```
+KanbanBoard:
+- [ ] renders a column for each status
+- [ ] distributes issues to correct columns
+- [ ] updates when issues prop changes
+- [ ] handles empty state (no issues)
+
+KanbanColumn:
+- [ ] displays column header with status name
+- [ ] displays issue count in header
+- [ ] renders KanbanCard for each issue
+- [ ] shows empty state when no issues in column
+- [ ] can be collapsed/expanded
+
+KanbanCard:
+- [ ] displays issue title
+- [ ] displays issue type badge
+- [ ] displays priority color stripe
+- [ ] displays assignee avatar/initials
+- [ ] truncates long titles with ellipsis
+- [ ] calls onclick when card clicked
+
+Drag and Drop:
+- [ ] card is draggable
+- [ ] shows drag preview during drag
+- [ ] column shows drop indicator when card dragged over
+- [ ] calls ondrop with issue and new status
+- [ ] shows optimistic status update
+- [ ] reverts on drop failure
+
+Context Menu:
+- [ ] opens on right-click
+- [ ] displays View Details option
+- [ ] displays Change Status submenu
+- [ ] displays Change Priority submenu
+- [ ] displays Assign option
+- [ ] displays Copy Link option
+- [ ] calls appropriate handlers
+
+Accessibility:
+- [ ] columns have role="listbox"
+- [ ] cards have role="option"
+- [ ] cards are keyboard focusable
+- [ ] drag/drop announced to screen readers
+```
+
+**ADR**: Record drag-and-drop library choice (svelte-dnd-action vs alternatives) using `adrs new`
+
 ---
 
 ### 1.10 Epics View
@@ -342,6 +552,40 @@ Hierarchical view of epics and their children.
 - Progress bar reflects completion
 - Click epic to see details
 
+**Test Acceptance Criteria** (`EpicsView.test.ts`):
+```
+Rendering:
+- [ ] displays only issues with type="epic"
+- [ ] shows epic title and ID
+- [ ] shows child count (done/total)
+- [ ] shows progress bar with correct percentage
+
+Expandable Rows:
+- [ ] renders expand/collapse toggle
+- [ ] expands to show child issues on click
+- [ ] collapses when toggled again
+- [ ] remembers expand state across re-renders
+
+Progress Calculation:
+- [ ] calculates progress from child statuses
+- [ ] counts "done" and "closed" as complete
+- [ ] updates progress when children change
+
+Interaction:
+- [ ] calls onselect when epic row clicked
+- [ ] expands on Enter key when focused
+- [ ] supports keyboard navigation (j/k)
+
+Empty State:
+- [ ] shows "No epics" message when empty
+- [ ] shows create epic prompt
+
+Accessibility:
+- [ ] rows have role="row"
+- [ ] expand toggle has aria-expanded
+- [ ] progress bar has aria-valuenow/min/max
+```
+
 > **Note**: Column configuration is constant-mapped for MVP. See [12-configuration-view.md](../wireframes/12-configuration-view.md) for future configurability.
 
 ---
@@ -357,12 +601,49 @@ Watch `.beads/` directory for changes and broadcast updates.
 - [ ] WebSocket server for broadcasting changes
 - [ ] Client subscription to change events
 - [ ] Debounce rapid file changes (100ms)
+- [ ] **O11y**: `ws.connection`, `ws.disconnection`, `ws.broadcast` spans
+- [ ] **O11y**: Metrics for `ws.connections.active`, `ws.messages.sent`
+- [ ] **O11y**: File change and connection logs with trace context
 
 **Acceptance Criteria**:
 - File change triggers WebSocket event within 1s
 - Multiple rapid changes coalesce
 - Client reconnects on disconnect
 - Server handles multiple clients
+- All WebSocket events produce spans (per [observability.md](../spec/observability.md))
+
+**Test Acceptance Criteria** (`FileWatcher.test.ts`, `WebSocketServer.test.ts`, `useRealtime.test.ts`):
+```
+FileWatcher (Server):
+- [ ] watches .beads/*.db files
+- [ ] watches .beads/*.jsonl files
+- [ ] emits change event when file modified
+- [ ] debounces rapid changes (100ms)
+- [ ] ignores non-database files
+- [ ] handles watcher errors gracefully
+
+WebSocket Server:
+- [ ] accepts client connections
+- [ ] broadcasts file:changed events to all clients
+- [ ] broadcasts issues:changed events
+- [ ] handles client disconnection
+- [ ] supports multiple concurrent clients
+
+useRealtime Hook (Client):
+- [ ] connects to WebSocket server on mount
+- [ ] reconnects on disconnect
+- [ ] calls onchange when issues:changed received
+- [ ] calls onfilechange when file:changed received
+- [ ] disconnects on unmount
+- [ ] handles connection errors
+
+Integration:
+- [ ] file change propagates to client within 1s
+- [ ] client receives correct event payload
+- [ ] multiple clients receive same event
+```
+
+**ADR**: Record WebSocket vs SSE decision using `adrs new`
 
 ---
 
@@ -393,6 +674,43 @@ Essential keyboard navigation.
 - Help modal shows all shortcuts
 - No conflicts with browser shortcuts
 
+**Test Acceptance Criteria** (`KeyboardShortcuts.test.ts`, `ShortcutManager.test.ts`):
+```
+ShortcutManager:
+- [ ] registers shortcuts with handlers
+- [ ] unregisters shortcuts
+- [ ] prevents duplicate registrations
+- [ ] handles modifier keys (Ctrl, Alt, Shift)
+- [ ] supports key sequences (e.g., "g i")
+
+Shortcut Handling:
+- [ ] j/k moves selection down/up
+- [ ] Enter opens selected issue
+- [ ] c opens create issue modal
+- [ ] n opens create issue modal (alias)
+- [ ] e opens edit mode for selected issue
+- [ ] Escape closes modal/cancels operation
+- [ ] / focuses search input
+- [ ] ? opens help modal
+
+Input Context:
+- [ ] ignores shortcuts when typing in input
+- [ ] ignores shortcuts when typing in textarea
+- [ ] respects editable contenteditable elements
+
+Help Modal:
+- [ ] displays all registered shortcuts
+- [ ] groups shortcuts by category
+- [ ] shows shortcut key and description
+- [ ] closes on Escape or click outside
+
+Accessibility:
+- [ ] shortcuts don't conflict with screen reader keys
+- [ ] help modal is keyboard accessible
+```
+
+**ADR**: Record keyboard shortcut handling approach using `adrs new`
+
 ---
 
 ### 1.13 Owner/Assignee Filter
@@ -410,6 +728,43 @@ Filter by owner or assignee with autocomplete.
 - Dropdown shows users from recent issues
 - Selection filters immediately
 - Can combine with other filters
+
+**Test Acceptance Criteria** (`AssigneeFilter.test.ts`):
+```
+Rendering:
+- [ ] renders assignee dropdown/combobox
+- [ ] shows "Assignee" placeholder when empty
+- [ ] shows selected assignee name when set
+
+Autocomplete:
+- [ ] opens dropdown on focus
+- [ ] filters users as user types
+- [ ] shows matching users from recent issues
+- [ ] highlights matching text in suggestions
+- [ ] shows "No matches" when filter yields no results
+
+Special Options:
+- [ ] includes "Me" option at top
+- [ ] "Me" resolves to current user
+- [ ] includes "Unassigned" option
+- [ ] includes "Any" option to clear filter
+
+Selection:
+- [ ] selects user on click
+- [ ] selects user on Enter
+- [ ] calls onchange with selected user
+- [ ] closes dropdown after selection
+
+Keyboard Navigation:
+- [ ] Arrow keys navigate options
+- [ ] Enter selects highlighted option
+- [ ] Escape closes dropdown
+
+Accessibility:
+- [ ] has role="combobox"
+- [ ] options have role="option"
+- [ ] aria-activedescendant tracks highlight
+```
 
 ---
 
@@ -433,6 +788,52 @@ Modal showing blocking/blocked-by relationships for a single issue.
 - Graph shows relationship direction with arrows
 - Click issue navigates to that issue's detail
 - Can add/remove dependencies via `bd update`
+
+**Test Acceptance Criteria** (`DependenciesModal.test.ts`, `DependencyGraph.test.ts`):
+```
+Modal Behavior (DependenciesModal):
+- [ ] renders modal when open is true
+- [ ] does not render when open is false
+- [ ] displays issue title in header
+- [ ] closes on Escape key
+- [ ] closes on backdrop click
+- [ ] has role="dialog" and aria-modal="true"
+
+Blocked By Section:
+- [ ] displays list of blocking issues
+- [ ] shows issue ID, title, status for each
+- [ ] shows "None" when no blockers
+- [ ] clicking issue calls onnavigate
+
+Blocking Section:
+- [ ] displays list of blocked issues
+- [ ] shows issue ID, title, status for each
+- [ ] shows "None" when no blocked issues
+- [ ] clicking issue calls onnavigate
+
+Graph Visualization (DependencyGraph):
+- [ ] renders SVG graph
+- [ ] shows current issue as center node
+- [ ] shows blocking issues as upstream nodes
+- [ ] shows blocked issues as downstream nodes
+- [ ] draws arrows indicating direction
+- [ ] nodes are clickable
+
+Add/Remove Dependencies:
+- [ ] renders "Add Dependency" button
+- [ ] opens search/select dialog when clicked
+- [ ] calls onadd with selected issue
+- [ ] renders remove button on each dependency
+- [ ] calls onremove when remove clicked
+- [ ] shows confirmation before remove
+
+Accessibility:
+- [ ] graph has role="img" with aria-label
+- [ ] interactive nodes are keyboard focusable
+- [ ] relationships described for screen readers
+```
+
+**ADR**: Record graph visualization library choice using `adrs new`
 
 ---
 
@@ -461,7 +862,86 @@ Persistent navigation with global actions and settings toggles.
 - [+ Epic] opens Create Epic modal
 - Settings persist in localStorage
 
+**Test Acceptance Criteria** (`GlobalNav.test.ts`, `ThemeToggle.test.ts`, `DensitySelector.test.ts`):
+```
+GlobalNav:
+- [ ] renders navigation container
+- [ ] renders navigation tabs (Issues, Epics, Board, Dashboard, Graph)
+- [ ] highlights active tab
+- [ ] calls onnavigate when tab clicked
+- [ ] renders [+ Issue] button
+- [ ] renders [+ Epic] button
+- [ ] calls oncreateissue when [+ Issue] clicked
+- [ ] calls oncreateepic when [+ Epic] clicked
+
+ThemeToggle:
+- [ ] renders theme toggle button/dropdown
+- [ ] shows current theme (Dark/Light/System)
+- [ ] cycles theme on click
+- [ ] applies theme class to document
+- [ ] persists theme to localStorage
+- [ ] respects system preference when "System" selected
+
+DensitySelector:
+- [ ] renders density selector
+- [ ] shows options: Compact, Standard, Wide
+- [ ] highlights current density
+- [ ] calls ondensitychange when selected
+- [ ] persists density to localStorage
+- [ ] applies density class to layout
+
+Time Format Toggle:
+- [ ] renders time format selector
+- [ ] shows options: Days, Days+Hours
+- [ ] calls ontimeformatchange when changed
+- [ ] persists setting to localStorage
+
+User Menu:
+- [ ] renders user avatar/icon
+- [ ] opens dropdown on click
+- [ ] shows Configuration link
+- [ ] shows Sign Out option (if applicable)
+
+Accessibility:
+- [ ] navigation has role="navigation"
+- [ ] tabs have role="tablist" / role="tab"
+- [ ] active tab has aria-selected="true"
+- [ ] all buttons have accessible names
+```
+
+**ADR**: Record theme system implementation using `adrs new`
+
 > **Note**: For MVP, theme and density options are constant-mapped. Full configurability in Phase 2.
+
+---
+
+## Observability Requirements
+
+All Phase 1 implementations must include telemetry per [ADR-0011](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md) and [observability.md](../spec/observability.md).
+
+### Acceptance Criteria
+
+- [ ] CLI command executions traced with span including args, exit code, duration
+- [ ] WebSocket connections/disconnections emit spans
+- [ ] Circuit breaker state changes logged with trace context
+- [ ] Errors include span ID for correlation
+- [ ] Metrics: `cli.commands.total`, `ws.connections.active`, `cli.circuit_breaker.state`
+
+### Implementation References
+
+- [Spec: Observability Architecture](../spec/observability.md)
+- [Constraint 0001: Bun OTEL Compatibility](../docs/constraint-0001-bun-otel-compatibility.md)
+- [Constraint 0002: OTEL Signal Maturity](../docs/constraint-0002-otel-signal-maturity.md)
+- [Constraint 0003: CLI Instrumentation Patterns](../docs/constraint-0003-cli-instrumentation-patterns.md)
+
+### Per-Feature Requirements
+
+| Feature | Traces | Metrics | Logs |
+|---------|--------|---------|------|
+| ProcessSupervisor | `cli.execute` span with args/exit code | `cli.commands.total`, `cli.commands.duration` | Circuit breaker state changes |
+| RealtimeServer | `ws.connection`, `ws.broadcast` spans | `ws.connections.active`, `ws.messages.sent` | Connection events |
+| FileWatcher | `file.change` span | - | Change events |
+| Data Access Layer | `db.query` span | `db.queries.total`, `db.queries.duration` | Query errors |
 
 ---
 
@@ -537,11 +1017,42 @@ export const issueStore = new IssueStore();
 
 ## Testing Strategy
 
+### TDD Approach (Required)
+
+All features must follow Test-Driven Development:
+
+1. **RED**: Write failing tests first based on Test Acceptance Criteria
+2. **GREEN**: Implement minimum code to pass tests
+3. **REFACTOR**: Clean up while keeping tests green
+
+### Architecture Decision Records (ADRs)
+
+Record significant decisions using the `adrs` CLI:
+
+```bash
+# Create new ADR
+adrs new "Decision Title"
+
+# List existing ADRs
+adrs list
+
+# Reference existing ADRs:
+# - ADR-0008: Vitest with Testing Library
+# - ADR-0009: Callback Props for Component Events
+# - ADR-0010: Dependency Injection for Testability
+```
+
 ### Unit Tests
 - ProcessSupervisor command execution
 - Data access layer query building
 - Filter logic
 - State store operations
+- **All component tests per Test Acceptance Criteria**
+
+### Test Patterns
+- Use callback props (`onselect`, `onchange`) instead of `createEventDispatcher`
+- Use dependency injection for external dependencies (ADR-0010)
+- Configure Vitest with `resolve.conditions: ['browser', 'development']` for Svelte 5
 
 ### Integration Tests
 - API routes with mock `bd` CLI
@@ -705,6 +1216,12 @@ Before proceeding to Phase 2, provide:
 - [CLI Integration](../spec/cli-integration.md)
 - [Data Flow](../spec/data-flow.md)
 - [Component Library](../spec/component-library.md)
+- **Observability**:
+  - [ADR-0011: Use OpenTelemetry for Observability](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+  - [Spec: Observability Architecture](../spec/observability.md)
+  - [Constraint 0001: Bun OTEL Compatibility](../docs/constraint-0001-bun-otel-compatibility.md)
+  - [Constraint 0002: OTEL Signal Maturity](../docs/constraint-0002-otel-signal-maturity.md)
+  - [Constraint 0003: CLI Instrumentation Patterns](../docs/constraint-0003-cli-instrumentation-patterns.md)
 - **Wireframes**:
   - [01-issue-list-view.md](../wireframes/01-issue-list-view.md)
   - [02-kanban-board.md](../wireframes/02-kanban-board.md)

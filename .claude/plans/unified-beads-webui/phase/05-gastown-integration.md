@@ -73,6 +73,36 @@ See [CLI Integration Spec](../spec/cli-integration.md#gt-cli-commands) for full 
 
 ---
 
+## Observability Requirements
+
+All Phase 5 implementations must include telemetry per [ADR-0011](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md).
+
+### Acceptance Criteria
+
+- [ ] gt CLI operations traced with span including command and args
+- [ ] Agent monitoring traced with spans for status polls
+- [ ] Convoy operations traced with span including convoy ID
+- [ ] Mail operations traced with span
+- [ ] Errors include span ID for correlation
+- [ ] Metrics: `gt.commands.total`, `gt.commands.duration`, `agent.rigs.active`, `agent.polecats.active`
+
+### Per-Feature Requirements
+
+| Feature | Traces | Metrics | Logs |
+|---------|--------|---------|------|
+| Gas-Town Detection | `gt.detect` span | - | Detection results |
+| Agent Dashboard | `gt.status.poll` span | `agent.rigs.active`, `agent.polecats.active` | Status updates |
+| Convoy Tracking | `convoy.status` span | `convoy.progress.percent` | Convoy events |
+| Mail System | `mail.fetch`, `mail.send` spans | `mail.messages.total` | Mail operations |
+| SQL Explorer | `sql.query` span with query type | `sql.queries.duration` | Query execution |
+
+### References
+
+- [Spec: Observability Architecture](../spec/observability.md)
+- [ADR-0011: Use OpenTelemetry](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+
+---
+
 ## Features
 
 ### 5.1 Gas-Town Detection

@@ -1,0 +1,7 @@
+# Bun configuration
+# https://bun.sh/docs/runtime/bunfig
+
+[run]
+# Preload OpenTelemetry SDK initialization
+# See ADR-0011 and Constraint 0001 for details
+preload = ["./src/lib/telemetry/init.ts"]

@@ -47,6 +47,7 @@
 | Git Integration | [git.md](./git.md) |
 | Real-time Sync | [realtime.md](./realtime.md) |
 | Test Strategy | [test-strategy.md](./test-strategy.md) |
+| **Observability** | [observability.md](./observability.md) |
 
 ---
 
@@ -325,109 +326,28 @@ export const issueStore = new IssueStore();
 
 ## Observability
 
-### Logging
+> **Full specification**: [observability.md](./observability.md)
 
-```typescript
-// src/lib/logger.ts
-import { dev } from '$app/environment';
+The observability stack is built on **OpenTelemetry** with **Pino** for structured logging:
 
-type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+- **Traces**: Distributed tracing via `@opentelemetry/sdk-node`
+- **Metrics**: Counters, histograms via `@opentelemetry/sdk-metrics`
+- **Logs**: Pino with OTEL trace context correlation
 
-interface LogEntry {
-  level: LogLevel;
-  message: string;
-  timestamp: string;
-  context?: Record<string, unknown>;
-}
+### Key References
 
-class Logger {
-  private level: LogLevel = dev ? 'debug' : 'info';
+- [ADR-0011: Use OpenTelemetry for Observability](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+- [Constraint 0001: Bun OTEL Compatibility](../docs/constraint-0001-bun-otel-compatibility.md)
+- [Constraint 0002: OTEL Signal Maturity](../docs/constraint-0002-otel-signal-maturity.md)
+- [Constraint 0003: CLI Instrumentation Patterns](../docs/constraint-0003-cli-instrumentation-patterns.md)
 
-  private shouldLog(level: LogLevel): boolean {
-    const levels = ['debug', 'info', 'warn', 'error'];
-    return levels.indexOf(level) >= levels.indexOf(this.level);
-  }
+### Acceptance Criteria (All Phases)
 
-  log(level: LogLevel, message: string, context?: Record<string, unknown>) {
-    if (!this.shouldLog(level)) return;
-
-    const entry: LogEntry = {
-      level,
-      message,
-      timestamp: new Date().toISOString(),
-      context,
-    };
-
-    // Console output
-    const logFn = level === 'error' ? console.error :
-                  level === 'warn' ? console.warn : console.log;
-    logFn(`[${entry.level.toUpperCase()}] ${entry.message}`, entry.context || '');
-  }
-
-  debug(msg: string, ctx?: Record<string, unknown>) { this.log('debug', msg, ctx); }
-  info(msg: string, ctx?: Record<string, unknown>) { this.log('info', msg, ctx); }
-  warn(msg: string, ctx?: Record<string, unknown>) { this.log('warn', msg, ctx); }
-  error(msg: string, ctx?: Record<string, unknown>) { this.log('error', msg, ctx); }
-}
-
-export const logger = new Logger();
-```
-
-### Error Tracking
-
-```typescript
-// src/hooks.client.ts
-import { logger } from '$lib/logger';
-
-// Global error handler
-window.addEventListener('error', (event) => {
-  logger.error('Uncaught error', {
-    message: event.message,
-    filename: event.filename,
-    lineno: event.lineno,
-    colno: event.colno,
-  });
-});
-
-// Promise rejection handler
-window.addEventListener('unhandledrejection', (event) => {
-  logger.error('Unhandled promise rejection', {
-    reason: event.reason,
-  });
-});
-```
-
-### Request Timing
-
-```typescript
-// src/lib/api.ts
-async function fetchWithTiming(url: string, options?: RequestInit): Promise<Response> {
-  const start = performance.now();
-
-  try {
-    const response = await fetch(url, options);
-    const duration = performance.now() - start;
-
-    logger.info('API request', {
-      url,
-      method: options?.method || 'GET',
-      status: response.status,
-      duration: Math.round(duration),
-    });
-
-    return response;
-  } catch (error) {
-    const duration = performance.now() - start;
-    logger.error('API request failed', {
-      url,
-      method: options?.method || 'GET',
-      error: error.message,
-      duration: Math.round(duration),
-    });
-    throw error;
-  }
-}
-```
+- [ ] CLI command executions traced with span including args, exit code, duration
+- [ ] WebSocket connections/disconnections emit spans
+- [ ] Circuit breaker state changes logged with trace context
+- [ ] Errors include span ID for correlation
+- [ ] Metrics: `cli.commands.total`, `ws.connections.active`, `cli.circuit_breaker.state`
 
 ### Health Endpoint
 
@@ -441,6 +361,7 @@ interface HealthResponse {
     database: 'ok' | 'error';
     cli: 'ok' | 'error';
     fileWatcher: 'ok' | 'error';
+    telemetry: 'ok' | 'error';
   };
 }
 ```

@@ -72,6 +72,31 @@ bun add layerchart d3-scale d3-shape d3-array
 
 ---
 
+## Observability Requirements
+
+All Phase 2 implementations must include telemetry per [ADR-0011](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md).
+
+### Acceptance Criteria
+
+- [ ] Metrics calculations traced with span including calculation type and issue count
+- [ ] Chart render operations traced with span including chart type and data points
+- [ ] Errors include span ID for correlation
+- [ ] Metrics: `metrics.calculation.duration`, `chart.render.duration`
+
+### Per-Feature Requirements
+
+| Feature | Traces | Metrics | Logs |
+|---------|--------|---------|------|
+| Metrics Engine | `metrics.calculate` span with type | `metrics.calculation.duration` | Calculation errors |
+| Charts | `chart.render` span with chart type | `chart.render.duration` | Render failures |
+
+### References
+
+- [Spec: Observability Architecture](../spec/observability.md)
+- [ADR-0011: Use OpenTelemetry](../../../../docs/src/adrs/0011-use-opentelemetry-for-observability.md)
+
+---
+
 ## Features
 
 ### 2.1 Metrics Engine
