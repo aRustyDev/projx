@@ -381,7 +381,59 @@ shape.frame = {
 | Stroke not outlining | Select shape, not stroke |
 | Flatten losing detail | Check for overlapping paths |
 
+## Graphics Container
+
+A Graphics container is a special layer type optimized for icons and vector artwork.
+
+### Creating Graphics
+
+1. Select one or more layers
+2. Press `G` or Layer → Create Graphics
+3. The layers are wrapped in a Graphics container
+
+### Properties
+
+| Property | Behavior |
+|----------|----------|
+| **Proportional resize** | Maintains aspect ratio when scaled |
+| **Vector rendering** | Optimized for crisp vector display |
+| **Icon organization** | Groups related icon parts |
+
+### Graphics vs Groups
+
+| Feature | Graphics | Group |
+|---------|----------|-------|
+| Resize behavior | Proportional (aspect ratio locked) | Free resize |
+| Use case | Icons, logos, vector art | General organization |
+| Scaling | Contents scale together | Contents independent |
+
+### Creating Icons with Graphics
+
+```javascript
+// After creating icon elements, group as Graphics
+// In UI: Select shapes → Press G
+
+// Graphics containers in MCP appear as Groups
+// with specific scaling behavior
+
+const iconGroup = new Group({
+  name: 'Icons/Check',
+  layers: [checkmarkPath, circleBg],
+  parent: targetFrame
+});
+// Note: MCP may not distinguish Graphics from Groups
+```
+
+### Best Practices
+
+- Use Graphics for all icon components
+- Keep icons at consistent base sizes (24x24, 32x32)
+- Export Graphics with proper scaling (1x, 2x, 3x)
+- Name Graphics with icon category prefix
+
 ## Related References
 - [Styling & Colors](./styling.md)
 - [MCP API Patterns](./mcp-api.md)
 - [Developer Handoff](./handoff.md)
+- [Troubleshooting](./troubleshooting.md) - Shape issues
+- [Glossary](./glossary.md) - Shape terminology

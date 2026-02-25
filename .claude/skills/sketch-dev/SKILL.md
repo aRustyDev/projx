@@ -251,6 +251,7 @@ x: -2000                    x: 0
 | Prototyping & Flows | [prototyping.md](./references/prototyping.md) |
 | Styling & Colors | [styling.md](./references/styling.md) |
 | Shapes & Booleans | [shapes.md](./references/shapes.md) |
+| Data & Linked Content | [data.md](./references/data.md) |
 | Developer Handoff | [handoff.md](./references/handoff.md) |
 | Workflow & Organization | [workflow.md](./references/workflow.md) |
 | Naming Conventions | [naming.md](./references/naming.md) |
@@ -258,6 +259,7 @@ x: -2000                    x: 0
 | MCP API Patterns | [mcp-api.md](./references/mcp-api.md) |
 | Troubleshooting | [troubleshooting.md](./references/troubleshooting.md) |
 | Glossary | [glossary.md](./references/glossary.md) |
+| Gap Analysis | [gap-analysis.md](./references/gap-analysis.md) |
 
 ## Scripts Library
 

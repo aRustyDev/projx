@@ -79,16 +79,47 @@ Layers named "Card" will animate position, size, opacity
 
 ## Triggers
 
-### Click/Tap
-Default trigger - activates on click/tap.
+Triggers define when an interaction fires.
+
+### Trigger Types
+
+| Trigger | Description | Use Case |
+|---------|-------------|----------|
+| **Click/Tap** | Default - activates on click | Buttons, links, cards |
+| **Hover** | Activates on mouse enter | Tooltips, dropdowns |
+| **Press** | Activates on mouse down | Press states, drag start |
+| **Toggle** | Alternates between states | On/off switches, expand/collapse |
 
 ### Mouse Events (Desktop)
+
 - **On Click**: Standard click action
 - **On Hover**: Trigger on mouse enter
 - **On Mouse Leave**: Trigger on mouse exit
+- **On Press**: Trigger on mouse down (before release)
 
 ### Scroll Position
+
 Trigger when scrolling to a specific position.
+
+### Keyboard Triggers
+
+- **On Key Press**: Trigger when specific key pressed
+- Useful for keyboard shortcuts in prototypes
+
+### Trigger in Code
+
+```javascript
+const hotspot = new HotSpot({
+  name: 'Hover Tooltip',
+  frame: { x: 100, y: 100, width: 80, height: 24 },
+  parent: sourceFrame,
+  flow: {
+    targetId: tooltipFrame.id,
+    trigger: 'hover',  // 'click', 'press', 'toggle'
+    type: 'overlay'
+  }
+});
+```
 
 ## Overlays
 
@@ -118,9 +149,37 @@ const hotspot = new HotSpot({
 
 | Setting | Description |
 |---------|-------------|
-| `position` | Where overlay appears (center, top, bottom, etc.) |
+| `position` | Where overlay appears (center, top, bottom, left, right, manual) |
 | `backgroundDismiss` | Close by clicking outside |
 | `backgroundColor` | Scrim/backdrop color |
+| `outsideInteraction` | How clicks outside overlay behave |
+| `offsetX`, `offsetY` | Manual position offset (when position is 'manual') |
+
+### Outside Interaction
+
+Controls what happens when clicking outside the overlay:
+
+| Value | Behavior |
+|-------|----------|
+| `allowAll` | Clicks pass through to underlying content |
+| `preventAll` | Clicks are blocked (modal behavior) |
+| `closeOverlay` | Clicking outside closes the overlay |
+
+### Manual Positioning
+
+For precise overlay placement (e.g., dropdown menus):
+
+```javascript
+flow: {
+  type: 'overlay',
+  overlaySettings: {
+    position: 'manual',
+    offsetX: 0,    // Relative to hotspot left
+    offsetY: 36,   // Below hotspot
+    outsideInteraction: 'closeOverlay'
+  }
+}
+```
 
 ### Closing Overlays
 

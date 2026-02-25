@@ -19,15 +19,75 @@ const colors = {
 
 ### Color Variables
 
-Reusable colors that sync across document:
+Reusable colors that sync across document.
+
+#### Creating Color Variables
 
 ```javascript
-// Creating Color Variables
-// In Sketch UI: Components → Color Variables → Create
+// In Sketch UI:
+// 1. Select layer with color
+// 2. Click color swatch → Create Color Variable
+// Or: Components → Color Variables → Create
 
 // Programmatically, colors are applied via fills/strokes
 // Color Variables are document-level assets
 ```
+
+#### Organizing Color Variables
+
+Use `/` separators to create groups:
+
+```
+Brand/Primary
+Brand/Secondary
+Neutral/Gray-100
+Neutral/Gray-200
+Semantic/Success
+Semantic/Error
+```
+
+#### Find and Replace Color
+
+Replace colors across entire document:
+
+1. Edit → Find and Replace Color (Cmd+Shift+F)
+2. Select color to find
+3. Select replacement color
+4. Choose scope (selection, page, document)
+
+#### Exporting Color Tokens
+
+Export colors for development:
+
+1. File → Export → Color Variables
+2. Choose format:
+   - **CSS**: Custom properties (--color-primary: #3B82F6)
+   - **JSON**: Token format for design systems
+
+```css
+/* Exported CSS */
+:root {
+  --brand-primary: #3B82F6;
+  --brand-secondary: #10B981;
+  --neutral-gray-100: #F3F4F6;
+}
+```
+
+```json
+{
+  "brand": {
+    "primary": { "value": "#3B82F6" },
+    "secondary": { "value": "#10B981" }
+  }
+}
+```
+
+#### Linking to External Libraries
+
+Color Variables can be linked from Libraries:
+1. Add Library with Color Variables
+2. Colors appear in Color picker
+3. Updates sync when Library changes
 
 ### Design Token Pattern
 

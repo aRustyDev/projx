@@ -79,6 +79,18 @@ const modalFrame = new Rectangle({
 
 Stacks automatically arrange child layers with consistent spacing.
 
+### Creating Stacks
+
+**In Sketch UI:**
+1. Select layers to stack
+2. Right-click → Stack or use toolbar button
+3. Or press `Ctrl+Shift+G` (macOS)
+
+```javascript
+// Programmatically, Stacks are represented as Groups with layout properties
+// Note: MCP API may have limited Stack support
+```
+
 ### Stack Properties
 
 | Property | Values | Description |
@@ -87,16 +99,19 @@ Stacks automatically arrange child layers with consistent spacing.
 | `spacing` | number | Gap between items |
 | `padding` | number or object | Internal padding |
 | `alignment` | `start`, `center`, `end` | Cross-axis alignment |
-| `distribution` | `start`, `center`, `end`, `space-between` | Main-axis distribution |
+| `distribution` | `start`, `center`, `end`, `space-between`, `space-around`, `space-evenly` | Main-axis distribution |
+| `wrap` | boolean | Allow items to wrap to next line |
 
-### Creating Stacks
+### Distribution Modes
 
-```javascript
-// In Sketch UI: Select layers → Right-click → Stack
-// Or use the toolbar Stack button
+```
+start:           center:          end:
+[A][B][C]        [A][B][C]           [A][B][C]
+└────────┘       └────────┘       └────────┘
 
-// Programmatically, Stacks are represented as Groups with layout properties
-// Note: MCP API may have limited Stack support
+space-between:   space-around:    space-evenly:
+[A]   [B]   [C]   [A]  [B]  [C]   [A]  [B]  [C]
+│←───────→│       ←│ ←│  │→ │→     ←→  ←→  ←→
 ```
 
 ### Stack Sizing Options
@@ -106,6 +121,44 @@ Stacks automatically arrange child layers with consistent spacing.
 | **Fixed** | Maintains set dimensions |
 | **Hug Contents** | Shrinks to fit children |
 | **Fill Container** | Expands to fill parent |
+
+### Wrap Option
+
+When `wrap` is enabled:
+- Items flow to next line when container width is exceeded
+- Row/column gap applies between wrapped lines
+- Useful for tag lists, card grids
+
+```
+Without wrap:          With wrap:
+[A][B][C][D][E]──→    [A][B][C]
+(overflow)             [D][E]
+```
+
+### Individual Item Properties
+
+Each item in a stack can have:
+
+| Property | Description |
+|----------|-------------|
+| Fixed size | Item maintains its dimensions |
+| Fill | Item expands to take available space |
+| Minimum | Item has a minimum size |
+| Maximum | Item has a maximum size |
+
+### Nested Stacks
+
+Combine stacks for complex layouts:
+
+```
+Horizontal Stack (outer)
+├── Vertical Stack (sidebar)
+│   ├── Logo
+│   └── Nav Items
+└── Vertical Stack (content)
+    ├── Header
+    └── Main Area
+```
 
 ## Constraints (Pinning)
 
