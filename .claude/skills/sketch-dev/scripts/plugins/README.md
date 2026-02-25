@@ -212,6 +212,52 @@ The original one-shot scripts are still available:
 
 These are kept for reference but the new `lib/` modules and `pipeline.py` are recommended for ongoing tracking.
 
+## Summary Generation
+
+Generate research summaries for plugins by fetching README/homepage content.
+
+### Single Category
+
+```bash
+# Interactive mode - outputs JSON for Claude Code to process
+just scrape generate-summaries --category colors --limit 10 --missing
+
+# With API key - batch processing
+just scrape generate-summaries --api-key sk-ant-xxx --category colors --limit 10
+```
+
+### Parallel Processing with Agents
+
+Use the plugin-summarizer agent to process multiple categories in parallel:
+
+```python
+# In Claude Code, spawn multiple agents simultaneously:
+Task(
+  subagent_type="general-purpose",
+  prompt="Generate summaries for Sketch plugins in category: colors --limit 10 --missing. Read .claude/agents/plugin-summarizer.md for instructions.",
+  description="Summarize colors plugins",
+  run_in_background=True
+)
+Task(
+  subagent_type="general-purpose",
+  prompt="Generate summaries for Sketch plugins in category: layers --limit 10 --missing. Read .claude/agents/plugin-summarizer.md for instructions.",
+  description="Summarize layers plugins",
+  run_in_background=True
+)
+```
+
+See `.claude/agents/plugin-summarizer.md` for full agent instructions.
+
+### Summary Format
+
+```yaml
+- plugin: Plugin Name
+  # ... other fields ...
+  summary: |
+    2-4 sentences covering main functionality, key features,
+    maintenance status, and notable technical details.
+```
+
 ## Statistics
 
 As of February 2026:
