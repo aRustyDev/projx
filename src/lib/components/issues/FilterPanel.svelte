@@ -183,7 +183,7 @@
 		</button>
 		{#if statusOpen}
 			<div
-				class="absolute z-10 mt-1 w-48 rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
+				class="absolute z-50 mt-1 w-48 rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
 			>
 				{#each availableStatuses as statusOption (statusOption)}
 					<button
@@ -233,7 +233,7 @@
 		</button>
 		{#if typeOpen}
 			<div
-				class="absolute z-10 mt-1 w-48 rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
+				class="absolute z-50 mt-1 w-48 rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
 			>
 				{#each availableTypes as typeOption (typeOption)}
 					<button
@@ -283,7 +283,7 @@
 		</button>
 		{#if priorityOpen}
 			<div
-				class="absolute z-10 mt-1 w-48 rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
+				class="absolute z-50 mt-1 w-48 rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
 			>
 				{#each priorityOptions as { value, label } (value)}
 					<button
@@ -333,7 +333,7 @@
 		</button>
 		{#if assigneeOpen}
 			<div
-				class="absolute z-10 mt-1 max-h-48 w-48 overflow-y-auto rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
+				class="absolute z-50 mt-1 max-h-48 w-48 overflow-y-auto rounded-md border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
 			>
 				<button
 					type="button"
