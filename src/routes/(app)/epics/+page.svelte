@@ -9,7 +9,6 @@
 	import { goto } from '$app/navigation';
 	import EpicsView from '$lib/components/epics/EpicsView.svelte';
 	import FilterPanel from '$lib/components/issues/FilterPanel.svelte';
-	import TextSearch from '$lib/components/issues/TextSearch.svelte';
 	import { appStore } from '$lib/stores/app.svelte.js';
 	import { parseFilterFromURL, buildFilterURL } from '$lib/utils/url-state.js';
 	import type { IssueFilter, Issue } from '$lib/db/types.js';
@@ -108,15 +107,11 @@
 		}
 		if (filters.search) {
 			newFilter.search = filters.search;
+			searchValue = filters.search;
+		} else {
+			searchValue = '';
 		}
 
-		store.setFilter(newFilter);
-		updateURL(newFilter);
-	}
-
-	function handleSearch(query: string) {
-		searchValue = query;
-		const newFilter = { ...filter, search: query || undefined };
 		store.setFilter(newFilter);
 		updateURL(newFilter);
 	}
@@ -143,24 +138,22 @@
 </script>
 
 <div class="flex h-full flex-col gap-4 p-4">
-	<!-- Header with search and filters -->
-	<div class="flex items-center gap-4">
-		<h1 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Epics</h1>
-		<div class="w-64">
-			<TextSearch value={searchValue} onsearch={handleSearch} {loading} />
-		</div>
-		<FilterPanel
-			status={filterStatus}
-			issueType={[]}
-			priority={filterPriority}
-			assignee={filterAssignee}
-			search={searchValue}
-			{availableStatuses}
-			availableTypes={[]}
-			{availableAssignees}
-			onfilterchange={handleFilterChange}
-		/>
-	</div>
+	<!-- Header -->
+	<h1 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Epics</h1>
+
+	<!-- Filters (includes search) -->
+	<FilterPanel
+		status={filterStatus}
+		issueType={[]}
+		priority={filterPriority}
+		assignee={filterAssignee}
+		search={searchValue}
+		searchPlaceholder="Search epics..."
+		{availableStatuses}
+		availableTypes={[]}
+		{availableAssignees}
+		onfilterchange={handleFilterChange}
+	/>
 
 	<!-- Content area -->
 	<div class="flex-1 overflow-auto">

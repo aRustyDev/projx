@@ -3,6 +3,7 @@
 	 * FilterPanel - Multi-faceted issue filtering component
 	 * @component
 	 */
+	import { PRIORITY_OPTIONS, STATUS_OPTIONS, ISSUE_TYPE_OPTIONS } from '$lib/db/types.js';
 
 	interface FilterState {
 		status: string[];
@@ -18,6 +19,7 @@
 		priority?: number[];
 		assignee?: string;
 		search?: string;
+		searchPlaceholder?: string;
 		availableStatuses?: string[];
 		availableTypes?: string[];
 		availableAssignees?: string[];
@@ -30,8 +32,9 @@
 		priority = [],
 		assignee = '',
 		search = '',
-		availableStatuses = ['open', 'in_progress', 'review', 'done', 'closed'],
-		availableTypes = ['bug', 'feature', 'task', 'epic'],
+		searchPlaceholder = 'Search issues...',
+		availableStatuses = STATUS_OPTIONS.map((s) => s.value),
+		availableTypes = ISSUE_TYPE_OPTIONS.map((t) => t.value),
 		availableAssignees = [],
 		onfilterchange
 	}: Props = $props();
@@ -46,12 +49,8 @@
 	let priorityOpen = $state(false);
 	let assigneeOpen = $state(false);
 
-	const priorityOptions = [
-		{ value: 1, label: 'P1 - Critical' },
-		{ value: 2, label: 'P2 - High' },
-		{ value: 3, label: 'P3 - Medium' },
-		{ value: 4, label: 'P4 - Low' }
-	];
+	// Use global priority options (includes P0)
+	const priorityOptions = PRIORITY_OPTIONS;
 
 	// Check if any filters are active
 	const hasActiveFilters = $derived(
@@ -153,12 +152,15 @@
 >
 	<!-- Search -->
 	<div class="min-w-[200px] flex-1">
+		<label for="filter-search" class="sr-only">Search</label>
 		<input
+			id="filter-search"
 			type="search"
 			role="searchbox"
+			aria-label="Search issues"
 			value={searchValue}
 			oninput={handleSearchInput}
-			placeholder="Search issues..."
+			placeholder={searchPlaceholder}
 			class="w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
 		/>
 	</div>

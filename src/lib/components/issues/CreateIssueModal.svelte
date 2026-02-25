@@ -29,7 +29,6 @@
 
 	// Validation state
 	let titleError = $state('');
-	let titleTouched = $state(false);
 
 	// Submission state
 	let submitting = $state(false);
@@ -57,7 +56,6 @@
 		description = '';
 		assignee = '';
 		titleError = '';
-		titleTouched = false;
 		submitting = false;
 	}
 
@@ -71,19 +69,21 @@
 	}
 
 	function handleTitleBlur() {
-		titleTouched = true;
 		validateTitle();
 	}
 
+	function handleTitleFocus() {
+		// Clear error on focus to allow user to correct
+		titleError = '';
+	}
+
 	function handleTitleInput() {
-		if (titleTouched) {
-			validateTitle();
-		}
+		// Clear error while typing
+		titleError = '';
 	}
 
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
-		titleTouched = true;
 
 		if (!validateTitle()) {
 			return;
@@ -183,6 +183,7 @@
 						bind:value={title}
 						oninput={handleTitleInput}
 						onblur={handleTitleBlur}
+						onfocus={handleTitleFocus}
 						class="w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
 						class:border-red-500={titleError}
 						placeholder="Issue title"
@@ -220,8 +221,10 @@
 					<select
 						id="priority"
 						bind:value={priority}
+						title="Issue priority level"
 						class="w-full rounded-md border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
 					>
+						<option value="0">P0 - Urgent</option>
 						<option value="1">P1 - Critical</option>
 						<option value="2">P2 - High</option>
 						<option value="3">P3 - Medium</option>

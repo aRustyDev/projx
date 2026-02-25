@@ -3,6 +3,48 @@
  * @module db/types
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Global Enums and Constants
+// These are the single source of truth for all enum-like values in the app
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Priority levels (0 = most urgent) */
+export const PRIORITY_OPTIONS = [
+	{ value: 0, label: 'P0 - Urgent', color: 'red' },
+	{ value: 1, label: 'P1 - Critical', color: 'orange' },
+	{ value: 2, label: 'P2 - High', color: 'yellow' },
+	{ value: 3, label: 'P3 - Medium', color: 'blue' },
+	{ value: 4, label: 'P4 - Low', color: 'gray' }
+] as const;
+
+/** Issue statuses */
+export const STATUS_OPTIONS = [
+	{ value: 'open', label: 'Open', color: 'blue' },
+	{ value: 'in_progress', label: 'In Progress', color: 'yellow' },
+	{ value: 'blocked', label: 'Blocked', color: 'red' },
+	{ value: 'review', label: 'Review', color: 'purple' },
+	{ value: 'done', label: 'Done', color: 'green' },
+	{ value: 'closed', label: 'Closed', color: 'gray' }
+] as const;
+
+/** Issue types */
+export const ISSUE_TYPE_OPTIONS = [
+	{ value: 'task', label: 'Task', icon: 'check-square' },
+	{ value: 'bug', label: 'Bug', icon: 'bug' },
+	{ value: 'feature', label: 'Feature', icon: 'lightbulb' },
+	{ value: 'epic', label: 'Epic', icon: 'layers' },
+	{ value: 'story', label: 'Story', icon: 'book-open' }
+] as const;
+
+/** Extract values for type definitions */
+export type Priority = (typeof PRIORITY_OPTIONS)[number]['value'];
+export type Status = (typeof STATUS_OPTIONS)[number]['value'];
+export type IssueType = (typeof ISSUE_TYPE_OPTIONS)[number]['value'];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Database Configuration
+// ─────────────────────────────────────────────────────────────────────────────
+
 /** Supported database backends */
 export type DatabaseBackend = 'sqlite' | 'dolt';
 

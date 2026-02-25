@@ -168,23 +168,21 @@
 	}
 </script>
 
-<div class="flex h-full flex-col">
+<div class="flex h-full flex-col gap-4 p-4">
 	<!-- Filter panel -->
-	<div class="border-b p-4 dark:border-gray-700">
-		<FilterPanel
-			status={filterStatus}
-			issueType={filterIssueType}
-			priority={filterPriority}
-			assignee={filterAssignee}
-			{availableStatuses}
-			{availableTypes}
-			{availableAssignees}
-			onfilterchange={handleFilterChange}
-		/>
-	</div>
+	<FilterPanel
+		status={filterStatus}
+		issueType={filterIssueType}
+		priority={filterPriority}
+		assignee={filterAssignee}
+		{availableStatuses}
+		{availableTypes}
+		{availableAssignees}
+		onfilterchange={handleFilterChange}
+	/>
 
 	<!-- Kanban board -->
-	<div class="flex-1 overflow-hidden">
+	<div class="flex-1 overflow-auto">
 		{#if error}
 			<div class="flex h-full flex-col items-center justify-center gap-4 text-center">
 				<p class="text-red-600 dark:text-red-400">Error loading issues: {error}</p>
