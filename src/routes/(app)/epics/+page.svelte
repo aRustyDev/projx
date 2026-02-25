@@ -12,30 +12,34 @@
 	import TextSearch from '$lib/components/issues/TextSearch.svelte';
 	import { appStore } from '$lib/stores/app.svelte.js';
 	import { parseFilterFromURL, buildFilterURL } from '$lib/utils/url-state.js';
-	import type { DataAccessLayer } from '$lib/db/types.js';
-	import type { ProcessSupervisor } from '$lib/cli/types.js';
 	import type { IssueFilter, Issue } from '$lib/db/types.js';
 
 	interface Props {
-		dal?: DataAccessLayer;
-		supervisor?: ProcessSupervisor;
+		data: {
+			issues: Issue[];
+			statuses: string[];
+			assignees: string[];
+			error?: string;
+		};
 	}
 
-	const props: Props = $props();
-
-	// Initialize app store with injected dependencies for testing
-	if (props.dal || props.supervisor) {
-		appStore.reset({ dal: props.dal, supervisor: props.supervisor });
-	}
+	const { data }: Props = $props();
 
 	const store = appStore;
 
-	// Local state
-	let loading = $state(true);
-	let error = $state<string | null>(null);
+	// Local state - initialize from server data
+	let loading = $state(false);
+	let error = $state<string | null>(data.error || null);
 	let searchValue = $state('');
-	let availableStatuses = $state<string[]>(['open', 'in_progress', 'done']);
-	let availableAssignees = $state<string[]>([]);
+	let availableStatuses = $state<string[]>(data.statuses);
+	let availableAssignees = $state<string[]>(data.assignees);
+
+	// Initialize store with server-loaded data
+	$effect(() => {
+		if (data.issues.length > 0) {
+			store.setIssues(data.issues);
+		}
+	});
 
 	// Derived from store - all issues (epics will be filtered by EpicsView)
 	const issues = $derived(store.filtered);
@@ -56,38 +60,21 @@
 		Array.isArray(filter.assignee) ? filter.assignee[0] || '' : filter.assignee || ''
 	);
 
-	// Load initial data
+	// Initialize filters from URL and start watching for changes
 	onMount(() => {
 		if (!browser) return;
 
-		(async () => {
-			try {
-				// Initialize filter from URL params
-				const urlFilter = parseFilterFromURL($page.url.searchParams);
-				if (Object.keys(urlFilter).length > 0) {
-					store.setFilter(urlFilter);
-					if (urlFilter.search) {
-						searchValue = urlFilter.search;
-					}
-				}
-
-				const [statuses, assignees] = await Promise.all([
-					store.getStatuses(),
-					store.getAssignees()
-				]);
-
-				availableStatuses = statuses;
-				availableAssignees = assignees;
-
-				await store.load();
-				loading = false;
-
-				store.startWatching({ pollingInterval: 10000 });
-			} catch (e) {
-				error = e instanceof Error ? e.message : 'Failed to load epics';
-				loading = false;
+		// Initialize filter from URL params
+		const urlFilter = parseFilterFromURL($page.url.searchParams);
+		if (Object.keys(urlFilter).length > 0) {
+			store.setFilter(urlFilter);
+			if (urlFilter.search) {
+				searchValue = urlFilter.search;
 			}
-		})();
+		}
+
+		// Start watching for external changes
+		store.startWatching({ pollingInterval: 10000 });
 
 		return () => {
 			store.stopWatching();

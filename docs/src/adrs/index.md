@@ -26,6 +26,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 | [0018](./0018-use-storybook-for-visual-component-documentation.md) | Use Storybook for Component Documentation | Accepted | tooling, documentation, ui |
 | [0019](./0019-testing-strategy-and-conventions.md) | Testing Strategy and Conventions | Accepted | testing, conventions, infrastructure |
 | [0020](./0020-release-workflow.md) | Release Workflow Strategy | Accepted | release, ci-cd, security, npm |
+| [0021](./0021-require-ssr-integration-testing-for-data-loading-pages.md) | Require SSR Integration Testing | Accepted | testing, ssr, integration |
 
 ## Summary
 
@@ -47,6 +48,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 14. **Docs**: Storybook for visual component documentation
 15. **Testing**: Traditional pyramid (50/30/15/5), co-located tests, 70% coverage
 16. **Release**: Script-based + git-cliff, npm provenance, Sigstore signing
+17. **SSR Testing**: Server-side data loading requires integration tests (ADR-0021)
 
 ### Architecture Overview
 

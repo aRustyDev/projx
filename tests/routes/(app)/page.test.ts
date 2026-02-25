@@ -1,15 +1,16 @@
 /**
  * Issues List Page Tests
  * @module routes/(app)/+page.test
+ *
+ * Tests use server-side data loading - data is passed via the `data` prop
+ * which simulates SvelteKit's +page.server.ts load function.
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import Page from '../../../src/routes/(app)/+page.svelte';
 import type { Issue } from '$lib/db/types.js';
-import type { DataAccessLayer } from '$lib/db/types.js';
-import type { ProcessSupervisor } from '$lib/cli/index.js';
 
 // Helper to wait for async operations
 async function waitForAsync() {
@@ -33,97 +34,52 @@ function createMockIssue(overrides: Partial<Issue> = {}): Issue {
 	};
 }
 
-// Mock DAL factory
-function createMockDAL(overrides: Partial<DataAccessLayer> = {}): DataAccessLayer {
+// Mock server data factory (simulates +page.server.ts load result)
+function createMockServerData(issues: Issue[] = []) {
 	return {
-		getIssues: vi.fn().mockResolvedValue([]),
-		getIssue: vi.fn().mockResolvedValue(null),
-		getDependencies: vi.fn().mockResolvedValue([]),
-		getComments: vi.fn().mockResolvedValue([]),
-		getLabels: vi.fn().mockResolvedValue([]),
-		getStatuses: vi.fn().mockResolvedValue(['open', 'in_progress', 'done']),
-		getAssignees: vi.fn().mockResolvedValue(['alice', 'bob']),
-		getIssueTypes: vi.fn().mockResolvedValue(['task', 'bug', 'feature']),
-		getIssueCount: vi.fn().mockResolvedValue(0),
-		getBackend: vi.fn().mockReturnValue('sqlite'),
-		query: vi.fn().mockResolvedValue({ rows: [], duration: 0 }),
-		close: vi.fn().mockResolvedValue(undefined),
-		...overrides
-	} as unknown as DataAccessLayer;
-}
-
-// Mock ProcessSupervisor factory
-function createMockSupervisor(overrides: Partial<ProcessSupervisor> = {}): ProcessSupervisor {
-	return {
-		execute: vi.fn().mockResolvedValue({
-			exitCode: 0,
-			stdout: '',
-			stderr: '',
-			duration: 100,
-			timedOut: false
-		}),
-		getCircuitState: vi.fn().mockReturnValue('closed'),
-		getStats: vi
-			.fn()
-			.mockReturnValue({ active: 0, queued: 0, circuitState: 'closed', failures: 0 }),
-		on: vi.fn(),
-		off: vi.fn(),
-		resetCircuit: vi.fn(),
-		clearQueue: vi.fn(),
-		...overrides
-	} as unknown as ProcessSupervisor;
+		issues,
+		statuses: ['open', 'in_progress', 'done'],
+		assignees: ['alice', 'bob'],
+		issueTypes: ['task', 'bug', 'feature']
+	};
 }
 
 describe('Issues Page', () => {
-	let mockDAL: DataAccessLayer;
-	let mockSupervisor: ProcessSupervisor;
-
-	beforeEach(() => {
-		mockDAL = createMockDAL();
-		mockSupervisor = createMockSupervisor();
-	});
-
 	afterEach(() => {
 		vi.clearAllMocks();
 	});
 
-	describe('Data Loading', () => {
-		it('loads issues from Data Access Layer on mount', async () => {
-			vi.mocked(mockDAL.getIssues).mockResolvedValue([createMockIssue()]);
+	describe('Data Loading (Server-Side)', () => {
+		it('displays issues from server-loaded data', async () => {
+			const issues = [createMockIssue({ id: 'test-1', title: 'Server Issue' })];
 
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData(issues) }
+			});
 			await waitForAsync();
 
-			expect(mockDAL.getIssues).toHaveBeenCalled();
+			expect(await screen.findByRole('grid', {}, { timeout: 3000 })).toBeInTheDocument();
+			expect(screen.getByText('Server Issue')).toBeInTheDocument();
 		});
 
-		it('displays loading skeleton while loading', () => {
-			vi.mocked(mockDAL.getIssues).mockImplementation(
-				() => new Promise((resolve) => setTimeout(() => resolve([]), 500))
-			);
+		it('displays IssueTable with server data', async () => {
+			const issues = [createMockIssue({ id: 'test-1', title: 'Test Issue' })];
 
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
-
-			expect(screen.getByTestId('loading-skeleton')).toBeInTheDocument();
-		});
-
-		it('displays IssueTable when loaded', async () => {
-			vi.mocked(mockDAL.getIssues).mockResolvedValue([
-				createMockIssue({ id: 'test-1', title: 'Test Issue' })
-			]);
-
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData(issues) }
+			});
 			await waitForAsync();
 
-			// Use findBy for async queries
 			expect(await screen.findByRole('grid', {}, { timeout: 3000 })).toBeInTheDocument();
 			expect(screen.getByText('Test Issue')).toBeInTheDocument();
 		});
 
-		it('displays error message on load failure', async () => {
-			vi.mocked(mockDAL.getIssues).mockRejectedValue(new Error('Database connection failed'));
-
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+		it('displays error message when server returns error', async () => {
+			render(Page, {
+				props: {
+					data: { ...createMockServerData(), error: 'Database connection failed' }
+				}
+			});
 			await waitForAsync();
 
 			expect(await screen.findByText(/error loading issues/i)).toBeInTheDocument();
@@ -136,9 +92,10 @@ describe('Issues Page', () => {
 				createMockIssue({ id: '1', status: 'open' }),
 				createMockIssue({ id: '2', status: 'done' })
 			];
-			vi.mocked(mockDAL.getIssues).mockResolvedValue(issues);
 
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData(issues) }
+			});
 			await waitForAsync();
 
 			expect(await screen.findByRole('grid', {}, { timeout: 3000 })).toBeInTheDocument();
@@ -147,18 +104,18 @@ describe('Issues Page', () => {
 		});
 
 		it('passes filter state to FilterPanel', async () => {
-			vi.mocked(mockDAL.getIssues).mockResolvedValue([]);
-
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData() }
+			});
 
 			// FilterPanel is rendered immediately (not async)
 			expect(screen.getByLabelText(/status/i)).toBeInTheDocument();
 		});
 
 		it('passes search term to TextSearch', async () => {
-			vi.mocked(mockDAL.getIssues).mockResolvedValue([]);
-
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData() }
+			});
 
 			// TextSearch is rendered immediately
 			expect(screen.getByLabelText(/search issues/i)).toBeInTheDocument();
@@ -172,9 +129,10 @@ describe('Issues Page', () => {
 				createMockIssue({ id: '1', status: 'open', title: 'Open Issue' }),
 				createMockIssue({ id: '2', status: 'done', title: 'Done Issue' })
 			];
-			vi.mocked(mockDAL.getIssues).mockResolvedValue(issues);
 
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData(issues) }
+			});
 			await waitForAsync();
 
 			await screen.findByRole('grid', {}, { timeout: 3000 });
@@ -198,9 +156,10 @@ describe('Issues Page', () => {
 				createMockIssue({ id: '1', title: 'Bug in login' }),
 				createMockIssue({ id: '2', title: 'Feature request' })
 			];
-			vi.mocked(mockDAL.getIssues).mockResolvedValue(issues);
 
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData(issues) }
+			});
 			await screen.findByRole('grid', {}, { timeout: 3000 });
 
 			const searchInput = screen.getByLabelText(/search issues/i);
@@ -220,9 +179,10 @@ describe('Issues Page', () => {
 		it.skip('clicking row updates selectedId', async () => {
 			// TODO: Fix row selection test - need to investigate IssueTable row click handling
 			const issues = [createMockIssue({ id: 'test-1', title: 'Test Issue' })];
-			vi.mocked(mockDAL.getIssues).mockResolvedValue(issues);
 
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData(issues) }
+			});
 			await screen.findByRole('grid', {}, { timeout: 3000 });
 
 			const row = screen.getByRole('row', { name: /test issue/i });
@@ -234,9 +194,9 @@ describe('Issues Page', () => {
 
 	describe('Empty State', () => {
 		it('shows "No issues" when no issues exist', async () => {
-			vi.mocked(mockDAL.getIssues).mockResolvedValue([]);
-
-			render(Page, { props: { dal: mockDAL, supervisor: mockSupervisor } });
+			render(Page, {
+				props: { data: createMockServerData([]) }
+			});
 			await waitForAsync();
 
 			expect(await screen.findByText(/no issues/i)).toBeInTheDocument();

@@ -12,33 +12,38 @@
 	import TextSearch from '$lib/components/issues/TextSearch.svelte';
 	import { appStore } from '$lib/stores/app.svelte.js';
 	import { parseFilterFromURL, buildFilterURL } from '$lib/utils/url-state.js';
-	import type { DataAccessLayer } from '$lib/db/types.js';
-	import type { ProcessSupervisor } from '$lib/cli/types.js';
-	import type { IssueFilter } from '$lib/db/types.js';
+	import type { IssueFilter, Issue } from '$lib/db/types.js';
 
 	interface Props {
-		dal?: DataAccessLayer;
-		supervisor?: ProcessSupervisor;
+		data: {
+			issues: Issue[];
+			statuses: string[];
+			assignees: string[];
+			issueTypes: string[];
+			error?: string;
+		};
 	}
 
-	const props: Props = $props();
-
-	// Initialize app store with injected dependencies for testing
-	if (props.dal || props.supervisor) {
-		appStore.reset({ dal: props.dal, supervisor: props.supervisor });
-	}
+	const { data }: Props = $props();
 
 	// Use the shared app store
 	const store = appStore;
 
-	// Local state
-	let loading = $state(true);
-	let error = $state<string | null>(null);
+	// Local state - initialize from server data
+	let loading = $state(false);
+	let error = $state<string | null>(data.error || null);
 	let searchValue = $state('');
 	let selectedId = $state<string | null>(null);
-	let availableStatuses = $state<string[]>(['open', 'in_progress', 'done']);
-	let availableAssignees = $state<string[]>([]);
-	let availableTypes = $state<string[]>(['task', 'bug', 'feature']);
+	let availableStatuses = $state<string[]>(data.statuses);
+	let availableAssignees = $state<string[]>(data.assignees);
+	let availableTypes = $state<string[]>(data.issueTypes);
+
+	// Initialize store with server-loaded data
+	$effect(() => {
+		if (data.issues.length > 0) {
+			store.setIssues(data.issues);
+		}
+	});
 
 	// Derived from store
 	const issues = $derived(store.filtered);
@@ -62,44 +67,22 @@
 		Array.isArray(filter.assignee) ? filter.assignee[0] || '' : filter.assignee || ''
 	);
 
-	// Load initial data and start watching for changes
+	// Initialize filters from URL and start watching for changes
 	onMount(() => {
 		if (!browser) return;
 
-		// Load data asynchronously
-		(async () => {
-			try {
-				// Initialize filter from URL params
-				const urlFilter = parseFilterFromURL($page.url.searchParams);
-				if (Object.keys(urlFilter).length > 0) {
-					store.setFilter(urlFilter);
-					if (urlFilter.search) {
-						searchValue = urlFilter.search;
-					}
-				}
-
-				// Load metadata for filters
-				const [statuses, assignees, types] = await Promise.all([
-					store.getStatuses(),
-					store.getAssignees(),
-					store.getIssueTypes()
-				]);
-
-				availableStatuses = statuses;
-				availableAssignees = assignees;
-				availableTypes = types;
-
-				// Load issues
-				await store.load();
-				loading = false;
-
-				// Start watching for external changes (polling fallback, 10s interval)
-				store.startWatching({ pollingInterval: 10000 });
-			} catch (e) {
-				error = e instanceof Error ? e.message : 'Failed to load issues';
-				loading = false;
+		// Initialize filter from URL params
+		const urlFilter = parseFilterFromURL($page.url.searchParams);
+		if (Object.keys(urlFilter).length > 0) {
+			store.setFilter(urlFilter);
+			if (urlFilter.search) {
+				searchValue = urlFilter.search;
 			}
-		})();
+		}
+
+		// Start watching for external changes (polling fallback, 10s interval)
+		// This will refresh data when issues change externally
+		store.startWatching({ pollingInterval: 10000 });
 
 		// Cleanup on unmount
 		return () => {

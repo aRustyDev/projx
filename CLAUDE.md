@@ -212,13 +212,52 @@ See [RELEASING.md](RELEASING.md) and [ADR-0020](docs/src/adrs/0020-release-workf
 
 - **Unit tests**: Vitest with Testing Library
 - **E2E tests**: Playwright
+- **SSR smoke tests**: Verify production builds serve data correctly
 - **Test location**: Co-located with source (`*.test.ts`)
 
 ```bash
 bun run test:unit     # Unit tests
 bun run test:e2e      # E2E tests
+bun run test:ssr      # SSR smoke tests (production build)
 bun run test:coverage # Coverage report
 ```
+
+### SSR Integration Testing (ADR-0021)
+
+**CRITICAL**: Pages that load data from the database MUST use `+page.server.ts` for server-side data loading. Client-side `onMount()` cannot access native Node modules like `better-sqlite3`.
+
+**Required Pattern:**
+
+```
++page.server.ts  →  loads data server-side (has access to native modules)
+       ↓
++page.svelte     →  receives data via `data` prop
+       ↓
+client           →  hydrates with server data
+```
+
+**Anti-pattern (causes empty data in production):**
+
+```svelte
+<!-- DON'T DO THIS -->
+<script>
+	import { onMount } from 'svelte';
+	import { DataAccessLayer } from '$lib/server/db/dal.js'; // ❌ Server module!
+
+	onMount(async () => {
+		const dal = await DataAccessLayer.create(); // ❌ Fails silently in browser
+		issues = await dal.getIssues();
+	});
+</script>
+```
+
+**Test Requirements:**
+
+1. Every page with `+page.server.ts` must have an E2E test verifying data display
+2. SSR smoke tests must pass before merge (CI requirement)
+3. Unit tests must pass server data via the `data` prop, not mock DAL calls
+
+See [ADR-0021](docs/src/adrs/0021-require-ssr-integration-testing-for-data-loading-pages.md) for details.
 
 ## Beads Issue Tracking
 

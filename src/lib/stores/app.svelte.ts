@@ -200,6 +200,14 @@ class AppStore {
 	}
 
 	/**
+	 * Set issues directly (used when server-loaded data is available)
+	 */
+	setIssues(issues: Issue[]): void {
+		this.#issues = issues;
+		this.#notifyListeners();
+	}
+
+	/**
 	 * Load issues from database
 	 */
 	async load(): Promise<void> {
