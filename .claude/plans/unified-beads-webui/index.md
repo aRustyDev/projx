@@ -49,6 +49,8 @@
 | [Borrowable Components](./references/borrowable-components.md) | Reusable code from existing tools |
 | [Requirements](./references/requirements.md) | Full requirements list |
 | [MCP Servers](./references/mcp-servers.md) | Development MCP servers for AI-assisted coding |
+| [Federated DAL](./references/federated-dal.md) | Multi-source database architecture |
+| [Dolt Native FFI](./references/dolt-native-ffi.md) | Embedded Dolt research |
 
 ---
 
@@ -59,7 +61,9 @@
 - **Writes**: Always via `bd` CLI to maintain sync
 
 ### Database Backend
-- **Support both SQLite and Dolt simultaneously** - Not fallback, dual support
+- **Support multiple backends simultaneously** via Federated DAL ([ADR-0022](../../docs/src/adrs/0022-federated-data-access-layer-for-multi-source-support.md))
+- Backends: SQLite, Dolt-server, JSONL, future Dolt-native (FFI)
+- Namespace-based isolation prevents cross-repo data leakage
 - Dolt-only features: version history, branching, time travel queries
 - SQLite-only features: simpler setup, no server process
 

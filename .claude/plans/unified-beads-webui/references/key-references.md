@@ -14,6 +14,8 @@ This document provides a curated summary of the most important reference materia
 | Borrowable code | [borrowable-components.md](./borrowable-components.md) |
 | Gas-Town specifics | [gastown-webuis.md](./gastown-webuis.md) |
 | MCP servers | [mcp-servers.md](./mcp-servers.md) |
+| **Multi-source federation** | [federated-dal.md](./federated-dal.md) |
+| **Dolt native FFI** | [dolt-native-ffi.md](./dolt-native-ffi.md) |
 
 ---
 
@@ -85,6 +87,40 @@ comments (
 ```
 
 See: [beads-schema.md](./beads-schema.md)
+
+---
+
+## Multi-Source Database Support
+
+### Supported Backends
+
+| Type | Description | Mode | Status |
+|------|-------------|------|--------|
+| `sqlite` | Local SQLite via better-sqlite3 | read/write | Implemented |
+| `dolt-server` | MySQL-compatible Dolt server | read/write | Implemented |
+| `jsonl` | JSON Lines file with watch | read-only | Planned |
+| `dolt-native` | Embedded Dolt via FFI | read/write | Research |
+
+### Federation Architecture
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  FederatedDAL                        │
+├────────────┬────────────┬────────────┬──────────────┤
+│  SQLite    │   JSONL    │Dolt-Native │ Dolt-Server  │
+│  Adapter   │  Adapter   │  Adapter   │   Adapter    │
+└────────────┴────────────┴────────────┴──────────────┘
+```
+
+### Isolation Levels
+
+| Level | Cross-NS Read | Cross-NS Write | Use Case |
+|-------|---------------|----------------|----------|
+| `strict` | ❌ | ❌ | Sensitive data |
+| `namespaced` | ✅ | ❌ | Team + personal |
+| `open` | ✅ | ✅ | Single-user dev |
+
+See: [federated-dal.md](./federated-dal.md), [dolt-native-ffi.md](./dolt-native-ffi.md)
 
 ---
 
@@ -210,6 +246,7 @@ See: [mcp-servers.md](./mcp-servers.md)
 | [0005](../../../../../docs/src/adrs/0005-cli-for-writes-and-direct-sql-for-reads.md) | CLI for writes, SQL for reads |
 | [0006](../../../../../docs/src/adrs/0006-use-file-watching-with-websocket-broadcast.md) | File watching + WebSocket |
 | [0007](../../../../../docs/src/adrs/0007-borrow-components-from-gastown-ui-with-custom-extensions.md) | Borrow gastown_ui components |
+| [0022](../../../../../docs/src/adrs/0022-federated-data-access-layer-for-multi-source-support.md) | Federated DAL for multi-source |
 
 ---
 
