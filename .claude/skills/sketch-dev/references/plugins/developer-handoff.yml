@@ -10,3 +10,5 @@
   open-source: false
   tags:
   - developer-handoff
+  summary: |
+    A design delivery platform that separates finalized designs from in-progress work, providing structured version control, change tracking, and developer-friendly specs. Includes features for design organization, journey mapping, annotation, review workflows, and design system management tailored for developer handoff.

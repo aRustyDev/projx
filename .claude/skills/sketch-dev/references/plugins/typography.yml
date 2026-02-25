@@ -10,6 +10,8 @@
   open-source: true
   tags:
   - typography
+  summary: |
+    Provides convenient access to advanced OpenType features (number position, spacing, case, and small caps) with a visual interface for applying them to text layers. Supports multiple text layer selection, dark mode, and includes plans for additional OpenType features like ligatures and stylistic sets.
 - plugin: Golden Ratio Line Height
   link: https://github.com/lorenzwoehr/Golden-Ratio-Line-Height-Sketch-Plugin
   description: Optimize your typography based on font size, line-height and width.
@@ -21,3 +23,5 @@
   open-source: true
   tags:
   - typography
+  summary: |
+    Optimizes typography by calculating ideal line heights based on font size and text width using golden ratio principles, with keyboard shortcut (Cmd+L) for quick application. Based on Pearsonified's typography calculator algorithm.

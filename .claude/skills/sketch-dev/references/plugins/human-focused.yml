@@ -10,6 +10,8 @@
   open-source: false
   tags:
   - human-focused
+  summary: |
+    Converts Sketch artboards into interactive gameplay experiences, with initial support for breakout-style games where artboard shapes become game bricks. An experimental plugin designed to bring creative, interactive elements to design work.
 - plugin: 10th Anniversary
   link: https://github.com/bomberstudios/10th-anniversary
   description: Celebrate Sketch's 10th Anniversary with a trip down memory lane
@@ -21,6 +23,8 @@
   open-source: true
   tags:
   - human-focused
+  summary: |
+    A celebratory plugin that takes users on a nostalgic journey through Sketch's history for its 10th anniversary milestone. Purely a fun, commemorative experience with no production functionality.
 - plugin: LaTeX Sketch Plugin
   link: https://github.com/heytitle/latex-sketch-plugin
   description: This plugin brings LaTeX functionalities to Sketch, and allows us to
@@ -33,3 +37,5 @@
   open-source: true
   tags:
   - human-focused
+  summary: |
+    Enables direct insertion and rendering of mathematical formulas written in LaTeX notation within Sketch designs using MathJax. Actively maintained with support for modern Sketch versions and useful for technical documentation and STEM-related design work.

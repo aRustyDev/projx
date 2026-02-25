@@ -11,6 +11,8 @@
   open-source: true
   tags:
   - plugins
+  summary: |
+    Exports lists of installed and enabled Sketch plugins in multiple formats (CSV, Markdown tables, Backlog format) for easy sharing with teams. Supports custom Mustache templates for tailored export formats and includes detailed plugin metadata.
 - plugin: Plugin Reloader
   link: https://github.com/TheNounProject/SketchPluginReloader
   description: A simple plugin to reload another plugins
@@ -22,3 +24,5 @@
   open-source: true
   tags:
   - plugins
+  summary: |
+    Developer utility that reloads Sketch plugins without restarting the application, useful for developers working with `shouldKeepAround` and long-running tasks. Supports command execution after reloading and HandleURL actions for plugin event handling.

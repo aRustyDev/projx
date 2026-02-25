@@ -10,6 +10,8 @@
   open-source: true
   tags:
   - wireframing
+  summary: |
+    Converts high-fidelity screen designs into simple wireframes by stripping visual styling to outlines and applying Comic Sans MS typography to discourage feedback on aesthetics. Useful for concept validation meetings and supports customizable wireframe styling through shared Sketch styles.
 - plugin: Lightwire
   link: https://github.com/alex-matt/sketch-lightwire-plugin
   description: Plugin with ready-to-use wireframes that help you to bring your ideas
@@ -22,3 +24,5 @@
   open-source: true
   tags:
   - wireframing
+  summary: |
+    Provides a library of pre-built wireframes across 10 categories (e-commerce, photos, login, social, etc.) for rapid prototyping and idea exploration. Requires Montserrat font and includes ready-to-use screens for common UI patterns.
