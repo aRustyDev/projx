@@ -155,6 +155,59 @@ chore(db): update migration scripts
 
 All commits must be signed. Git is configured to sign automatically with SSH key.
 
+## Release Workflow
+
+Releases are created using an interactive script that handles versioning, changelog generation, and tagging.
+
+```bash
+# Preview a release (no changes)
+just release --dry-run
+
+# Create a release interactively
+just release
+
+# View unreleased changes
+just changelog
+```
+
+### Process
+
+1. Script validates clean working directory
+2. Shows unreleased changes from conventional commits
+3. Prompts for version bump (patch/minor/major/custom)
+4. Runs tests before proceeding
+5. Updates CHANGELOG.md via git-cliff
+6. Updates package.json version
+7. Creates annotated tag with release notes
+8. Pushes to trigger GitHub Actions
+
+### CI Workflow
+
+When a tag is pushed, GitHub Actions automatically:
+
+- Builds the application
+- Generates SBOM (CycloneDX)
+- Creates GitHub release with artifacts
+- Publishes to npm with provenance (SLSA Level 2)
+- Signs artifacts with Sigstore
+
+### Verification
+
+```bash
+# Verify npm package provenance
+npm audit signatures
+
+# Verify GitHub release signatures
+cosign verify-blob \
+  --signature looms-VERSION.tar.gz.sig \
+  --certificate looms-VERSION.tar.gz.pem \
+  --certificate-identity-regexp='https://github.com/aRustyDev/looms/.*' \
+  --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
+  looms-VERSION.tar.gz
+```
+
+See [RELEASING.md](RELEASING.md) and [ADR-0020](docs/src/adrs/0020-release-workflow.md) for details.
+
 ## Testing
 
 - **Unit tests**: Vitest with Testing Library
