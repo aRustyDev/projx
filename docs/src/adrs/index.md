@@ -28,6 +28,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 | [0020](./0020-release-workflow.md) | Release Workflow Strategy | Accepted | release, ci-cd, security, npm |
 | [0021](./0021-require-ssr-integration-testing-for-data-loading-pages.md) | Require SSR Integration Testing | Accepted | testing, ssr, integration |
 | [0022](./0022-federated-data-access-layer-for-multi-source-support.md) | Federated DAL for Multi-Source | Proposed | database, federation, multi-repo |
+| [0023](./0023-search-architecture-for-issue-filtering.md) | Search Architecture for Issue Filtering | Accepted | search, architecture, filtering |
 
 ## Summary
 
@@ -51,6 +52,7 @@ This directory contains Architecture Decision Records (ADRs) for the Unified Bea
 16. **Release**: Script-based + git-cliff, npm provenance, Sigstore signing
 17. **SSR Testing**: Server-side data loading requires integration tests (ADR-0021)
 18. **Federation**: Multi-source DAL with namespace isolation (ADR-0022)
+19. **Search**: Hybrid client/server filtering with query parser (ADR-0023)
 
 ### Architecture Overview
 
