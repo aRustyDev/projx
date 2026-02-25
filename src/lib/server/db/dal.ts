@@ -106,12 +106,33 @@ export class DataAccessLayer {
 
 	/**
 	 * Initialize database connection.
+	 * Falls back to SQLite if Dolt connection fails.
 	 */
 	private async initialize(): Promise<void> {
 		if (this.backend === 'sqlite') {
 			await this.initSqlite();
 		} else {
-			await this.initDolt();
+			try {
+				await this.initDolt();
+			} catch (doltError) {
+				// Try SQLite fallback if Dolt fails
+				console.warn(
+					`Dolt connection failed, trying SQLite fallback: ${(doltError as Error).message}`
+				);
+				try {
+					await this.initSqlite();
+					this.backend = 'sqlite';
+					console.warn('Successfully connected to SQLite fallback');
+				} catch (sqliteError) {
+					// Both failed, throw with SQLite error as cause (includes Dolt context in message)
+					throw new Error(
+						`Database connection failed. ` +
+							`Dolt: ${(doltError as Error).message}. ` +
+							`SQLite fallback: ${(sqliteError as Error).message}`,
+						{ cause: sqliteError }
+					);
+				}
+			}
 		}
 	}
 
@@ -209,7 +230,7 @@ export class DataAccessLayer {
 				conn.release();
 
 				this.doltPool = pool;
-				console.log(`Connected to Dolt server on port ${port}, database: ${database}`);
+				console.warn(`Connected to Dolt server on port ${port}, database: ${database}`);
 				return;
 			} catch (error) {
 				lastError = error as Error;

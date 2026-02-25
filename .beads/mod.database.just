@@ -91,3 +91,49 @@ query filter=".":
 # Open issues in interactive viewer
 browse:
     @cat {{ beads_dir }}/issues.jsonl | jq -s '.[] | "\(.id) [\(.status)] \(.title)"' -r | fzf --preview 'id=$(echo {} | cut -d" " -f1); cat {{ beads_dir }}/issues.jsonl | jq -s ".[] | select(.id == \"$id\")"'
+
+# Sync Dolt data to ephemeral SQLite (for offline WebUI access)
+sync-sqlite:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+    BEADS_DIR="$PROJECT_ROOT/.beads"
+    DOLT_DIR="$BEADS_DIR/dolt/beads_projx"
+    SQLITE_DB="$BEADS_DIR/ephemeral.sqlite3"
+
+    echo "Syncing Dolt data to SQLite..."
+
+    # Export issues from Dolt
+    cd "$DOLT_DIR"
+    dolt sql -q "SELECT id, title, description, design, acceptance_criteria, notes, status, priority, issue_type, assignee, owner, created_at, updated_at, closed_at, external_ref, spec_id, due_at FROM issues" --result-format csv > /tmp/dolt_issues.csv
+
+    # Create/reset SQLite schema
+    sqlite3 "$SQLITE_DB" "DROP TABLE IF EXISTS issues;"
+    sqlite3 "$SQLITE_DB" "CREATE TABLE issues (
+        id TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT,
+        design TEXT,
+        acceptance_criteria TEXT,
+        notes TEXT,
+        status TEXT DEFAULT 'open',
+        priority INTEGER DEFAULT 3,
+        issue_type TEXT DEFAULT 'task',
+        assignee TEXT,
+        owner TEXT,
+        created_at TEXT,
+        updated_at TEXT,
+        closed_at TEXT,
+        external_ref TEXT,
+        spec_id TEXT,
+        due_at TEXT
+    );"
+
+    # Import CSV (skip header line)
+    tail -n +2 /tmp/dolt_issues.csv | sqlite3 "$SQLITE_DB" ".mode csv" ".import /dev/stdin issues"
+
+    count=$(sqlite3 "$SQLITE_DB" "SELECT COUNT(*) FROM issues")
+    echo "Synced $count issues to SQLite"
+
+    rm -f /tmp/dolt_issues.csv
